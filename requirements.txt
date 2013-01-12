@@ -1,0 +1,15 @@
+Django==1.4.3
+Pillow==1.7.8
+South==0.7.6
+boto==2.7.0
+dj-database-url==0.2.1
+django-appconf==0.5
+django-extensions==1.0.2
+django-facebook==4.2.11
+django-imagekit==2.0.2
+django-ses==0.4.1
+django-storages==1.1.6
+gunicorn==0.17.2
+ipdb==0.7
+ipython==0.13.1
+wsgiref==0.1.2
