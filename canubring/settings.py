@@ -54,6 +54,8 @@ INSTALLED_APPS = (
     # 'imagekit',
     # 'django_ses',
     # 'storages',
+    'website',
+    'search',
 )
 
 LOGGING = {

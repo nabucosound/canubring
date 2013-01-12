@@ -6,7 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(regex=r'^$', view='website.views.home', name='home', kwargs = {'template': 'home.html',}),
+    url(regex=r'^$', view='website.views.home', name='home', kwargs = {'template': 'search.html',}),
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^facebook/', include('django_facebook.urls')),
     # url(r'^auth/', include('django_facebook.auth_urls')),
