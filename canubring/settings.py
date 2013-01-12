@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     # 'storages',
     'website',
     'search',
+    'profiles',
 )
 
 LOGGING = {
