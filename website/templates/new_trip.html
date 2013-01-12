@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+          <div class="upload-trip">
+            <h2>Upload your trip!</h2>
+
+            <div class="item-leg clearfix">
+              <h4>Fill your first data leg</h4>
+              <form class="form-inline">
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="origin country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="origin city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="departure date" />
+                </div>
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="destination country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="destination city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
+                </div>
+                <div class="control-group">
+                  <div class="travelling-by pull-left">
+                    <h5>Travelling by:</h5>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
+                    </label>
+                  </div>
+                  <textarea class="input-canubring" placeholder="origin country"></textarea>
+                </div>
+              </form>
+            </div><!-- .item-leg -->
+
+             <div class="item-leg clearfix">
+              <h4>Fill your first data leg</h4>
+              <form class="form-inline">
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="origin country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="origin city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="departure date" />
+                </div>
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="destination country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="destination city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
+                </div>
+                <div class="control-group">
+                  <div class="travelling-by pull-left">
+                    <h5>Travelling by:</h5>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
+                    </label>
+                    <p><a href="#" title="" class="remove-leg">remove leg</a></p>
+                  </div>
+                  <textarea class="input-canubring" placeholder="origin country"></textarea>
+                </div>
+              </form>
+            </div><!-- .item-leg -->
+
+             <div class="item-leg clearfix">
+              <h4>Fill your first data leg</h4>
+              <form class="form-inline">
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="origin country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="origin city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="departure date" />
+                </div>
+                <div class="control-group">
+                  <input type="text" class="input-medium input-canubring" placeholder="destination country" />
+                  <input type="text" class="input-medium input-canubring" placeholder="destination city" />
+                  <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
+                </div>
+                <div class="control-group">
+                  <div class="travelling-by pull-left">
+                    <h5>Travelling by:</h5>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
+                    </label>
+                    <p><a href="#" title="" class="remove-leg">remove leg</a></p>
+                    <p><a href="#" title="" class="add-leg">add another leg</a></p>
+                  </div>
+                  <textarea class="input-canubring" placeholder="origin country"></textarea>
+                  <p class="submit-trip">
+                    <label class="checkbox">
+                      <input type="checkbox">one way
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox">round trip
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox">multi-city
+                    </label>
+                    <a class="btn btn-canubring-orange pull-right" href="#">Upload</a>
+                  </p>
+                </div>
+              </form>
+            </div><!-- .item-leg -->
+
+          </div><!-- .upload-trip -->
+{% endblock %}
+
