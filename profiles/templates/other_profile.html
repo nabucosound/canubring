@@ -1,156 +1,156 @@
 {% extends "base.html" %}
 
 {% block content %}
-          <div class="profile-ticket">
-            <div class="media">
-              <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_135x135.png">
-              <span class="sep-holes"></span>
-              <div class="media-body">
-                <h1>Loreto Vial</h1>
-                <p class="country"><a href="#" title="">United states</a><span class="stars three"></span></p>
-                <p class="language">idiomas</p>
-                <p class="trips">4 viajes realizads</p>
-                <p class="social">
-                  <a href="#" title="" class="profile-social twitter">Twitter</a>
-                  <a href="#" title="" class="profile-social facebook">Facebook</a>
-                  <a href="#" title="" class="profile-social pinterest">Pinterest</a>
-                </p>
-              </div>
+<div class="profile-ticket">
+  <div class="media">
+    <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_135x135.png">
+    <span class="sep-holes"></span>
+    <div class="media-body">
+      <h1>Loreto Vial</h1>
+      <p class="country"><a href="#" title="">United states</a><span class="stars three"></span></p>
+      <p class="language">idiomas</p>
+      <p class="trips">4 viajes realizads</p>
+      <p class="social">
+        <a href="#" title="" class="profile-social twitter">Twitter</a>
+        <a href="#" title="" class="profile-social facebook">Facebook</a>
+        <a href="#" title="" class="profile-social pinterest">Pinterest</a>
+      </p>
+    </div>
+  </div>
+</div><!-- .profile-ticket -->
+
+<div class="profile-travels">
+  <h4 class="tit-int">loreto's travels:</h4>
+  
+  <div class="tb-travels">
+    <ul class="unstyled">
+      <li class="item">
+        <div class="row">
+          <div class="span1">
+            <div class="open-plane">
+              <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+              <span class="ico-plane"></span>
             </div>
-          </div><!-- .profile-ticket -->
+          </div>
+          <div class="span2">
+            <p class="desc"><span>Dep.</span> 16.10.2012</p>
+            <p class="desc"><span>Arrive.</span> 16.10.2012</p>
+          </div>
+          <div class="span5">
+            <p class="desc"><span>From</span> Barcelona - Chile</p>
+            <p class="desc"><span>To</span> Santiago Chile</p>
+          </div>
+        </div>
+      </li><!-- .item -->
+      <li class="item active">
+        <div class="row">
+          <div class="span1">
+            <div class="open-plane">
+              <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_remove.png" alt="" title="" /></a>
+              <span class="ico-plane"></span>
+            </div>
+          </div>
+          <div class="span2">
+            <p class="desc"><span>Dep.</span> 16.10.2012</p>
+            <p class="desc"><span>Arrive.</span> 16.10.2012</p>
+          </div>
+          <div class="span5">
+            <p class="desc"><span>From</span> Barcelona - Chile</p>
+            <p class="desc"><span>To</span> Santiago Chile</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span8">
+            <div class="comments">
 
-          <div class="profile-travels">
-            <h4 class="tit-int">loreto's travels:</h4>
-            
-            <div class="tb-travels">
-              <ul class="unstyled">
-                <li class="item">
-                  <div class="row">
-                    <div class="span1">
-                      <div class="open-plane">
-                        <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
-                        <span class="ico-plane"></span>
-                      </div>
-                    </div>
-                    <div class="span2">
-                      <p class="desc"><span>Dep.</span> 16.10.2012</p>
-                      <p class="desc"><span>Arrive.</span> 16.10.2012</p>
-                    </div>
-                    <div class="span5">
-                      <p class="desc"><span>From</span> Barcelona - Chile</p>
-                      <p class="desc"><span>To</span> Santiago Chile</p>
-                    </div>
-                  </div>
-                </li><!-- .item -->
-                <li class="item active">
-                  <div class="row">
-                    <div class="span1">
-                      <div class="open-plane">
-                        <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_remove.png" alt="" title="" /></a>
-                        <span class="ico-plane"></span>
-                      </div>
-                    </div>
-                    <div class="span2">
-                      <p class="desc"><span>Dep.</span> 16.10.2012</p>
-                      <p class="desc"><span>Arrive.</span> 16.10.2012</p>
-                    </div>
-                    <div class="span5">
-                      <p class="desc"><span>From</span> Barcelona - Chile</p>
-                      <p class="desc"><span>To</span> Santiago Chile</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="span8">
-                      <div class="comments">
-
-                        <div class="comment-item media">
-                          <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
-                          <div class="media-body">
-                            <h5><a href="#">Lionel Messi</a></h5>
-                            <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
-                            <p class="date">27/09/2012 at 13:46 hrs.</p>
-                          </div>
-                        </div><!-- comment-item -->
-
-                        <div class="comment-item media">
-                          <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
-                          <div class="media-body">
-                            <h5><a href="#">Lionel Messi</a></h5>
-                            <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
-                            <p class="date">27/09/2012 at 13:46 hrs.</p>
-                          </div>
-                        </div><!-- comment-item -->
-
-                        <form>
-                          <textarea class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo."></textarea>
-                          <a href="#" class="btn btn-canubring-orange pull-right">Upload</a>
-                        </form>
-
-                      </div><!-- comments -->
-                    </div>
-                  </div>
-                </li><!-- .item -->
-                <li class="item">
-                  <div class="row">
-                    <div class="span1">
-                      <div class="open-plane">
-                        <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
-                        <span class="ico-plane"></span>
-                      </div>
-                    </div>
-                    <div class="span2">
-                      <p class="desc"><span>Dep.</span> 16.10.2012</p>
-                      <p class="desc"><span>Arrive.</span> 16.10.2012</p>
-                    </div>
-                    <div class="span5">
-                      <p class="desc"><span>From</span> Barcelona - Chile</p>
-                      <p class="desc"><span>To</span> Santiago Chile</p>
-                    </div>
-                  </div>
-                </li><!-- .item -->
-              </ul>
-            </div><!-- .tb-travels -->
-
-          </div><!-- .profile-travels -->
-
-          <div class="profile-reviews">
-            <h4 class="tit-int">Reviews about loreto</h4>
-            <div class="item">
-              <div class="media">
-                <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+              <div class="comment-item media">
+                <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
                 <div class="media-body">
-                  <div class="comment-box">
-                    <h5><a href="#">Francisca Vega</a></h5>
-                    <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
-                  </div>
-                  <span class="arrow"></span>
+                  <h5><a href="#">Lionel Messi</a></h5>
+                  <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
+                  <p class="date">27/09/2012 at 13:46 hrs.</p>
                 </div>
-              </div>
-            </div><!-- .item -->
-            <div class="item">
-              <div class="media">
-                <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+              </div><!-- comment-item -->
+
+              <div class="comment-item media">
+                <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
                 <div class="media-body">
-                  <div class="comment-box">
-                    <h5><a href="#">Francisca Vega</a></h5>
-                    <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
-                  </div>
-                  <span class="arrow"></span>
+                  <h5><a href="#">Lionel Messi</a></h5>
+                  <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
+                  <p class="date">27/09/2012 at 13:46 hrs.</p>
                 </div>
-              </div>
-            </div><!-- .item -->
-            <div class="item">
-              <div class="media">
-                <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
-                <div class="media-body">
-                  <div class="comment-box">
-                    <h5><a href="#">Francisca Vega</a></h5>
-                    <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
-                  </div>
-                  <span class="arrow"></span>
-                </div>
-              </div>
-            </div><!-- .item -->
-          </div><!-- .profile-reviews -->
+              </div><!-- comment-item -->
+
+              <form>
+                <textarea class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo."></textarea>
+                <a href="#" class="btn btn-canubring-orange pull-right">Upload</a>
+              </form>
+
+            </div><!-- comments -->
+          </div>
+        </div>
+      </li><!-- .item -->
+      <li class="item">
+        <div class="row">
+          <div class="span1">
+            <div class="open-plane">
+              <a href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+              <span class="ico-plane"></span>
+            </div>
+          </div>
+          <div class="span2">
+            <p class="desc"><span>Dep.</span> 16.10.2012</p>
+            <p class="desc"><span>Arrive.</span> 16.10.2012</p>
+          </div>
+          <div class="span5">
+            <p class="desc"><span>From</span> Barcelona - Chile</p>
+            <p class="desc"><span>To</span> Santiago Chile</p>
+          </div>
+        </div>
+      </li><!-- .item -->
+    </ul>
+  </div><!-- .tb-travels -->
+
+</div><!-- .profile-travels -->
+
+<div class="profile-reviews">
+  <h4 class="tit-int">Reviews about loreto</h4>
+  <div class="item">
+    <div class="media">
+      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+      <div class="media-body">
+        <div class="comment-box">
+          <h5><a href="#">Francisca Vega</a></h5>
+          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
+        </div>
+        <span class="arrow"></span>
+      </div>
+    </div>
+  </div><!-- .item -->
+  <div class="item">
+    <div class="media">
+      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+      <div class="media-body">
+        <div class="comment-box">
+          <h5><a href="#">Francisca Vega</a></h5>
+          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
+        </div>
+        <span class="arrow"></span>
+      </div>
+    </div>
+  </div><!-- .item -->
+  <div class="item">
+    <div class="media">
+      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+      <div class="media-body">
+        <div class="comment-box">
+          <h5><a href="#">Francisca Vega</a></h5>
+          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
+        </div>
+        <span class="arrow"></span>
+      </div>
+    </div>
+  </div><!-- .item -->
+</div><!-- .profile-reviews -->
 {% endblock %}
 
