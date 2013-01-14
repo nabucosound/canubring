@@ -47,9 +47,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.gis',
     'gunicorn',
     'south',
     'django_extensions',
+    'cities',
     # 'django_facebook',
     # 'imagekit',
     # 'django_ses',
@@ -104,6 +106,11 @@ DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+
+CITIES_LOCALES = ['en', 'es', 'pt', 'und',]
+CITIES_PLUGINS = [
+    # 'cities.plugin.postal_code_ca.Plugin',  # Canada postal codes need region codes remapped to match geonames
+]
 
 # Facebook
 # FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
