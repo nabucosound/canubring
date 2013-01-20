@@ -143,13 +143,6 @@ STATIC_URL = S3_URL
 # Imagekit
 IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
 
-# Celery
-import djcelery
-djcelery.setup_loader()
-BROKER_BACKEND = 'django'
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-CELERY_ALWAYS_EAGER = bool_env(os.environ.get('CELERY_ALWAYS_EAGER')) or False
-
 # Debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
 
