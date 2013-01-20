@@ -1,4 +1,4 @@
-git+git://github.com/django/django.git@1.5c1
+https://www.djangoproject.com/download/1.5c1/tarball/
 Django-Select2==3.2.0
 Pillow==1.7.8
 South==0.7.6
