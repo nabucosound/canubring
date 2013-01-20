@@ -15,5 +15,8 @@ def trips(request, template):
 
 def new_trip(request, template):
     ctxt = dict()
+    from trips.forms import NewTrip
+    form = NewTrip()
+    ctxt['form'] = form
     return render(request, template, ctxt)
 

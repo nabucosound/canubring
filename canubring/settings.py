@@ -56,9 +56,11 @@ INSTALLED_APPS = (
     # 'imagekit',
     # 'django_ses',
     # 'storages',
+    'django_select2',
     'website',
     'search',
     'profiles',
+    'trips',
 )
 
 LOGGING = {
@@ -141,6 +143,8 @@ CITIES_PLUGINS = [
 
 # Debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
+
+# AUTO_RENDER_SELECT2_STATICS = False
 
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
 try:
