@@ -1,36 +1,47 @@
+{% load website_tags %}
+
+{% url 'how_works' as how_works_url %}
+{% url 'save_sending' as save_sending_url %}
+{% url 'earn_carrying' as earn_carrying_url %}
+{% url 'safety_warranty' as safety_warranty_url %}
+{% url 'recommend' as recommend_url %}
+{% url 'reference_prices' as reference_prices_url %}
+
 <div class="span4">
   <div class="sidebar-nav">
     <ul class="unstyled">
-      <li class="how">
-        <a href="#">
+      <li class="how {% active_nav_menu_item request how_works_url %}">
+        <a href="{% url 'how_works' %}">
           <h5>How it works</h5>
           <h6>Learn more</h6>
         </a>
       </li>
-      <li class="find">
-        <a href="#">
+      <li class="find {% active_nav_menu_item request save_sending_url %}">
+        <a href="{% url 'save_sending' %}">
           <h5>Save sending!</h5>
           <h6>Finde someone who can bring your cargo</h6>
         </a>
       </li>
-      <li class="earn">
-        <a href="#">
+      <li class="earn {% active_nav_menu_item request earn_carrying_url %}">
+        <a href="{% url 'earn_carrying' %}">
           <h5>Earn carrying!</h5>
           <h6>Upload your trip</h6>
         </a>
       </li>
-      <li class="safety active">
-        <h5>Safety & warranty</h5>
-        <h6>Trust and get trusted</h6>
+      <li class="safety {% active_nav_menu_item request safety_warranty_url %}">
+        <a href="{% url 'safety_warranty' %}">
+          <h5>Safety & warranty</h5>
+          <h6>Trust and get trusted</h6>
+        </a>
       </li>
-      <li class="recommend">
-        <a href="#">
+      <li class="recommend {% active_nav_menu_item request recommend_url %}">
+        <a href="{% url 'recommend' %}">
           <h5>Recommend</h5>
           <h6>Great ideas of what you can get</h6>
         </a>
       </li>
-      <li class="save">
-        <a href="#">
+      <li class="save {% active_nav_menu_item request reference_prices_url %}">
+        <a href="{% url 'reference_prices' %}">
           <h5>Reference prices</h5>
           <h6>Save up top 70% on your orders</h6>
         </a>

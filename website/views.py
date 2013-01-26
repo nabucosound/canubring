@@ -17,3 +17,11 @@ def new_trip(request, template):
     ctxt = dict()
     return render(request, template, ctxt)
 
+def cargos(request, template):
+    ctxt = dict()
+    return render(request, template, ctxt)
+
+def evaluations(request, template):
+    ctxt = dict()
+    return render(request, template, ctxt)
+

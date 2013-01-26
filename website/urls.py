@@ -20,5 +20,17 @@ urlpatterns = patterns('website.views',
         name='new_trip',
         kwargs = {'template': 'new_trip.html'}
     ),
+    url(
+        regex=r'^cargos/$',
+        view='cargos',
+        name='cargos',
+        kwargs = {'template': 'cargos.html'}
+    ),
+    url(
+        regex=r'^evaluations/$',
+        view='evaluations',
+        name='evaluations',
+        kwargs = {'template': 'evaluations.html'}
+    ),
 )
 
