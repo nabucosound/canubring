@@ -1,3 +1,4 @@
+# Settings for canubring project
 import os
 
 def bool_env(val):
@@ -7,13 +8,13 @@ def bool_env(val):
 DEBUG = bool_env('DEBUG')
 TEMPLATE_DEBUG = DEBUG
 
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'America/Chicago'
-LANGUAGE_CODE = 'en-us'
-SITE_ID = 1
-
 USE_I18N = True
 USE_L10N = True
 USE_TZ = False
+
+SITE_ID = 1
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -52,8 +53,8 @@ INSTALLED_APPS = (
     'django_extensions',
     # 'django_facebook',
     # 'imagekit',
-    # 'django_ses',
-    # 'storages',
+    'django_ses',
+    'storages',
     'website',
     'search',
     'profiles',
@@ -105,32 +106,35 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# Facebook
+# Registration & authentication
 # FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 # FACEBOOK_APP_SECRET = os.environ.get('FACEBOOK_APP_SECRET')
 # FACEBOOK_LOGIN_DEFAULT_REDIRECT = '/'
 # FACEBOOK_HIDE_CONNECT_TEST = True
-# FACEBOOK_CELERY_STORE = True
+# FACEBOOK_CELERY_STORE = False
+# FACEBOOK_CELERY_TOKEN_EXTEND = False
 # FACEBOOK_STORE_LIKES = True
 # FACEBOOK_STORE_FRIENDS = True
 # FACEBOOK_DEFAULT_SCOPE = ['email', 'user_birthday', 'publish_actions']
 
 # Amazon keys
-# AWS_ACCESS_KEY_ID = ''
-# AWS_SECRET_ACCESS_KEY = ''
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Amazon SES
-# Related settings: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DEFAULT_FROM_EMAIL
-# EMAIL_BACKEND = 'django_ses.SESBackend'
-# DEFAULT_FROM_EMAIL = ''
+EMAIL_BACKEND = 'django_ses.SESBackend'
+DEFAULT_FROM_EMAIL = 'info@canubring.com'
 
 # Amazon S3
-# AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-# MEDIA_URL = '/media/'
-# STATIC_URL = S3_URL
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = '/media/'
+STATIC_URL = S3_URL
+
+# Imagekit
+IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
 
 # Debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
