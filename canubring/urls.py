@@ -19,6 +19,5 @@ urlpatterns = patterns('',
     url(r'^safety-warranty/', TemplateView.as_view(template_name="safety_warranty.html"), name='safety_warranty'),
     url(r'^recommend/', TemplateView.as_view(template_name="recommend.html"), name='recommend'),
     url(r'^reference-prices/', TemplateView.as_view(template_name="reference_prices.html"), name='reference_prices'),
-
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
