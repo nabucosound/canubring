@@ -8,13 +8,13 @@
     <h4>Fill your first data leg</h4>
     <form class="form-inline">
       <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="origin country" />
-        <input type="text" class="input-medium input-canubring" placeholder="origin city" />
+        <!-- <input type="text" class="input-medium input-canubring" placeholder="origin country" /> -->
+        <input id="origin-city" type="text" class="input-large input-canubring" placeholder="origin city" />
         <input type="text" class="input-medium input-canubring" placeholder="departure date" />
       </div>
       <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="destination country" />
-        <input type="text" class="input-medium input-canubring" placeholder="destination city" />
+        <!-- <input type="text" class="input-medium input-canubring" placeholder="destination country" /> -->
+        <input id="destination-city" type="text" class="input-large input-canubring" placeholder="destination city" />
         <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
       </div>
       <div class="control-group">
@@ -122,5 +122,19 @@
   </div><!-- .item-leg -->
 
 </div><!-- .upload-trip -->
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Google Places Autocomplete widget Js -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
+<script type="text/javascript" charset="utf-8">
+  var input = document.getElementById('origin-city');
+  var options = {
+    types: ['(cities)'],
+    // componentRestrictions: {country: 'fr'}
+  };
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+</script>
 {% endblock %}
 
