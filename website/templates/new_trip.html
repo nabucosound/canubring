@@ -10,12 +10,12 @@
       <div class="control-group">
         <!-- <input type="text" class="input-medium input-canubring" placeholder="origin country" /> -->
         <input id="origin-city" type="text" class="input-large input-canubring" placeholder="origin city" />
-        <input type="text" class="input-medium input-canubring" placeholder="departure date" />
+        <input id="origin-date" type="text" class="input-medium input-canubring" placeholder="departure date" />
       </div>
       <div class="control-group">
         <!-- <input type="text" class="input-medium input-canubring" placeholder="destination country" /> -->
         <input id="destination-city" type="text" class="input-large input-canubring" placeholder="destination city" />
-        <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
+        <input id="destination-date" type="text" class="input-medium input-canubring" placeholder="arrival date" />
       </div>
       <div class="control-group">
         <div class="travelling-by pull-left">
@@ -136,5 +136,12 @@
   };
   autocomplete = new google.maps.places.Autocomplete(input, options);
 </script>
+
+<script>
+  $(function() {
+    $( "#origin-date,#destination-date" ).datepicker({ minDate: 0 });
+  });
+</script>
+
 {% endblock %}
 
