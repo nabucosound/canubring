@@ -99,6 +99,14 @@ input.input-canubring, textarea.input-canubring {
 
   header .social {}
 
+
+/*Pagination (ORB)
+------------------------------------------------------------*/
+.pagination {}
+  .pagination ul > li > a, .pagination ul > li > span {border:1px solid #e6e6e6;color: #ec663d;}
+  .pagination ul > li > a:hover, .pagination ul > .active > a, .pagination ul > .active > span {background-color: #ec663d;color: #fff;}
+  .pagination li a {margin-left: 10px;}
+
 /*Footer
 ------------------------------------------------------------*/
 footer {
@@ -478,29 +486,49 @@ footer {
       .upload-trip .item-leg .submit-trip .checkbox {font-size: 11px;text-transform: uppercase;color: #808080;margin-right: 4px;}
       .upload-trip .item-leg .submit-trip .btn {text-transform: uppercase;}
 
-/*Table travels
+/*Table travels (ask cargo, mytrips...)
 ------------------------------------------------------------*/
 .tb-travels {}
+.tb-travels.mytrips .th {margin:0;color: #F15A24;font-size: 13px;text-transform: uppercase;}
 
   .tb-travels .item {border-top: 1px solid #fff;border-bottom: 1px solid #e6e6e6;padding:10px 0;}
   .tb-travels .item:hover,
   .tb-travels .item.active {background-color: #fff;}
+  
+  .tb-travels.mytrips .item {background-color: #fff;}
+
+  .tb-travels.mytrips .item:hover {background-color: #FFEDE1;}
+  .tb-travels.mytrips .item.active {background-color: #fff;}
+  .tb-travels.mytrips .item:hover .desc,
+  .tb-travels.mytrips .item:hover .desc span,
+  .tb-travels.mytrips .item.active .desc span,
+  .tb-travels.mytrips .item.active .desc  {color:#EC663D;}
+
   .tb-travels .item:first-child {border-top: none;}
+  .tb-travels .item:first-child {border-top: 1px solid #e6e6e6;}
   .tb-travels .item:last-child {border-bottom: none;}
 
   .tb-travels .item .desc {font-size: 12px;margin:0;text-transform: uppercase;font-size: 13px;}
     .tb-travels .item .desc span {color: #b3b3b3;font-size: 11px;width: 50px;display: inline-block;}
 
+
+
   .tb-travels .item .open-plane {position: relative;padding-left: 5px;}
-  .tb-travels .item .open-plane .ico-plane {
+  .tb-travels .item .open-plane .ico-plane,
+  .tb-travels .item .open-plane .ico-bus,
+  .tb-travels .item .open-plane .ico-auto  {
       display: block;
       position: absolute;top:0;right:0;
       background: transparent url(../img/sprites/sprite_general.png) -140px -23px no-repeat;
       width: 25px;
       height: 26px;
   }
+    .tb-travels.mytrips .item .open-plane .ico-plane {background-position: -140px -48px;}
+    .tb-travels.mytrips .item .open-plane .ico-bus {background-position: -140px -74px;}
+    .tb-travels.mytrips .item .open-plane .ico-auto {background-position: -140px -99px;}
 
   .tb-travels .item .comments {border-top: 1px dashed #ccc;padding:10px 10px 0 130px;margin-top: 10px;}
+  .tb-travels.mytrips .item .comments {border:none;margin-top: 0;padding-right: 40px;padding-left: 80px;}
 
     .tb-travels .item .comments .comment-item {}
     .tb-travels .item .comments .comment-item h5 {font-size: 14px;margin: 0;text-transform: uppercase;}
@@ -516,11 +544,82 @@ footer {
       text-transform: none;
     }
 
+    .tb-travels.mytrips .item .status {position: relative;}
+      .tb-travels.mytrips .item .status .num {
+        position: absolute;
+        top:-10px;
+        width:40px;
+        right:0;
+        height:62px;
+        background-color: #EC663D;
+        color: #fff;
+      }
+
+        .tb-travels.mytrips .item .status .num p {text-align: center;margin-top: 40%;}
 
 
+    /*hd accordion item mytrip*/
+    .tb-travels.mytrips .item .comments .item-hd {background-color: #f2f2f2;cursor: pointer;position: relative;padding:5px 10px;margin-bottom: 3px;}
+    .tb-travels.mytrips .item .comments .item-hd:hover {background-color: #e6e6e6;} 
+
+      .tb-travels.mytrips .item .comments .item-hd .name {color:#808080;margin-left: 50px;text-transform: uppercase;}
+      .tb-travels.mytrips .item .comments .item-hd .arrow {
+        background:transparent url(../img/sprites/sprite_general.png) -95px 0 no-repeat;
+        display: block;
+        position: absolute;top:7px;left: 10px;
+        width: 17px;height: 17px;
+      }
+
+      .tb-travels.mytrips .item .comments .item-hd .hand {
+        background:transparent url(../img/sprites/sprite_general.png) -165px -22px no-repeat;
+        display: block;
+        position: absolute;top:4px;left: 420px;
+        width: 28px;height: 22px;
+      }
+
+      .tb-travels.mytrips .item .comments .item-hd .balloon {
+        background:transparent url(../img/sprites/sprite_general.png) -193px -0px no-repeat;
+        display: block;
+        position: absolute;top:4px;left: 420px;
+        width: 23px;height: 22px;
+      }
+
+      .tb-travels.mytrips .item .comments .item-hd .num {color: #fff;float: right;}
 
 
+        /*hd accordion item mytrip active */
+        .tb-travels.mytrips .item .comments .item-hd.active {background-color: #fbb03b;}
+        .tb-travels.mytrips .item .comments .item-hd.active:hover {background-color: #f7931e;}
+        .tb-travels.mytrips .item .comments .item-hd.active .name {color: #fff;}
+        .tb-travels.mytrips .item .comments .item-hd.active .arrow {background-position: -78px 0;}
+        .tb-travels.mytrips .item .comments .item-hd.active .hand {background-position: -165px 0;}
+        .tb-travels.mytrips .item .comments .item-hd.active .balloon {background-position: -193px -22px;}
+
+    .tb-travels.mytrips .item .comments .comment-item {border-bottom: 1px dotted #ccc;padding:10px 5px;margin-top: 0;}
+    .tb-travels.mytrips .item .comments .comment-item.highlighted {background-color: #eff9fe;}
+    .tb-travels.mytrips .item .comments .comment-item.reply {border-bottom: none;}
+      .tb-travels.mytrips .item .comments .comment-item.reply textarea {margin-top: 0;}
+      .tb-travels.mytrips .item .comments .comment-item.reply .delete a {
+        background:transparent url(../img/sprites/sprite_general.png) -216px -0px no-repeat;
+        display: inline-block;
+        width: 21px;height: 27px;
+        text-indent: -999em;
+      }
 
 
+    /*mytravels past trips*/
+    .tb-travels.mytrips.past .item {background-color: transparent;}
+    .tb-travels.mytrips.past .item:hover {background-color: transparent;}
+    .tb-travels.mytrips.past .item .desc span,
+    .tb-travels.mytrips.past .item .desc  {color:#b3b3b3 !important;}
 
+    .tb-travels.mytrips.past .item .open-plane .ico-bus {background-position: -165px -74px;}
+    .tb-travels.mytrips.past .item .open-plane .ico-plane {background-position: -165px -48px;}
+    .tb-travels.mytrips.past .item .open-plane .ico-auto {background-position: -165px -99px;}
 
+    .tb-travels.mytrips.past .item .ico-star a {
+        background:transparent url(../img/sprites/sprite_general.png) -78px -104px no-repeat;
+        display: inline-block;
+        width: 20px;height: 19px;
+        text-indent: -999em;
+      }
