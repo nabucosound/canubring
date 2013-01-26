@@ -4,29 +4,6 @@
 <div class="upload-trip">
   <h2>Upload your trip!</h2>
 
-  <table border="0">
-      <tr><th>Header</th></tr>
-      <tr><th>Data</th></tr>
-      {{ form }}
-  </table>
-
-  <script type="text/javascript" charset="utf-8">
-    function my_url_param_generator(term, page, context) {
-          var field_id = $(this).data('field_id'),
-            res = {
-              'term': term,
-              'page': page,
-              'context': country.find('option:selected').val()
-            };
-          if (field_id) {
-            res['field_id'] = field_id;
-          }
-          return res;
-        }
-        //return django_select2.get_url_params(term, page, $('#id_country').val());
-  </script>
-
-
   <div class="item-leg clearfix">
     <h4>Fill your first data leg</h4>
     <form class="form-inline">
