@@ -14,11 +14,21 @@
   margin-top: -30px;
  }
 
-.tit-int {color: #ec663d;text-transform: uppercase;font-weight: normal;font-size: 14px;}
+.tit-int {color: #ec663d;text-transform: uppercase;font-weight: normal;font-size: 18px;font-family: din-strong;}
+
+/* Fonts
+------------------------------------------------------------*/
+@font-face {font-family: din-light;src: url('fonts/DIN-Light.otf');}
+@font-face {font-family: din-regular;src: url('fonts/DIN-Regular.otf');}
+@font-face {font-family: din-strong;src: url('fonts/DIN-Bold.otf');}
+
+@font-face {font-family: bitter-regular;src: url('fonts/Bitter-Regular.ttf');}
+@font-face {font-family: bitter-strong;src: url('fonts/Bitter-Bold.ttf');}
+
 
 /*Buttons canubring
 ------------------------------------------------------------*/
-.btn-canubring-orange {background:#ec663d;border-radius: 0;color: #fff;text-shadow:none;}
+.btn-canubring-orange {background:#ec663d;border-radius: 0;color: #fff;text-shadow:none;font-family: din-regular;}
 .btn-canubring-orange:hover {background-color: #c4482c;color: #fff;}
 
 
@@ -95,7 +105,7 @@ input.input-canubring, textarea.input-canubring {
 
   header .claim {}
 
-    header .claim h2 {color: #fff;font-size: 22px;text-transform: uppercase;font-weight: normal;}
+    header .claim h2 {color: #fff;font-size: 22px;text-transform: uppercase;font-weight: normal;font-family: din-light;}
 
   header .social {}
 
@@ -154,7 +164,7 @@ footer {
       .sidebar-nav li.save      {background-position: -164px -347px;}
         .sidebar-nav li.save.active      {background-position: -439px -347px;}
 
-      .sidebar-nav li h5 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #006A99;}
+      .sidebar-nav li h5 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #006A99;font-family: din-regular;}
         .sidebar-nav li.active h5 {color: #EC663D;}
       .sidebar-nav li h6 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #00A6E8;font-size: 11px;line-height: 1.2em;}
         .sidebar-nav li.active h6 {color: #F7931E;}
@@ -265,7 +275,7 @@ footer {
       padding:0 5px;
       line-height: 1.2em;
       margin:0 0 10px 0;
-      font-weight: bold;
+      font-family: din-strong;
     }
 
     .ticket .bd .country {
@@ -328,6 +338,14 @@ footer {
         .stars.four  {background-position: 0 -144px;}
         .stars.five  {background-position: 0 -154px;}
 
+      /*Stars Big ratio module */
+      .stars-big {background: transparent url(../img/sprites/sprite_general.png) -95px -144px no-repeat;width:113px;height:19px;margin:5px 0;display: inline-block;}
+        .stars-big.one   {background-position: -95px -163px;}
+        .stars-big.two   {background-position: -95px -182px;}
+        .stars-big.three {background-position: -95px -201px;}
+        .stars-big.four  {background-position: -95px -220px;}
+        .stars-big.five  {background-position: -95px -239px;}
+
   .ticket .ft {
     background-color: #00A5E7;
     color: #fff;
@@ -375,8 +393,8 @@ footer {
 
   .welcome-box .inner {padding-left: 27px;padding-bottom: 10px;}
 
-  .welcome-box h3 {color: #f15a24;font-size: 18px;margin:0;text-transform: uppercase;}
-  .welcome-box h4 {color: #fff;font-size: 16px;font-weight: normal;margin:0;text-transform: uppercase;}
+  .welcome-box h3 {color: #f15a24;font-size: 18px;margin:0;text-transform: uppercase;font-family: bitter-strong;}
+  .welcome-box h4 {color: #fff;font-size: 16px;font-weight: normal;margin:0;text-transform: uppercase;font-family: din-regular;}
 
 /*Profile ticket
 ------------------------------------------------------------*/
@@ -390,7 +408,7 @@ footer {
 
   .profile-ticket .media-body {padding-left: 20px;}
 
-  .profile-ticket h1 {text-transform: uppercase;color: #4d4d4d;font-size: 21px;margin:0 0 10px 0;line-height: 1em;}
+  .profile-ticket h1 {text-transform: uppercase;color: #4d4d4d;font-size: 21px;margin:0 0 10px 0;line-height: 1em;font-family: din-regular;}
     .profile-ticket h1 small {font-size: 13px;margin-left: 10px;}
 
   .profile-ticket .sep-holes {
@@ -443,7 +461,7 @@ footer {
  
 /*Profile travels
 ------------------------------------------------------------*/
-.profile-travels {margin: 40px 0;}   
+.profile-travels {margin: 40px 0;}
 
 /*Upload trip
 ------------------------------------------------------------*/
@@ -623,3 +641,39 @@ footer {
         width: 20px;height: 19px;
         text-indent: -999em;
       }
+
+/*My Evaluations
+------------------------------------------------------------*/
+.my-evaluations {margin: 40px 0;}
+
+  .my-evaluations .hd {
+    background:transparent url(../img/sprites/sprite_general.png) 0 -408px no-repeat;
+    display: block;
+    margin:0 auto 20px auto;
+    width: 382px;height: 62px;
+  }
+
+    .my-evaluations .hd .inner {padding:14px 0;}
+      .my-evaluations .hd .inner h4 {color: #f15a24;font-size: 16px;margin:0;text-transform: uppercase;font-family: bitter-regular;}
+      .my-evaluations .hd .inner h4 span {margin-bottom: 0px;margin-left: 10px}
+
+    .my-evaluations .bd {background-color: #fff;padding:10px;}
+
+      .my-evaluations .bd li .item-review {border-bottom: 1px dotted #ccc;padding:10px;}
+      .my-evaluations .bd li:last-child .item-review {border-bottom: none;}
+
+        .my-evaluations .bd .item-review .sender {float: left;width: 27%;}
+        .my-evaluations .bd .item-review .content {float: right;width: 70%;}
+          .my-evaluations .bd .item-review .sender p {font-size: 14px;text-transform: uppercase;}
+            .my-evaluations .bd .item-review .sender p a {font-weight: bold;}
+        .my-evaluations .bd .item-review .city {margin-bottom: 0;font-family: din-regular;}
+          .my-evaluations .bd .item-review .city span {width: 40px;display: inline-block;text-align: right;margin-right: 10px;color: #b3b3b3;font-size: 11px;}
+        .my-evaluations .bd .item-review .desc {color: #b3b3b3;font-size: 12px;margin-left: 50px;line-height: 1.3em;}
+
+
+
+
+
+
+
+    
