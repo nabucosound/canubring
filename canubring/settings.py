@@ -52,12 +52,13 @@ INSTALLED_APPS = (
     'south',
     'django_extensions',
     # 'django_facebook',
-    # 'imagekit',
+    'imagekit',
     'django_ses',
     'storages',
     'website',
     'search',
     'profiles',
+    'trips',
 )
 
 LOGGING = {

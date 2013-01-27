@@ -13,3 +13,4 @@ gunicorn==0.17.2
 ipdb==0.7
 ipython==0.13.1
 wsgiref==0.1.2
+-e git://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
