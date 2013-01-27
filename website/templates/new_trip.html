@@ -6,105 +6,37 @@
 
   <div class="item-leg clearfix">
     <h4>Fill your first data leg</h4>
-    <form class="form-inline">
+    <form id="new-trip-form" class="form-inline" action="/api/v1/trip/" method="post" accept-charset="utf-8">
       <div class="control-group">
         <!-- <input type="text" class="input-medium input-canubring" placeholder="origin country" /> -->
-        <input id="origin-city" type="text" class="input-large input-canubring" placeholder="origin city" />
-        <input id="origin-date" type="text" class="input-medium input-canubring" placeholder="departure date" />
+        <input id="departure-city" type="text" name="departure_city" class="input-large input-canubring" placeholder="departure city" />
+        <input id="departure-date" type="text" name="departure_dt" class="input-medium input-canubring" placeholder="departure date" />
       </div>
       <div class="control-group">
         <!-- <input type="text" class="input-medium input-canubring" placeholder="destination country" /> -->
-        <input id="destination-city" type="text" class="input-large input-canubring" placeholder="destination city" />
-        <input id="destination-date" type="text" class="input-medium input-canubring" placeholder="arrival date" />
+        <input id="destination-city" type="text" name="destination_city" class="input-large input-canubring" placeholder="destination city" />
+        <input id="destination-date" type="text" name="destination_dt" class="input-medium input-canubring" placeholder="arrival date" />
       </div>
+      <input type="hidden" name="user" value="/api/v1/user/1/">
       <div class="control-group">
         <div class="travelling-by pull-left">
           <h5>Travelling by:</h5>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
+            <input type="radio" name="travelling_by" value="1"><img src="{{ STATIC_URL }}img/ico_plane.png">
           </label>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
+            <input type="radio" name="travelling_by" value="2"><img src="{{ STATIC_URL }}img/ico_train.png">
           </label>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
+            <input type="radio" name="travelling_by" value="3"><img src="{{ STATIC_URL }}img/ico_car.png">
           </label>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
-          </label>
-        </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
-      </div>
-    </form>
-  </div><!-- .item-leg -->
-
-   <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
-    <form class="form-inline">
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="origin country" />
-        <input type="text" class="input-medium input-canubring" placeholder="origin city" />
-        <input type="text" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="destination country" />
-        <input type="text" class="input-medium input-canubring" placeholder="destination city" />
-        <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <div class="control-group">
-        <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
-          </label>
-          <p><a href="#" title="" class="remove-leg">remove leg</a></p>
-        </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
-      </div>
-    </form>
-  </div><!-- .item-leg -->
-
-   <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
-    <form class="form-inline">
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="origin country" />
-        <input type="text" class="input-medium input-canubring" placeholder="origin city" />
-        <input type="text" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="destination country" />
-        <input type="text" class="input-medium input-canubring" placeholder="destination city" />
-        <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <div class="control-group">
-        <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
+            <input type="radio" name="travelling_by" value="4"><img src="{{ STATIC_URL }}img/ico_bus.png">
           </label>
           <p><a href="#" title="" class="remove-leg">remove leg</a></p>
           <p><a href="#" title="" class="add-leg">add another leg</a></p>
         </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
+        <textarea name="comments" class="input-canubring" placeholder="Comments about what you are up to carry"></textarea>
         <p class="submit-trip">
           <label class="checkbox">
             <input type="checkbox">one way
@@ -115,7 +47,7 @@
           <label class="checkbox">
             <input type="checkbox">multi-city
           </label>
-          <a class="btn btn-canubring-orange pull-right" href="#">Upload</a>
+          <a id="new-trip-submit-btn" class="btn btn-canubring-orange pull-right" href="#">Upload</a>
         </p>
       </div>
     </form>
@@ -126,21 +58,43 @@
 {% endblock %}
 
 {% block extra_js %}
+
 <!-- Google Places Autocomplete widget Js -->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
 <script type="text/javascript" charset="utf-8">
-  var input = document.getElementById('origin-city');
+  var input = document.getElementById('departure-city');
+  var input2 = document.getElementById('destination-city');
   var options = {
     types: ['(cities)'],
     // componentRestrictions: {country: 'fr'}
   };
   autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete2 = new google.maps.places.Autocomplete(input2, options);
 </script>
 
 <script>
   $(function() {
-    $( "#origin-date,#destination-date" ).datepicker({ minDate: 0 });
+    $( "#departure-date,#destination-date" ).datepicker({ minDate: 0 });
   });
+</script>
+
+<script src="{{ STATIC_URL }}js/utils.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('#new-trip-submit-btn').click(function() {
+      $.ajax({
+        url: '/api/v1/trip/',
+        type: 'post',
+        dataType: 'application/json',
+        contentType: 'application/json',
+        data: JSON.stringify($('form#new-trip-form').serializeFormJSON()),
+        complete: function(xhr, textStatus) {
+            //console.log(xhr.status);
+            window.location = "/my/trips/";
+        }
+      });
+    });
+  })
 </script>
 
 {% endblock %}
