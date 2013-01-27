@@ -1,0 +1,108 @@
+<li class="item">
+  <div class="row">
+    <div class="span1">
+      <div class="open-plane">
+        <a class="toggle-trip-activity" href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+        {% if trip.travelling_by == 1 %}
+        <span class="ico-plane"></span>
+        {% elif trip.travelling_by == 2 %}
+        <span class="ico-bus"></span>
+        {% elif trip.travelling_by == 3 %}
+        <span class="ico-auto"></span>
+        {% else %}
+        <span class="ico-train"></span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="span2">
+      <p class="desc"><span>Dep.</span> {{ trip.departure_dt|date:"d.m.Y" }}</p>
+      <p class="desc"><span>Arrive.</span> {{ trip.destination_dt|date:"d.m.Y" }}</p>
+    </div>
+    <div class="span3">
+      <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
+      <p class="desc"><span>To</span> {{ trip.destination_city }}</p>
+    </div>
+    <div class="span2">
+      <div class="status">
+        star
+        <div class="num"><p>2</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="row trip-activity" style="display:none">
+    <div class="span8">
+      <div class="comments">
+        <ul class="unstyled">
+          <li>
+            <div class="item-hd active">
+              <span class="name">maría angelica gonzález</span>
+              <span class="arrow"></span>
+              <span class="balloon"></span>
+              <span class="num">3</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="item-hd active open">
+              <span class="name">maría angelica gonzález</span>
+              <span class="arrow"></span>
+              <span class="hand"></span>
+              <span class="num">89</span>
+            </div>
+            <div class="comment-item media">
+              <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
+              <div class="media-body">
+                <h5><a href="#">Lionel Messi</a></h5>
+                <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
+                <p class="date">27/09/2012 at 13:46 hrs.</p>
+              </div>
+            </div><!-- comment-item -->
+            <div class="comment-item media highlighted">
+              <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
+              <div class="media-body">
+                <h5><a href="#">Lionel Messi</a></h5>
+                <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
+                <p class="date">27/09/2012 at 13:46 hrs.</p>
+              </div>
+            </div><!-- comment-item -->
+            <div class="comment-item media">
+              <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
+              <div class="media-body">
+                <h5><a href="#">Lionel Messi</a></h5>
+                <p class="txt">Llevo solamente balones de oro ganados por mi. Gracias.</p>
+                <p class="date">27/09/2012 at 13:46 hrs.</p>
+              </div>
+            </div><!-- comment-item -->
+            <div class="comment-item media reply">
+              <img src="{{ STATIC_URL }}img/fake_45x45.png" alt="" title="" class="media-object img-polaroid pull-left" />
+              <div class="media-body">
+                <form>
+                  <textarea class="input-canubring" placeholder="Responde a este encargador. Cuando lleguen a un acuerdo, confirma el encargo."></textarea>
+                  <span class="delete"><a href="#" title="">Borrar</a></span>
+                  <a href="#" class="btn btn-canubring-orange pull-right">Reply</a>
+                  <a href="#" class="btn btn-canubring-orange pull-right">Confirmar encargo</a>
+                </form>
+              </div>
+            </div><!-- comment-item reply-->
+          </li>
+
+          <li>
+            <div class="item-hd">
+              <span class="name">maría angelica gonzález</span>
+              <span class="arrow"></span>
+              <span class="hand"></span>
+            </div>
+          </li>
+          <li>
+            <div class="item-hd">
+              <span class="name">maría angelica gonzález</span>
+              <span class="arrow"></span>
+              <span class="balloon"></span>
+            </div>
+          </li>
+        </ul>
+      </div><!-- .comments -->
+    </div>
+  </div>
+</li><!-- .item -->
+

@@ -1,58 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="upload-trip">
   <h2>Upload your trip!</h2>
-
-  <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
-    <form id="new-trip-form" class="form-inline" action="/api/v1/trip/" method="post" accept-charset="utf-8">
-      <div class="control-group">
-        <!-- <input type="text" class="input-medium input-canubring" placeholder="origin country" /> -->
-        <input id="departure-city" type="text" name="departure_city" class="input-large input-canubring" placeholder="departure city" />
-        <input id="departure-date" type="text" name="departure_dt" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <!-- <input type="text" class="input-medium input-canubring" placeholder="destination country" /> -->
-        <input id="destination-city" type="text" name="destination_city" class="input-large input-canubring" placeholder="destination city" />
-        <input id="destination-date" type="text" name="destination_dt" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <input type="hidden" name="user" value="/api/v1/user/1/">
-      <div class="control-group">
-        <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
-          <label class="checkbox">
-            <input type="radio" name="travelling_by" value="1"><img src="{{ STATIC_URL }}img/ico_plane.png">
-          </label>
-          <label class="checkbox">
-            <input type="radio" name="travelling_by" value="2"><img src="{{ STATIC_URL }}img/ico_train.png">
-          </label>
-          <label class="checkbox">
-            <input type="radio" name="travelling_by" value="3"><img src="{{ STATIC_URL }}img/ico_car.png">
-          </label>
-          <label class="checkbox">
-            <input type="radio" name="travelling_by" value="4"><img src="{{ STATIC_URL }}img/ico_bus.png">
-          </label>
-          <p><a href="#" title="" class="remove-leg">remove leg</a></p>
-          <p><a href="#" title="" class="add-leg">add another leg</a></p>
-        </div>
-        <textarea name="comments" class="input-canubring" placeholder="Comments about what you are up to carry"></textarea>
-        <p class="submit-trip">
-          <label class="checkbox">
-            <input type="checkbox">one way
-          </label>
-          <label class="checkbox">
-            <input type="checkbox">round trip
-          </label>
-          <label class="checkbox">
-            <input type="checkbox">multi-city
-          </label>
-          <a id="new-trip-submit-btn" class="btn btn-canubring-orange pull-right" href="#">Upload</a>
-        </p>
-      </div>
-    </form>
-  </div><!-- .item-leg -->
-
+  {% include "new_trip_leg.html" %}
+  {% include "new_trip_leg.html" with show_submit_btn='true' %}
 </div><!-- .upload-trip -->
 
 {% endblock %}
@@ -62,19 +15,24 @@
 <!-- Google Places Autocomplete widget Js -->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
 <script type="text/javascript" charset="utf-8">
-  var input = document.getElementById('departure-city');
-  var input2 = document.getElementById('destination-city');
+  //var input = document.getElementById('departure-city');
+  //var input2 = document.getElementById('destination-city');
   var options = {
     types: ['(cities)'],
     // componentRestrictions: {country: 'fr'}
   };
-  autocomplete = new google.maps.places.Autocomplete(input, options);
-  autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+  $('.city-input').each(function() {
+    autocomplete = new google.maps.places.Autocomplete(this, options);
+  })
+  //autocomplete = new google.maps.places.Autocomplete(input, options);
+  //autocomplete2 = new google.maps.places.Autocomplete(input2, options);
 </script>
 
 <script>
   $(function() {
-    $( "#departure-date,#destination-date" ).datepicker({ minDate: 0 });
+    $(".datepicker").each(function() {
+      $(this).datepicker({ minDate: 0 });
+    })
   });
 </script>
 
@@ -82,12 +40,17 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     $('#new-trip-submit-btn').click(function() {
+      var data = new Array()
+      $('form#new-trip-form').each(function() {
+        data.push($(this).serializeFormJSON());
+      })
       $.ajax({
         url: '/api/v1/trip/',
-        type: 'post',
+        type: 'patch',
         dataType: 'application/json',
         contentType: 'application/json',
-        data: JSON.stringify($('form#new-trip-form').serializeFormJSON()),
+        //data: JSON.stringify($('form#new-trip-form').serializeFormJSON()),
+        data: '{"objects": '+JSON.stringify(data)+'}',
         complete: function(xhr, textStatus) {
             //console.log(xhr.status);
             window.location = "/my/trips/";
