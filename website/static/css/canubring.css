@@ -151,6 +151,8 @@ footer {
       .sidebar-nav li:last-child {border-bottom: none;}
       .sidebar-nav li.active {background-color: #E3F0F6;}
 
+      .sidebar-nav li.active a {text-decoration: none;cursor: default;}
+
       .sidebar-nav li.how       {background-position: 5px 14px;}
         .sidebar-nav li.how.active {background-position: -270px 14px;}
       .sidebar-nav li.find      {background-position: -31px -57px;}
