@@ -6,12 +6,13 @@ from django.views.generic import TemplateView
 
 from tastypie.api import Api
 
-from trips.api import TripResource
+from trips.api import TripResource, UserResource
 
 admin.autodiscover()
 
 v1_api = Api(api_name='v1')
 v1_api.register(TripResource())
+v1_api.register(UserResource())
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
