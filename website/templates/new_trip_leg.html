@@ -1,0 +1,40 @@
+<div class="item-leg clearfix">
+  <h4>Fill your first data leg</h4>
+
+  <form id="new-trip-form" class="form-inline" action="/api/v1/trip/" method="post" accept-charset="utf-8">
+
+    <div class="control-group">
+      <input type="text" name="departure_city" class="city-input input-large input-canubring" placeholder="departure city" />
+      <input type="text" name="departure_dt" class="datepicker input-medium input-canubring" placeholder="departure date" />
+    </div>
+    <div class="control-group">
+      <input type="text" name="destination_city" class="city-input input-large input-canubring" placeholder="destination city" />
+      <input type="text" name="destination_dt" class="datepicker input-medium input-canubring" placeholder="arrival date" />
+    </div>
+
+    <input type="hidden" name="user" value="/api/v1/user/1/">
+
+    <div class="control-group">
+
+      <div class="travelling-by pull-left">
+        <h5>Travelling by:</h5>
+        <label class="checkbox">
+          <input type="radio" name="travelling_by" value="1" checked="checked"><img src="{{ STATIC_URL }}img/ico_plane.png">
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="travelling_by" value="2"><img src="{{ STATIC_URL }}img/ico_train.png">
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="travelling_by" value="3"><img src="{{ STATIC_URL }}img/ico_car.png">
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="travelling_by" value="4"><img src="{{ STATIC_URL }}img/ico_bus.png">
+        </label>
+      </div>
+
+      <textarea name="comments" class="input-canubring" placeholder="Comments about what you are up to carry"></textarea>
+    </div>
+
+  </form>
+</div><!-- .item-leg -->
+

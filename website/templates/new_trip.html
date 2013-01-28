@@ -1,147 +1,78 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="upload-trip">
+
+<div id="trip-legs-container" class="upload-trip">
   <h2>Upload your trip!</h2>
+  {% include "new_trip_leg.html" %}
+</div>
 
+<div id="manage-legs-container" class="upload-trip">
   <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
     <form class="form-inline">
       <div class="control-group">
-        <!-- <input type="text" class="input-medium input-canubring" placeholder="origin country" /> -->
-        <input id="origin-city" type="text" class="input-large input-canubring" placeholder="origin city" />
-        <input id="origin-date" type="text" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <!-- <input type="text" class="input-medium input-canubring" placeholder="destination country" /> -->
-        <input id="destination-city" type="text" class="input-large input-canubring" placeholder="destination city" />
-        <input id="destination-date" type="text" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <div class="control-group">
-        <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
-          </label>
-        </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
-      </div>
-    </form>
-  </div><!-- .item-leg -->
 
-   <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
-    <form class="form-inline">
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="origin country" />
-        <input type="text" class="input-medium input-canubring" placeholder="origin city" />
-        <input type="text" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="destination country" />
-        <input type="text" class="input-medium input-canubring" placeholder="destination city" />
-        <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <div class="control-group">
         <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
-          </label>
-          <p><a href="#" title="" class="remove-leg">remove leg</a></p>
+          <p><a href="#" class="remove-leg" style="display:none">remove leg</a></p>
+          <p><a href="#" class="add-leg" style="display:none">add another leg</a></p>
         </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
-      </div>
-    </form>
-  </div><!-- .item-leg -->
 
-   <div class="item-leg clearfix">
-    <h4>Fill your first data leg</h4>
-    <form class="form-inline">
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="origin country" />
-        <input type="text" class="input-medium input-canubring" placeholder="origin city" />
-        <input type="text" class="input-medium input-canubring" placeholder="departure date" />
-      </div>
-      <div class="control-group">
-        <input type="text" class="input-medium input-canubring" placeholder="destination country" />
-        <input type="text" class="input-medium input-canubring" placeholder="destination city" />
-        <input type="text" class="input-medium input-canubring" placeholder="arrival date" />
-      </div>
-      <div class="control-group">
-        <div class="travelling-by pull-left">
-          <h5>Travelling by:</h5>
+        <p id="submit-trip" class="submit-trip">
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_plane.png" alt="" title=""> 
+            <input class="trip-type-radio" type="radio" name="trip-type" value="1" checked="checked">one way
           </label>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_train.png" alt="" title=""> 
+            <input class="trip-type-radio" type="radio" name="trip-type" value="2">round trip
           </label>
           <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_car.png" alt="" title=""> 
+            <input class="trip-type-radio" type="radio" name="trip-type" value="3">multi-city
           </label>
-          <label class="checkbox">
-            <input type="checkbox"><img src="{{ STATIC_URL }}img/ico_bus.png" alt="" title=""> 
-          </label>
-          <p><a href="#" title="" class="remove-leg">remove leg</a></p>
-          <p><a href="#" title="" class="add-leg">add another leg</a></p>
-        </div>
-        <textarea class="input-canubring" placeholder="origin country"></textarea>
-        <p class="submit-trip">
-          <label class="checkbox">
-            <input type="checkbox">one way
-          </label>
-          <label class="checkbox">
-            <input type="checkbox">round trip
-          </label>
-          <label class="checkbox">
-            <input type="checkbox">multi-city
-          </label>
-          <a class="btn btn-canubring-orange pull-right" href="#">Upload</a>
+
+          <a id="new-trip-submit-btn" class="new-trip-submit-btn btn btn-canubring-orange pull-right" href="#">Upload</a>
         </p>
+
       </div>
     </form>
-  </div><!-- .item-leg -->
-
-</div><!-- .upload-trip -->
+  </div>
+</div>
 
 {% endblock %}
 
 {% block extra_js %}
-<!-- Google Places Autocomplete widget Js -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
-<script type="text/javascript" charset="utf-8">
-  var input = document.getElementById('origin-city');
-  var options = {
-    types: ['(cities)'],
-    // componentRestrictions: {country: 'fr'}
-  };
-  autocomplete = new google.maps.places.Autocomplete(input, options);
-</script>
-
-<script>
-  $(function() {
-    $( "#origin-date,#destination-date" ).datepicker({ minDate: 0 });
-  });
-</script>
-
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
+  <script src="{{ STATIC_URL }}js/utils.js"></script>
+  <script src="{{ STATIC_URL }}js/new_trip.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      $('.trip-type-radio').click(function() {
+        var value = $(this).val();
+        if (value == 1) {
+          $('#trip-legs-container').find('.item-leg').slice(1).remove();
+          $('.travelling-by').find('a').hide();
+        }
+        if (value == 2) {
+          var legs = $('#trip-legs-container').find('.item-leg')
+          legs.slice(2).remove();
+          $('.travelling-by').find('a').hide();
+          if (legs.length == 1) {
+            $.get('/my/triplegform/', function(data) {
+              $('#trip-legs-container').append(data);
+              google_places_autocomplete_widget();
+            });
+          }
+        }
+        if (value == 3) {
+          var legs = $('#trip-legs-container').find('.item-leg')
+          if (legs.length == 1) {
+            $.get('/my/triplegform/', function(data) {
+              $('#trip-legs-container').append(data);
+              google_places_autocomplete_widget();
+            });
+          }
+          $('.travelling-by').find('a').show();
+        }
+      })
+    });
+  </script>
 {% endblock %}
 
