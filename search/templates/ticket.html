@@ -1,0 +1,42 @@
+<div class="span2">
+  <div class="ticket">
+    <div class="hd">
+      <div class="hd-top"></div>
+      <span class="plane"></span>
+      <p class="lang">spa/eng</p>
+    </div>
+    <div class="bd">
+      <p class="tit-from">origen</p>
+      <p class="from">{{ trip.get_departure_city }}</p>
+      <div class="clearfix">
+        <p class="country pull-left">{{ trip.get_departure_country }}</p>
+        <p class="date pull-right">Date: <span>{{ trip.departure_dt|date:"d/m/Y" }}</span></p>
+      </div>
+      <div class="sep-arrow"></div>
+      <p class="tit-from">destino</p>
+      <p class="from">{{ trip.get_destination_city }}</p>
+      <div class="aux clearfix">
+        <p class="country pull-left">{{ trip.get_destination_country }}</p>
+        <p class="date pull-right">Date: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
+      </div>
+      <div class="sep-holes"></div>
+      <div class="profile-comment media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-polaroid" src="{{ trip.user.userprofile.ticket.url }}">  
+        </a>
+        <div class="media-body">
+          <h6>{{ trip.user.get_full_name }}</h6>
+          <p class="country">Chile</p>
+          <p class="stats">1 Viaje - 0 Cargas</p>
+          <div class="stars three"></div>
+          <p class="comment">"Solo llevo encargos que yo mismo compre. Máximo dos mil kilos, Gracias"</p>
+        </div>
+      </div>
+    </div>
+    <div class="ft">
+      <a href="#"><span></span>Ask for cargo!</a>
+    </div>
+  </div><!-- .ticket -->
+</div>
+
+
