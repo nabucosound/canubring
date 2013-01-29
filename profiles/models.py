@@ -33,6 +33,7 @@ class UserProfile(models.Model):
     profile_photo = models.ImageField(upload_to='profiles')
     # Imagekit specs
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
+    ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
 
     def __str__(self):
         return "%s's profile" % self.user

@@ -1,9 +1,13 @@
 import datetime
+
 from django.shortcuts import render
+
+from trips.models import Trip
 
 
 def home(request, template):
     ctxt = dict()
+    ctxt['trip_results'] = Trip.objects.order_by('-creation_dt')
     return render(request, template, ctxt)
 
 def profile(request, template):
