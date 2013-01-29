@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'search',
     'profiles',
     'trips',
+    'social_auth',
 )
 
 LOGGING = {
@@ -95,17 +96,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    # Social auth
+    # 'social_auth.context_processors.social_auth_by_name_backends',
+    # 'social_auth.context_processors.social_auth_backends',
+    # 'social_auth.context_processors.social_auth_by_type_backends',
+    # 'social_auth.context_processors.social_auth_login_redirect',
 )
 
 # Database
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
-
-# Auth
-# AUTH_PROFILE_MODULE = 'profiles.Profile'
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 # Registration & authentication
 # FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
@@ -139,6 +139,22 @@ IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCa
 
 # Debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
+
+# Social auth
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuthBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.google.GoogleBackend',
+    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+LOGIN_URL          = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL    = '/'
+FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
+FACEBOOK_API_SECRET = os.environ.get('FACEBOOK_APP_SECRET')
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'publish_actions']
 
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
 try:

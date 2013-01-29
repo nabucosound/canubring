@@ -28,6 +28,13 @@
               </ul>
               
               <!-- nav login | signup -->
+              {% if user.is_authenticated %}
+              <ul class="nav nav-pills login pull-right">
+                <li>
+                <a href="#">{{ user.username }}</a>
+                </li>
+              </ul>
+              {% else %}
               <ul class="nav nav-pills login pull-right">
                 <li>
                   <a href="#modal-signup" data-toggle="modal">Sign up</a>
@@ -36,6 +43,7 @@
                   <a href="#">Login</a>
                 </li>
               </ul>
+              {% endif %}
 
               
               <div id="modal-signup" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
@@ -65,7 +73,7 @@
                     <p>ALREADY A MEMBER?  <a href="#">LOG IN TO YOUR ACCOUNT</a></p>
                   </div>
                   <div class="aux-buttons">
-                    <a href="#" title=""><img src="{{ STATIC_URL }}img/button_facebook.png" alt="" title="" /></a>
+                    <a href="{% url 'socialauth_begin' 'facebook' %}" title=""><img src="{{ STATIC_URL }}img/button_facebook.png" alt="" title="" /></a>
                     <a href="#" title=""><img src="{{ STATIC_URL }}img/button_google.png" alt="" title="" /></a>
                     <a href="#" title=""><img src="{{ STATIC_URL }}img/button_linkedin.png" alt="" title="" /></a>
                   </div>

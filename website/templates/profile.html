@@ -3,8 +3,8 @@
 {% block content %}
 <div class="welcome-box">
   <div class="inner">
-    <h3>Welcome Tomás Cussen</h3>
-    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" alt="" title="" class="pull-left media-object"><h4 class="media-body">Please check your inbox (tomas@gmail.com) and verify your email address.</h4></div>
+    <h3>Welcome {{ user.username }}</h3>
+    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" alt="" title="" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.username }}) and verify your email address.</h4></div>
     <span class="close-box"><a href="#" title="">cerrar</a></span>
     <span class="fold"></span>
   </div>
@@ -12,10 +12,10 @@
 
 <div class="profile-ticket">
   <div class="media">
-    <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_135x135.png">
+    <img class="media-object img-polaroid pull-left" src="{{ user.userprofile.square.url }}">
     <span class="sep-holes"></span>
     <div class="media-body">
-      <h1>Tomás Cussen<small><a href="#">[edit profile]</a></small></h1>
+      <h1>{{ user.username }}<small><a href="#">[edit profile]</a></small></h1>
       <p class="country"><a href="#" title="">Chile</a><span class="stars three"></span></p>
       <p class="language">idiomas</p>
       <p class="trips">4 viajes realizads</p>
