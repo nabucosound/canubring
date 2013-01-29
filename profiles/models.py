@@ -10,6 +10,23 @@ from imagekit.models.fields import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust
 
 
+class SocialLink(models.Model):
+    profile = models.ForeignKey('UserProfile')
+    url = models.URLField(blank=True)
+
+    def __unicode__(self):
+        return self.url
+
+    def get_domain_name(self):
+        from urlparse import urlparse
+        parse_result = urlparse(self.url)
+        split_domain = parse_result.netloc.split('.')
+        if len(split_domain) == 3:
+            return split_domain[1].lower()
+        else:
+            return split_domain[0].lower()
+
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)

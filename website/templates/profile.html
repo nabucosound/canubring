@@ -4,7 +4,7 @@
 <div class="welcome-box">
   <div class="inner">
     <h3>Welcome {{ user.get_full_name }}</h3>
-    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" alt="" title="" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.username }}) and verify your email address.</h4></div>
+    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" alt="" title="" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.email }}) and verify your email address.</h4></div>
     <span class="close-box"><a href="#" title="">cerrar</a></span>
     <span class="fold"></span>
   </div>
@@ -20,7 +20,10 @@
       <p class="language">idiomas</p>
       <p class="trips">4 viajes realizads</p>
       <p class="social">
-        <a href="#" title="" class="profile-social twitter">Twitter</a>
+      {% for link in user.userprofile.sociallink_set.all %}
+      <a href="#" class="profile-social {{ link.get_domain_name }}">{{ link.get_domain_name }}</a>
+      {% endfor %}
+        {% comment %}
         <a href="#" title="" class="profile-social facebook">Facebook</a>
         <a href="#" title="" class="profile-social pinterest">Pinterest</a>
         <a href="#" title="" class="profile-social plus">Googleplus</a>
@@ -28,6 +31,7 @@
         <a href="#" title="" class="profile-social instagram">Instagram</a>
         <a href="#" title="" class="profile-social flickr">Flickr</a>
         <a href="#" title="" class="profile-social youtube">Youtube</a>
+        {% endcomment %}
       </p>
     </div>
   </div>
