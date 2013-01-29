@@ -25,10 +25,11 @@ urlpatterns = patterns('',
     # url(r'^facebook/', include('django_facebook.urls')),
     # url(r'^auth/', include('django_facebook.auth_urls')),
     url(r'auth/', include('social_auth.urls')),
+    url(regex=r'^search/$', view='search.views.search', name='search', kwargs = {'template': 'search.html',}),
 
     # Static pages
     url(r'^how-it-works/', TemplateView.as_view(template_name="how_works.html"), name='how_works'),
-    url(r'^save-sending', TemplateView.as_view(template_name="save_sending.html"), name='save_sending'),
+    # url(r'^save-sending', TemplateView.as_view(template_name="save_sending.html"), name='save_sending'),
     url(r'^earn-carrying/', TemplateView.as_view(template_name="earn_carrying.html"), name='earn_carrying'),
     url(r'^safety-warranty/', TemplateView.as_view(template_name="safety_warranty.html"), name='safety_warranty'),
     url(r'^recommend/', TemplateView.as_view(template_name="recommend.html"), name='recommend'),

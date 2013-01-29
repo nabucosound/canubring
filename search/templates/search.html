@@ -2,11 +2,12 @@
 
 {% block content %}
 <div class="main-search clearfix">
-    <form class="form-inline">
+    <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
       <span class="magnifier"></span>
-      <input type="text" class="input-canubring" placeholder="Origin (city, country)" />
-      <input type="text" class="input-canubring" placeholder="Destination (city, country)" />
-      <input type="text" class="input-canubring" placeholder="Arrival date" />
+      <input name="departure" type="text" class="input-canubring" placeholder="Origin (city, country)" />
+      <input name="destination" type="text" class="input-canubring" placeholder="Destination (city, country)" />
+      <input name="arrival" type="text" class="input-canubring" placeholder="Arrival date" />
+      <input type="submit" value="Search" />
     </form>
 </div><!-- .main-search -->
 

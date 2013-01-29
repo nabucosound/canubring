@@ -1,7 +1,7 @@
 {% load website_tags %}
 
 {% url 'how_works' as how_works_url %}
-{% url 'save_sending' as save_sending_url %}
+{% url 'search' as save_sending_url %}
 {% url 'earn_carrying' as earn_carrying_url %}
 {% url 'safety_warranty' as safety_warranty_url %}
 {% url 'recommend' as recommend_url %}
@@ -17,7 +17,7 @@
         </a>
       </li>
       <li class="find {% active_nav_menu_item request save_sending_url %}">
-        <a href="{% url 'save_sending' %}">
+        <a href="{% url 'search' %}">
           <h5>Save sending!</h5>
           <h6>Finde someone who can bring your cargo</h6>
         </a>

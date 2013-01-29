@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class City(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class Trip(models.Model):
     TRAVELLING_BY_CHOICES = (
         (1, 'Plane'),
@@ -17,6 +25,17 @@ class Trip(models.Model):
     travelling_by = models.IntegerField(choices=TRAVELLING_BY_CHOICES)
     comments = models.TextField(blank=True)
     creation_dt = models.DateTimeField(auto_now_add=True)
+    dep_city = models.ForeignKey(City, blank=True, null=True, related_name='dep_city_trips')
+    dep_country = models.ForeignKey(Country, blank=True, null=True, related_name='dep_country_trips')
+    dest_city = models.ForeignKey(City, blank=True, null=True, related_name='dest_city_trips')
+    dest_country = models.ForeignKey(Country, blank=True, null=True, related_name='dest_country_trips')
+
+    def save(self, *args, **kwargs):
+        self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city)
+        self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country)
+        self.dest_city, created = City.objects.get_or_create(name=self.get_destination_city)
+        self.dest_country, created = Country.objects.get_or_create(name=self.get_destination_country)
+        super(Trip, self).save(*args, **kwargs)
 
     @property
     def get_departure_city(self):
