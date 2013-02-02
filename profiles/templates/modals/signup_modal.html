@@ -6,20 +6,20 @@
     <h3>Sign up for canubring</h3>
     <div class="aux-form">
 
-      <form id="signup-form" action="." method="post" class="form-horizontal">
+      <form id="signup-form" action="{% url 'signup_email' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
           <input name="email" class="input-xlarge input-canubring" type="text" placeholder="Your email address">
-          <div class="error" style="display:none"><p>*Requerided field</p></div>
+          <div class="error" style="display:none"><p>*Required field</p></div>
         </div>
         <div class="control-group">
           <input name="password" class="input-xlarge input-canubring" type="text" placeholder="Choose a password">
-          <div class="error" style="display:none"><p>*Requerided field</p></div>
+          <div class="error" style="display:none"><p>*Required field</p></div>
         </div>
         <div class="control-group">
-          <label class="checkbox">
-            <input type="checkbox"> I have read and agree to the terms & conditions
-          </label>
+          <label class="checkbox"></label>
+          <input type="checkbox">I have read and agree to the <a href="#" target="_blank">terms &amp; conditions</a>
+          <div id="signup-form-xhr-error" style="color:red;display:none"><p>Email already taken</p></div>
         </div>
         <div class="clearfix">
           <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Get started" /></p>

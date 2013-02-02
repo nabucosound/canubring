@@ -19,12 +19,13 @@ urlpatterns = patterns('',
 
     # App
     url(regex=r'^$', view='website.views.home', name='home', kwargs = {'template': 'search.html',}),
-    url(r'^logout/$', 'website.views.logout'),
+    url(r'^logout/$', 'website.views.logout', name='logout'),
     url(r'^my/', include('website.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^api/', include(v1_api.urls)),
     # url(r'^facebook/', include('django_facebook.urls')),
     # url(r'^auth/', include('django_facebook.auth_urls')),
+    url(regex=r'^auth/signup/email/$', view='profiles.views.signup_view', name='signup_email'),
     url(r'auth/', include('social_auth.urls')),
     url(regex=r'^search/$', view='search.views.search', name='search', kwargs = {'template': 'search.html',}),
 

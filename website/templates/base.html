@@ -32,7 +32,9 @@
       <div class="row">
         {% include "sidebar.html" %}
         <div class="span8">
-          {% include "menu.html" %}
+          {% if user.is_authenticated %}
+            {% include "menu.html" %}
+          {% endif %}
           {% block content %}{% endblock %}
         </div>
       </div>
@@ -56,20 +58,42 @@
         $("#signup-form").submit(function() {
           var email_input = $('#signup-form input[name="email"]');
           var password_input = $('#signup-form input[name="password"]');
+          var terms_input = $('#signup-form input[type="checkbox"]');
           var submit_form = true;
           if (email_input.val() == "") {
             email_input.siblings('.error').show();
             submit_form = false;
           } else {
             email_input.siblings('.error').hide();
-          }
+          };
           if (password_input.val() == "") {
             password_input.siblings('.error').show();
             submit_form = false;
           } else {
             password_input.siblings('.error').hide();
+          };
+          if (!terms_input.is(':checked')) {
+            $("#signup-form-xhr-error").text('you must agree to the terms of service');
+            $("#signup-form-xhr-error").show();
+            submit_form = false;
+          } else {
+            $("#signup-form-xhr-error").hide();
+          };
+          if (submit_form) {
+            $.ajax({
+              type: $(this).attr('method'),
+              url: $(this).attr('action'),
+              data: $(this).serialize(),
+              success: function (response) {
+                parent.window.location = response;
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                $("#signup-form-xhr-error").text(xhr.responseText);
+                $("#signup-form-xhr-error").show();
+              }
+            });
           }
-          return submit_form;
+          return false;
         });
       });
     </script>
