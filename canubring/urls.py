@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 
     # App
     url(regex=r'^$', view='website.views.home', name='home', kwargs = {'template': 'search.html',}),
+    url(r'^logout/$', 'website.views.logout'),
     url(r'^my/', include('website.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^api/', include(v1_api.urls)),

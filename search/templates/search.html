@@ -4,8 +4,8 @@
 <div class="main-search clearfix">
     <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
       <span class="magnifier"></span>
-      <input name="departure" type="text" class="input-canubring" placeholder="Origin (city, country)" />
-      <input name="destination" type="text" class="input-canubring" placeholder="Destination (city, country)" />
+      <input name="departure" type="text" class="city-input input-canubring" placeholder="Origin (city, country)" />
+      <input name="destination" type="text" class="city-input input-canubring" placeholder="Destination (city, country)" />
       <input name="arrival" type="text" class="input-canubring" placeholder="Arrival date" />
       <input type="submit" value="Search" />
     </form>
@@ -30,3 +30,9 @@
 </div><!-- .pagination -->
 {% endblock %}
 
+{% block extra_js %}
+  {% comment %}
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  <script src="{{ STATIC_URL }}js/google_places.js"></script>
+  {% endcomment %}
+{% endblock %}

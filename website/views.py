@@ -1,9 +1,14 @@
 import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout as django_logout
 
 from trips.models import Trip
 
+
+def logout(request):
+    django_logout(request)
+    return redirect('/')
 
 def home(request, template):
     ctxt = dict()
