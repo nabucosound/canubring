@@ -42,8 +42,8 @@ def signup_view(request):
             except SESAddressNotVerifiedError:
                 pass
 
-        # messages.success(request, "Welcome!")
-        return HttpResponse(json.dumps('/'), mimetype="application/json")
+        request.session['show_signup_sys_msg'] = True
+        return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
     error_msg = form.errors['email'][0]
     # messages.error(request, error_msg)
