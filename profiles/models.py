@@ -1,13 +1,9 @@
-# This is models.py for a new user profile that you would like to create.
-
-"""
-this gist gets an id from django-social-auth and based on that saves the photo from social networks into your model. This is one of the best ways to extend User model because this way, you don't need to redefine a CustomUser as explained in the doc for django-social-auth. this is a new implementation based on https://gist.github.com/1248728
-"""
-
 from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models.fields import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust
+
+from photos.utils import get_img_url
 
 
 class SocialLink(models.Model):
@@ -34,9 +30,18 @@ class UserProfile(models.Model):
     # Imagekit specs
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
+    default_img_url = '%simg/default_profile_%s.png'
 
     def __str__(self):
         return "%s's profile" % self.user
+
+    @property
+    def get_square_img_url(self):
+        return get_img_url(self, 'square')
+
+    @property
+    def get_ticket_img_url(self):
+        return get_img_url(self, 'ticket')
 
 
 from social_auth.backends.facebook import FacebookBackend

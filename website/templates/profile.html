@@ -12,7 +12,7 @@
 
 <div class="profile-ticket">
   <div class="media">
-    <img class="media-object img-polaroid pull-left" src="{{ user.userprofile.square.url }}">
+    <img class="media-object img-polaroid pull-left" src="{{ user.userprofile.get_square_img_url }}">
     <span class="sep-holes"></span>
     <div class="media-body">
       <h1>{{ user.get_full_name }}<small><a href="#">[edit profile]</a></small></h1>
