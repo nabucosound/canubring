@@ -51,6 +51,29 @@
 
     {% block extra_js %}{% endblock %}
 
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $("#signup-form").submit(function() {
+          var email_input = $('#signup-form input[name="email"]');
+          var password_input = $('#signup-form input[name="password"]');
+          var submit_form = true;
+          if (email_input.val() == "") {
+            email_input.siblings('.error').show();
+            submit_form = false;
+          } else {
+            email_input.siblings('.error').hide();
+          }
+          if (password_input.val() == "") {
+            password_input.siblings('.error').show();
+            submit_form = false;
+          } else {
+            password_input.siblings('.error').hide();
+          }
+          return submit_form;
+        });
+      });
+    </script>
+
   </body>
 </html>
 

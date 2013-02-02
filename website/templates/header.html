@@ -46,39 +46,7 @@
               {% endif %}
 
               
-              <div id="modal-signup" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body clearfix">
-                  <h3>Sign up for canubring</h3>
-                  <div class="aux-form">
-                    <form class="form-horizontal">
-                      <div class="control-group">
-                        <input class="input-xlarge input-canubring" type="text" placeholder="Your email address">
-                        <div class="error"><p>*Requerided field</p></div>
-                      </div>
-                      <div class="control-group">
-                        <input class="input-xlarge input-canubring" type="text" placeholder="Choose a password">
-                      </div>
-                      <div class="control-group">
-                        <label class="checkbox">
-                          <input type="checkbox"> I have read and agree to the terms & conditions
-                        </label>
-                      </div>
-                      <div class="clearfix">
-                        <p><a href="#" class="btn btn-canubring-orange pull-right">Get started</a></p>
-                      </div>
-                    </form>
-                    <p>ALREADY A MEMBER?  <a href="#">LOG IN TO YOUR ACCOUNT</a></p>
-                  </div>
-                  <div class="aux-buttons">
-                    <a href="{% url 'socialauth_begin' 'facebook' %}" title=""><img src="{{ STATIC_URL }}img/button_facebook.png" alt="" title="" /></a>
-                    <a href="#" title=""><img src="{{ STATIC_URL }}img/button_google.png" alt="" title="" /></a>
-                    <a href="#" title=""><img src="{{ STATIC_URL }}img/button_linkedin.png" alt="" title="" /></a>
-                  </div>
-                </div>
-              </div><!-- .modal signup -->
+              {% include "modals/signup_modal.html" %}
 
             </div><!-- .user-nav -->
           </div>

@@ -1,0 +1,40 @@
+<div id="modal-signup" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body clearfix">
+    <h3>Sign up for canubring</h3>
+    <div class="aux-form">
+
+      <form id="signup-form" action="." method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="control-group">
+          <input name="email" class="input-xlarge input-canubring" type="text" placeholder="Your email address">
+          <div class="error" style="display:none"><p>*Requerided field</p></div>
+        </div>
+        <div class="control-group">
+          <input name="password" class="input-xlarge input-canubring" type="text" placeholder="Choose a password">
+          <div class="error" style="display:none"><p>*Requerided field</p></div>
+        </div>
+        <div class="control-group">
+          <label class="checkbox">
+            <input type="checkbox"> I have read and agree to the terms & conditions
+          </label>
+        </div>
+        <div class="clearfix">
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Get started" /></p>
+        </div>
+      </form>
+
+      <p>ALREADY A MEMBER?  <a href="#">LOG IN TO YOUR ACCOUNT</a></p>
+    </div>
+
+    <div class="aux-buttons">
+      <a href="{% url 'socialauth_begin' 'facebook' %}" title=""><img src="{{ STATIC_URL }}img/button_facebook.png" alt="" title="" /></a>
+      <a href="#" title=""><img src="{{ STATIC_URL }}img/button_google.png" alt="" title="" /></a>
+      <a href="#" title=""><img src="{{ STATIC_URL }}img/button_linkedin.png" alt="" title="" /></a>
+    </div>
+
+  </div>
+</div><!-- .modal signup -->
+
