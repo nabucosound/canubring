@@ -155,6 +155,17 @@ FACEBOOK_API_SECRET = os.environ.get('FACEBOOK_APP_SECRET')
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'publish_actions']
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+LINKEDIN_CONSUMER_KEY = os.environ.get('LINKEDIN_CONSUMER_KEY')
+LINKEDIN_CONSUMER_SECRET = os.environ.get('LINKEDIN_CONSUMER_SECRET')
+LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress',]
+LINKEDIN_EXTRA_FIELD_SELECTORS = ['email-address', 'headline', 'industry', 'picture-url']
+LINKEDIN_EXTRA_DATA = [('id', 'id'),
+                       ('first-name', 'first_name'),
+                       ('last-name', 'last_name'),
+                       ('email-address', 'email_address'),
+                       ('picture-url', 'picture_url'),
+                       ('headline', 'headline'),
+                       ('industry', 'industry')]
 
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
 try:

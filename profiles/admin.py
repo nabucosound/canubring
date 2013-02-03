@@ -11,6 +11,7 @@ class SocialLinkInline(admin.TabularInline):
 
 class NewUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'date_joined', 'profile_photo')
+    ordering = ('-date_joined',)
 
     def profile_photo(self, obj):
         return obj.userprofile.profile_photo
