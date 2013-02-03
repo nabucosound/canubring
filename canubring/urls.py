@@ -8,6 +8,7 @@ from tastypie.api import Api
 
 from trips.api import TripResource, UserResource
 
+
 admin.autodiscover()
 
 v1_api = Api(api_name='v1')
@@ -31,7 +32,6 @@ urlpatterns = patterns('',
 
     # Static pages
     url(r'^how-it-works/', TemplateView.as_view(template_name="how_works.html"), name='how_works'),
-    # url(r'^save-sending', TemplateView.as_view(template_name="save_sending.html"), name='save_sending'),
     url(r'^earn-carrying/', TemplateView.as_view(template_name="earn_carrying.html"), name='earn_carrying'),
     url(r'^safety-warranty/', TemplateView.as_view(template_name="safety_warranty.html"), name='safety_warranty'),
     url(r'^recommend/', TemplateView.as_view(template_name="recommend.html"), name='recommend'),
