@@ -1,12 +1,12 @@
-<div id="modal-signup" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div id="modal-login" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
-    <h3>Sign up for canubring</h3>
+    <h3>Login to canubring</h3>
     <div class="aux-form">
 
-      <form id="signup-form" action="{% url 'signup_email' %}" method="post" class="form-horizontal">
+      <form id="login-form" action="{% url 'login_email' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
           <input name="email" class="input-xlarge input-canubring" type="text" placeholder="Your email address">
@@ -18,15 +18,15 @@
         </div>
         <div class="control-group">
           <label class="checkbox"></label>
-          <input type="checkbox">I have read and agree to the <a href="#" target="_blank">terms &amp; conditions</a>
-          <div id="signup-form-xhr-error" style="color:red;display:none"><p>Email already taken</p></div>
+          <input type="checkbox">Keep me signed in</a>
+          <div id="login-form-xhr-error" style="color:red;display:none"><p>Incorrect email or password</p></div>
         </div>
         <div class="clearfix">
-          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Get started" /></p>
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Login" /></p>
         </div>
       </form>
 
-      <p>ALREADY A MEMBER? <a href="{% url 'search' %}?login=1">LOG IN TO YOUR ACCOUNT</a></p>
+      <p>DON'T HAVE AN ACCOUNT? <a href="{% url 'search' %}?signup=1">Sign Up!</a></p>
     </div>
 
     <div class="aux-buttons">

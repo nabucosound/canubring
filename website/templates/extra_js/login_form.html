@@ -1,9 +1,9 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $("#signup-form").submit(function() {
-      var email_input = $('#signup-form input[name="email"]');
-      var password_input = $('#signup-form input[name="password"]');
-      var terms_input = $('#signup-form input[type="checkbox"]');
+    $("#login-form").submit(function() {
+      var email_input = $('#login-form input[name="email"]');
+      var password_input = $('#login-form input[name="password"]');
+      var terms_input = $('#login-form input[type="checkbox"]');
       var submit_form = true;
       if (email_input.val() == "") {
         email_input.siblings('.error').show();
@@ -17,13 +17,6 @@
       } else {
         password_input.siblings('.error').hide();
       };
-      if (!terms_input.is(':checked')) {
-        $("#signup-form-xhr-error").text('you must agree to the terms of service');
-        $("#signup-form-xhr-error").show();
-        submit_form = false;
-      } else {
-        $("#signup-form-xhr-error").hide();
-      };
       if (submit_form) {
         $.ajax({
           type: $(this).attr('method'),
@@ -33,8 +26,8 @@
             parent.window.location = response;
           },
           error: function (xhr, ajaxOptions, thrownError) {
-            $("#signup-form-xhr-error").text(xhr.responseText);
-            $("#signup-form-xhr-error").show();
+            $("#login-form-xhr-error").text(xhr.responseText);
+            $("#login-form-xhr-error").show();
           }
         });
       }
@@ -50,8 +43,8 @@
       }
       return results[1] || 0;
   }
-  var show_modal = $.urlParam('signup');
+  var show_modal = $.urlParam('login');
   if (show_modal) {
-    $('#modal-signup').modal('show')
+    $('#modal-login').modal('show')
   }
 </script>

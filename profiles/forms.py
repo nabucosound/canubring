@@ -15,4 +15,15 @@ class EmailSignupForm(forms.Form):
         return cleaned_data['email']
 
 
+class EmailLoginForm(forms.Form):
+    email = forms.EmailField(required=True)
+    # password = forms.CharField(widget=forms.PasswordInput, required=False)
+
+    def clean_email(self):
+        cleaned_data = self.cleaned_data
+        try:
+            User.objects.get(email__iexact=cleaned_data.get('email', None))
+        except User.DoesNotExist:
+            raise forms.ValidationError("Email doesn't exist on our system")
+        return cleaned_data['email']
 

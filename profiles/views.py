@@ -1,15 +1,13 @@
 from django.conf import settings
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-# from django.contrib import messages
 from django.http import HttpResponseBadRequest, HttpResponse
-# from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_POST
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.utils import simplejson as json
 
 from profiles.models import UserProfile
-from profiles.forms import EmailSignupForm
+from profiles.forms import EmailSignupForm, EmailLoginForm
 from profiles.utils import create_nb_user
 
 
@@ -17,6 +15,25 @@ def other_profile(request, template):
     ctxt = dict()
     return render(request, template, ctxt)
 
+
+@require_POST
+def login_view(request):
+    form = EmailLoginForm(request.POST)
+    email = form.data.get('email')
+    password = form.data.get('password')
+
+    if not form.is_valid():
+        error_msg = form.errors['email'][0]
+        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+
+    user = User.objects.get(email__iexact=email)
+    auth_user = authenticate(username=user.username, password=password)
+    if auth_user is None or not auth_user.is_active:
+        error_msg = "Bad authentication"
+        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+
+    login(request, auth_user)
+    return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
 @require_POST
 def signup_view(request):
@@ -46,6 +63,5 @@ def signup_view(request):
         return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
     error_msg = form.errors['email'][0]
-    # messages.error(request, error_msg)
     return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
 
