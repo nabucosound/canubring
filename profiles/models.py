@@ -44,8 +44,14 @@ class UserProfile(models.Model):
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     default_img_url = '%simg/default_profile_%s.png'
 
-    def __str__(self):
-        return "%s's profile" % self.user
+    def __unicode__(self):
+        return self.user.username
+
+    def get_languages(self):
+        if self.second_language:
+            return " - ".join((self.language, self.second_language))
+        else:
+            return self.language
 
     @property
     def get_square_img_url(self):

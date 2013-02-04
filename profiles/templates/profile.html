@@ -6,8 +6,8 @@
 <div class="system-msg welcome-box">
   <div class="inner">
     <h3>Welcome {{ user.get_full_name }}</h3>
-    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" alt="" title="" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.email }}) and verify your email address.</h4></div>
-    <span class="close-box"><a class="close-system-msg" href="#" title="">cerrar</a></span>
+    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.email }}) and verify your email address.</h4></div>
+    <span class="close-box"><a class="close-system-msg" href="#">cerrar</a></span>
     <span class="fold"></span>
   </div>
 </div>
@@ -19,8 +19,8 @@
     <span class="sep-holes"></span>
     <div class="media-body">
       <h1>{{ user.get_full_name }}<small><a href="#">[edit profile]</a></small></h1>
-      <p class="country"><a href="#" title="">Chile</a><span class="stars three"></span></p>
-      <p class="language">idiomas</p>
+      <p class="country">Chile<span class="stars three"></span></p>
+      <p class="language">languages: {{ user.userprofile.get_languages }}</p>
       <p class="trips">4 viajes realizads</p>
       <p class="social">
       {% for link in user.userprofile.sociallink_set.all %}
