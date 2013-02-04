@@ -1,0 +1,40 @@
+<div id="modal-profile" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body clearfix">
+    <h3>Tell us a little more about you</h3>
+    <div class="aux-form">
+
+      <form id="profile-form" action="{% url 'update_profile' %}" method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="control-group">
+          <input name="first_name" class="input-xlarge input-canubring" type="text" value="{{ user.first_name }}" placeholder="Your first name">
+          <div class="error" style="display:none"><p>*Required field</p></div>
+        </div>
+        <div class="control-group">
+          <input name="last_name" class="input-xlarge input-canubring" type="text" value="{{ user.last_name }}" placeholder="Your last name">
+          <div class="error" style="display:none"><p>*Required field</p></div>
+        </div>
+        <div class="control-group">
+          <input name="country" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.country }}" placeholder="Your country">
+          <div class="error" style="display:none"><p>*Required field</p></div>
+        </div>
+        <div class="control-group">
+          <input name="language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.language }}" placeholder="Language">
+          <div class="error" style="display:none"><p>*Required field</p></div>
+        </div>
+        <div class="control-group">
+          <input name="second_language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.second_language }}" placeholder="Second language">
+        </div>
+        <div class="clearfix">
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="DONE" /></p>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+

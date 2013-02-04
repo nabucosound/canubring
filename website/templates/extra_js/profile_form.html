@@ -1,0 +1,50 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#profile-form").submit(function() {
+      var first_name_input = $('#profile-form input[name="first_name"]');
+      var last_name_input = $('#profile-form input[name="last_name"]');
+      var country_input = $('#profile-form input[name="country"]');
+      var language_input = $('#profile-form input[name="language"]');
+      var second_language_input = $('#profile-form input[name="second_language"]');
+      var submit_form = true;
+      var input_fields = new Array(first_name_input, last_name_input, country_input, language_input);
+      for (var i=0;i<input_fields.length;i++) {
+        if (input_fields[i].val() == "") {
+          input_fields[i].siblings('.error').show();
+          submit_form = false;
+        } else {
+          input_fields[i].siblings('.error').hide();
+        };
+      }
+      if (submit_form) {
+        $.ajax({
+          type: $(this).attr('method'),
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          success: function (response) {
+            parent.window.location = response;
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            $("#profile-form-xhr-error").text(xhr.responseText);
+            $("#profile-form-xhr-error").show();
+          }
+        });
+      }
+      return false;
+    });
+  });
+
+  $.urlParam = function(name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (!results)
+      { 
+          return 0; 
+      }
+      return results[1] || 0;
+  }
+  var show_modal = $.urlParam('profile');
+  if (show_modal) {
+    $('#modal-profile').modal('show')
+  }
+</script>
+

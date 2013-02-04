@@ -5,6 +5,7 @@ from django.http import HttpResponseBadRequest, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.utils import simplejson as json
+from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile
 from profiles.forms import EmailSignupForm, EmailLoginForm
@@ -15,6 +16,20 @@ def other_profile(request, template):
     ctxt = dict()
     return render(request, template, ctxt)
 
+
+@login_required
+@require_POST
+def update_profile(request):
+    user = request.user
+    user.first_name = request.POST.get('first_name')
+    user.last_name = request.POST.get('last_name')
+    user.save()
+    profile = user.userprofile
+    profile.country = request.POST.get('country')
+    profile.language = request.POST.get('language')
+    profile.second_language = request.POST.get('second_language')
+    profile.save()
+    return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
 @require_POST
 def login_view(request):

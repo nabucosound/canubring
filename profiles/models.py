@@ -36,6 +36,9 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
     profile_photo = models.ImageField(upload_to='profiles')
+    country = models.CharField(max_length=255, blank=True)
+    language = models.CharField(max_length=255, blank=True)
+    second_language = models.CharField(max_length=255, blank=True)
     # Imagekit specs
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})

@@ -10,8 +10,19 @@ class SocialLinkInline(admin.TabularInline):
 
 
 class NewUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'date_joined', 'profile_photo')
+    list_display = ('username', 'email', 'date_joined', 'first_name', 'last_name', 'country', 'language', 'second_language', 'profile_photo')
+    search_fields = ('username', 'email', 'first_name', 'last_name', 'country', 'language', 'second_language')
     ordering = ('-date_joined',)
+    list_filter = []
+
+    def country(self, obj):
+        return obj.userprofile.country
+
+    def language(self, obj):
+        return obj.userprofile.language
+
+    def second_language(self, obj):
+        return obj.userprofile.second_language
 
     def profile_photo(self, obj):
         return obj.userprofile.profile_photo
