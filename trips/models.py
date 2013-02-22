@@ -56,3 +56,10 @@ class Trip(models.Model):
     def get_destination_country(self):
         return self.destination_city.split(',')[-1].strip()
 
+    @property
+    def total_comments_count(self):
+        count = 0
+        for cargo in self.cargo_set.all():
+            count = count + cargo.cargocomment_set.count()
+        return count
+
