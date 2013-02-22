@@ -51,7 +51,6 @@ INSTALLED_APPS = (
     'gunicorn',
     'south',
     'django_extensions',
-    # 'django_facebook',
     'imagekit',
     'django_ses',
     'storages',
@@ -60,6 +59,7 @@ INSTALLED_APPS = (
     'profiles',
     'trips',
     'social_auth',
+    'cargos',
 )
 
 LOGGING = {
@@ -87,7 +87,6 @@ LOGGING = {
 }
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    # 'django_facebook.context_processors.facebook',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
@@ -106,17 +105,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Database
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
-
-# Registration & authentication
-# FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
-# FACEBOOK_APP_SECRET = os.environ.get('FACEBOOK_APP_SECRET')
-# FACEBOOK_LOGIN_DEFAULT_REDIRECT = '/'
-# FACEBOOK_HIDE_CONNECT_TEST = True
-# FACEBOOK_CELERY_STORE = False
-# FACEBOOK_CELERY_TOKEN_EXTEND = False
-# FACEBOOK_STORE_LIKES = True
-# FACEBOOK_STORE_FRIENDS = True
-# FACEBOOK_DEFAULT_SCOPE = ['email', 'user_birthday', 'publish_actions']
 
 # Amazon keys
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
