@@ -1,0 +1,10 @@
+<div class="profile-travels">
+  <div class="tb-travels">
+    <ul class="unstyled">
+      {% for cargo in user.userprofile.current_cargos %}
+        {% include "trip_list_item.html" with trip=cargo.trip %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+

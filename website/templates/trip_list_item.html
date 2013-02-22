@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  {% if trip.user == user %}
+  {% if trip.user == user or my_cargos %}
     {% include "trip_comments.html" %}
   {% else %}
     {% include "trip_ask_cargo.html" %}

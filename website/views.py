@@ -33,6 +33,7 @@ def new_trip(request, template):
 
 def cargos(request, template):
     ctxt = dict()
+    ctxt['my_cargos'] = True
     return render(request, template, ctxt)
 
 def evaluations(request, template):

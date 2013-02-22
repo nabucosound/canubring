@@ -43,6 +43,7 @@ class UserProfile(models.Model):
     # Imagekit specs
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
+    thumb = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(45, 45)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     default_img_url = '%simg/default_profile_%s.png'
 
     def __unicode__(self):
@@ -67,12 +68,24 @@ class UserProfile(models.Model):
         return get_img_url(self, 'ticket')
 
     @property
+    def get_thumb_img_url(self):
+        return get_img_url(self, 'thumb')
+
+    @property
     def current_trips(self):
         return self.user.trip_set.filter(departure_dt__gt=datetime.datetime.now())
 
     @property
     def past_trips(self):
         return self.user.trip_set.filter(departure_dt__lte=datetime.datetime.now())
+
+    @property
+    def current_cargos(self):
+        return self.user.my_cargos.filter(trip__departure_dt__gt=datetime.datetime.now())
+
+    @property
+    def past_cargos(self):
+        return self.user.my_cargos.filter(trip__departure_dt__lte=datetime.datetime.now())
 
 
 def new_users_handler(sender, user, response, details, **kwargs):
