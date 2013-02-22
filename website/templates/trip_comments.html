@@ -7,38 +7,19 @@
             {% include "trip_comments_thread.html" %}
           </li>
         {% else %}
-        <li>
-          <div class="item-hd active">
-            <span class="name">maría angelica gonzález</span>
-            <span class="arrow"></span>
-            <span class="balloon"></span>
-            <span class="num">3</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="item-hd active open">
-            <span class="name">maría angelica gonzález</span>
-            <span class="arrow"></span>
-            <span class="hand"></span>
-            <span class="num">89</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="item-hd">
-            <span class="name">maría angelica gonzález</span>
-            <span class="arrow"></span>
-            <span class="hand"></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-hd">
-            <span class="name">maría angelica gonzález</span>
-            <span class="arrow"></span>
-            <span class="balloon"></span>
-          </div>
-          {% include "trip_comments_thread.html" %}
+          {% for cargo in trip.cargo_set.all %}
+          <li>
+            <!-- <div class="item-hd active open"> -->
+            <div class="item-hd">
+              <span class="name">{{ cargo.requesting_user.get_full_name }}</span>
+              <span class="arrow"></span>
+              <!-- <span class="hand"></span> -->
+              <span class="hand"></span>
+              <span class="num">{{ cargo.cargocomment_set.count }}</span>
+            </div>
+            {% include "trip_comments_thread.html" %}
+          </li>
+          {% endfor %}
         </li>
         {% endif %}
       </ul>
