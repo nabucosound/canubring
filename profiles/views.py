@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.views.decorators.http import require_POST
@@ -12,8 +12,10 @@ from profiles.forms import EmailSignupForm, EmailLoginForm
 from profiles.utils import create_nb_user
 
 
-def other_profile(request, template):
+def other_profile(request, user_id, template):
     ctxt = dict()
+    other_user = get_object_or_404(User, id=user_id)
+    ctxt['profile'] = other_user.userprofile
     return render(request, template, ctxt)
 
 

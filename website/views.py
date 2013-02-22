@@ -17,6 +17,7 @@ def home(request, template):
 
 def profile(request, template):
     ctxt = dict()
+    ctxt['profile'] = request.user.userprofile
     if request.session.pop('show_signup_sys_msg', False):
         ctxt['show_signup_sys_msg'] = True
 

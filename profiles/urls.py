@@ -3,10 +3,10 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('profiles.views',
     url(
-        regex=r'^$',
+        regex=r'^(?P<user_id>\d+)/$',
         view='other_profile',
         name='other_profile',
-        kwargs = {'template': 'other_profile.html'}
+        kwargs = {'template': 'profile.html'}
     ),
     url(
         regex=r'^update/$',

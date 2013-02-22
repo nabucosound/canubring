@@ -5,40 +5,16 @@
 {% if show_signup_sys_msg %}
 <div class="system-msg welcome-box">
   <div class="inner">
-    <h3>Welcome {{ user.get_full_name }}</h3>
-    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ user.email }}) and verify your email address.</h4></div>
+    <h3>Welcome {{ profile.user.get_full_name }}</h3>
+    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ profile.user.email }}) and verify your email address.</h4></div>
     <span class="close-box"><a class="close-system-msg" href="#">cerrar</a></span>
     <span class="fold"></span>
   </div>
 </div>
 {% endif %}
 
-<div class="profile-ticket">
-  <div class="media">
-    <img class="media-object img-polaroid pull-left" src="{{ user.userprofile.get_square_img_url }}">
-    <span class="sep-holes"></span>
-    <div class="media-body">
-      <h1>{{ user.get_full_name }}<small><a href="#">[edit profile]</a></small></h1>
-      <p class="country">Chile<span class="stars three"></span></p>
-      <p class="language">languages: {{ user.userprofile.get_languages }}</p>
-      <p class="trips">4 viajes realizads</p>
-      <p class="social">
-      {% for link in user.userprofile.sociallink_set.all %}
-      <a href="#" class="profile-social {{ link.get_domain_name }}">{{ link.get_domain_name }}</a>
-      {% endfor %}
-        {% comment %}
-        <a href="#" title="" class="profile-social facebook">Facebook</a>
-        <a href="#" title="" class="profile-social pinterest">Pinterest</a>
-        <a href="#" title="" class="profile-social plus">Googleplus</a>
-        <a href="#" title="" class="profile-social linkedin">Linkedin</a>
-        <a href="#" title="" class="profile-social instagram">Instagram</a>
-        <a href="#" title="" class="profile-social flickr">Flickr</a>
-        <a href="#" title="" class="profile-social youtube">Youtube</a>
-        {% endcomment %}
-      </p>
-    </div>
-  </div>
-</div><!-- .profile-ticket -->
+{% include "profile_ticket.html" %}
+{% include "profile_travels.html" %}
 
 <div class="profile-reviews">
   <h4 class="tit-int">Reviews about you</h4>

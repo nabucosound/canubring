@@ -1,0 +1,27 @@
+<div class="profile-ticket">
+  <div class="media">
+    <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
+    <span class="sep-holes"></span>
+    <div class="media-body">
+      <h1>{{ profile.user.get_full_name }}<small><a href="#">[edit profile]</a></small></h1>
+      <p class="country">Chile<span class="stars three"></span></p>
+      <p class="language">languages: {{ profile.get_languages }}</p>
+      <p class="trips">4 viajes realizads</p>
+      <p class="social">
+      {% for link in profile.sociallink_set.all %}
+      <a href="#" class="profile-social {{ link.get_domain_name }}">{{ link.get_domain_name }}</a>
+      {% endfor %}
+        {% comment %}
+        <a href="#" title="" class="profile-social facebook">Facebook</a>
+        <a href="#" title="" class="profile-social pinterest">Pinterest</a>
+        <a href="#" title="" class="profile-social plus">Googleplus</a>
+        <a href="#" title="" class="profile-social linkedin">Linkedin</a>
+        <a href="#" title="" class="profile-social instagram">Instagram</a>
+        <a href="#" title="" class="profile-social flickr">Flickr</a>
+        <a href="#" title="" class="profile-social youtube">Youtube</a>
+        {% endcomment %}
+      </p>
+    </div>
+  </div>
+</div>
+
