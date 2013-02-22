@@ -21,7 +21,7 @@ class Migration(SchemaMigration):
         # Adding model 'CargoComment'
         db.create_table(u'cargos_cargocomment', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('trip', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['trips.Trip'])),
+            ('cargo', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cargos.Cargo'])),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('content', self.gf('django.db.models.fields.TextField')()),
         ))
@@ -76,9 +76,9 @@ class Migration(SchemaMigration):
         },
         u'cargos.cargocomment': {
             'Meta': {'object_name': 'CargoComment'},
+            'cargo': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cargos.Cargo']"}),
             'content': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'trip': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['trips.Trip']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'contenttypes.contenttype': {

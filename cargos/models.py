@@ -13,11 +13,14 @@ class Cargo(models.Model):
     trip = models.ForeignKey(Trip)
     requesting_user = models.ForeignKey(User, related_name='my_cargos')
     traveller_user = models.ForeignKey(User, related_name='requested_cargos')
-    state = models.IntegerField(choices=CARGO_STATE_CHOICES)
+    state = models.IntegerField(choices=CARGO_STATE_CHOICES, default=0)
+
+    def __unicode__(self):
+        return u"Cargo from %s to %s" % (self.trip.departure_city, self.trip.destination_city)
 
 
 class CargoComment(models.Model):
-    trip = models.ForeignKey(Trip)
+    cargo = models.ForeignKey(Cargo)
     user = models.ForeignKey(User)
     content = models.TextField()
 

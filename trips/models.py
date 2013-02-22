@@ -30,6 +30,9 @@ class Trip(models.Model):
     dest_city = models.ForeignKey(City, blank=True, null=True, related_name='dest_city_trips')
     dest_country = models.ForeignKey(Country, blank=True, null=True, related_name='dest_country_trips')
 
+    def __unicode__(self):
+        return u"From %s to %s" % (self.departure_city, self.destination_city)
+
     def save(self, *args, **kwargs):
         self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city)
         self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country)

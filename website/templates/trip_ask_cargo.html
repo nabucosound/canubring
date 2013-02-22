@@ -5,9 +5,11 @@
         <li>
           <div class="comment-item media reply">
             <div class="media-body">
-              <form>
-                <textarea class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo."></textarea>
-                <a href="#" class="btn btn-canubring-orange pull-right">Send</a>
+              <form action="{% url 'ask_for_cargo' %}" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <input type="hidden" name="cargo_id" value="{{ trip.id }}">
+                <textarea name="content" class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo." required></textarea>
+                <input type="submit" href="#" class="btn btn-canubring-orange pull-right" />
               </form>
             </div>
           </div><!-- comment-item reply-->

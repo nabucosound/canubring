@@ -24,12 +24,11 @@ urlpatterns = patterns('',
     url(r'^my/', include('website.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^api/', include(v1_api.urls)),
-    # url(r'^facebook/', include('django_facebook.urls')),
-    # url(r'^auth/', include('django_facebook.auth_urls')),
     url(regex=r'^auth/signup/email/$', view='profiles.views.signup_view', name='signup_email'),
     url(regex=r'^auth/login/email/$', view='profiles.views.login_view', name='login_email'),
     url(r'auth/', include('social_auth.urls')),
     url(regex=r'^search/$', view='search.views.search', name='search', kwargs = {'template': 'search.html',}),
+    url(r'cargos/', include('cargos.urls')),
 
     # Static pages
     url(r'^how-it-works/', TemplateView.as_view(template_name="how_works.html"), name='how_works'),

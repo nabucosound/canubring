@@ -48,6 +48,10 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('other_profile', (), {'user_id': self.user.id})
+
     def get_languages(self):
         if self.second_language:
             return " - ".join((self.language, self.second_language))
