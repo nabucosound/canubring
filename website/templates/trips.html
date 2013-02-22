@@ -17,7 +17,7 @@
     </div>
 
     <ul class="unstyled">
-      {% for trip in current_trips %}
+      {% for trip in user.userprofile.current_trips %}
         {% include "trip_list_item.html" %}
       {% endfor %}
     </ul>
@@ -29,8 +29,8 @@
 <h4 class="tit-int">Past Travels</h4>
 <div class="tb-travels mytrips past">
   <ul class="unstyled">
-    {% for trip in past_trips %}
-    {% include "trip_past_list_item.html" %}
+    {% for trip in user.userprofile.past_trips %}
+      {% include "trip_past_list_item.html" %}
     {% endfor %}
   </ul>
 </div><!-- .tb-travels mytrips past -->

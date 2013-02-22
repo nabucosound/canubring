@@ -65,6 +65,11 @@
       $(this).closest('.system-msg').hide();
     });
   });
+  $(function() {
+    $('.toggle-trip-activity').click(function() {
+      $(this).closest('.row').siblings('.trip-activity').toggle();
+      return false;
+    })
+  });
 </script>
 {% endblock %}
-

@@ -25,8 +25,6 @@ def profile(request, template):
 
 def trips(request, template):
     ctxt = dict()
-    ctxt['current_trips'] = request.user.trip_set.filter(departure_dt__gt=datetime.datetime.now())
-    ctxt['past_trips'] = request.user.trip_set.filter(departure_dt__lte=datetime.datetime.now())
     return render(request, template, ctxt)
 
 def new_trip(request, template):

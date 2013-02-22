@@ -6,7 +6,7 @@
       <h1>{{ profile.user.get_full_name }}<small><a href="#">[edit profile]</a></small></h1>
       <p class="country">Chile<span class="stars three"></span></p>
       <p class="language">languages: {{ profile.get_languages }}</p>
-      <p class="trips">4 viajes realizads</p>
+      <p class="trips">{{ profile.past_trips|length }} trips done</p>
       <p class="social">
       {% for link in profile.sociallink_set.all %}
       <a href="#" class="profile-social {{ link.get_domain_name }}">{{ link.get_domain_name }}</a>

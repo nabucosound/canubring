@@ -1,3 +1,4 @@
+import datetime
 from urllib2 import urlopen, HTTPError
 
 from django.contrib.auth.models import User
@@ -60,6 +61,14 @@ class UserProfile(models.Model):
     @property
     def get_ticket_img_url(self):
         return get_img_url(self, 'ticket')
+
+    @property
+    def current_trips(self):
+        return self.user.trip_set.filter(departure_dt__gt=datetime.datetime.now())
+
+    @property
+    def past_trips(self):
+        return self.user.trip_set.filter(departure_dt__lte=datetime.datetime.now())
 
 
 def new_users_handler(sender, user, response, details, **kwargs):
