@@ -12,11 +12,15 @@
 <div class="comment-item media reply">
   <img src="{{ user.userprofile.get_thumb_img_url }}" alt="" title="" class="media-object img-polaroid pull-left" />
   <div class="media-body">
-    <form>
-      <textarea class="input-canubring" placeholder="Responde a este encargador. Cuando lleguen a un acuerdo, confirma el encargo."></textarea>
-      <span class="delete"><a href="#" title="">Borrar</a></span>
-      <a href="#" class="btn btn-canubring-orange pull-right">Reply</a>
-      <a href="#" class="btn btn-canubring-orange pull-right">Confirmar encargo</a>
+    <form action="{% url 'reply_cargo' %}" method="post" accept-charset="utf-8">
+      {% csrf_token %}
+      {% if my_cargos %}
+      <input type="hidden" name="from_my_cargos" value="1">
+      {% endif %}
+      <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
+      <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
+      <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Reply" />
+      <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Confirm Cargo" />
     </form>
   </div>
 </div><!-- comment-item reply-->

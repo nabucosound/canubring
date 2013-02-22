@@ -7,5 +7,10 @@ urlpatterns = patterns('cargos.views',
         view='ask_for_cargo',
         name='ask_for_cargo',
     ),
+    url(
+        regex=r'^reply/$',
+        view='reply_cargo',
+        name='reply_cargo',
+    ),
 )
 
