@@ -22,7 +22,7 @@
       <div class="sep-holes"></div>
       <div class="profile-comment media">
         <a class="pull-left" href="#">
-          <img class="media-object img-polaroid" src="{{ trip.user.userprofile.ticket.url }}">  
+          <img class="media-object img-polaroid" src="{{ trip.user.userprofile.get_ticket_img_url }}">  
         </a>
         <div class="media-body">
           <h6>{{ trip.user.get_full_name }}</h6>
