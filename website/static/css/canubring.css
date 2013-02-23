@@ -36,7 +36,7 @@
 ------------------------------------------------------------*/
 input.input-canubring, textarea.input-canubring {
     border-radius: 0 !important;
-    color: #ccc;
+    color: #999;
     font-size: 11px;
     text-transform: uppercase;
   }
@@ -54,11 +54,15 @@ input.input-canubring, textarea.input-canubring {
 /*Modals Sizes
 ------------------------------------------------------------*/
 .modal.sz1 {width: 700px;margin-left: -380px;}
+.modal.sz2 {width: 550px;margin-left: -250px;}
+  .modal.sz2 .modal-body {max-height: none;}
 
 /*Modal Sign Up
 ------------------------------------------------------------*/
 .modal-cnb-signup {}
   
+.modal-cnb-signup h3 {font-family: bitter-regular;font-weight: normal;}
+  .modal-cnb-signup h3 span {color: #00a6e8;}
   .modal-cnb-signup .modal-body {padding: 0 30px 0 50px;}
   .modal-cnb-signup .aux-form {width:350px;float:left;}
   .modal-cnb-signup .aux-buttons {width:200px;float:right;background: url(../img/bg_or_modal.png) top left no-repeat;padding-left: 25px;}
@@ -70,6 +74,22 @@ input.input-canubring, textarea.input-canubring {
   .modal-cnb-signup .input-xlarge {width: 335px;}
   .modal-cnb-signup .checkbox {font-size: 12px;color: #00405c;}
 
+
+/*Modal Cargo
+------------------------------------------------------------*/
+.modal-cnb-cargo {}
+  
+  .modal-cnb-cargo h3 {font-family: bitter-regular;font-weight: normal;color: #006a99;text-transform: uppercase;}
+  .modal-cnb-cargo .modal-body {padding: 0 30px 0 50px;}
+    .modal-cnb-cargo .modal-body .desc {color: #00405c;font-size: 12px;line-height: 1.2em;}
+
+      .modal-cnb-cargo .modal-body .block {}
+        .modal-cnb-cargo .modal-body .block h4 {text-transform: uppercase;color: #00a6e8;font-size: 13px;font-family: "bitter-regular";font-weight: normal;}
+        .modal-cnb-cargo .modal-body .block .checkbox {float: left;width: 125px;text-transform: uppercase;font-size: 12px;color: #00405c;}
+        .modal-cnb-cargo .modal-body .block .checkbox.others {float:left;width: auto;margin-right: 10px;margin-top: 10px;}
+          .modal-cnb-cargo .modal-body .block .others-inp {height: 15px;margin-top: 10px;}
+      
+      .modal-cnb-cargo .modal-body .submit-box {margin:20px 0;}
 /*Header
 ------------------------------------------------------------*/
  header {
@@ -176,6 +196,7 @@ footer {
 .topbar-nav {
   margin-left: -20px;
   padding-left: 20px;
+  height: 40px;
 }
 
   .topbar-nav li {
@@ -207,9 +228,7 @@ footer {
 
 /*Main Search
 ------------------------------------------------------------*/
-.main-search {
-  margin:20px 0;
-}
+.main-search {}
 
   .main-search .magnifier {
     background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;
@@ -471,14 +490,14 @@ footer {
 
   .upload-trip h2 {font-size: 21px;text-transform: uppercase;color: #ec663d;}
 
-  .upload-trip .item-leg {margin-bottom: 20px;}
+  .upload-trip .item-leg {/*margin-bottom: 20px;*/margin-bottom: 0;}
 
     .upload-trip .item-leg h4 {font-size: 16px;text-transform: uppercase;color: #006a99;}
 
     .upload-trip .item-leg .input-canubring {margin-right: 15px;}
     .upload-trip .item-leg textarea.input-canubring {width: 332px;margin-left: 19px;margin-right: 0;}
 
-    .upload-trip .item-leg .travelling-by {width:164px;}
+    .upload-trip .item-leg .travelling-by {/*width:164px;*/width: 223px;}
       .upload-trip .item-leg .travelling-by h5 {font-size: 11px;text-transform: uppercase;color: #ec663d;margin-top: 0;}
       .upload-trip .item-leg .travelling-by a.remove-leg {
         text-transform: uppercase;
