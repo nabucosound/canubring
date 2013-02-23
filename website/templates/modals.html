@@ -6,6 +6,7 @@
 </div>
 
 <p><a href="#modal-cargo" data-toggle="modal">Formulario de Encargo</a></p>
+<p><a href="#modal-cargo-confirm" data-toggle="modal">Formulario de Encargo Confirm</a></p>
 
 
 <!-- Modal cargo -->
@@ -113,6 +114,46 @@
 
 	</div>
 </div><!-- .modal cargo -->
+
+<!-- Modal cargo confirm -->
+<div id="modal-cargo-confirm" class="modal sz2 hide fade modal-cnb-cargo" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	</div>
+	<div class="modal-body clearfix">
+	 	<h3>FORMULARIO DE ENCARGO</h3>
+		
+		<div class="block clearfix">
+			<h4>TU ENCARGO PERTENECE A LA SIGUIENTE CATEGORÍA:</h4>
+			<p class="desc">Medicamentos</p>
+		</div>
+		<div class="block clearfix">
+			<h4>el precio acordado es:</h4>
+			<p class="desc">235€</p>
+		</div>
+		<div class="block clearfix">
+			<h4>EL LUGAR DE ENCUENTRO DEL VIAJERO CON TU ENCARGO ES:</h4>
+			<p class="desc">el viajero lo comprará</p>
+		</div>
+		<div class="block clearfix">
+			<h4>EL LUGAR DE DESPACHO ACORDADO ES:</h4>
+			<p class="desc">LA DIRECCIÓN DEL VIAJERO</p>
+		</div>
+
+
+		<div class="submit-box clearfix">
+          <p>
+          	<input type="submit" value="Aceptar" class="btn btn-canubring-blue pull-left" style="margin-right:10px;">
+          	<input type="submit" value="Rechazar" class="btn btn-canubring-orange pull-left">
+          </p>
+          
+        </div>
+
+
+	</div>
+</div><!-- .modal confirm -->
+
+
 {% endblock %}
 
 
