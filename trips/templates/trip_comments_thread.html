@@ -1,4 +1,3 @@
-<div class="trip-comments-thread-container" style="display:none">
   {% for comment in cargo.cargocomment_set.all %}
   <div class="comment-item media">
     <img src="{{ comment.user.userprofile.get_thumb_img_url }}" class="media-object img-polaroid pull-left" />
@@ -25,5 +24,4 @@
       </form>
     </div>
   </div><!-- comment-item reply-->
-</div>
 

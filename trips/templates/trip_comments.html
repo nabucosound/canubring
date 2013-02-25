@@ -4,7 +4,9 @@
       <ul class="unstyled">
         {% if my_cargos %}
           <li>
-            {% include "trip_comments_thread.html" %}
+            <div class="trip-comments-thread-container">
+              {% include "trip_comments_thread.html" %}
+            </div>
           </li>
         {% else %}
           {% for cargo in trip.cargo_set.all %}
@@ -22,7 +24,9 @@
               {% endif %}
               <span class="num">{{ cargo.cargocomment_set.count }}</span>
             </div>
-            {% include "trip_comments_thread.html" %}
+            <div class="trip-comments-thread-container" style="display:none">
+              {% include "trip_comments_thread.html" %}
+            </div>
           </li>
           {% endfor %}
         </li>
