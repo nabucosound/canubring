@@ -25,7 +25,9 @@
     <div class="span2">
       <div class="status">
         star
+        {% if trip.total_unread_comments_count_for_owner %}
         <div class="num"><p>{{ trip.total_comments_count }}</p></div>
+        {% endif %}
       </div>
     </div>
   </div>

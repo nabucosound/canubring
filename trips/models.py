@@ -63,3 +63,10 @@ class Trip(models.Model):
             count = count + cargo.cargocomment_set.count()
         return count
 
+    @property
+    def total_unread_comments_count_for_owner(self):
+        count = 0
+        for cargo in self.cargo_set.all():
+            count = count + cargo.cargocomment_set.exclude(user=self.user).filter(unread=True).count()
+        return count
+

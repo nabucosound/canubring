@@ -1,27 +1,29 @@
-{% for comment in cargo.cargocomment_set.all %}
-<div class="comment-item media">
-  <img src="{{ comment.user.userprofile.get_thumb_img_url }}" class="media-object img-polaroid pull-left" />
-  <div class="media-body">
-    <h5><a href="#">{{ comment.user.get_full_name }}</a></h5>
-    <p class="txt">{{ comment.content }}</p>
-    <p class="date">27/09/2012 at 13:46 hrs.</p>
-  </div>
-</div><!-- comment-item -->
-{% endfor %}
+<div class="trip-comments-thread-container" style="display:none">
+  {% for comment in cargo.cargocomment_set.all %}
+  <div class="comment-item media">
+    <img src="{{ comment.user.userprofile.get_thumb_img_url }}" class="media-object img-polaroid pull-left" />
+    <div class="media-body">
+      <h5><a href="#">{{ comment.user.get_full_name }}</a></h5>
+      <p class="txt">{{ comment.content }}</p>
+      <p class="date">27/09/2012 at 13:46 hrs.</p>
+    </div>
+  </div><!-- comment-item -->
+  {% endfor %}
 
-<div class="comment-item media reply">
-  <img src="{{ user.userprofile.get_thumb_img_url }}" alt="" title="" class="media-object img-polaroid pull-left" />
-  <div class="media-body">
-    <form action="{% url 'reply_cargo' %}" method="post" accept-charset="utf-8">
-      {% csrf_token %}
-      {% if my_cargos %}
-      <input type="hidden" name="from_my_cargos" value="1">
-      {% endif %}
-      <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-      <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
-      <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Reply" />
-      <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Confirm Cargo" />
-    </form>
-  </div>
-</div><!-- comment-item reply-->
+  <div class="comment-item media reply">
+    <img src="{{ user.userprofile.get_thumb_img_url }}" class="media-object img-polaroid pull-left" />
+    <div class="media-body">
+      <form action="{% url 'reply_cargo' %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {% if my_cargos %}
+        <input type="hidden" name="from_my_cargos" value="1">
+        {% endif %}
+        <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
+        <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
+        <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Reply" />
+        <input type="submit" href="#" class="btn btn-canubring-orange pull-right" value="Confirm Cargo" />
+      </form>
+    </div>
+  </div><!-- comment-item reply-->
+</div>
 

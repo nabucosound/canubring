@@ -12,5 +12,10 @@ urlpatterns = patterns('cargos.views',
         view='reply_cargo',
         name='reply_cargo',
     ),
+    url(
+        regex=r'^update-unread-status/(?P<cargo_id>\d+)/$',
+        view='update_unread_status',
+        name='update_unread_status',
+    ),
 )
 
