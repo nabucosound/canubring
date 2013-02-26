@@ -7,7 +7,7 @@
             <div class="media-body">
               <form action="{% url 'ask_for_cargo' %}" method="post" accept-charset="utf-8">
                 {% csrf_token %}
-                <input type="hidden" name="cargo_id" value="{{ trip.id }}">
+                <input type="hidden" name="object_id" value="{{ trip.id }}">
                 <textarea name="content" class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo." required></textarea>
                 <input type="submit" href="#" class="btn btn-canubring-orange pull-right" />
               </form>
