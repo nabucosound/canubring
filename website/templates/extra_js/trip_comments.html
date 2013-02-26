@@ -1,0 +1,47 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('.toggle-trip-activity').click(function() {
+      $(this).closest('.row').siblings('.trip-activity').toggle();
+      return false;
+    })
+    $('.trip-activity-bar').click(function() {
+      $(this).siblings('.trip-comments-thread-container').toggle();
+      $(this).toggleClass('open');
+      var update_unread_status = $(this).hasClass('active');
+      var cargo_id = $(this).attr('cargo-id');
+      if (update_unread_status) {
+        $.ajax({
+          type: 'get',
+          url: '/cargos/update-unread-status/'+cargo_id+'/',
+          data: '',
+          success: function (response) {
+            console.log('Updated unread status');
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log('Error while updating unread status');
+          }
+        });
+      }
+      return false;
+    })
+  });
+  $('.reply-cargo-btn').click(function() {
+    var comment_obj = $(this).prev("[name='content']");
+    var form = $(this).closest("form");
+    var container = $(this).closest(".comment-item");
+    $.ajax({
+      type: form.attr('method'),
+      data: form.serialize(),
+      url: form.attr('action'),
+      success: function(response) {
+        container.before(response['html']);
+        comment_obj.val("");
+      },
+      error: function(response) {
+        var error_msg = $.parseJSON(response.responseText);
+      },
+    });
+    return false;
+  });
+</script>
+

@@ -9,7 +9,8 @@ urlpatterns = patterns('cargos.views',
     ),
     url(
         regex=r'^reply/$',
-        view='reply_cargo',
+        # view='reply_cargo',
+        view='submit_new_comment',
         name='reply_cargo',
     ),
     url(

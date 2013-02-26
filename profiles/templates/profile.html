@@ -14,7 +14,9 @@
 {% endif %}
 
 {% include "profile_ticket.html" %}
-{% include "profile_travels.html" %}
+{% if not profile.user == user %}
+  {% include "profile_travels.html" %}
+{% endif %}
 
 <div class="profile-reviews">
   <h4 class="tit-int">Reviews about you</h4>

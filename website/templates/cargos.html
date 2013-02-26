@@ -7,13 +7,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $('.toggle-trip-activity').click(function() {
-      $(this).closest('.row').siblings('.trip-activity').toggle();
-      return false;
-    })
-  });
-</script>
+  {% include "extra_js/trip_comments.html" %}
 {% endblock %}
 
