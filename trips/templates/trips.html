@@ -22,9 +22,8 @@
       {% endfor %}
     </ul>
 
-  </div><!-- .tb-travels mytrips -->
-</div><!-- .profile-travels -->
-
+  </div>
+</div>
 
 <h4 class="tit-int">Past Travels</h4>
 <div class="tb-travels mytrips past">
@@ -33,7 +32,7 @@
       {% include "trip_past_list_item.html" %}
     {% endfor %}
   </ul>
-</div><!-- .tb-travels mytrips past -->
+</div>
 
 <div class="pagination pull-right">
   <ul>
@@ -44,10 +43,13 @@
     <li><a href="#">4</a></li>
     <li><a href="#">Siguiente &raquo;</a></li>
   </ul>
-</div><!-- .pagination -->
+</div>
+
+{% include "modals/cargo_modal.html" %}
 
 {% endblock %}
 
 {% block extra_js %}
   {% include "extra_js/trip_comments.html" %}
 {% endblock %}
+
