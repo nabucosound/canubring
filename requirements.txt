@@ -1,4 +1,4 @@
-https://www.djangoproject.com/download/1.5c2/tarball/
+Django==1.5
 Pillow==1.7.8
 South==0.7.6
 boto==2.7.0
