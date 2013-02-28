@@ -21,18 +21,6 @@ def ask_for_cargo(request):
     return redirect('cargos')
 
 @login_required
-def reply_cargo(request, template='trips'):
-    content = request.POST.get('content', None)
-    cargo_id = request.POST.get('object_id', None)
-    if request.POST.get('from_my_cargos', False):
-        template = 'cargos'
-    if not content:
-        return redirect('home')
-    cargo = get_object_or_404(Cargo, id=cargo_id)
-    cargo.cargocomment_set.create(user=request.user, content=content)
-    return redirect(template)
-
-@login_required
 def update_unread_status(request, cargo_id):
     user = request.user
     cargo = get_object_or_404(Cargo, traveller_user=user, id=cargo_id)
@@ -70,4 +58,11 @@ def submit_new_comment(request, fk_name='cargo', model=Cargo, comment_model=Carg
         html = render_to_string('comment.html', {'comment': comment})
         response = {'html': html}
         return HttpResponse(json.dumps(response), mimetype="application/json")
+
+@login_required
+def cargo_form(request, cargo_id):
+    # JSON Response
+    html = render_to_string('modals/cargo_modal_content.html', {})
+    response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
 

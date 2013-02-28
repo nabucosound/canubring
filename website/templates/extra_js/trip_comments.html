@@ -24,24 +24,24 @@
       }
       return false;
     })
-  });
-  $('.reply-cargo-btn').click(function() {
-    var comment_obj = $(this).prev("[name='content']");
-    var form = $(this).closest("form");
-    var container = $(this).closest(".comment-item");
-    $.ajax({
-      type: form.attr('method'),
-      data: form.serialize(),
-      url: form.attr('action'),
-      success: function(response) {
-        container.before(response['html']);
-        comment_obj.val("");
-      },
-      error: function(response) {
-        var error_msg = $.parseJSON(response.responseText);
-      },
+    $('.reply-cargo-btn').click(function() {
+      var comment_obj = $(this).prev("[name='content']");
+      var form = $(this).closest("form");
+      var container = $(this).closest(".comment-item");
+      $.ajax({
+        type: form.attr('method'),
+        data: form.serialize(),
+        url: form.attr('action'),
+        success: function(response) {
+          container.before(response['html']);
+          comment_obj.val("");
+        },
+        error: function(response) {
+          var error_msg = $.parseJSON(response.responseText);
+        },
+      });
+      return false;
     });
-    return false;
   });
 </script>
 

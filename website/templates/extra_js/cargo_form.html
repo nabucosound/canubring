@@ -1,0 +1,21 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('.cargo-form-btn').click(function() {
+      var cargo_id = $(this).siblings("[name='object_id']").val();
+      var container = $('#modal-cargo-content');
+      $.ajax({
+        type: 'get',
+        data: '',
+        url: '/cargos/cargo-form/'+cargo_id+'/',
+        success: function(response) {
+          container.html(response['html']);
+        },
+        error: function(response) {
+          var error_msg = $.parseJSON(response.responseText);
+        },
+      });
+    });
+  });
+</script>
+
+

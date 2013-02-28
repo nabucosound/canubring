@@ -9,7 +9,6 @@ urlpatterns = patterns('cargos.views',
     ),
     url(
         regex=r'^reply/$',
-        # view='reply_cargo',
         view='submit_new_comment',
         name='reply_cargo',
     ),
@@ -17,6 +16,11 @@ urlpatterns = patterns('cargos.views',
         regex=r'^update-unread-status/(?P<cargo_id>\d+)/$',
         view='update_unread_status',
         name='update_unread_status',
+    ),
+    url(
+        regex=r'^cargo-form/(?P<cargo_id>\d+)/$',
+        view='cargo_form',
+        name='cargo_form',
     ),
 )
 
