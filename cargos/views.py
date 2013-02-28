@@ -4,6 +4,7 @@ from django.utils import simplejson as json
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
@@ -86,7 +87,12 @@ def submit_cargo_form(request):
     if not form.is_valid():
         error_msg = 'Error posting cargo form'
         return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
-    form.save()
+    obj = form.save()
+    obj.state = 1
+    obj.save()
+    msg = 'I am attaching form for you to review. By accepting it you will be confirming your cargo.'
+    obj.cargocomment_set.create(user=request.user, content=msg, comment_type=1)
     response = '/my/trips/'
+    messages.success(request, "You have successfully posted a cargo form to the requesting user")
     return HttpResponse(json.dumps(response), mimetype="application/json")
 

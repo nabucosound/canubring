@@ -35,6 +35,17 @@
           {% if user.is_authenticated %}
             {% include "menu.html" %}
           {% endif %}
+
+          {% for message in messages %}
+          <div class="system-msg welcome-box">
+            <div class="inner">
+              <div class="media" style="padding:10px"><h4 class="media-body">{{ message }}</h4></div>
+              <span class="close-box"><a class="close-system-msg" href="#">cerrar</a></span>
+              <span class="fold"></span>
+            </div>
+          </div>
+          {% endfor %}
+
           {% block content %}{% endblock %}
         </div>
       </div>

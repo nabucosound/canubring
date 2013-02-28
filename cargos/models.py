@@ -50,8 +50,14 @@ class Cargo(models.Model):
 
 
 class CargoComment(models.Model):
+    TYPE_CHOICES = (
+        (0, 'Regular comment'),
+        (1, 'Cargo form sent'),
+        (2, 'Cargo form confirmed'),
+    )
     cargo = models.ForeignKey(Cargo)
     user = models.ForeignKey(User)
     content = models.TextField()
     unread = models.BooleanField(default=True)
+    comment_type = models.IntegerField(choices=TYPE_CHOICES, default=0)
 
