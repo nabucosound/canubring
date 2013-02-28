@@ -4,7 +4,7 @@
     <h5><a href="#">{{ comment.user.get_full_name }}</a></h5>
     <p class="txt">{{ comment.content }}</p>
     <p class="date">{{ comment.creation_dt|date:"d/m/Y" }}</p>
-    {% if comment.comment_type == 1 and not comment.user == user %}
+    {% if comment.comment_type == 1 and not comment.user == user and cargo.state == 1 %}
     <input type="hidden" name="object_id" value="{{ comment.cargo.id }}">
     <a href="#confirm-modal-cargo" data-toggle="modal" class="confirm-cargo-form-btn cargo-form-btn btn btn-canubring-orange pull-right">Confirm Cargo</a>
     {% endif %}

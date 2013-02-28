@@ -7,8 +7,9 @@ from trips.models import Trip
 class Cargo(models.Model):
     CARGO_STATE_CHOICES = (
         (0, 'Open'),
-        (1, 'Handshake'),
-        (2, 'Closed'),
+        (1, 'Negotiation'),
+        (2, 'Handshake'),
+        (3, 'Delivered'),
     )
     PICKUP_CHOICES = (
         (0, 'Common place'),
