@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
+from cargos.forms import CargoForm
 
 
 @login_required
@@ -62,7 +63,30 @@ def submit_new_comment(request, fk_name='cargo', model=Cargo, comment_model=Carg
 @login_required
 def cargo_form(request, cargo_id):
     # JSON Response
-    html = render_to_string('modals/cargo_modal_content.html', {})
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    html = render_to_string('modals/cargo_modal_content.html', {'cargo_id': cargo.id})
     response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
+
+@login_required
+@require_POST
+def submit_cargo_form(request):
+    cargo_id = request.POST.get('cargo_id', False)
+    if not cargo_id:
+        error_msg = 'Error posting cargo form'
+        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    categories = ('food', 'medicaments', 'duty_free', 'electronics', 'baggage', 'books', 'documents', 'personal_belongings', 'clothes')
+    cats = [request.POST.get(cat, False) for cat in categories]
+    active_cats = filter(None, cats)
+    if not active_cats:
+        error_msg = 'At least one category must be selected'
+        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+    form = CargoForm(request.POST, instance=cargo)
+    if not form.is_valid():
+        error_msg = 'Error posting cargo form'
+        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+    form.save()
+    response = '/my/trips/'
     return HttpResponse(json.dumps(response), mimetype="application/json")
 

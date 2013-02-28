@@ -52,5 +52,30 @@
 {% block extra_js %}
   {% include "extra_js/trip_comments.html" %}
   {% include "extra_js/cargo_form.html" %}
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('#modal-cargo-content').on(
+      {
+        click: function submitCargoForm (e) {
+          var form = $(this).parents('form');
+          $.ajax({
+            type: 'post',
+            data: form.serialize(),
+            url: form.attr('action'),
+            success: function(response) {
+              parent.window.location = response;
+            },
+            error: function(response) {
+              var error_msg = $.parseJSON(response.responseText);
+            },
+          });
+          return false;
+        }
+      },
+      '.cargo-form-submit-btn'
+    );
+  });
+</script>
+
 {% endblock %}
 
