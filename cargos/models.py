@@ -48,6 +48,10 @@ class Cargo(models.Model):
     def has_unread_comments_for_traveller_user(self):
         return True if self.cargocomment_set.exclude(user=self.traveller_user).filter(unread=True) else False
 
+    # def used_categories(self):
+    #     categories = ('food', 'medicaments', 'duty_free', 'electronics', 'baggage', 'books', 'documents', 'personal_belongings', 'clothes')
+    #     return filter(lambda x: getattr(self, x), categories)
+
 
 class CargoComment(models.Model):
     TYPE_CHOICES = (

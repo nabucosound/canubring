@@ -1,20 +1,49 @@
 <div class="modal-body clearfix">
   <h3>FORMULARIO DE ENCARGO</h3>
   <div class="block clearfix">
-    <h4>TU ENCARGO PERTENECE A LA SIGUIENTE CATEGORÍA:</h4>
-    <p class="desc">Medicamentos</p>
+    <h4>TU ENCARGO PERTENECE A LAS SIGUIENTES CATEGORÍAS:</h4>
+    {% if cargo.food %}
+    <p class="desc">food</p>
+    {% endif %}
+    {% if cargo.medicaments %}
+    <p class="desc">medicaments</p>
+    {% endif %}
+    {% if cargo.duty_free %}
+    <p class="desc">duty_free</p>
+    {% endif %}
+    {% if cargo.electronics %}
+    <p class="desc">electronics</p>
+    {% endif %}
+    {% if cargo.baggage %}
+    <p class="desc">baggage</p>
+    {% endif %}
+    {% if cargo.books %}
+    <p class="desc">books</p>
+    {% endif %}
+    {% if cargo.documents %}
+    <p class="desc">documents</p>
+    {% endif %}
+    {% if cargo.personal_belongings %}
+    <p class="desc">personal_belongings</p>
+    {% endif %}
+    {% if cargo.clothes %}
+    <p class="desc">clothes</p>
+    {% endif %}
+    {% if cargo.others %}
+    <p class="desc">others</p>
+    {% endif %}
   </div>
   <div class="block clearfix">
     <h4>el precio acordado es:</h4>
-    <p class="desc">235€</p>
+    <p class="desc">{{ cargo.price }}€</p>
   </div>
   <div class="block clearfix">
     <h4>EL LUGAR DE ENCUENTRO DEL VIAJERO CON TU ENCARGO ES:</h4>
-    <p class="desc">el viajero lo comprará</p>
+    <p class="desc">{{ cargo.get_pickup_display }}</p>
   </div>
   <div class="block clearfix">
     <h4>EL LUGAR DE DESPACHO ACORDADO ES:</h4>
-    <p class="desc">LA DIRECCIÓN DEL VIAJERO</p>
+    <p class="desc">{{ cargo.get_delivery_display }}</p>
   </div>
   <div class="submit-box clearfix">
     <p>

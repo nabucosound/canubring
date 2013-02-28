@@ -100,7 +100,7 @@ def submit_cargo_form(request):
 def confirm_cargo_form(request, cargo_id):
     # JSON Response
     cargo = get_object_or_404(Cargo, id=cargo_id)
-    html = render_to_string('modals/confirm_cargo_modal_content.html', {'cargo_id': cargo.id})
+    html = render_to_string('modals/confirm_cargo_modal_content.html', {'cargo': cargo})
     response = {'html': html}
     return HttpResponse(json.dumps(response), mimetype="application/json")
 
