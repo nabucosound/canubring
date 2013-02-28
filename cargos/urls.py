@@ -32,5 +32,15 @@ urlpatterns = patterns('cargos.views',
         view='confirm_cargo_form',
         name='confirm_cargo_form',
     ),
+    url(
+        regex=r'^confirm-cargo-form/submit/$',
+        view='submit_confirm_cargo_form',
+        name='submit_confirm_cargo_form',
+    ),
+    url(
+        regex=r'^reject-cargo-form/submit/$',
+        view='submit_reject_cargo_form',
+        name='submit_reject_cargo_form',
+    ),
 )
 

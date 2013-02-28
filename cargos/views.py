@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
@@ -103,4 +104,36 @@ def confirm_cargo_form(request, cargo_id):
     html = render_to_string('modals/confirm_cargo_modal_content.html', {'cargo': cargo})
     response = {'html': html}
     return HttpResponse(json.dumps(response), mimetype="application/json")
+
+@login_required
+@require_POST
+@csrf_exempt
+def submit_confirm_cargo_form(request):
+    cargo_id = request.POST.get('cargo_id', False)
+    if not cargo_id:
+        messages.error(request, "Error while trying to confirm cargo")
+        return redirect('cargos')
+    obj = get_object_or_404(Cargo, id=cargo_id)
+    obj.state = 2
+    obj.save()
+    msg = 'I have confirmed the cargo through the form you sent'
+    obj.cargocomment_set.create(user=request.user, content=msg, comment_type=2)
+    messages.success(request, "You have successfully confirmed a cargo form")
+    return redirect('cargos')
+
+@login_required
+@require_POST
+@csrf_exempt
+def submit_reject_cargo_form(request):
+    cargo_id = request.POST.get('cargo_id', False)
+    if not cargo_id:
+        messages.error(request, "Error while trying to reject cargo")
+        return redirect('cargos')
+    obj = get_object_or_404(Cargo, id=cargo_id)
+    obj.state = 2
+    obj.save()
+    msg = 'I have rejected the cargo through the form you sent'
+    obj.cargocomment_set.create(user=request.user, content=msg, comment_type=0)
+    messages.success(request, "You have successfully rejected a cargo form")
+    return redirect('cargos')
 

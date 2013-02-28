@@ -47,8 +47,14 @@
   </div>
   <div class="submit-box clearfix">
     <p>
-      <input type="submit" value="Aceptar" class="btn btn-canubring-blue pull-left" style="margin-right:10px;">
-      <input type="submit" value="Rechazar" class="btn btn-canubring-orange pull-left">
+      <form action="{% url 'submit_confirm_cargo_form' %}" method="post" accept-charset="utf-8">
+        <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
+        <input type="submit" value="Aceptar" class="btn btn-canubring-blue pull-left" style="margin-right:10px;">
+      </form>
+      <form action="{% url 'submit_reject_cargo_form' %}" method="post" accept-charset="utf-8">
+        <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
+        <input type="submit" value="Rechazar" class="btn btn-canubring-orange pull-left">
+      </form>
     </p>
   </div>
 </div>
