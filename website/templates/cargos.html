@@ -3,10 +3,12 @@
 {% block content %}
 
 {% include "profile_cargos.html" %}
+{% include "modals/confirm_cargo_modal.html" %}
 
 {% endblock %}
 
 {% block extra_js %}
   {% include "extra_js/trip_comments.html" %}
+  {% include "extra_js/confirm_cargo_form.html" %}
 {% endblock %}
 

@@ -96,3 +96,11 @@ def submit_cargo_form(request):
     messages.success(request, "You have successfully posted a cargo form to the requesting user")
     return HttpResponse(json.dumps(response), mimetype="application/json")
 
+@login_required
+def confirm_cargo_form(request, cargo_id):
+    # JSON Response
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    html = render_to_string('modals/confirm_cargo_modal_content.html', {'cargo_id': cargo.id})
+    response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
+

@@ -1,0 +1,22 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('.confirm-cargo-form-btn').click(function() {
+      var cargo_id = $(this).siblings("[name='object_id']").val();
+      var container = $('#modal-confirm-cargo-content');
+      $.ajax({
+        type: 'get',
+        data: '',
+        url: '/cargos/confirm-cargo-form/'+cargo_id+'/',
+        success: function(response) {
+          container.html(response['html']);
+        },
+        error: function(response) {
+          var error_msg = $.parseJSON(response.responseText);
+        },
+      });
+    });
+  });
+</script>
+
+
+
