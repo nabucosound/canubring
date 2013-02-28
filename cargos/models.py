@@ -60,4 +60,5 @@ class CargoComment(models.Model):
     content = models.TextField()
     unread = models.BooleanField(default=True)
     comment_type = models.IntegerField(choices=TYPE_CHOICES, default=0)
+    creation_dt = models.DateTimeField(auto_now_add=True)
 

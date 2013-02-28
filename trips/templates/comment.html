@@ -3,7 +3,10 @@
   <div class="media-body">
     <h5><a href="#">{{ comment.user.get_full_name }}</a></h5>
     <p class="txt">{{ comment.content }}</p>
-    <p class="date">27/09/2012 at 13:46 hrs.</p>
+    <p class="date">{{ comment.creation_dt|date:"d/m/Y" }}</p>
+    {% if comment.comment_type == 1 and not comment.user == user %}
+    <a href="#" class="btn">Confirmar encargo</a>
+    {% endif %}
   </div>
 </div>
 
