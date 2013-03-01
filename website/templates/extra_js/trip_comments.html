@@ -2,6 +2,7 @@
   $(function() {
     $('.toggle-trip-activity').click(function() {
       $(this).closest('.row').siblings('.trip-activity').toggle();
+      $(this).closest('li.item').toggleClass('active');
       return false;
     })
     $('.trip-activity-bar').click(function() {
