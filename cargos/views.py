@@ -137,3 +137,11 @@ def submit_reject_cargo_form(request):
     messages.success(request, "You have successfully rejected a cargo form")
     return redirect('cargos')
 
+@login_required
+def review_traveller_form(request, cargo_id):
+    # JSON Response
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    html = render_to_string('modals/review_traveller_modal_content.html', {'cargo': cargo})
+    response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
+

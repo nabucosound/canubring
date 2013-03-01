@@ -42,5 +42,10 @@ urlpatterns = patterns('cargos.views',
         view='submit_reject_cargo_form',
         name='submit_reject_cargo_form',
     ),
+    url(
+        regex=r'^review-traveller-form/(?P<cargo_id>\d+)/$',
+        view='review_traveller_form',
+        name='review_traveller_form',
+    ),
 )
 
