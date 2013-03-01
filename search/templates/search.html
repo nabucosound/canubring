@@ -7,15 +7,15 @@
       <input name="departure" type="text" class="city-input input-canubring" placeholder="Origin (city, country)" />
       <input name="destination" type="text" class="city-input input-canubring" placeholder="Destination (city, country)" />
       <input name="arrival" type="text" class="input-canubring" placeholder="Arrival date" />
-      <input type="submit" value="Search" style="display:none;" />
+      <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
     </form>
-</div><!-- .main-search -->
+</div>
 
 <div class="row">
   {% for trip in trip_results %}
     {% include "ticket.html" %}
   {% endfor %}
-</div><!-- row listado tickets -->
+</div>
 
 
 <div class="pagination pull-right">
@@ -27,7 +27,7 @@
     <li><a href="#">4</a></li>
     <li><a href="#">Siguiente &raquo;</a></li>
   </ul>
-</div><!-- .pagination -->
+</div>
 {% endblock %}
 
 {% block extra_js %}
