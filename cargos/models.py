@@ -22,6 +22,14 @@ class Cargo(models.Model):
         (1, 'His/her address'),
         (2, 'My address'),
     )
+    REVIEW_STAR_CHOICES = (
+        (0, 'Disaster'),
+        (1, 'Bad'),
+        (2, 'Regular'),
+        (3, 'Good'),
+        (4, 'Very good'),
+        (5, 'Excellent'),
+    )
     trip = models.ForeignKey(Trip)
     requesting_user = models.ForeignKey(User, related_name='my_cargos')
     traveller_user = models.ForeignKey(User, related_name='requested_cargos')
@@ -42,6 +50,12 @@ class Cargo(models.Model):
     # Places
     pickup = models.IntegerField(choices=PICKUP_CHOICES, blank=True, null=True)
     delivery = models.IntegerField(choices=DELIVERY_CHOICES, blank=True, null=True)
+    # Review of requesting user
+    requesting_user_review_stars = models.IntegerField(choices=REVIEW_STAR_CHOICES, blank=True, null=True)
+    requesting_user_review_comment = models.TextField(blank=True)
+    # Review of traveller user
+    traveller_user_review_stars = models.IntegerField(choices=REVIEW_STAR_CHOICES, blank=True, null=True)
+    traveller_user_review_comment = models.TextField(blank=True)
 
     def __unicode__(self):
         return u"Cargo from %s to %s" % (self.trip.departure_city, self.trip.destination_city)
