@@ -32,9 +32,7 @@
       <div class="row">
         {% include "sidebar.html" %}
         <div class="span8">
-          {% if user.is_authenticated %}
-            {% include "menu.html" %}
-          {% endif %}
+          {% include "menu.html" %}
 
           {% for message in messages %}
           <div class="system-msg welcome-box">
