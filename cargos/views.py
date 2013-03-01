@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
-from cargos.forms import CargoForm
+from cargos.forms import CargoForm, ReviewTravellerForm
 
 
 @login_required
@@ -144,4 +144,24 @@ def review_traveller_form(request, cargo_id):
     html = render_to_string('modals/review_traveller_modal_content.html', {'cargo': cargo})
     response = {'html': html}
     return HttpResponse(json.dumps(response), mimetype="application/json")
+
+@login_required
+@require_POST
+@csrf_exempt
+def submit_review_traveller_form(request):
+    cargo_id = request.POST.get('cargo_id', False)
+    if not cargo_id:
+        messages.error(request, "Error while trying to review traveller")
+        return redirect('cargos')
+    obj = get_object_or_404(Cargo, id=cargo_id)
+    form = ReviewTravellerForm(request.POST, instance=obj)
+    if not form.is_valid():
+        messages.error(request, "Error while trying to review traveller")
+        return redirect('cargos')
+    obj = form.save()
+    # obj.traveller_user_review_stars = 0  # TODO
+    # obj.traveller_user_review_comment = ''  # TODO
+    # obj.save()
+    messages.success(request, "You have successfully reviewed a traveller")
+    return redirect('cargos')
 
