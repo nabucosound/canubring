@@ -12,14 +12,17 @@
         {% endif %}
         <input type="hidden" name="object_id" value="{{ cargo.id }}">
         <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
-        {% if cargo.state == 0 and cargo.traveller_user == user %}
-        <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Confirm Cargo</a>
-        {% endif %}
-        {% if cargo.state == 2 and cargo.requesting_user == user %}
-        <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">Confirm Delivery</a>
-        {% endif %}
-        {% if cargo.state == 3 and cargo.traveller_user == user %}
-        <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Review Requesting User</a>
+        {% if cargo.traveller_user == user %}
+          {% if cargo.state == 0 %}
+          <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Confirm Cargo</a>
+          {% endif %}
+          {% if cargo.state == 3 or cargo.expired %}
+          <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Review Requesting User</a>
+          {% endif %}
+        {% elif cargo.requesting_user == user %}
+          {% if cargo.state == 2 %}
+          <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">Confirm Delivery</a>
+          {% endif %}
         {% endif %}
         <a href="#" class="reply-cargo-btn btn btn-canubring-orange pull-right">Reply</a>
       </form>

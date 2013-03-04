@@ -159,9 +159,8 @@ def submit_review_traveller_form(request):
         messages.error(request, "Error while trying to review traveller")
         return redirect('cargos')
     obj = form.save()
-    # obj.traveller_user_review_stars = 0  # TODO
-    # obj.traveller_user_review_comment = ''  # TODO
-    # obj.save()
+    obj.state = 3
+    obj.save()
     messages.success(request, "You have successfully reviewed a traveller")
     return redirect('cargos')
 
