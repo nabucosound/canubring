@@ -16,6 +16,12 @@ urlpatterns = patterns('website.views',
         kwargs = {'template': 'trips.html'}
     ),
     url(
+        regex=r'^trips/past/$',
+        view='trips',
+        name='past_trips',
+        kwargs = {'template': 'trips.html', 'profile_attr': 'past_trips'}
+    ),
+    url(
         regex=r'^newtrip/$',
         view='new_trip',
         name='new_trip',

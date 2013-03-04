@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="upload-trip">
-  <h2>My trips</h2>
+  <br />
   <a href="{% url 'new_trip' %}" class="btn" style="float:right">Upload new trip</a>
+  <ul class="nav nav-tabs">
+    <li {% if not past_trips %}class="active"{% endif %}>
+      <a href="{% url 'trips' %}">Current travels</a>
+    </li>
+    <li {% if past_trips %}class="active"{% endif %}>
+      <a href="{% url 'past_trips' %}">Past travels</a>
+    </li>
+  </ul>
 </div>
 
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#">Current travels</a>
-    </li>
-    <li><a href="#">Past travels</a></li>
-  </ul>
-
 <div class="profile-travels">
-  <div class="tb-travels mytrips">
+  <div class="tb-travels mytrips {% if past_trips %}past{% endif %}">
 
     <div class="row">
       <div class="span1"></div>
@@ -24,11 +26,11 @@
     </div>
 
     <ul class="unstyled">
-      {% for trip in current_trips %}
+      {% for trip in trips %}
         {% include "trip_list_item.html" %}
       {% empty %}
         <div class="alert">
-          You do not have current trips.
+          You do not have trips to display here.
         </div>
       {% endfor %}
     </ul>
@@ -36,22 +38,7 @@
   </div>
 </div>
 
-<h4 class="tit-int">Past Travels</h4>
-<div class="tb-travels mytrips past">
-
-  <ul class="unstyled">
-    {% for trip in user.userprofile.past_trips %}
-      {% include "trip_list_item.html" %}
-    {% empty %}
-      <div class="alert">
-        You do not have past trips.
-      </div>
-    {% endfor %}
-  </ul>
-
-</div>
-
-{% include "pagination.html" with page=current_trips %}
+{% include "pagination.html" with page=trips %}
 
 {% include "modals/cargo_modal.html" %}
 {% include "modals/review_requesting_user_modal.html" %}

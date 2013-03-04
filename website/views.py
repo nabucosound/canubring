@@ -17,10 +17,10 @@ def profile(request, template):
     return render(request, template, ctxt)
 
 @login_required
-def trips(request, template):
+def trips(request, template, profile_attr='current_trips'):
     ctxt = dict()
-    ctxt['current_trips'] = listing(request, request.user.userprofile.current_trips)
-    ctxt['past_trips'] = listing(request, request.user.userprofile.past_trips)
+    ctxt['trips'] = listing(request, getattr(request.user.userprofile, profile_attr))
+    ctxt['past_trips'] = profile_attr == 'past_trips'
     return render(request, template, ctxt)
 
 @login_required
