@@ -3,6 +3,10 @@
     <ul class="unstyled">
       {% for cargo in user.userprofile.current_cargos %}
         {% include "trip_list_item.html" with trip=cargo.trip %}
+      {% empty %}
+        <div class="alert">
+          You do not have cargos.
+        </div>
       {% endfor %}
     </ul>
   </div>

@@ -27,6 +27,10 @@
             <p class="desc">{{ cargo.traveller_user_review_comment }}</p>
 					</div>
 				</div><!-- .item-review -->
+      {% empty %}
+      <div class="alert">
+        You do not have reviews yet.
+      </div>
       {% endfor %}
 			</li>
 		</ul>

@@ -19,6 +19,10 @@
     <ul class="unstyled">
       {% for trip in user.userprofile.current_trips %}
         {% include "trip_list_item.html" %}
+      {% empty %}
+        <div class="alert">
+          You do not have current trips.
+        </div>
       {% endfor %}
     </ul>
 
@@ -30,6 +34,10 @@
   <ul class="unstyled">
     {% for trip in user.userprofile.past_trips %}
       {% include "trip_past_list_item.html" %}
+    {% empty %}
+      <div class="alert">
+        You do not have current trips.
+      </div>
     {% endfor %}
   </ul>
 </div>
