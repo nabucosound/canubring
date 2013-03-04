@@ -5,76 +5,29 @@
 
 	<div class="hd">
 		<div class="inner">
-			<h4>Your reviews average:<span class="stars-big three"></span></h4>
+      <h4>Your reviews average:<span class="stars-big {{ user.userprofile.average_traveller_review_css_class_name }}"></span></h4>
 		</div>
 	</div>
 
 	<div class="bd clearfix">
 		<ul class="unstyled">
 			<li>
+      {% for cargo in user.userprofile.get_reviews_about_me %}
 				<div class="item-review clearfix">
 					<div class="sender">
-						<p><a href="#">Loreto vial</a> (SENDER)</p>	
+            <p><a href="#">{{ cargo.requesting_user.get_full_name }}</a></p>	
 					</div>
 					<div class="content">
+            {% comment %}
 						<a class="btn btn-canubring-orange pull-right" href="#">Review</a>
-						<p class="city"><span>FROM:</span>PUERTO MONTT - CHILE</p>
-						<p class="city"><span>TO:</span>SANTIAGO - CHILE</p>	
-						<p class="desc">“La experiencia con Tomás como viajero fue muy buena, contestontestó inmediatamente cada mensaje que le envié y mi encargo llegó puntualmente y en perfecto estado”.</p>
+            {% endcomment %}
+            <span class="stars-big {{ cargo.traveller_review_css_class_name }} pull-right"></span>
+            <p class="city"><span>FROM:</span>{{ cargo.trip.departure_city|upper }}</p>
+            <p class="city"><span>TO:</span>{{ cargo.trip.destination_city|upper }}</p>	
+            <p class="desc">{{ cargo.traveller_user_review_comment }}</p>
 					</div>
 				</div><!-- .item-review -->
-			</li>
-			<li>
-				<div class="item-review clearfix">
-					<div class="sender">
-						<p><a href="#">Loreto vial</a> (SENDER)</p>	
-					</div>
-					<div class="content">
-						<span class="stars-big three pull-right"></span>
-						<p class="city"><span>FROM:</span>PUERTO MONTT - CHILE</p>
-						<p class="city"><span>TO:</span>SANTIAGO - CHILE</p>	
-						<p class="desc">“La experiencia con Tomás como viajero fue muy buena, contestontestó inmediatamente cada mensaje que le envié y mi encargo llegó puntualmente y en perfecto estado”.</p>
-					</div>
-				</div><!-- .item-review -->
-			</li>
-			<li>
-				<div class="item-review clearfix">
-					<div class="sender">
-						<p><a href="#">Loreto vial</a> (SENDER)</p>	
-					</div>
-					<div class="content">
-						<span class="stars-big three pull-right"></span>
-						<p class="city"><span>FROM:</span>PUERTO MONTT - CHILE</p>
-						<p class="city"><span>TO:</span>SANTIAGO - CHILE</p>	
-						<p class="desc">“La experiencia con Tomás como viajero fue muy buena, contestontestó inmediatamente cada mensaje que le envié y mi encargo llegó puntualmente y en perfecto estado”.</p>
-					</div>
-				</div><!-- .item-review -->
-			</li>
-			<li>
-				<div class="item-review clearfix">
-					<div class="sender">
-						<p><a href="#">Loreto vial</a> (SENDER)</p>	
-					</div>
-					<div class="content">
-						<span class="stars-big three pull-right"></span>
-						<p class="city"><span>FROM:</span>PUERTO MONTT - CHILE</p>
-						<p class="city"><span>TO:</span>SANTIAGO - CHILE</p>	
-						<p class="desc">“La experiencia con Tomás como viajero fue muy buena, contestontestó inmediatamente cada mensaje que le envié y mi encargo llegó puntualmente y en perfecto estado”.</p>
-					</div>
-				</div><!-- .item-review -->
-			</li>
-			<li>
-				<div class="item-review clearfix">
-					<div class="sender">
-						<p><a href="#">Loreto vial</a> (SENDER)</p>	
-					</div>
-					<div class="content">
-						<span class="stars-big three pull-right"></span>
-						<p class="city"><span>FROM:</span>PUERTO MONTT - CHILE</p>
-						<p class="city"><span>TO:</span>SANTIAGO - CHILE</p>	
-						<p class="desc">“La experiencia con Tomás como viajero fue muy buena, contestontestó inmediatamente cada mensaje que le envié y mi encargo llegó puntualmente y en perfecto estado”.</p>
-					</div>
-				</div><!-- .item-review -->
+      {% endfor %}
 			</li>
 		</ul>
 		<div class="pagination pull-right">

@@ -68,6 +68,20 @@ class Cargo(models.Model):
         import datetime
         return self.trip.destination_dt < datetime.datetime.now()
 
+    @classmethod
+    def css_class_name(self, value):
+        classes = ('', 'one', 'two', 'three', 'four', 'five')
+        value = int(round(value))
+        try:
+            return classes[value]
+        except:
+            return ''
+
+    @property
+    def traveller_review_css_class_name(self):
+        return self.css_class_name(self.traveller_user_review_stars)
+
+
     # def used_categories(self):
     #     categories = ('food', 'medicaments', 'duty_free', 'electronics', 'baggage', 'books', 'documents', 'personal_belongings', 'clothes')
     #     return filter(lambda x: getattr(self, x), categories)

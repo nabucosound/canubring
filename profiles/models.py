@@ -14,6 +14,7 @@ from social_auth.backends.google import GoogleOAuth2Backend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
 
 from photos.utils import get_img_url
+from cargos.models import Cargo
 
 
 class SocialLink(models.Model):
@@ -87,6 +88,18 @@ class UserProfile(models.Model):
     def past_cargos(self):
         return self.user.my_cargos.filter(trip__departure_dt__lte=datetime.datetime.now())
 
+    @property
+    def get_reviews_about_me(self):
+        return Cargo.objects.filter(trip__user=self.user).exclude(traveller_user_review_stars__isnull=True)
+
+    @property
+    def get_average_reviews_about_me_score(self):
+        from django.db.models import Avg
+        return self.get_reviews_about_me.aggregate(Avg('traveller_user_review_stars'))
+
+    @property
+    def average_traveller_review_css_class_name(self):
+        return Cargo.css_class_name(self.get_average_reviews_about_me_score['traveller_user_review_stars__avg'])
 
 def new_users_handler(sender, user, response, details, **kwargs):
     """If backend has returned imag url, fetch and store it in custom profile model"""
