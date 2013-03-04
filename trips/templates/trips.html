@@ -3,8 +3,15 @@
 {% block content %}
 <div class="upload-trip">
   <h2>My trips</h2>
-  <a href="{% url 'new_trip' %}" class="btn">Upload new trip</a>
+  <a href="{% url 'new_trip' %}" class="btn" style="float:right">Upload new trip</a>
 </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#">Current travels</a>
+    </li>
+    <li><a href="#">Past travels</a></li>
+  </ul>
 
 <div class="profile-travels">
   <div class="tb-travels mytrips">
