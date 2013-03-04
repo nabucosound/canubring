@@ -51,19 +51,7 @@
 
 </div>
 
-<div class="pagination pull-right">
-  <ul>
-    {% if current_trips.has_previous %}
-    <li><a href="?page={{ current_trips.previous_page_number }}">&laquo; Previous</a></li>
-    {% endif %}
-    {% for page in current_trips.paginator.page_range %}
-    <li class="active"><a href="#">{{ page }}</a></li>
-    {% endfor %}
-    {% if current_trips.has_next %}
-    <li><a href="?page={{ current_trips.next_page_number }}">Next &raquo;</a></li>
-    {% endif %}
-  </ul>
-</div>
+{% include "pagination.html" with page=current_trips %}
 
 {% include "modals/cargo_modal.html" %}
 {% include "modals/review_requesting_user_modal.html" %}

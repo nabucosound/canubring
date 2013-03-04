@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Q
 
 from trips.models import Trip
+from website.utils import listing
 
 
 def search(request, template):
@@ -23,6 +24,6 @@ def search(request, template):
     if destination_complex_lookup:
         trip_results = trip_results.filter(destination_complex_lookup)
 
-    ctxt['trip_results'] = trip_results
+    ctxt['trip_results'] = listing(request, trip_results)
     return render(request, template, ctxt)
 
