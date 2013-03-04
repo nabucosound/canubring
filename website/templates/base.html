@@ -54,9 +54,10 @@
     {% if not user.is_authenticated %}
       {% include "extra_js/signup_form.html" %}
       {% include "extra_js/login_form.html" %}
+    {% else %}
+      {% include "extra_js/profile_form.html" %}
     {% endif %}
 
-    {% include "extra_js/profile_form.html" %}
 
   </body>
 </html>

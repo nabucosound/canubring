@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.views.decorators.http import require_POST
@@ -32,6 +32,17 @@ def update_profile(request):
     profile.second_language = request.POST.get('second_language')
     profile.save()
     return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
+
+@login_required
+@require_POST
+def update_social(request):
+    profile = request.user.userprofile
+    for pos in range(1, 8):
+        obj, created = profile.sociallink_set.get_or_create(pos=pos)
+        url = request.POST.get('social%s' % pos, '')
+        obj.url = url
+        obj.save()
+    return redirect('profile')
 
 @require_POST
 def login_view(request):

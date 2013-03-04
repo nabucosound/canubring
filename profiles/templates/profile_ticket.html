@@ -9,8 +9,11 @@
       <p class="trips">{{ profile.past_trips|length }} trips done</p>
       <p class="social">
       {% for link in profile.sociallink_set.all %}
+      {% if link.url %}
       <a href="#" class="profile-social {{ link.get_domain_name }}">{{ link.get_domain_name }}</a>
+      {% endif %}
       {% endfor %}
+      {% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-social">[edit social links]</a></small>{% endif %}
         {% comment %}
         <a href="#" title="" class="profile-social facebook">Facebook</a>
         <a href="#" title="" class="profile-social pinterest">Pinterest</a>

@@ -20,6 +20,7 @@ from cargos.models import Cargo
 class SocialLink(models.Model):
     profile = models.ForeignKey('UserProfile')
     url = models.URLField(blank=True)
+    pos = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.url
@@ -30,6 +31,8 @@ class SocialLink(models.Model):
         split_domain = parse_result.netloc.split('.')
         if len(split_domain) == 3:
             return split_domain[1].lower()
+        if len(split_domain) == 1:
+            return 'website'
         else:
             return split_domain[0].lower()
 
