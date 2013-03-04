@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
-from cargos.forms import CargoForm, ReviewTravellerForm
+from cargos.forms import CargoForm, ReviewTravellerForm, ReviewRequestingUserForm
 
 
 @login_required
@@ -162,5 +162,32 @@ def submit_review_traveller_form(request):
     obj.state = 3
     obj.save()
     messages.success(request, "You have successfully reviewed a traveller")
+    return redirect('cargos')
+
+@login_required
+def review_requesting_user_form(request, cargo_id):
+    # JSON Response
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    html = render_to_string('modals/review_requesting_user_modal_content.html', {'cargo': cargo})
+    response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
+
+@login_required
+@require_POST
+@csrf_exempt
+def submit_review_requesting_user_form(request):
+    cargo_id = request.POST.get('cargo_id', False)
+    if not cargo_id:
+        messages.error(request, "Error while trying to review requesting user")
+        return redirect('cargos')
+    obj = get_object_or_404(Cargo, id=cargo_id)
+    form = ReviewRequestingUserForm(request.POST, instance=obj)
+    if not form.is_valid():
+        messages.error(request, "Error while trying to review requesting user")
+        return redirect('cargos')
+    obj = form.save()
+    obj.state = 3
+    obj.save()
+    messages.success(request, "You have successfully reviewed a requesting user")
     return redirect('cargos')
 

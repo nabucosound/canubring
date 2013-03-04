@@ -17,7 +17,7 @@
           <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Confirm Cargo</a>
           {% endif %}
           {% if cargo.state == 3 or cargo.expired %}
-          <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Review Requesting User</a>
+          <a href="#modal-review-cargo" data-toggle="modal" class="review-requesting-user-form-btn cargo-form-btn btn btn-canubring-orange pull-right">Review Requesting User</a>
           {% endif %}
         {% elif cargo.requesting_user == user %}
           {% if cargo.state == 2 %}
