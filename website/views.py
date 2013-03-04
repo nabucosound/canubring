@@ -35,7 +35,9 @@ def cargos(request, template):
     return render(request, template, ctxt)
 
 @login_required
-def evaluations(request, template):
+def evaluations(request, template, profile_attr='get_reviews_about_me'):
     ctxt = dict()
+    ctxt['reviews'] = listing(request, getattr(request.user.userprofile, profile_attr))
+    ctxt['reviews_by_me'] = profile_attr == 'get_reviews_by_me'
     return render(request, template, ctxt)
 

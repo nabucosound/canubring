@@ -10,16 +10,18 @@
 	</div>
 
   <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#">Reviews about you</a>
+    <li {% if not reviews_by_me %}class="active"{% endif %}>
+      <a href="{% url 'evaluations' %}">Reviews about you</a>
     </li>
-    <li><a href="#">Reviews by you</a></li>
+    <li {% if reviews_by_me %}class="active"{% endif %}>
+      <a href="{% url 'evaluations_by_me' %}">Reviews by you</a>
+    </li>
   </ul>
 
 	<div class="bd clearfix">
 		<ul class="unstyled">
 			<li>
-      {% for cargo in user.userprofile.get_reviews_about_me %}
+      {% for cargo in reviews %}
 				<div class="item-review clearfix">
 					<div class="sender">
             <p><a href="#">{{ cargo.requesting_user.get_full_name }}</a></p>	
@@ -41,14 +43,9 @@
       {% endfor %}
 			</li>
 		</ul>
-		<div class="pagination pull-right">
-	      <ul>
-	        <li><a href="#">&laquo; Anterior</a></li>
-	  		<li class="active"><a href="#">5</a></li>
-	  		<li><a href="#">6</a></li>
-	        <li><a href="#">Siguiente &raquo;</a></li>
-	      </ul>
-	  	</div><!-- .pagination -->
+
+    {% include "pagination.html" with page=trips %}
+
 	</div>
 	
 

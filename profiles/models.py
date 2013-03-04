@@ -98,6 +98,11 @@ class UserProfile(models.Model):
         return Cargo.objects.filter(trip__user=self.user).exclude(traveller_user_review_stars__isnull=True)
 
     @property
+    def get_reviews_by_me(self):
+        # TODO
+        return []
+
+    @property
     def get_average_reviews_about_me_score(self):
         from django.db.models import Avg
         return self.get_reviews_about_me.aggregate(Avg('traveller_user_review_stars'))

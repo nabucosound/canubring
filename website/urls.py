@@ -40,5 +40,11 @@ urlpatterns = patterns('website.views',
         name='evaluations',
         kwargs = {'template': 'evaluations.html'}
     ),
+    url(
+        regex=r'^evaluations/by-me$',
+        view='evaluations',
+        name='evaluations_by_me',
+        kwargs = {'template': 'evaluations.html', 'profile_attr': 'get_reviews_by_me'}
+    ),
 )
 
