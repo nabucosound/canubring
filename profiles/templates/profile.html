@@ -20,42 +20,20 @@
 
 <div class="profile-reviews">
   <h4 class="tit-int">Reviews about you</h4>
+  {% for cargo in profile.get_reviews_about_me %}
   <div class="item">
     <div class="media">
-      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
+      <img class="media-object img-polaroid pull-left" src="{{ cargo.requesting_user.userprofile.get_review_img_url }}">
       <div class="media-body">
         <div class="comment-box">
-          <h5><a href="#">Francisca Vega</a></h5>
-          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
+          <h5><a href="#">{{ cargo.requesting_user.get_full_name }}</a></h5>
+          <p>{{ cargo.traveller_user_review_comment }}</p>
         </div>
         <span class="arrow"></span>
       </div>
     </div>
   </div><!-- .item -->
-  <div class="item">
-    <div class="media">
-      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
-      <div class="media-body">
-        <div class="comment-box">
-          <h5><a href="#">Francisca Vega</a></h5>
-          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
-        </div>
-        <span class="arrow"></span>
-      </div>
-    </div>
-  </div><!-- .item -->
-  <div class="item">
-    <div class="media">
-      <img class="media-object img-polaroid pull-left" src="{{ STATIC_URL }}img/fake_70x70.png">
-      <div class="media-body">
-        <div class="comment-box">
-          <h5><a href="#">Francisca Vega</a></h5>
-          <p>Tomás fue muy responsable y puntual con el encargo que le pedí. 100% recomendable como viajero.</p>
-        </div>
-        <span class="arrow"></span>
-      </div>
-    </div>
-  </div><!-- .item -->
+  {% endfor %}
 </div><!-- .profile-reviews -->
 
 {% endblock %}

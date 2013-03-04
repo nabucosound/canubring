@@ -45,6 +45,7 @@ class UserProfile(models.Model):
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     thumb = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(45, 45)], image_field='profile_photo', format='JPEG', options={'quality': 90})
+    review = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(70, 70)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     default_img_url = '%simg/default_profile_%s.png'
 
     def __unicode__(self):
@@ -71,6 +72,10 @@ class UserProfile(models.Model):
     @property
     def get_thumb_img_url(self):
         return get_img_url(self, 'thumb')
+
+    @property
+    def get_review_img_url(self):
+        return get_img_url(self, 'review')
 
     @property
     def current_trips(self):
