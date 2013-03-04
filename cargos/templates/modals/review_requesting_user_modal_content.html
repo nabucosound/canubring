@@ -1,0 +1,62 @@
+<form action="{% url 'submit_review_requesting_user_form' %}" method="post" accept-charset="utf-8">
+  <h3>¿CÓMO FUE TU EXPERIENCIA CON EL ENCARGADOR {{ cargo.requesting_user.get_full_name }}?</h3>
+
+  <div class="block clearfix">
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big five"></p>
+        <input type="radio" name="traveller_user_review_stars" value="5"><span class="rate-text">excelente</span>
+      </label>
+    </div>
+
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big two"></p>
+        <input type="radio" name="traveller_user_review_stars" value="2"><span class="rate-text">regular</span>
+      </label>
+    </div>
+
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big four"></p>
+        <input type="radio" name="traveller_user_review_stars" value="4"><span class="rate-text">muy buena</span>
+      </label>
+    </div>	
+
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big one"></p>
+        <input type="radio" name="traveller_user_review_stars" value="1"><span class="rate-text">mala</span>
+      </label>
+    </div>	
+
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big three"></p>
+        <input type="radio" name="traveller_user_review_stars" value="3"><span class="rate-text">buena</span>
+      </label>
+    </div>	
+
+    <div class="control-group">
+      <label class="radio">
+        <p class="stars-big"></p>
+        <input type="radio" name="traveller_user_review_stars" value="0"><span class="rate-text">pésima</span>
+      </label>
+    </div>	
+
+  </div>
+
+  <h4>¿QUIERES HACER ALGUN COMENTARIO ACERCA DE ESTE ENCARGADOR?</h4>
+  <div class="control-group-nofloat clearfix">
+    <textarea name="requesting_user_review_comment" class="input-canubring" placeholder="Este comentario aparecerá en el perfil del usuario."></textarea>		
+  </div>
+
+  <div class="submit-box clearfix pull-right">
+    <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
+    <p><input type="submit" value="Send Review" class="btn btn-canubring-orange"></p>
+    <p><a href="#">[Responder más tarde]</a></p>
+  </div>
+
+</form>
+
+
