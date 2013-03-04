@@ -31,15 +31,17 @@
 
 <h4 class="tit-int">Past Travels</h4>
 <div class="tb-travels mytrips past">
+
   <ul class="unstyled">
     {% for trip in user.userprofile.past_trips %}
-      {% include "trip_past_list_item.html" %}
+      {% include "trip_list_item.html" %}
     {% empty %}
       <div class="alert">
-        You do not have current trips.
+        You do not have past trips.
       </div>
     {% endfor %}
   </ul>
+
 </div>
 
 <div class="pagination pull-right">

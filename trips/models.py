@@ -70,3 +70,7 @@ class Trip(models.Model):
             count = count + cargo.cargocomment_set.exclude(user=self.user).filter(unread=True).count()
         return count
 
+    @property
+    def get_reviews_about_me(self):
+        return self.cargo_set.exclude(traveller_user_review_stars__isnull=True)
+

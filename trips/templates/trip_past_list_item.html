@@ -22,9 +22,11 @@
       <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
       <p class="desc"><span>To</span> {{ trip.destination_city }}</p>
     </div>
+    {% if trip.get_reviews_about_me %}
     <div class="span1">
       <span class="ico-star"><a href="">Star</a></span>
     </div>
+    {% endif %}
   </div>
   <div class="row trip-activity" style="display:none">
     <div class="span8">

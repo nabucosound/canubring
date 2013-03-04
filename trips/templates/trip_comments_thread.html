@@ -13,7 +13,7 @@
         <input type="hidden" name="object_id" value="{{ cargo.id }}">
         <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
         {% if cargo.traveller_user == user %}
-          {% if cargo.state == 0 %}
+          {% if cargo.state == 0 and not cargo.expired %}
           <a href="#modal-cargo" data-toggle="modal" class="cargo-form-btn btn btn-canubring-orange pull-right">Confirm Cargo</a>
           {% endif %}
           {% if cargo.state == 3 or cargo.expired %}
