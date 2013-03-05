@@ -1,3 +1,4 @@
+{% with profile=trip.user.userprofile %}
 <div class="span2">
   <div class="ticket">
     <div class="hd">
@@ -22,21 +23,23 @@
       <div class="sep-holes"></div>
       <div class="profile-comment media">
         <a class="pull-left" href="#">
-          <img class="media-object img-polaroid" src="{{ trip.user.userprofile.get_ticket_img_url }}">  
+          <img class="media-object img-polaroid" src="{{ profile.get_ticket_img_url }}">  
         </a>
         <div class="media-body">
           <h6>{{ trip.user.get_full_name }}</h6>
-          <p class="country">Chile</p>
-          <p class="stats">1 Viaje - 0 Cargas</p>
-          <div class="stars three"></div>
-          <p class="comment">"Solo llevo encargos que yo mismo compre. Máximo dos mil kilos, Gracias"</p>
+          <p class="country">{{ profile.country }}</p>
+          <p class="stats">{{ profile.past_trips|length }} Trips - 0 Cargas</p>
+          <div class="stars {{ profile.average_traveller_review_css_class_name }}"></div>
+          {% if trip.comments %}
+          <p class="comment">"{{ trip.comments|truncatechars:'100' }}"</p>
+          {% endif %}
         </div>
       </div>
     </div>
     <div class="ft">
-      <a href="{{ trip.user.userprofile.get_absolute_url }}"><span></span>Ask for cargo!</a>
+      <a href="{{ profile.get_absolute_url }}"><span></span>Ask for cargo!</a>
     </div>
-  </div><!-- .ticket -->
+  </div>
 </div>
-
+{% endwith %}
 
