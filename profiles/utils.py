@@ -14,6 +14,8 @@ def create_nb_user(email, password):
         suffix_num = str(User.objects.count())
         username = '%s%s' % (email.split('@', 1)[0][:30 - len(suffix_num)], User.objects.count())
         username = username[:30]
+        if password is None:
+            password = User.objects.make_random_password()
         user = User.objects.create_user(username, email, password)
         return user
     else:

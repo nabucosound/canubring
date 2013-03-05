@@ -44,6 +44,8 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=255, blank=True)
     language = models.CharField(max_length=255, blank=True)
     second_language = models.CharField(max_length=255, blank=True)
+    # Legacy
+    uid = models.CharField(max_length=36, blank=True)
     # Imagekit specs
     square = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(135, 135)], image_field='profile_photo', format='JPEG', options={'quality': 90})
     ticket = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), ResizeToFill(30, 30)], image_field='profile_photo', format='JPEG', options={'quality': 90})
@@ -53,6 +55,11 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        for pos in range(1, 8):
+            obj, created = self.sociallink_set.get_or_create(pos=pos)
+        return super(UserProfile, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):
