@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
 <div class="main-search clearfix">
     <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
@@ -22,8 +24,6 @@
 {% endblock %}
 
 {% block extra_js %}
-  {% comment %}
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-  <script src="{{ STATIC_URL }}js/google_places.js"></script>
-  {% endcomment %}
+  <script src="{% static "js/google_places.js" %}"></script>
 {% endblock %}

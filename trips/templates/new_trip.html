@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
 
 <div id="trip-legs-container" class="upload-trip">
@@ -43,8 +45,8 @@
   {% comment %}
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=es"></script>
   {% endcomment %}
-  <script src="{{ STATIC_URL }}js/utils.js"></script>
-  <script src="{{ STATIC_URL }}js/new_trip.js"></script>
+  <script src="{% static "js/utils.js" %}"></script>
+  <script src="{% static "js/new_trip.js" %}"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
       $('.trip-type-radio').click(function() {
