@@ -8,7 +8,7 @@
       <span class="magnifier"></span>
       <input name="departure" type="text" class="city-input input-canubring" placeholder="Origin (city, country)" />
       <input name="destination" type="text" class="city-input input-canubring" placeholder="Destination (city, country)" />
-      <input name="arrival" type="text" class="input-canubring" placeholder="Arrival date" />
+      <input name="arrival" type="text" class="datepicker input-canubring" placeholder="Arrival date" />
       <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
     </form>
 </div>
@@ -26,4 +26,11 @@
 {% block extra_js %}
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
   <script src="{% static "js/google_places.js" %}"></script>
+  <script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".datepicker").each(function() {
+      $(this).datepicker({ minDate: 0 });
+    })
+  });
+  </script>
 {% endblock %}
