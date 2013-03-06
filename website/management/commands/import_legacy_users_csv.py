@@ -29,9 +29,19 @@ class Command(BaseCommand):
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
         count = 0
+        while count < 10350:
+            count = count + 1
+            reader.next()
         for row in reader:
+            count = count + 1
+            try:
+                email = get_value(row[1])[:75]
+            except TypeError:
+                with open("/Users/nabuco/Desktop/bad_users_canubring.txt", "a") as myfile:
+                    myfile.write("%s\n" % repr(row))
+                continue
             fields = {
-                    'email': get_value(row[1]),
+                    'email': email,
                     'password': None,
             }
             try:
@@ -39,13 +49,13 @@ class Command(BaseCommand):
                 user.userprofile = UserProfile.objects.create(user=user)
             except ValueError:
                 with open("/Users/nabuco/Desktop/bad_users_canubring.txt", "a") as myfile:
-                    myfile.write(repr(row))
+                    myfile.write("%s\n" % repr(row))
                 continue
             except UserAlreadyExists:
-                user = User.objects.get(email__iexact=get_value(row[1]))
+                user = User.objects.get(email__iexact=email)
             fields = {
-                    'first_name': get_value(row[2]),
-                    'last_name': get_value(row[3]),
+                    'first_name': get_value(row[2])[:30],
+                    'last_name': get_value(row[3])[:30],
                     'date_joined': get_value(row[6]),
                     'last_login': get_value(row[7]) or datetime.datetime.now(),
             }
@@ -72,7 +82,6 @@ class Command(BaseCommand):
             sl2 = profile.sociallink_set.get(pos=2)
             sl2.url = get_value(row[10]) or ''
             sl2.save()
-            count = count + 1
             print count, row[1]
         ifile.close()
 

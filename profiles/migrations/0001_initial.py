@@ -8,16 +8,44 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'SocialLink'
+        db.create_table(u'profiles_sociallink', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.UserProfile'])),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
+            ('pos', self.gf('django.db.models.fields.IntegerField')(default=0)),
+        ))
+        db.send_create_signal(u'profiles', ['SocialLink'])
+
+        # Adding model 'ProfileCountry'
+        db.create_table(u'profiles_profilecountry', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('code', self.gf('django.db.models.fields.CharField')(max_length=2)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=64)),
+        ))
+        db.send_create_signal(u'profiles', ['ProfileCountry'])
+
         # Adding model 'UserProfile'
         db.create_table(u'profiles_userprofile', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
             ('profile_photo', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
+            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.ProfileCountry'], null=True, blank=True)),
+            ('language', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+            ('second_language', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+            ('completed', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('uid', self.gf('django.db.models.fields.CharField')(max_length=36, blank=True)),
         ))
         db.send_create_signal(u'profiles', ['UserProfile'])
 
 
     def backwards(self, orm):
+        # Deleting model 'SocialLink'
+        db.delete_table(u'profiles_sociallink')
+
+        # Deleting model 'ProfileCountry'
+        db.delete_table(u'profiles_profilecountry')
+
         # Deleting model 'UserProfile'
         db.delete_table(u'profiles_userprofile')
 
@@ -59,10 +87,28 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        u'profiles.profilecountry': {
+            'Meta': {'object_name': 'ProfileCountry'},
+            'code': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '64'})
+        },
+        u'profiles.sociallink': {
+            'Meta': {'object_name': 'SocialLink'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'pos': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.UserProfile']"}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
+        },
         u'profiles.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
+            'completed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.ProfileCountry']", 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'language': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'profile_photo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
+            'second_language': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'uid': ('django.db.models.fields.CharField', [], {'max_length': '36', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
