@@ -4,19 +4,9 @@ import datetime
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
+from legacy_migration.utils import get_value, get_language
 from profiles.utils import create_nb_user, UserAlreadyExists
 from profiles.models import UserProfile, ProfileCountry
-
-def get_value(value):
-    return None if value == '\N' else value.lower().strip()
-
-def get_language(value):
-    languages = {'eng': 1, 'spa': 2, 'por': 3, 'fra': 4}
-    try:
-        lang = get_value(value) and languages[get_value(value)] or 0
-    except KeyError:
-        lang = 0
-    return lang
 
 class Command(BaseCommand):
     help = "Inport users from legacy system to new db schema."
@@ -25,19 +15,19 @@ class Command(BaseCommand):
         """
         "uid","email","name","lastname","language","language2","created_date","last_login","facebook_id","facebook_link","twitter_link","country"
         """
-        ifile  = open('/Users/nabuco/Desktop/users_canubring.csv', "rb")
+        ifile  = open('legacy_migration/csv/users.csv', "rb")
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
         count = 0
-        while count < 10350:
-            count = count + 1
-            reader.next()
+        # while count < 10350:  # Skip rows
+        #     count = count + 1
+        #     reader.next()
         for row in reader:
             count = count + 1
             try:
                 email = get_value(row[1])[:75]
             except TypeError:
-                with open("/Users/nabuco/Desktop/bad_users_canubring.txt", "a") as myfile:
+                with open("legacy_migration/csv/err_users.txt", "a") as myfile:
                     myfile.write("%s\n" % repr(row))
                 continue
             fields = {
@@ -48,7 +38,7 @@ class Command(BaseCommand):
                 user = create_nb_user(**fields)
                 user.userprofile = UserProfile.objects.create(user=user)
             except ValueError:
-                with open("/Users/nabuco/Desktop/bad_users_canubring.txt", "a") as myfile:
+                with open("legacy_migration/csv/err_users.txt", "a") as myfile:
                     myfile.write("%s\n" % repr(row))
                 continue
             except UserAlreadyExists:

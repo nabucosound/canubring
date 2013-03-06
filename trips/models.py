@@ -29,6 +29,8 @@ class Trip(models.Model):
     dep_country = models.ForeignKey(Country, blank=True, null=True, related_name='dep_country_trips')
     dest_city = models.ForeignKey(City, blank=True, null=True, related_name='dest_city_trips')
     dest_country = models.ForeignKey(Country, blank=True, null=True, related_name='dest_country_trips')
+    # Legacy
+    uid = models.CharField(max_length=36, blank=True)
 
     def __unicode__(self):
         return u"From %s to %s" % (self.departure_city, self.destination_city)

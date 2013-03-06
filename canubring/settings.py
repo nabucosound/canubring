@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'trips',
     'social_auth',
     'cargos',
+    'legacy_migration',
 )
 
 LOGGING = {
