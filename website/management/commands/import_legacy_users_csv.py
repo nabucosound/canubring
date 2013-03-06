@@ -1,8 +1,22 @@
 import csv
+import datetime
+
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 
-from profiles.utils import create_nb_user
+from profiles.utils import create_nb_user, UserAlreadyExists
+from profiles.models import UserProfile, ProfileCountry
 
+def get_value(value):
+    return None if value == '\N' else value.lower().strip()
+
+def get_language(value):
+    languages = {'eng': 1, 'spa': 2, 'por': 3, 'fra': 4}
+    try:
+        lang = get_value(value) and languages[get_value(value)] or 0
+    except KeyError:
+        lang = 0
+    return lang
 
 class Command(BaseCommand):
     help = "Inport users from legacy system to new db schema."
@@ -14,35 +28,51 @@ class Command(BaseCommand):
         ifile  = open('/Users/nabuco/Desktop/users_canubring.csv', "rb")
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
+        count = 0
         for row in reader:
-            # if row[-4] == '\N'': row[-4] = None
             fields = {
-                    'email': row[1],
+                    'email': get_value(row[1]),
                     'password': None,
             }
-            user = create_nb_user(**fields)
+            try:
+                user = create_nb_user(**fields)
+                user.userprofile = UserProfile.objects.create(user=user)
+            except ValueError:
+                with open("/Users/nabuco/Desktop/bad_users_canubring.txt", "a") as myfile:
+                    myfile.write(repr(row))
+                continue
+            except UserAlreadyExists:
+                user = User.objects.get(email__iexact=get_value(row[1]))
             fields = {
-                    'first_name': row[2],
-                    'last_name': row[3],
-                    'date_joined': row[6],
-                    'last_login': row[7],
+                    'first_name': get_value(row[2]),
+                    'last_name': get_value(row[3]),
+                    'date_joined': get_value(row[6]),
+                    'last_login': get_value(row[7]) or datetime.datetime.now(),
             }
             user.__dict__.update(**fields)
             user.save()
+            default_profile_country = ProfileCountry.objects.latest('id')
+            try:
+                country = ProfileCountry.objects.get(name__iexact=get_value(row[11]))
+            except (ValueError, ProfileCountry.DoesNotExist):
+                country = default_profile_country
             fields = {
-                    'language': row[2],
-                    'second_language': row[2],
+                    'language': get_language(row[4]),
+                    'second_language': get_language(row[5]),
+                    'facebook_id': get_value(row[8]),
+                    'completed': True,
             }
-
-        # parts = CarPhoto.objects.all()
-        # parts = filter(lambda x: x.original_image.name != '', parts)
-        # for obj in parts:
-        #     for prop in ('square', 'thumbnail', 'vanity', 'tiny', 'gallery', 'featured'):
-        #         img_obj = getattr(obj, prop)
-        #         try:
-        #             if not default_storage.exists(img_obj.name):
-        #                 img_obj.generate(save=True)
-        #                 print obj.id, img_obj.name
-        #         except (IOError, AttributeError):
-        #             print "!!!!!!!!!!!!!!!!!!!!!!!!!", obj.id, img_obj.name
+            profile = user.userprofile
+            profile.__dict__.update(**fields)
+            profile.country = country
+            profile.save()
+            sl1 = profile.sociallink_set.get(pos=1)
+            sl1.url = get_value(row[9]) or ''
+            sl1.save()
+            sl2 = profile.sociallink_set.get(pos=2)
+            sl2.url = get_value(row[10]) or ''
+            sl2.save()
+            count = count + 1
+            print count, row[1]
+        ifile.close()
 

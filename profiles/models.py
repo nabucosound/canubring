@@ -44,6 +44,9 @@ class ProfileCountry(models.Model):
     class Meta:
         verbose_name_plural = 'Profile Countries'
 
+    def __unicode__(self):
+        return self.name
+
 
 class UserProfile(models.Model):
     PROFILE_LANG_CHOICES = (
