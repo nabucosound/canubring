@@ -37,13 +37,27 @@ class SocialLink(models.Model):
             return split_domain[0].lower()
 
 
-class UserProfile(models.Model):
+class ProfileCountry(models.Model):
+    code = models.CharField(max_length=2)
+    name = models.CharField(max_length=64)
 
+    class Meta:
+        verbose_name_plural = 'Profile Countries'
+
+
+class UserProfile(models.Model):
+    PROFILE_LANG_CHOICES = (
+        (1, 'en'),
+        (2, 'es'),
+        (3, 'pt'),
+        (4, 'fr'),
+    )
     user = models.OneToOneField(User)
     profile_photo = models.ImageField(upload_to='profiles')
-    country = models.CharField(max_length=255, blank=True)
-    language = models.CharField(max_length=255, blank=True)
-    second_language = models.CharField(max_length=255, blank=True)
+    country = models.ForeignKey(ProfileCountry, blank=True, null=True)
+    language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
+    second_language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
+    completed = models.BooleanField(default=False)
     # Legacy
     uid = models.CharField(max_length=36, blank=True)
     # Imagekit specs
@@ -57,9 +71,9 @@ class UserProfile(models.Model):
         return self.user.username
 
     def save(self, *args, **kwargs):
+        super(UserProfile, self).save(*args, **kwargs)
         for pos in range(1, 8):
-            obj, created = self.sociallink_set.get_or_create(pos=pos)
-        return super(UserProfile, self).save(*args, **kwargs)
+            obj, created = SocialLink.objects.get_or_create(profile=self, pos=pos)
 
     @models.permalink
     def get_absolute_url(self):
@@ -67,9 +81,9 @@ class UserProfile(models.Model):
 
     def get_languages(self):
         if self.second_language:
-            return " - ".join((self.language, self.second_language))
+            return " - ".join((self.get_language_display(), self.get_second_language_display()))
         else:
-            return self.language
+            return self.get_language_display()
 
     @property
     def get_square_img_url(self):

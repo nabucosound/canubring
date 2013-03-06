@@ -3,6 +3,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 
 from website.utils import listing
+from profiles.models import ProfileCountry
 
 def logout(request):
     django_logout(request)
@@ -14,6 +15,7 @@ def profile(request, template):
     ctxt['profile'] = request.user.userprofile
     if request.session.pop('show_signup_sys_msg', False):
         ctxt['show_signup_sys_msg'] = True
+    ctxt['profile_countries'] = ProfileCountry.objects.all()
     return render(request, template, ctxt)
 
 @login_required

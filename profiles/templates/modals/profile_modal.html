@@ -17,15 +17,41 @@
           <div class="error" style="display:none"><p>*Required field</p></div>
         </div>
         <div class="control-group">
+          {% comment %}
           <input name="country" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.country }}" placeholder="Your country">
+          {% endcomment %}
+          <select name="country" id="country">
+            <option value="">Choose Country</option>
+            {% for country in profile_countries %}
+            <option value="{{ country.code }}" {% if user.userprofile.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+            {% endfor %}
+          </select>
           <div class="error" style="display:none"><p>*Required field</p></div>
         </div>
         <div class="control-group">
+          {% comment %}
           <input name="language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.language }}" placeholder="Language">
+          {% endcomment %}
+          <select name="language" id="language">
+              <option value="0">Choose Language</option>
+              <option value="1" {% if user.userprofile.language == 1 %}selected="selected"{% endif %}>English</option>
+              <option value="2" {% if user.userprofile.language == 2 %}selected="selected"{% endif %}>Español</option>
+              <option value="3" {% if user.userprofile.language == 3 %}selected="selected"{% endif %}>Português</option>
+              <option value="4" {% if user.userprofile.language == 4 %}selected="selected"{% endif %}>Française</option>
+          </select>
           <div class="error" style="display:none"><p>*Required field</p></div>
         </div>
         <div class="control-group">
+          {% comment %}
           <input name="second_language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.second_language }}" placeholder="Second language">
+          {% endcomment %}
+          <select name="second_language" id="second_language">
+              <option value="0">Choose Second Language</option>
+              <option value="1" {% if user.userprofile.second_language == 1 %}selected="selected"{% endif %}>English</option>
+              <option value="2" {% if user.userprofile.second_language == 2 %}selected="selected"{% endif %}>Español</option>
+              <option value="3" {% if user.userprofile.second_language == 3 %}selected="selected"{% endif %}>Português</option>
+              <option value="4" {% if user.userprofile.second_language == 4 %}selected="selected"{% endif %}>Française</option>
+          </select>
         </div>
         <div class="clearfix">
           <p><input type="submit" class="btn btn-canubring-orange pull-right" value="DONE" /></p>

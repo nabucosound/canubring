@@ -3,11 +3,12 @@
     $("#profile-form").submit(function() {
       var first_name_input = $('#profile-form input[name="first_name"]');
       var last_name_input = $('#profile-form input[name="last_name"]');
-      var country_input = $('#profile-form input[name="country"]');
-      var language_input = $('#profile-form input[name="language"]');
-      var second_language_input = $('#profile-form input[name="second_language"]');
+      //var country_input = $('#profile-form input[name="country"]');
+      var country_option = $('#profile-form select[name="country"]>option:selected');
+      var language_option = $('#profile-form select[name="language"]>option:selected');
+      var second_language_option = $('#profile-form select[name="second_language"]>option:selected');
       var submit_form = true;
-      var input_fields = new Array(first_name_input, last_name_input, country_input, language_input);
+      var input_fields = new Array(first_name_input, last_name_input);
       for (var i=0;i<input_fields.length;i++) {
         if (input_fields[i].val() == "") {
           input_fields[i].siblings('.error').show();
@@ -16,6 +17,18 @@
           input_fields[i].siblings('.error').hide();
         };
       }
+      if (country_option.val() == '') {
+        country_option.parents('select').siblings('.error').show();
+        submit_form = false;
+      } else {
+        country_option.parents('select').siblings('.error').hide();
+      };
+      if (language_option.val() == '0') {
+        language_option.parents('select').siblings('.error').show();
+        submit_form = false;
+      } else {
+        language_option.parents('select').siblings('.error').hide();
+      };
       if (submit_form) {
         $.ajax({
           type: $(this).attr('method'),

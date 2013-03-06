@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
 
-from profiles.models import UserProfile
+from profiles.models import UserProfile, ProfileCountry
 from profiles.forms import EmailSignupForm, EmailLoginForm
 from profiles.utils import create_nb_user
 
@@ -27,9 +27,11 @@ def update_profile(request):
     user.last_name = request.POST.get('last_name')
     user.save()
     profile = user.userprofile
-    profile.country = request.POST.get('country')
+    country = ProfileCountry.objects.get(code=request.POST.get('country'))
+    profile.country = country
     profile.language = request.POST.get('language')
     profile.second_language = request.POST.get('second_language')
+    profile.completed = True
     profile.save()
     return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
