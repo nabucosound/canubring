@@ -44,7 +44,6 @@ class Command(BaseCommand):
             except UserAlreadyExists:
                 user = User.objects.get(email__iexact=email)
             fields = {
-                    'uid': get_value(row[0]),
                     'first_name': get_value(row[2])[:30],
                     'last_name': get_value(row[3])[:30],
                     'date_joined': get_value(row[6]),
@@ -58,6 +57,7 @@ class Command(BaseCommand):
             except (ValueError, ProfileCountry.DoesNotExist):
                 country = default_profile_country
             fields = {
+                    'uid': get_value(row[0]),
                     'language': get_language(row[4]),
                     'second_language': get_language(row[5]),
                     'facebook_id': get_value(row[8]),

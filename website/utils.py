@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 def listing(request, obj_list):
-    paginator = Paginator(obj_list, getattr(settings, 'DEFAULT_PAGINATOR_ITEMS', 2))
+    paginator = Paginator(obj_list, getattr(settings, 'DEFAULT_PAGINATOR_ITEMS', 24))
     page_param = request.GET.get('page')
     try:
         page = paginator.page(page_param)

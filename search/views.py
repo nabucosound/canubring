@@ -9,7 +9,8 @@ from website.utils import listing
 
 def search(request, template):
     ctxt = dict()
-    trip_results = Trip.objects.order_by('-creation_dt')
+    now = datetime.datetime.now()
+    trip_results = Trip.objects.filter(departure_dt__gt=now).order_by('departure_dt')
 
     departure_complex_lookup = None
     departure = request.GET.get('departure', None)

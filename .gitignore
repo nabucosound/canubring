@@ -5,4 +5,5 @@ canubring/localsettings.py
 .env
 dev.db
 legacy_migration/csv
+legacy_migration/sql
 
