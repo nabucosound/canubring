@@ -157,6 +157,8 @@ LINKEDIN_EXTRA_DATA = [('id', 'id'),
                        ('headline', 'headline'),
                        ('industry', 'industry')]
 
+BYPASS_AUTHENTICATION = os.environ.get('BYPASS_AUTHENTICATION')
+
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
 try:
     from canubring.localsettings import *

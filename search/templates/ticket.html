@@ -22,11 +22,11 @@
       </div>
       <div class="sep-holes"></div>
       <div class="profile-comment media">
-        <a class="pull-left" href="#">
+        <a class="pull-left" href="{{ profile.get_absolute_url }}">
           <img class="media-object img-polaroid" src="{{ profile.get_ticket_img_url }}">  
         </a>
         <div class="media-body">
-          <h6>{{ trip.user.get_full_name }}</h6>
+          <h6><a class="pull-left" href="{{ profile.get_absolute_url }}">{{ trip.user.get_full_name }}</a></h6>
           <p class="country">{{ profile.country }}</p>
           <p class="stats">{{ profile.past_trips|length }} Trips - 0 Cargas</p>
           <div class="stars {{ profile.average_traveller_review_css_class_name }}"></div>

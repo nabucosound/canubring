@@ -57,10 +57,14 @@ def login_view(request):
         return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
 
     user = User.objects.get(email__iexact=email)
-    auth_user = authenticate(username=user.username, password=password)
-    if auth_user is None or not auth_user.is_active:
-        error_msg = "Bad authentication"
-        return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+    if getattr(settings, 'BYPASS_AUTHENTICATION', False):
+        auth_user = user
+        auth_user.backend = 'django.contrib.auth.backends.ModelBackend'
+    else:
+        auth_user = authenticate(username=user.username, password=password)
+        if auth_user is None or not auth_user.is_active:
+            error_msg = "Bad authentication"
+            return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
 
     login(request, auth_user)
     return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")

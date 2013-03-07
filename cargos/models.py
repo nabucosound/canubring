@@ -56,6 +56,8 @@ class Cargo(models.Model):
     # Review of traveller user
     traveller_user_review_stars = models.IntegerField(choices=REVIEW_STAR_CHOICES, blank=True, null=True)
     traveller_user_review_comment = models.TextField(blank=True)
+    # Legacy
+    uid = models.CharField(max_length=36, blank=True)
 
     def __unicode__(self):
         return u"Cargo from %s to %s" % (self.trip.departure_city, self.trip.destination_city)
@@ -82,11 +84,6 @@ class Cargo(models.Model):
         return self.css_class_name(self.traveller_user_review_stars)
 
 
-    # def used_categories(self):
-    #     categories = ('food', 'medicaments', 'duty_free', 'electronics', 'baggage', 'books', 'documents', 'personal_belongings', 'clothes')
-    #     return filter(lambda x: getattr(self, x), categories)
-
-
 class CargoComment(models.Model):
     TYPE_CHOICES = (
         (0, 'Regular comment'),
@@ -99,4 +96,9 @@ class CargoComment(models.Model):
     unread = models.BooleanField(default=True)
     comment_type = models.IntegerField(choices=TYPE_CHOICES, default=0)
     creation_dt = models.DateTimeField(auto_now_add=True)
+    # Legacy
+    uid = models.CharField(max_length=36, blank=True)
+
+    def __unicode__(self):
+        return u"%s - %s: %s..." % (self.cargo, self.user, self.content[:30])
 
