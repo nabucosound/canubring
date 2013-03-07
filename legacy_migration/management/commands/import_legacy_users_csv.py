@@ -3,6 +3,9 @@ import datetime
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.db import IntegrityError
+
+from social_auth.models import UserSocialAuth
 
 from legacy_migration.utils import get_value, get_language
 from profiles.utils import create_nb_user, UserAlreadyExists
@@ -19,7 +22,7 @@ class Command(BaseCommand):
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
         count = 0
-        # while count < 10350:  # Skip rows
+        # while count < 6480:  # Skip rows
         #     count = count + 1
         #     reader.next()
         for row in reader:
@@ -60,13 +63,28 @@ class Command(BaseCommand):
                     'uid': get_value(row[0]),
                     'language': get_language(row[4]),
                     'second_language': get_language(row[5]),
-                    'facebook_id': get_value(row[8]),
                     'completed': True,
             }
             profile = user.userprofile
             profile.__dict__.update(**fields)
             profile.country = country
             profile.save()
+            if get_value(row[8]):
+                fields = {
+                        'user': user,
+                        'provider': 'facebook',
+                        'uid': get_value(row[8]),
+                        'extra_data': '{"access_token": "faketoken" ,"expires": "5183999", "id": "%s"}' % get_value(row[8]),
+                }
+                try:
+                    user.social_auth.get(provider='facebook')
+                except UserSocialAuth.DoesNotExist:
+                    try:
+                        user.social_auth.create(**fields)
+                    except IntegrityError:
+                        from django.db import connection
+                        connection._rollback()
+                        pass
             sl1 = profile.sociallink_set.get(pos=1)
             sl1.url = get_value(row[9]) or ''
             sl1.save()
