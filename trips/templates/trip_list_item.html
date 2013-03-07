@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span1">
       <div class="open-plane">
-        <a class="toggle-trip-activity" href="#" title=""><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+        <a class="toggle-trip-activity" href="#" id="{{ trip.id }}"><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
         {% if trip.travelling_by == 1 %}
         <span class="ico-plane"></span>
         {% elif trip.travelling_by == 2 %}

@@ -25,16 +25,26 @@
 
 {% block extra_js %}
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
+  $.urlParam = function(name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (!results)
+      { 
+          return 0; 
+      }
+      return results[1] || 0;
+  }
+  $(function() {
     $(".close-system-msg").click(function() {
       $(this).closest('.system-msg').hide();
     });
-  });
-  $(function() {
     $('.toggle-trip-activity').click(function() {
       $(this).closest('.row').siblings('.trip-activity').toggle();
       return false;
     })
   });
+  var open_trip_id = $.urlParam('askforcargo');
+  if (open_trip_id) {
+    $('.toggle-trip-activity#'+open_trip_id).closest('.row').siblings('.trip-activity').toggle();
+  }
 </script>
 {% endblock %}
