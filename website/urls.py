@@ -35,6 +35,12 @@ urlpatterns = patterns('website.views',
         kwargs = {'template': 'cargos.html'}
     ),
     url(
+        regex=r'^cargos/past/$',
+        view='cargos',
+        name='past_cargos',
+        kwargs = {'template': 'cargos.html', 'profile_attr': 'past_cargos'}
+    ),
+    url(
         regex=r'^evaluations/$',
         view='evaluations',
         name='evaluations',

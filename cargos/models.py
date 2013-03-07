@@ -83,6 +83,10 @@ class Cargo(models.Model):
     def traveller_review_css_class_name(self):
         return self.css_class_name(self.traveller_user_review_stars)
 
+    @property
+    def get_comments(self):
+        return self.cargocomment_set.order_by('creation_dt')
+
 
 class CargoComment(models.Model):
     TYPE_CHOICES = (

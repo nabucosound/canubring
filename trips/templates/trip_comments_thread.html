@@ -1,4 +1,4 @@
-  {% for comment in cargo.cargocomment_set.all %}
+  {% for comment in cargo.get_comments %}
     {% include "comment.html" %}
   {% endfor %}
 

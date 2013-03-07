@@ -12,6 +12,7 @@ from profiles.forms import EmailSignupForm, EmailLoginForm
 from profiles.utils import create_nb_user
 
 
+@login_required
 def other_profile(request, user_id, template):
     ctxt = dict()
     other_user = get_object_or_404(User, id=user_id)

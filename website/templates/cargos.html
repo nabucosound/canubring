@@ -2,7 +2,36 @@
 
 {% block content %}
 
+  <ul class="nav nav-tabs">
+    <li {% if not past_cargos %}class="active"{% endif %}>
+      <a href="{% url 'cargos' %}">Current cargos</a>
+    </li>
+    <li {% if past_cargos %}class="active"{% endif %}>
+      <a href="{% url 'past_cargos' %}">Past cargos</a>
+    </li>
+  </ul>
+
+<div class="profile-travels">
+  <div class="tb-travels mytrips {% if past_cargos %}past{% endif %}">
+
+    <ul class="unstyled">
+      {% for cargo in cargos %}
+        {% include "trip_list_item.html" with trip=cargo.trip %}
+      {% empty %}
+        <div class="alert">
+          You do not have cargos to display here.
+        </div>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+{% include "pagination.html" with page=trips %}
+
+{% comment %}
 {% include "profile_cargos.html" %}
+{% endcomment %}
 {% include "modals/confirm_cargo_modal.html" %}
 {% include "modals/review_traveller_modal.html" %}
 

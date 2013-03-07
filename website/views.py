@@ -31,9 +31,11 @@ def new_trip(request, template):
     return render(request, template, ctxt)
 
 @login_required
-def cargos(request, template):
+def cargos(request, template, profile_attr='current_cargos'):
     ctxt = dict()
     ctxt['my_cargos'] = True
+    ctxt['cargos'] = listing(request, getattr(request.user.userprofile, profile_attr))
+    ctxt['past_cargos'] = profile_attr == 'past_cargos'
     return render(request, template, ctxt)
 
 @login_required

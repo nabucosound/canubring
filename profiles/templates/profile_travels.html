@@ -1,6 +1,7 @@
 <div class="profile-travels">
   <h4 class="tit-int">{{ profile.user.get_full_name }}'s travels:</h4>
   
+  {% if profile.current_trips %}
   <div class="tb-travels">
     <ul class="unstyled">
       {% for trip in profile.current_trips %}
@@ -8,6 +9,11 @@
       {% endfor %}
     </ul>
   </div>
+  {% else %}
+  <div class="alert">
+    No trips.
+  </div>
+  {% endif %}
 
 </div>
 

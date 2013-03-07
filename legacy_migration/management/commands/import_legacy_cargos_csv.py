@@ -39,37 +39,43 @@ class Command(BaseCommand):
                     myfile.write("%s\n" % repr(row))
                 continue
             comment_user = comment_profile.user
-            try:
-                cargo = Cargo.objects.get(trip__uid__iexact=get_value(row[2]))
-            except Cargo.DoesNotExist:
-                fields = {
-                        'trip': trip,
-                        'requesting_user': trip.user,
-                        'traveller_user': trip.user,
-                }
-                cargo = Cargo.objects.create(**fields)
-            fields = {
+            if get_value(row[1]) == get_value(row[3]):
+                cargos = Cargo.objects.filter(trip__uid__iexact=get_value(row[2]))
+            else:
+                try:
+                    cargo = Cargo.objects.get(trip__uid__iexact=get_value(row[2]), requesting_user=comment_user)
+                except Cargo.DoesNotExist:
+                    fields = {
+                            'trip': trip,
+                            'requesting_user': comment_user,
+                            'traveller_user': trip.user,
+                    }
+                    cargo = Cargo.objects.create(**fields)
+                cargos = Cargo.objects.filter(trip__uid__iexact=get_value(row[2]), requesting_user=comment_user)
+            base_fields = {
                     'uid': get_value(row[0]),
-                    'cargo': cargo,
                     'user': comment_user,
                     'content': get_value(row[6]),
-                    'unread': get_value(row[4]) and True or False,
+                    'unread': get_value(row[4]) and False or True,
                     'creation_dt': get_value(row[5]),
             }
-            try:
-                comment = CargoComment.objects.get(uid=get_value(row[0]))
-            except CargoComment.DoesNotExist:
+            for cargo in cargos:
+                fields = base_fields.copy()
+                fields.update({'cargo': cargo,})
                 try:
-                     comment = CargoComment.objects.create(**fields)
-                except (DatabaseError, UnicodeDecodeError, AttributeError, ValidationError):
-                    with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
-                        myfile.write("%s\n" % repr(row))
-                    from django.db import connection
-                    connection._rollback()
-                    continue
-                else:
-                    comment.creation_dt = get_value(row[5])
-                    comment.save()
+                    comment = CargoComment.objects.get(uid=get_value(row[0]), cargo=cargo)
+                except CargoComment.DoesNotExist:
+                    try:
+                         comment = CargoComment.objects.create(**fields)
+                    except (DatabaseError, UnicodeDecodeError, AttributeError, ValidationError):
+                        with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
+                            myfile.write("%s\n" % repr(row))
+                        from django.db import connection
+                        connection._rollback()
+                        continue
+                    else:
+                        comment.creation_dt = get_value(row[5])
+                        comment.save()
             print count, row[0]
         ifile.close()
         return
