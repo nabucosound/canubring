@@ -24,8 +24,14 @@
     </div>
     <div class="span2">
       <div class="status">
-        {% if trip.total_unread_comments_count_for_owner %}
-        <div class="num"><p>{{ trip.total_comments_count }}</p></div>
+        {% if my_cargos %}
+          {% if cargo.total_unread_comments_count_for_requesting_user %}
+            <div class="num"><p>{{ cargo.total_comments_count }}</p></div>
+          {% endif %}
+        {% else %}
+          {% if trip.total_unread_comments_count_for_owner %}
+            <div class="num"><p>{{ trip.total_comments_count }}</p></div>
+          {% endif %}
         {% endif %}
       </div>
     </div>

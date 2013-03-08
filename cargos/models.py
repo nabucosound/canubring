@@ -87,6 +87,18 @@ class Cargo(models.Model):
     def get_comments(self):
         return self.cargocomment_set.order_by('creation_dt')
 
+    @property
+    def total_comments_count(self):
+        return self.cargocomment_set.filter(unread=True).count()
+
+    @property
+    def total_unread_comments_count_for_requesting_user(self):
+        return self.cargocomment_set.filter(user=self.traveller_user, unread=True).count()
+
+    @property
+    def total_unread_comments_count_for_traveller_user(self):
+        return self.cargocomment_set.filter(user=self.traveller_user, unread=True).count()
+
 
 class CargoComment(models.Model):
     TYPE_CHOICES = (

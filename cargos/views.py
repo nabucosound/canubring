@@ -26,8 +26,9 @@ def ask_for_cargo(request):
 @login_required
 def update_unread_status(request, cargo_id):
     user = request.user
-    cargo = get_object_or_404(Cargo, traveller_user=user, id=cargo_id)
-    cargo.cargocomment_set.exclude(user=request.user).update(unread=False)
+    # cargo = get_object_or_404(Cargo, traveller_user=user, id=cargo_id)
+    cargo = get_object_or_404(Cargo, id=cargo_id)
+    cargo.cargocomment_set.exclude(user=user).update(unread=False)
     return HttpResponse(json.dumps('OK'), mimetype="application/json")
 
 @login_required
