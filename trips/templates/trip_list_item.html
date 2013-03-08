@@ -2,7 +2,9 @@
   <div class="row">
     <div class="span1">
       <div class="open-plane">
-        <a class="toggle-trip-activity" href="#" id="{{ trip.id }}"><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+        {% if trip.total_comments_count %}
+          <a class="toggle-trip-activity" href="#" id="{{ trip.id }}"><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
+        {% endif %}
         {% if trip.travelling_by == 1 %}
         <span class="ico-plane"></span>
         {% elif trip.travelling_by == 2 %}
@@ -26,11 +28,11 @@
       <div class="status">
         {% if my_cargos %}
           {% if cargo.total_unread_comments_count_for_requesting_user %}
-            <div class="num"><p>{{ cargo.total_comments_count }}</p></div>
+            <div class="num"><p>{{ cargo.total_unread_comments_count_for_requesting_user }}</p></div>
           {% endif %}
         {% else %}
           {% if trip.total_unread_comments_count_for_owner %}
-            <div class="num"><p>{{ trip.total_comments_count }}</p></div>
+            <div class="num"><p>{{ trip.total_unread_comments_count_for_owner }}</p></div>
           {% endif %}
         {% endif %}
       </div>

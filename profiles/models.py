@@ -140,11 +140,11 @@ class UserProfile(models.Model):
 
     @property
     def get_unread_trip_comments(self):
-        return CargoComment.objects.filter(cargo__traveller_user=self.user, unread=True).count()
+        return CargoComment.objects.exclude(user=self.user).filter(cargo__traveller_user=self.user, unread=True).count()
 
     @property
     def get_unread_cargo_comments(self):
-        return CargoComment.objects.filter(cargo__requesting_user=self.user, unread=True).count()
+        return CargoComment.objects.exclude(user=self.user).filter(cargo__requesting_user=self.user, unread=True).count()
 
 def new_users_handler(sender, user, response, details, **kwargs):
     """If backend has returned imag url, fetch and store it in custom profile model"""
