@@ -2,9 +2,7 @@
   <div class="row">
     <div class="span1">
       <div class="open-plane">
-        {% if trip.total_comments_count %}
-          <a class="toggle-trip-activity" href="#" id="{{ trip.id }}"><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
-        {% endif %}
+        <a class="toggle-trip-activity" href="#" id="{{ trip.id }}"><img src="{{ STATIC_URL }}img/ico_open.png" alt="" title="" /></a>
         {% if trip.travelling_by == 1 %}
         <span class="ico-plane"></span>
         {% elif trip.travelling_by == 2 %}

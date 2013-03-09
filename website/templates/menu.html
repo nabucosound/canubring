@@ -12,10 +12,10 @@
       <a href="{{ profile_url }}">My profile</a>
     </li>
     <li class="trips {% active_nav_menu_item request trips_url %}">
-      <a href="{{ trips_url }}">Trips {% if user.userprofile.get_unread_trip_comments %}({{ user.userprofile.get_unread_trip_comments }}){% endif %}</a>
+      <a href="{{ trips_url }}">My Trips {% if user.userprofile.get_unread_trip_comments %}({{ user.userprofile.get_unread_trip_comments }}){% endif %}</a>
     </li>
     <li class="cargos {% active_nav_menu_item request cargos_url %}">
-      <a href="{{ cargos_url }}">Cargos {% if user.userprofile.get_unread_cargo_comments %}({{ user.userprofile.get_unread_cargo_comments }}){% endif %}</a>
+      <a href="{{ cargos_url }}">My Cargos {% if user.userprofile.get_unread_cargo_comments %}({{ user.userprofile.get_unread_cargo_comments }}){% endif %}</a>
     </li>
     <li class="evaluations {% active_nav_menu_item request evaluations_url %}">
       <a href="{{ evaluations_url }}">Reviews</a>

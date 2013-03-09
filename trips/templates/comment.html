@@ -1,4 +1,6 @@
-<div class="comment-item media">
+{% load cargos_tags %}
+
+<div class="comment-item media" {% if comment|is_unread:user %}style="background-color:#EAF7FC"{% endif %}>
   <img src="{{ comment.user.userprofile.get_thumb_img_url }}" class="media-object img-polaroid pull-left" />
   <div class="media-body">
     <h5><a href="#">{{ comment.user.get_full_name }}</a></h5>

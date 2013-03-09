@@ -23,7 +23,8 @@
         {% else %}
           {% for cargo in trip.cargo_set.all %}
           <li>
-            <div class="item-hd trip-activity-bar {% if cargo.total_unread_comments_count_for_traveller_user %}active{% endif %}" cargo-id="{{ cargo.id }}">
+            {% with unread_count=cargo.total_unread_comments_count_for_traveller_user %}
+            <div class="item-hd trip-activity-bar {% if unread_count %}active{% endif %}" cargo-id="{{ cargo.id }}">
               <span class="name">{{ cargo.requesting_user.get_full_name }}</span>
               <span class="arrow"></span>
               {% if cargo.state == 0 %}
@@ -33,11 +34,12 @@
               {% else %}
                 <span class="hand"></span>
               {% endif %}
-              <span class="num">{{ cargo.cargocomment_set.count }}</span>
+              <span class="num">{{ unread_count|length }}</span>
             </div>
             <div class="trip-comments-thread-container" style="display:none">
               {% include "trip_comments_thread.html" %}
             </div>
+            {% endwith %}
           </li>
           {% endfor %}
         </li>
