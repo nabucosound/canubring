@@ -82,11 +82,19 @@ class UserProfile(models.Model):
     def get_absolute_url(self):
         return ('other_profile', (), {'user_id': self.user.id})
 
-    def get_languages(self):
+    def get_languages(self, sep):
         if self.second_language:
-            return " - ".join((self.get_language_display(), self.get_second_language_display()))
+            return sep.join((self.get_language_display(), self.get_second_language_display()))
         else:
             return self.get_language_display()
+
+    @property
+    def languages_profile(self):
+        return self.get_languages(' - ')
+
+    @property
+    def languages_ticket(self):
+        return self.get_languages(' / ')
 
     @property
     def get_square_img_url(self):
