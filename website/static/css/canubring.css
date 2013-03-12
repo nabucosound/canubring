@@ -35,6 +35,12 @@
 .btn-canubring-blue:hover {background-color: #0483aa;color: #fff;}
 
 
+/*Badge notifications
+------------------------------------------------------------*/
+.badge.badge-canubring {background-color: #EC663D;border-radius: 4px;margin-left: 5px;}
+  .badge.badge-canubring a {color: #fff !important;text-decoration: none;}
+
+
 /*Input canubring
 ------------------------------------------------------------*/
 input.input-canubring, textarea.input-canubring {
@@ -226,7 +232,7 @@ footer {
     border-left: 1px solid #F1FAFE;
     float:left;
     height: 30px;
-    padding:0 39px !important; /*ie carefull*/
+    padding:0 30px !important; /*ie carefull*/
     font-size: 12px;
     text-transform: uppercase;
     line-height: 30px;
