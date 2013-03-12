@@ -39,7 +39,7 @@
 ------------------------------------------------------------*/
 input.input-canubring, textarea.input-canubring {
     border-radius: 0 !important;
-    color: #999;
+    color: #333;
     font-size: 11px;
     text-transform: uppercase;
   }
