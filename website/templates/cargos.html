@@ -4,10 +4,10 @@
 
   <ul class="nav nav-tabs">
     <li {% if not past_cargos %}class="active"{% endif %}>
-      <a href="{% url 'cargos' %}">Current cargos</a>
+      <a href="{% url 'cargos' %}">Current cargos {% if user.userprofile.get_unread_current_cargo_comments %}({{ user.userprofile.get_unread_current_cargo_comments }}){% endif %}</a>
     </li>
     <li {% if past_cargos %}class="active"{% endif %}>
-      <a href="{% url 'past_cargos' %}">Past cargos</a>
+      <a href="{% url 'past_cargos' %}">Past cargos {% if user.userprofile.get_unread_past_cargo_comments %}({{ user.userprofile.get_unread_past_cargo_comments }}){% endif %}</a>
     </li>
   </ul>
 

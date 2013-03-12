@@ -26,7 +26,7 @@
       <div class="status">
         {% if my_cargos %}
           {% if cargo.total_unread_comments_count_for_requesting_user %}
-            <div class="num"><p>{{ cargo.total_unread_comments_count_for_requesting_user }}</p></div>
+            <div class="num"><p>{{ cargo.total_unread_comments_count_for_requesting_user|length }}</p></div>
           {% endif %}
         {% else %}
           {% if trip.total_unread_comments_count_for_owner %}

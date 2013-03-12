@@ -138,13 +138,37 @@ class UserProfile(models.Model):
     def average_traveller_review_css_class_name(self):
         return Cargo.css_class_name(self.get_average_reviews_about_me_score['traveller_user_review_stars__avg'])
 
-    @property
-    def get_unread_trip_comments(self):
-        return CargoComment.objects.exclude(user=self.user).filter(cargo__traveller_user=self.user, unread=True).count()
+    def get_unread_comments(self, filter_name):
+        filters = {
+            filter_name: self.user,
+            'unread': True,
+        }
+        return CargoComment.objects.exclude(user=self.user).filter(**filters).distinct()
 
     @property
-    def get_unread_cargo_comments(self):
-        return CargoComment.objects.exclude(user=self.user).filter(cargo__requesting_user=self.user, unread=True).count()
+    def unread_trip_comments(self):
+        return self.get_unread_comments('cargo__traveller_user').count()
+
+    @property
+    def get_unread_current_trip_comments(self):
+        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__departure_dt__gt=datetime.datetime.now).count()
+
+    @property
+    def get_unread_past_trip_comments(self):
+        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
+
+    @property
+    def unread_cargo_comments(self):
+        return self.get_unread_comments('cargo__requesting_user').count()
+
+    @property
+    def get_unread_current_cargo_comments(self):
+        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__gt=datetime.datetime.now).count()
+
+    @property
+    def get_unread_past_cargo_comments(self):
+        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
+
 
 def new_users_handler(sender, user, response, details, **kwargs):
     """If backend has returned imag url, fetch and store it in custom profile model"""
