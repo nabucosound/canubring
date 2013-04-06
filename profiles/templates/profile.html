@@ -45,6 +45,8 @@
   var open_trip_id = $.urlParam('askforcargo');
   if (open_trip_id) {
     $('.toggle-trip-activity#'+open_trip_id).closest('.row').siblings('.trip-activity').toggle();
+    location.hash = "#" + open_trip_id;
+    $('.toggle-trip-activity#'+open_trip_id).closest('li.item').css({'background-color': '#FFF'})
   }
 </script>
 {% endblock %}
