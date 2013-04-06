@@ -42,6 +42,11 @@ def search(request, template):
         else:
             trip_results = trip_results.filter(destination_dt__year=date.year, destination_dt__month=date.month, destination_dt__day=date.day)
 
-    ctxt['trip_results'] = listing(request, trip_results)
+    trips = listing(request, trip_results)
+    col = trips.object_list.count() / 4
+    ctxt['trips_col1'] = trips.object_list[:col]
+    ctxt['trips_col2'] = trips.object_list[col:col+col]
+    ctxt['trips_col3'] = trips.object_list[col+col:col+col+col]
+    ctxt['trips_col4'] = trips.object_list[col+col+col:]
     return render(request, template, ctxt)
 

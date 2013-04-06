@@ -1,5 +1,4 @@
 {% with profile=trip.user.userprofile %}
-<div class="span2">
   <div class="ticket">
     <div class="hd">
       <div class="hd-top"></div>
@@ -40,6 +39,5 @@
       <a href="{{ profile.get_absolute_url }}?askforcargo={{ trip.id }}"><span></span>Ask for cargo!</a>
     </div>
   </div>
-</div>
 {% endwith %}
 
