@@ -16,23 +16,46 @@ $(document).ready(function(){
 
   google_places_autocomplete_widget();
 
-  $('#new-trip-submit-btn').click(function() {
-    var data = new Array()
-    $('form#new-trip-form').each(function() {
-      data.push($(this).serializeFormJSON());
-    })
-    $.ajax({
-      url: '/api/v1/trip/',
-      type: 'patch',
-      dataType: 'application/json',
-      contentType: 'application/json',
-      data: '{"objects": '+JSON.stringify(data)+'}',
-      complete: function(xhr, textStatus) {
-          //console.log(xhr.status);
-          window.location = "/my/trips/";
+  $('#manage-legs-container').on(
+    {
+      click: function validateLeg (e) {
+        // Validation
+        var valid = true;
+        $('form.new-trip-form').each(function() {
+          var form_valid = true;
+          $(this).find('input[type="text"]').each(function() {
+            if ($(this).val() == '') {
+              valid = false;
+              form_valid = false;
+              $(this).closest('.control-group').siblings('.error-msg').show();
+            }
+          });
+          if (form_valid) {
+            $(this).find('.error-msg').hide();
+          }
+        });
+        if (valid) {
+          var data = new Array()
+          $('form.new-trip-form').each(function() {
+            data.push($(this).serializeFormJSON());
+          })
+          $.ajax({
+            url: '/api/v1/trip/',
+            type: 'patch',
+            dataType: 'application/json',
+            contentType: 'application/json',
+            data: '{"objects": '+JSON.stringify(data)+'}',
+            complete: function(xhr, textStatus) {
+                //console.log(xhr.status);
+                window.location = "/my/trips/";
+            }
+          });
+        }
+        return false;
       }
-    });
-  });
+    },
+    '#new-trip-submit-btn'
+  );
 
   $('#manage-legs-container').on(
     {
