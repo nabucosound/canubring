@@ -2,39 +2,51 @@
 
 {% load staticfiles %}
 
+{% block extra_css %}
+<style type="text/css" media="screen">
+  .ticket {
+    width: 140px;
+    float: left;
+    padding: auto 10px;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="main-search clearfix">
     <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
-      <span class="magnifier"></span>
-      <input name="departure" type="text" class="city-input input-canubring" placeholder="Origin (city, country)" />
-      <input name="destination" type="text" class="city-input input-canubring" placeholder="Destination (city, country)" />
-      <input name="arrival" type="text" class="datepicker input-canubring" placeholder="Arrival date" />
-      <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+      <select name="departure_country">
+          <option value="" selected="selected">---------</option>
+          {% for obj in active_countries %}
+          <option value="{{ obj.id }}">{{ obj.name }}</option>
+          {% endfor %}
+      </select>
+      <select name="destination_country">
+          <option value="" selected="selected">---------</option>
+          {% for obj in active_countries %}
+          <option value="{{ obj.id }}">{{ obj.name }}</option>
+          {% endfor %}
+      </select>
+      <select name="departure_city">
+          <option value="" selected="selected">---------</option>
+          {% for obj in active_cities %}
+          <option value="{{ obj.id }}">{{ obj.name }}</option>
+          {% endfor %}
+      </select>
+      <select name="destination_city">
+          <option value="" selected="selected">---------</option>
+          {% for obj in active_cities %}
+          <option value="{{ obj.id }}">{{ obj.name }}</option>
+          {% endfor %}
+      </select>
+      <input type="submit">
     </form>
 </div>
 
-<div class="row">
-  <div class="span2">
-  {% for trip in trips_col1 %}
-    {% include "ticket.html" %}
-  {% endfor %}
-  </div>
-  <div class="span2">
-  {% for trip in trips_col2 %}
-    {% include "ticket.html" %}
-  {% endfor %}
-  </div>
-  <div class="span2">
-  {% for trip in trips_col3 %}
-    {% include "ticket.html" %}
-  {% endfor %}
-  </div>
-  <div class="span2">
-  {% for trip in trips_col4 %}
-    {% include "ticket.html" %}
-  {% endfor %}
-  </div>
-
+<div id="tickets-row-container">
+{% for trip in trips %}
+  <div>{% include "ticket.html" %} </div>
+{% endfor %}
 </div>
 
 {% include "pagination.html" with page=trip_results %}
@@ -49,6 +61,11 @@
     $(".datepicker").each(function() {
       $(this).datepicker({ minDate: 0 });
     })
+    $('#tickets-row-container').masonry({
+      // options
+      itemSelector : '.ticket',
+      columnWidth : 150
+    });
   });
   </script>
 {% endblock %}

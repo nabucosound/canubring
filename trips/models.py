@@ -5,9 +5,14 @@ from django.contrib.auth.models import User
 class City(models.Model):
     name = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.name
 
 class Country(models.Model):
     name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Trip(models.Model):
