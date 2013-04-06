@@ -80,9 +80,9 @@ def signup_view(request):
         # Create User and Profile
         user = create_nb_user(email, password)
         user = authenticate(username=user.username, password=password)
-        user.userprofile = UserProfile.objects.create(user=user)
-        user.first_name = user.email
-        user.save()
+        # user.userprofile = UserProfile.objects.create(user=user)
+        # user.first_name = user.email
+        # user.save()
         login(request, user)
 
         # Send welcome email

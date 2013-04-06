@@ -50,6 +50,8 @@
     <script src="{% static "jquery-ui/1.10.0/jquery-ui.js" %}"></script>
 
     {% block extra_js %}{% endblock %}
+    <script src="{% static "js/utils.js" %}"></script>
+
 
     {% if not user.is_authenticated %}
       {% include "extra_js/signup_form.html" %}

@@ -14,3 +14,16 @@ $.fn.serializeFormJSON = function() {
    return o;
 };
 
+$.urlParam = function(name){
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (!results)
+    { 
+        return 0; 
+    }
+    return results[1] || 0;
+}
+var show_login_modal = $.urlParam('next');
+if (show_login_modal) {
+  $('#modal-login').find('span.error-msg').show();
+  $('#modal-login').modal('show');
+}

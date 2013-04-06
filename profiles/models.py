@@ -178,6 +178,15 @@ class UserProfile(models.Model):
         return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
 
 
+from django.db.models.signals import post_save
+#Make sure we create a Profile when creating a User
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+post_save.connect(create_profile, sender=User)
+
+
 def new_users_handler(sender, user, response, details, **kwargs):
     """If backend has returned imag url, fetch and store it in custom profile model"""
     user.is_new = True
