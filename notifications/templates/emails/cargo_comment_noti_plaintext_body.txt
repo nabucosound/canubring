@@ -1,1 +1,1 @@
-Version plain text: Alguien ha comentado en uno de tus cargos
+{{ sender }} ha dejado un nuevo comentario en uno de tus cargos

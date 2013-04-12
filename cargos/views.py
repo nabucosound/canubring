@@ -91,6 +91,8 @@ def submit_cargo_form(request):
         return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
     obj = form.save()
     obj.state = 1
+    # Send notification to requesting user
+    obj.cargoformnotification_set.create(user=obj.requesting_user)
     obj.save()
     msg = 'I am attaching form for you to review. By accepting it you will be confirming your cargo.'
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=1)

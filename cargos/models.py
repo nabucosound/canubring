@@ -1,5 +1,8 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 from trips.models import Trip
 
@@ -32,7 +35,7 @@ class Cargo(models.Model):
     )
     trip = models.ForeignKey(Trip)
     requesting_user = models.ForeignKey(User, related_name='my_cargos')
-    traveller_user = models.ForeignKey(User, related_name='requested_cargos')
+    traveller_user = models.ForeignKey(User, related_name='cargos_for_me')
     state = models.IntegerField(choices=CARGO_STATE_CHOICES, default=0)
     # Categories
     food = models.BooleanField(default=False)
@@ -67,7 +70,6 @@ class Cargo(models.Model):
 
     @property
     def expired(self):
-        import datetime
         return self.trip.destination_dt < datetime.datetime.now()
 
     @classmethod
@@ -117,4 +119,14 @@ class CargoComment(models.Model):
 
     def __unicode__(self):
         return u"%s - %s: %s..." % (self.cargo, self.user, self.content[:30])
+
+def notify_new_cargo_comment_to_recipient(sender, instance, created, **kwargs):
+    if created and instance.comment_type == 0:
+        if instance.user == instance.cargo.requesting_user:
+            noti_user = instance.cargo.traveller_user
+        else:
+            noti_user = instance.cargo.requesting_user
+        instance.cargocommentnotification_set.create(user=noti_user)
+
+post_save.connect(notify_new_cargo_comment_to_recipient, sender=CargoComment)
 

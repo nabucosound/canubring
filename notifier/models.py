@@ -25,10 +25,13 @@ class NotificationMixin(object):
     from_email = settings.DEFAULT_FROM_EMAIL
 
     def _render_tmpl(self, template):
-        ctxt = {}
+        ctxt = self.get_context()
         site = Site.objects.get(id=settings.SITE_ID)
         ctxt['site'] = "http://%s" % site.domain
         return render_to_string(template, ctxt)
+
+    def get_context(self):
+        return {}
 
     def _get_email_field(self, attr_name, method_name):
         template = getattr(self, attr_name, None)
