@@ -57,7 +57,6 @@ INSTALLED_APPS = (
     'djcelery',
     'kombu.transport.django',
     'storages',
-    'seacucumber',
     'website',
     'search',
     'profiles',
@@ -119,7 +118,6 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Amazon SES
 EMAIL_BACKEND = 'django_ses.SESBackend'
-# EMAIL_BACKEND = 'seacucumber.backend.SESBackend'
 DEFAULT_FROM_EMAIL = 'info@canubring.com'
 
 # Amazon S3
