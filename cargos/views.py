@@ -119,6 +119,8 @@ def submit_confirm_cargo_form(request):
     obj = get_object_or_404(Cargo, id=cargo_id)
     obj.state = 2
     obj.save()
+    # Send notification to traveller
+    obj.cargoconfirmformnotification_set.create(user=obj.traveller_user)
     msg = 'I have confirmed the cargo through the form you sent'
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=2)
     messages.success(request, "You have successfully confirmed a cargo form")
