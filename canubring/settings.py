@@ -54,7 +54,10 @@ INSTALLED_APPS = (
     'django_extensions',
     'imagekit',
     'django_ses',
+    'djcelery',
+    'kombu.transport.django',
     'storages',
+    'seacucumber',
     'website',
     'search',
     'profiles',
@@ -62,6 +65,8 @@ INSTALLED_APPS = (
     'social_auth',
     'cargos',
     'legacy_migration',
+    'notifier',
+    'notifications',
 )
 
 LOGGING = {
@@ -114,6 +119,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Amazon SES
 EMAIL_BACKEND = 'django_ses.SESBackend'
+# EMAIL_BACKEND = 'seacucumber.backend.SESBackend'
 DEFAULT_FROM_EMAIL = 'info@canubring.com'
 
 # Amazon S3
@@ -123,6 +129,14 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '/media/'
 STATIC_URL = S3_URL
+
+# Celery
+BROKER_BACKEND = 'django'
+BROKER_URL = 'django://'
+import djcelery
+djcelery.setup_loader()
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_ALWAYS_EAGER = bool_env('CELERY_ALWAYS_EAGER')
 
 # Imagekit
 IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
@@ -157,6 +171,9 @@ LINKEDIN_EXTRA_DATA = [('id', 'id'),
                        ('headline', 'headline'),
                        ('industry', 'industry')]
 
+# Flags to enable/disable features
+POST_TO_FB_OPEN_GRAPH = bool_env('POST_TO_FB_OPEN_GRAPH')
+SEND_EMAIL_NOTIFICATIONS = bool_env('SEND_EMAIL_NOTIFICATIONS')
 BYPASS_AUTHENTICATION = bool_env('BYPASS_AUTHENTICATION')
 
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
