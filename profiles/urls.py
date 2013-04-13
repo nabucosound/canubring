@@ -18,5 +18,10 @@ urlpatterns = patterns('profiles.views',
         view='update_social',
         name='update_social',
     ),
+    url(
+        regex=r'^avatar/new/$',
+        view='upload_profile_picture',
+        name='upload_profile_picture',
+    ),
 )
 

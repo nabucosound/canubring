@@ -6,9 +6,10 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from profiles.models import ProfileCountry
-from profiles.forms import EmailSignupForm, EmailLoginForm
+from profiles.forms import EmailSignupForm, EmailLoginForm, PictureUploadForm
 from profiles.utils import create_nb_user
 
 
@@ -87,4 +88,16 @@ def signup_view(request):
 
     error_msg = form.errors['email'][0]
     return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
+
+@login_required
+@require_POST
+def upload_profile_picture(request):
+    profile = request.user.userprofile
+    form = PictureUploadForm(request.POST, request.FILES, instance=profile)
+    if not form.is_valid():
+        messages.error(request, "Error while uploading new avatar picture")
+        return redirect('profile')
+    form.save()
+    messages.success(request, "You have modified your avatar picture")
+    return redirect('profile')
 

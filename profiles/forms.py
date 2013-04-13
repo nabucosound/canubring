@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from profiles.models import UserProfile
 
 class EmailSignupForm(forms.Form):
     email = forms.EmailField(required=True)
@@ -26,4 +27,10 @@ class EmailLoginForm(forms.Form):
         except User.DoesNotExist:
             raise forms.ValidationError("Email doesn't exist on our system")
         return cleaned_data['email']
+
+class PictureUploadForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ('profile_photo',)
 
