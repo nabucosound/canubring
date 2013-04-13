@@ -207,7 +207,7 @@ def submit_review_requesting_user_form(request):
         return redirect('cargos')
     messages.success(request, "You have successfully reviewed a user")
     # Send notification to requesting user
-    obj.cargoreviewrequestingusernotification_set.create(user=obj.requesting_user)
+    obj.cargoreviewrequsernotification_set.create(user=obj.requesting_user)
     return redirect('cargos')
 
 def confirm_delivery(request, cargo_id):

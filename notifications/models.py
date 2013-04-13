@@ -1,9 +1,30 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
+from django.contrib.auth.models import User
 
 from notifier.models import Notification, NotificationMixin
 from cargos.models import CargoComment, Cargo
+
+
+class WelcomeNotification(Notification, NotificationMixin):
+    obj = models.ForeignKey(User)
+
+    from_email = settings.DEFAULT_FROM_EMAIL
+    email_subject_tmpl = 'emails/welcome_noti_subject.txt'
+    email_plaintext_body_tmpl = 'emails/welcome_noti_plaintext_body.txt'
+    email_html_body_tmpl = 'emails/welcome_noti_html_body.html'
+
+    def __unicode__(self):
+        return "%s - welcome email" % self.user.username
+
+    def get_email_headers(self):
+        return {
+            'From': 'Canubring <%s>' % self.from_email,
+        }
+
+    def get_recipients_list(self):
+        return [self.user.email]
 
 
 class CargoCommentNotification(Notification, NotificationMixin):
@@ -144,7 +165,7 @@ class CargoReviewTravellerNotification(Notification, NotificationMixin):
         return {'sender': self.obj.requesting_user.get_full_name()}
 
 
-class CargoReviewRequestingUserNotification(Notification, NotificationMixin):
+class CargoReviewReqUserNotification(Notification, NotificationMixin):
     obj = models.ForeignKey(Cargo)
 
     from_email = settings.DEFAULT_FROM_EMAIL
@@ -177,5 +198,6 @@ post_save.connect(send_email_notification, sender=CargoConfirmFormNotification)
 post_save.connect(send_email_notification, sender=CargoRejectFormNotification)
 post_save.connect(send_email_notification, sender=CargoDeliveryNotification)
 post_save.connect(send_email_notification, sender=CargoReviewTravellerNotification)
-post_save.connect(send_email_notification, sender=CargoReviewRequestingUserNotification)
+post_save.connect(send_email_notification, sender=CargoReviewReqUserNotification)
+post_save.connect(send_email_notification, sender=WelcomeNotification)
 

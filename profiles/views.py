@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
 
-from profiles.models import UserProfile, ProfileCountry
+from profiles.models import ProfileCountry
 from profiles.forms import EmailSignupForm, EmailLoginForm
 from profiles.utils import create_nb_user
 
@@ -80,19 +80,7 @@ def signup_view(request):
         # Create User and Profile
         user = create_nb_user(email, password)
         user = authenticate(username=user.username, password=password)
-        # user.userprofile = UserProfile.objects.create(user=user)
-        # user.first_name = user.email
-        # user.save()
         login(request, user)
-
-        # Send welcome email
-        if getattr(settings, 'SEND_EMAIL_NOTIFICATIONS', False):
-            from boto.ses.exceptions import SESAddressNotVerifiedError
-            try:
-                pass  # TODO
-                # send_welcome_email(request)
-            except SESAddressNotVerifiedError:
-                pass
 
         request.session['show_signup_sys_msg'] = True
         return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
