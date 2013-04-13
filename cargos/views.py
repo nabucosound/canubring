@@ -90,7 +90,7 @@ def submit_cargo_form(request):
         error_msg = 'Error posting cargo form'
         return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
     obj = form.save()
-    obj.state = 1
+    obj.state = 1  # Cargo form pending to be confirmed or rejected
     # Send notification to requesting user
     obj.cargoformnotification_set.create(user=obj.requesting_user)
     obj.save()
@@ -117,10 +117,14 @@ def submit_confirm_cargo_form(request):
         messages.error(request, "Error while trying to confirm cargo")
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
-    obj.state = 2
+    obj.state = 2 # Cargo form confirmed (handshake)
     obj.save()
     # Send notification to traveller
     obj.cargoconfirmformnotification_set.create(user=obj.traveller_user)
+    # Change cargo comment state of previous confirm
+    comment = obj.cargocomment_set.filter(comment_type=1).latest('creation_dt')
+    comment.comment_type = 2
+    comment.save()
     msg = 'I have confirmed the cargo through the form you sent'
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=2)
     messages.success(request, "You have successfully confirmed a cargo form")
@@ -135,10 +139,16 @@ def submit_reject_cargo_form(request):
         messages.error(request, "Error while trying to reject cargo")
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
-    obj.state = 2
+    obj.state = 3 # Cargo form rejected
     obj.save()
+    # Send notification to traveller
+    obj.cargorejectformnotification_set.create(user=obj.traveller_user)
+    # Change cargo comment state of previous rejection
+    comment = obj.cargocomment_set.filter(comment_type=1).latest('creation_dt')
+    comment.comment_type = 3
+    comment.save()
     msg = 'I have rejected the cargo through the form you sent'
-    obj.cargocomment_set.create(user=request.user, content=msg, comment_type=0)
+    obj.cargocomment_set.create(user=request.user, content=msg, comment_type=3)
     messages.success(request, "You have successfully rejected a cargo form")
     return redirect('cargos')
 
@@ -164,8 +174,13 @@ def submit_review_traveller_form(request):
         messages.error(request, "Error while trying to review traveller")
         return redirect('cargos')
     obj = form.save()
-    obj.state = 3
-    obj.save()
+    if obj.state != 4:
+        obj.state = 4 # Cargo form successfully delivered to recipient
+        obj.save()
+        # Send notification to traveller
+        obj.cargodeliverynotification_set.create(user=obj.traveller_user)
+    # Send notification to traveller
+    obj.cargoreviewtravellernotification_set.create(user=obj.traveller_user)
     messages.success(request, "You have successfully reviewed a traveller")
     return redirect('cargos')
 
@@ -183,16 +198,25 @@ def review_requesting_user_form(request, cargo_id):
 def submit_review_requesting_user_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     if not cargo_id:
-        messages.error(request, "Error while trying to review requesting user")
+        messages.error(request, "Error while trying to review user")
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
     form = ReviewRequestingUserForm(request.POST, instance=obj)
     if not form.is_valid():
-        messages.error(request, "Error while trying to review requesting user")
+        messages.error(request, "Error while trying to review user")
         return redirect('cargos')
-    obj = form.save()
-    obj.state = 3
-    obj.save()
-    messages.success(request, "You have successfully reviewed a requesting user")
+    messages.success(request, "You have successfully reviewed a user")
+    # Send notification to requesting user
+    obj.cargoreviewrequestingusernotification_set.create(user=obj.requesting_user)
+    return redirect('cargos')
+
+def confirm_delivery(request, cargo_id):
+    obj = get_object_or_404(Cargo, id=cargo_id)
+    if obj.state != 4:
+        obj.state = 4 # Cargo form successfully delivered to recipient
+        obj.save()
+        # Send notification to traveller
+        obj.cargodeliverynotification_set.create(user=obj.traveller_user)
+        messages.success(request, "You have successfully confirmed the delivery of this cargo")
     return redirect('cargos')
 

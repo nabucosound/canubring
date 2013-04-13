@@ -54,7 +54,7 @@
   <div class="submit-box clearfix pull-right">
       <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
       <p><input type="submit" value="Send Review" class="btn btn-canubring-orange"></p>
-    <p><a href="#">[Responder más tarde]</a></p>
+    <p><a href="{% url 'confirm_delivery' cargo.id %}">[Responder más tarde]</a></p>
   </div>
 </form>
 

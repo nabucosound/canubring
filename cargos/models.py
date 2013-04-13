@@ -12,7 +12,8 @@ class Cargo(models.Model):
         (0, 'Open'),
         (1, 'Negotiation'),
         (2, 'Handshake'),
-        (3, 'Delivered'),
+        (3, 'Rejected'),
+        (4, 'Delivered'),
     )
     PICKUP_CHOICES = (
         (0, 'Common place'),
@@ -107,6 +108,7 @@ class CargoComment(models.Model):
         (0, 'Regular comment'),
         (1, 'Cargo form sent'),
         (2, 'Cargo form confirmed'),
+        (3, 'Cargo form rejected'),
     )
     cargo = models.ForeignKey(Cargo)
     user = models.ForeignKey(User)
