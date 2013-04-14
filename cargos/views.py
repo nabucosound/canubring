@@ -199,16 +199,17 @@ def submit_review_requesting_user_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     if not cargo_id:
         messages.error(request, "Error while trying to review user")
-        return redirect('cargos')
+        return redirect('trips')
     obj = get_object_or_404(Cargo, id=cargo_id)
     form = ReviewRequestingUserForm(request.POST, instance=obj)
     if not form.is_valid():
         messages.error(request, "Error while trying to review user")
-        return redirect('cargos')
+        return redirect('trips')
+    obj = form.save()
     messages.success(request, "You have successfully reviewed a user")
     # Send notification to requesting user
     obj.cargoreviewrequsernotification_set.create(user=obj.requesting_user)
-    return redirect('cargos')
+    return redirect('trips')
 
 def confirm_delivery(request, cargo_id):
     obj = get_object_or_404(Cargo, id=cargo_id)

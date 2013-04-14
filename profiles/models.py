@@ -130,12 +130,15 @@ class UserProfile(models.Model):
 
     @property
     def get_reviews_about_me(self):
-        return Cargo.objects.filter(trip__user=self.user).exclude(traveller_user_review_stars__isnull=True)
+        from django.db.models import Q
+        # return Cargo.objects.filter(trip__user=self.user).exclude(traveller_user_review_stars__isnull=True)
+        return Cargo.objects.filter(Q(requesting_user=self.user, requesting_user_review_stars__isnull=False) | Q(traveller_user=self.user, traveller_user_review_stars__isnull=False))
 
     @property
     def get_reviews_by_me(self):
-        # TODO
-        return []
+        from django.db.models import Q
+        # return self.user.my_cargos.filter(traveller_user_review_stars__isnull=False)
+        return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False))
 
     @property
     def get_average_reviews_about_me_score(self):
