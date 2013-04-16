@@ -54,8 +54,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'imagekit',
     'django_ses',
-    'djcelery',
-    'kombu.transport.django',
     'storages',
     'website',
     'search',
@@ -127,14 +125,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '/media/'
 STATIC_URL = S3_URL
-
-# Celery
-BROKER_BACKEND = 'django'
-BROKER_URL = 'django://'
-import djcelery
-djcelery.setup_loader()
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-CELERY_ALWAYS_EAGER = bool_env('CELERY_ALWAYS_EAGER')
 
 # Imagekit
 IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
