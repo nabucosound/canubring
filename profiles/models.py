@@ -75,8 +75,9 @@ class UserProfile(models.Model):
 
     def save(self, *args, **kwargs):
         super(UserProfile, self).save(*args, **kwargs)
-        for pos in range(1, 8):
-            obj, created = SocialLink.objects.get_or_create(profile=self, pos=pos)
+        if not self.uid:
+            for pos in range(1, 8):
+                obj, created = SocialLink.objects.get_or_create(profile=self, pos=pos)
 
     @models.permalink
     def get_absolute_url(self):
@@ -184,7 +185,7 @@ class UserProfile(models.Model):
 from django.db.models.signals import post_save
 #Make sure we create a Profile when creating a User
 def create_profile(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.password != 'legacy_user_password':
         UserProfile.objects.create(user=instance)
         instance.welcomenotification_set.create(user=instance)
 
