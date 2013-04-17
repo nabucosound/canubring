@@ -4,21 +4,11 @@
       <ul class="unstyled">
         {% if my_cargos %}
           <li>
-            <div class="item-hd trip-activity-bar {% if cargo.total_unread_comments_count_for_requesting_user %}active{% endif %}" cargo-id="{{ cargo.id }}">
-              <span class="name">{{ cargo.requesting_user.get_full_name }}</span>
-              <span class="arrow"></span>
-              {% if cargo.state == 0 %}
-                <span class="balloon"></span>
-              {% elif cargo.state == 1 %}
-                <span class="hand"></span>
-              {% else %}
-                <span class="hand"></span>
-              {% endif %}
-              <span class="num">{{ cargo.cargocomment_set.count }}</span>
-            </div>
-            <div class="trip-comments-thread-container" style="display:none">
+            {% with unread_count=cargo.total_unread_comments_count_for_requesting_user %}
+            <div class="trip-comments-thread-container {% if unread_count %}active{% endif %}">
               {% include "trip_comments_thread.html" %}
             </div>
+            {% endwith %}
           </li>
         {% else %}
           {% for cargo in trip.cargo_set.all %}

@@ -3,6 +3,21 @@
     $('.toggle-trip-activity').click(function() {
       $(this).closest('.row').siblings('.trip-activity').toggle();
       $(this).closest('li.item').toggleClass('active');
+      var cargo_id = $(this).attr('cargo-id');
+      var update_unread_status = $(this).closest('li').find('.trip-comments-thread-container').hasClass('active');
+      if (update_unread_status) {
+        $.ajax({
+          type: 'get',
+          url: '/cargos/update-unread-status/'+cargo_id+'/',
+          data: '',
+          success: function (response) {
+            console.log('Updated unread status');
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log('Error while updating unread status');
+          }
+        });
+      }
       return false;
     })
     $('.trip-activity-bar').click(function() {

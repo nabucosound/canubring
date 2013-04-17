@@ -14,6 +14,14 @@
 <div class="profile-travels">
   <div class="tb-travels mytrips {% if past_cargos %}past{% endif %}">
 
+    <div class="row">
+      <div class="span1"></div>
+      <div class="span2"><h5 class="th">Date</h5></div>
+      <div class="span3"><h5 class="th">Travel</h5></div>
+      <div class="span1"><h5 class="th">Traveller</h5></div>
+      <div class="span1"><h5 class="th">Status</h5></div>
+    </div>
+
     <ul class="unstyled">
       {% for cargo in cargos %}
         {% include "trip_list_item.html" with trip=cargo.trip %}
