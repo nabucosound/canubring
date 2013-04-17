@@ -99,6 +99,7 @@ class Command(BaseCommand):
 
             print count, row[1]
 
+        # Print total elapsed seconds
         end_date = datetime.datetime.now()
         delta = end_date - start_date
         print

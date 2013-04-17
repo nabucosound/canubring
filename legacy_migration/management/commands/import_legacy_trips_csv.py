@@ -27,23 +27,25 @@ class Command(BaseCommand):
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
         count = 0
-        # while count < 10350:  # Skip rows
-        #     count = count + 1
-        #     reader.next()
 
         for row in reader:
             count = count + 1
 
-            # Get UserProfile
+            if len(row) < 10:
+                with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
+                    myfile.write("%s\n" % repr(row))
+                continue
+
+            # Get User
             try:
                 profile = UserProfile.objects.get(uid__iexact=get_value(row[1]))
             except (ValueError, UserProfile.DoesNotExist):
                 with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
                     myfile.write("%s\n" % repr(row))
                 continue
+            user = profile.user
 
             # get or create Trip
-            user = profile.user
             fields = {
                     'uid': get_value(row[0]),
                     'user': user,
@@ -67,6 +69,7 @@ class Command(BaseCommand):
 
             print count, row[2]
 
+        # Print total elapsed seconds
         end_date = datetime.datetime.now()
         delta = end_date - start_date
         print
