@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.core.files.base import ContentFile
+from django.db.models.signals import post_save
 
 
 from imagekit.models.fields import ImageSpecField
@@ -182,7 +183,6 @@ class UserProfile(models.Model):
         return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
 
 
-from django.db.models.signals import post_save
 #Make sure we create a Profile when creating a User
 def create_profile(sender, instance, created, **kwargs):
     if created and instance.password != 'legacy_user_password':

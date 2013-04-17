@@ -33,8 +33,10 @@ def update_profile(request):
     profile.country = country
     profile.language = request.POST.get('language')
     profile.second_language = request.POST.get('second_language')
-    profile.completed = True
-    profile.save()
+    if not profile.completed:
+        profile.completed = True
+        profile.save()
+        request.session['show_signup_sys_msg'] = True
     return HttpResponse(json.dumps('/my/profile/'), mimetype="application/json")
 
 @login_required
