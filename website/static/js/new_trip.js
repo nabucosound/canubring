@@ -47,7 +47,7 @@ $(document).ready(function(){
             data: '{"objects": '+JSON.stringify(data)+'}',
             complete: function(xhr, textStatus) {
                 //console.log(xhr.status);
-                window.location = "/my/trips/";
+                window.location = "/my/trips/?m=1";
             }
           });
         }

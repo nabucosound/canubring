@@ -2,6 +2,10 @@
 
 {% block content %}
 
+{% if show_new_trip_sys_msg %}
+{% include "new_trip_system_message.html" %}
+{% endif %}
+
 <div class="upload-trip">
   <br />
   <a href="{% url 'new_trip' %}" class="btn" style="float:right">Upload new trip</a>

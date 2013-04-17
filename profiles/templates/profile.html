@@ -27,9 +27,6 @@
       return results[1] || 0;
   }
   $(function() {
-    $(".close-system-msg").click(function() {
-      $(this).closest('.system-msg').hide();
-    });
     $('.toggle-trip-activity').click(function() {
       $(this).closest('.row').siblings('.trip-activity').toggle();
       return false;

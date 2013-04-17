@@ -23,6 +23,8 @@ def trips(request, template, profile_attr='current_trips'):
     ctxt = dict()
     ctxt['trips'] = listing(request, getattr(request.user.userprofile, profile_attr))
     ctxt['past_trips'] = profile_attr == 'past_trips'
+    if request.GET.get('m') == '1':
+        ctxt['show_new_trip_sys_msg'] = True
     return render(request, template, ctxt)
 
 @login_required
