@@ -194,27 +194,23 @@ post_save.connect(create_profile, sender=User)
 
 def new_users_handler(sender, user, response, details, **kwargs):
     """If backend has returned imag url, fetch and store it in custom profile model"""
-    user.is_new = True
-    if user.is_new:
-        if "id" in response:
+    try:
+        url = None
+        if sender == FacebookBackend:
+            url = "http://graph.facebook.com/%s/picture?type=large" % response["id"]
+        elif sender == GoogleOAuth2Backend and "picture" in response:
+            url = response["picture"]
+        elif sender == LinkedinBackend and "picture-url" in response:
+            url = response["picture-url"]
 
-            try:
-                url = None
-                if sender == FacebookBackend:
-                    url = "http://graph.facebook.com/%s/picture?type=large" % response["id"]
-                elif sender == GoogleOAuth2Backend and "picture" in response:
-                    url = response["picture"]
-                elif sender == LinkedinBackend and "picture-url" in response:
-                    url = response["picture-url"]
+        if url:
+            avatar = urlopen(url)
+            profile = user.userprofile
+            profile.profile_photo.save(slugify(user.username + " social") + '.jpg', ContentFile(avatar.read()))
+            profile.save()
 
-                if url:
-                    avatar = urlopen(url)
-                    profile = UserProfile(user=user)
-                    profile.profile_photo.save(slugify(user.username + " social") + '.jpg', ContentFile(avatar.read()))
-                    profile.save()
-
-            except HTTPError:
-                pass
+    except HTTPError:
+        pass
 
     return False
 
