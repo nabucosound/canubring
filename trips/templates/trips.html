@@ -7,10 +7,10 @@
   <a href="{% url 'new_trip' %}" class="btn" style="float:right">Upload new trip</a>
   <ul class="nav nav-tabs">
     <li {% if not past_trips %}class="active"{% endif %}>
-      <a href="{% url 'trips' %}">Current travels {% if user.userprofile.get_unread_current_trip_comments %}({{ user.userprofile.get_unread_current_trip_comments }}){% endif %}</a>
+      <a href="{% url 'trips' %}">Current travels {% if user.userprofile.get_unread_current_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_trip_comments }}</span>{% endif %}</a>
     </li>
     <li {% if past_trips %}class="active"{% endif %}>
-      <a href="{% url 'past_trips' %}">Past travels {% if user.userprofile.get_unread_past_trip_comments %}({{ user.userprofile.get_unread_past_trip_comments }}){% endif %}</a>
+      <a href="{% url 'past_trips' %}">Past travels {% if user.userprofile.get_unread_past_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_past_trip_comments }}</span>{% endif %}</a>
     </li>
   </ul>
 </div>
