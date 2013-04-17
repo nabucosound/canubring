@@ -1,5 +1,7 @@
 import csv
+import datetime
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ValidationError
 
@@ -15,6 +17,12 @@ class Command(BaseCommand):
         """
         "uid","user_id","title","language","body","created_date","transport_type","departure_date","arrival_date","departure_city","arrival_city"
         """
+        start_date = datetime.datetime.now()
+
+        # Make sure we do not send emails
+        settings.SEND_EMAIL_NOTIFICATIONS = False
+
+        # Open csv file and initialize counter and other objects
         ifile  = open('legacy_migration/csv/trips.csv', "rb")
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
@@ -22,14 +30,19 @@ class Command(BaseCommand):
         # while count < 10350:  # Skip rows
         #     count = count + 1
         #     reader.next()
+
         for row in reader:
             count = count + 1
+
+            # Get UserProfile
             try:
                 profile = UserProfile.objects.get(uid__iexact=get_value(row[1]))
             except (ValueError, UserProfile.DoesNotExist):
                 with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
                     myfile.write("%s\n" % repr(row))
                 continue
+
+            # get or create Trip
             user = profile.user
             fields = {
                     'uid': get_value(row[0]),
@@ -51,6 +64,14 @@ class Command(BaseCommand):
                     with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
                         myfile.write("%s\n" % repr(row))
                     continue
+
             print count, row[2]
+
+        end_date = datetime.datetime.now()
+        delta = end_date - start_date
+        print
+        print "Total: ", delta.total_seconds(), "seconds"
+
+        # Close csv file
         ifile.close()
-        return
+

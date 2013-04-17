@@ -1,7 +1,7 @@
 import csv
 import datetime
-from django.conf import settings
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from django.db import transaction
@@ -88,8 +88,8 @@ class Command(BaseCommand):
                     UserSocialAuth.objects.create(**fields)
 
             # # Update SocialLink related objects
-            SocialLink.objects.create(profile_id=count, pos=1, url=row[9] or '')
-            SocialLink.objects.create(profile_id=count, pos=2, url=row[10] or '')
+            SocialLink.objects.create(profile_id=count, pos=1, url=get_value(row[9]) or '')
+            SocialLink.objects.create(profile_id=count, pos=2, url=get_value(row[10]) or '')
             SocialLink.objects.create(profile_id=count, pos=3)
             SocialLink.objects.create(profile_id=count, pos=4)
             SocialLink.objects.create(profile_id=count, pos=5)
