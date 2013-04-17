@@ -24,7 +24,7 @@ class Trip(models.Model):
     )
     user = models.ForeignKey(User)
     departure_city = models.CharField(max_length=255)
-    departure_dt = models.DateTimeField()
+    departure_dt = models.DateTimeField(blank=True, null=True)
     destination_city = models.CharField(max_length=255)
     destination_dt = models.DateTimeField()
     travelling_by = models.IntegerField(choices=TRAVELLING_BY_CHOICES)

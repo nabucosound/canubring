@@ -10,7 +10,7 @@ from website.utils import listing
 def search(request, template):
     ctxt = dict()
     now = datetime.datetime.now()
-    trip_results = Trip.objects.filter(departure_dt__gte=now).order_by('departure_dt')
+    trip_results = Trip.objects.filter(destination_dt__gte=now).order_by('destination_dt')
 
     active_dep_countries = Country.objects.filter(dep_country_trips__in=trip_results).distinct().order_by('name')
     active_dest_countries = Country.objects.filter(dest_country_trips__in=trip_results).distinct().order_by('name')

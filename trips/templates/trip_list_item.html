@@ -14,9 +14,9 @@
         {% endif %}
       </div>
     </div>
-    <div class="span2">
-      <p class="desc"><span>Dep.</span> {{ trip.departure_dt|date:"d.m.Y" }}</p>
-      <p class="desc"><span>Arrive.</span> {{ trip.destination_dt|date:"d.m.Y" }}</p>
+    {% if my_cargos %}
+    <div class="span1">
+      <p class="desc">{{ trip.destination_dt|date:"d.m.Y" }}</p>
     </div>
     <div class="span3">
       <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
@@ -25,6 +25,7 @@
     <div class="span1">
       <p class="desc">{{ trip.user.get_full_name }}</p>
     </div>
+    <div class="span1"><span class="pull-right">x</span></div>
     <div class="span1">
       <div class="status">
         {% if my_cargos %}
@@ -38,6 +39,32 @@
         {% endif %}
       </div>
     </div>
+    {% else %}
+    <div class="span2">
+      {% comment %}
+      <p class="desc"><span>Dep.</span> {{ trip.departure_dt|date:"d.m.Y" }}</p>
+      {% endcomment %}
+      <p class="desc">{{ trip.destination_dt|date:"d.m.Y" }}</p>
+    </div>
+    <div class="span3">
+      <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
+      <p class="desc"><span>To</span> {{ trip.destination_city }}</p>
+    </div>
+    <div class="span1"><span class="pull-right">x</span></div>
+    <div class="span1">
+      <div class="status">
+        {% if my_cargos %}
+          {% if cargo.total_unread_comments_count_for_requesting_user %}
+            <div class="num"><p>{{ cargo.total_unread_comments_count_for_requesting_user|length }}</p></div>
+          {% endif %}
+        {% else %}
+          {% if trip.total_unread_comments_count_for_owner %}
+            <div class="num"><p>{{ trip.total_unread_comments_count_for_owner }}</p></div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
   </div>
   {% if trip.user == user or my_cargos %}
     {% include "trip_comments.html" %}

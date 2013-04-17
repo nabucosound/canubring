@@ -116,19 +116,19 @@ class UserProfile(models.Model):
 
     @property
     def current_trips(self):
-        return self.user.trip_set.filter(departure_dt__gt=datetime.datetime.now())
+        return self.user.trip_set.filter(destination_dt__gt=datetime.datetime.now())
 
     @property
     def past_trips(self):
-        return self.user.trip_set.filter(departure_dt__lte=datetime.datetime.now())
+        return self.user.trip_set.filter(destination_dt__lte=datetime.datetime.now())
 
     @property
     def current_cargos(self):
-        return self.user.my_cargos.filter(trip__departure_dt__gt=datetime.datetime.now())
+        return self.user.my_cargos.filter(trip__destination_dt__gt=datetime.datetime.now())
 
     @property
     def past_cargos(self):
-        return self.user.my_cargos.filter(trip__departure_dt__lte=datetime.datetime.now())
+        return self.user.my_cargos.filter(trip__destination_dt__lte=datetime.datetime.now())
 
     @property
     def get_reviews_about_me(self):
@@ -164,11 +164,11 @@ class UserProfile(models.Model):
 
     @property
     def get_unread_current_trip_comments(self):
-        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__departure_dt__gt=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__destination_dt__gt=datetime.datetime.now).count()
 
     @property
     def get_unread_past_trip_comments(self):
-        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__traveller_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
 
     @property
     def unread_cargo_comments(self):
@@ -176,11 +176,11 @@ class UserProfile(models.Model):
 
     @property
     def get_unread_current_cargo_comments(self):
-        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__gt=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__gt=datetime.datetime.now).count()
 
     @property
     def get_unread_past_cargo_comments(self):
-        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__departure_dt__lte=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
 
 
 #Make sure we create a Profile when creating a User
