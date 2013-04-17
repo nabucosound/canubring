@@ -10,7 +10,7 @@ from website.utils import listing
 def search(request, template):
     ctxt = dict()
     now = datetime.datetime.now()
-    trip_results = Trip.objects.filter(destination_dt__gte=now).order_by('destination_dt')
+    trip_results = Trip.objects.filter(destination_dt__gte=now)
 
     active_dep_countries = Country.objects.filter(dep_country_trips__in=trip_results).distinct().order_by('name')
     active_dest_countries = Country.objects.filter(dest_country_trips__in=trip_results).distinct().order_by('name')
@@ -55,7 +55,7 @@ def search(request, template):
     ctxt['active_dep_cities'] = active_dep_cities
     ctxt['active_dest_cities'] = active_dest_cities
 
-    trips = listing(request, trip_results)
+    trips = listing(request, trip_results.order_by('destination_dt'))
     ctxt['trips'] = trips
     return render(request, template, ctxt)
 
