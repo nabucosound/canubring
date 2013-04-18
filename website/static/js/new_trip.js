@@ -1,6 +1,7 @@
 function google_places_autocomplete_widget() {
   var options = {
     types: ['(cities)'],
+    // componentRestrictions: {country: "ca"}
   };
   $('.city-input').each(function() {
     autocomplete = new google.maps.places.Autocomplete(this, options);
