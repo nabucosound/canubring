@@ -194,6 +194,9 @@ footer {
       padding:15px 5px;
     }
 
+      .sidebar-nav li:hover a {text-decoration: none;}
+      .sidebar-nav li:hover {background-color: #E3F0F6;}
+
       .sidebar-nav li:first-child {border-top: none;}
       .sidebar-nav li:last-child {border-bottom: none;}
       .sidebar-nav li.active {background-color: #E3F0F6;}
@@ -201,22 +204,22 @@ footer {
       .sidebar-nav li.active a {text-decoration: none;cursor: default;}
 
       .sidebar-nav li.how       {background-position: 5px 14px;}
-        .sidebar-nav li.how.active {background-position: -270px 14px;}
+        .sidebar-nav li.how.active, .sidebar-nav li.how:hover {background-position: -270px 14px;}
       .sidebar-nav li.find      {background-position: -31px -57px;}
-        .sidebar-nav li.find.active      {background-position: -306px -57px;}
+        .sidebar-nav li.find.active, .sidebar-nav li.find:hover      {background-position: -306px -57px;}
       .sidebar-nav li.earn      {background-position: -66px -138px;}
-        .sidebar-nav li.earn.active      {background-position: -341px -138px;}
+        .sidebar-nav li.earn.active, .sidebar-nav li.earn:hover      {background-position: -341px -138px;}
       .sidebar-nav li.safety    {background-position: -100px -210px;}
-        .sidebar-nav li.safety.active    {background-position: -375px -210px;}
+        .sidebar-nav li.safety.active, .sidebar-nav li.safety:hover    {background-position: -375px -210px;}
       .sidebar-nav li.recommend {background-position: -132px -280px;}
-        .sidebar-nav li.recommend.active {background-position: -407px -280px;}
+        .sidebar-nav li.recommend.active, .sidebar-nav li.recommend:hover {background-position: -407px -280px;}
       .sidebar-nav li.save      {background-position: -164px -347px;}
-        .sidebar-nav li.save.active      {background-position: -439px -347px;}
+        .sidebar-nav li.save.active, .sidebar-nav li.save:hover      {background-position: -439px -347px;}
 
       .sidebar-nav li h5 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #006A99;font-family: din-regular;}
-        .sidebar-nav li.active h5 {color: #EC663D;}
+        .sidebar-nav li.active h5, .sidebar-nav li:hover h5 {color: #EC663D;}
       .sidebar-nav li h6 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #00A6E8;font-size: 11px;line-height: 1.2em;}
-        .sidebar-nav li.active h6 {color: #F7931E;}
+        .sidebar-nav li.active h6, .sidebar-nav li:hover h6 {color: #F7931E;}
 
 /*Topbar Nav
 ------------------------------------------------------------*/
