@@ -154,7 +154,18 @@ input.input-canubring, textarea.input-canubring {
 
     header .claim h2 {color: #fff;font-size: 22px;text-transform: uppercase;font-weight: normal;font-family: din-light;}
 
-  header .social {}
+  header .social {margin-top: 20px;}
+
+    header .social .ico {
+      background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;
+      display: inline-block;
+      width:27px;height:27px;
+      text-indent: -999em;
+    }
+
+      header .social .ico.twitter {background-position: -256px 0;}
+      header .social .ico.facebook {background-position: -256px -27px;}
+      header .social .ico.pinterest {background-position: -256px -54px;}
 
 
 /*Pagination (ORB)
