@@ -582,7 +582,8 @@ footer {
   .tb-travels .item .open-plane {position: relative;padding-left: 5px;}
   .tb-travels .item .open-plane .ico-plane,
   .tb-travels .item .open-plane .ico-bus,
-  .tb-travels .item .open-plane .ico-auto  {
+  .tb-travels .item .open-plane .ico-auto,
+  .tb-travels .item .open-plane .ico-train  {
       display: block;
       position: absolute;top:0;right:0;
       background: transparent url(../img/sprites/sprite_general.png) -140px -23px no-repeat;
@@ -592,6 +593,7 @@ footer {
     .tb-travels.mytrips .item .open-plane .ico-plane {background-position: -140px -48px;}
     .tb-travels.mytrips .item .open-plane .ico-bus {background-position: -140px -74px;}
     .tb-travels.mytrips .item .open-plane .ico-auto {background-position: -140px -99px;}
+    .tb-travels.mytrips .item .open-plane .ico-train {background-position: -140px -121px;}
 
   .tb-travels .item .comments {border-top: 1px dashed #ccc;padding:10px 10px 0 130px;margin-top: 10px;}
   .tb-travels.mytrips .item .comments {border:none;margin-top: 0;padding-right: 40px;padding-left: 80px;}
@@ -682,6 +684,7 @@ footer {
     .tb-travels.mytrips.past .item .open-plane .ico-bus {background-position: -165px -74px;}
     .tb-travels.mytrips.past .item .open-plane .ico-plane {background-position: -165px -48px;}
     .tb-travels.mytrips.past .item .open-plane .ico-auto {background-position: -165px -99px;}
+    .tb-travels.mytrips.past .item .open-plane .ico-train {background-position: -165px -121px;}
 
     .tb-travels.mytrips.past .item .ico-star a {
         background:transparent url(../img/sprites/sprite_general.png) -78px -104px no-repeat;
