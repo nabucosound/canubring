@@ -161,7 +161,9 @@ input.input-canubring, textarea.input-canubring {
       display: inline-block;
       width:27px;height:27px;
       text-indent: -999em;
+      opacity: .6;
     }
+      header .social .ico:hover {opacity: 1;}
 
       header .social .ico.twitter {background-position: -256px 0;}
       header .social .ico.facebook {background-position: -256px -27px;}
@@ -467,6 +469,10 @@ footer {
   position: relative;
   padding:10px; 
 }
+  /*change pricture profile-ticket*/
+  .profile-ticket .change-pic-wrap {position: relative;width: 140px;}
+    .profile-ticket .change-pic-wrap .change-pic {background-color: #fff;position: absolute;top:5px;right:0;display: none;padding:3px 10px;border-bottom: 1px solid #aaa;border-left: 1px solid #aaa;}
+    .profile-ticket .change-pic-wrap:hover .change-pic {display: inline-block;}
 
   .profile-ticket .media-body {padding-left: 20px;}
 

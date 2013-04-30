@@ -1,5 +1,6 @@
 <div class="profile-ticket">
   <div class="media">
+    <div class="change-pic-wrap">
     {% if profile == user.userprofile %}
     <a data-toggle="modal" href="#avatar-modal">
       <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
@@ -7,6 +8,10 @@
     {% else %}
     <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
     {% endif %}
+    <span class="change-pic"><a href="#">Cambiar foto</a></span>
+  </div>
+
+
     <span class="sep-holes"></span>
     <div class="media-body">
       <h1>{{ profile.user.get_full_name }}{% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-profile">[edit profile]</a></small>{% endif %}</h1>
