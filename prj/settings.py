@@ -1,27 +1,29 @@
-# Settings for canubring project
 import os
 
-def bool_env(val):
-    """Replaces string based environment values with Python booleans"""
-    return True if os.environ.get(val, False) == 'True' else False
+def env_var(key, default=None):
+    """Retrieves env vars and makes Python boolean replacements"""
+    val = os.environ.get(key, default)
+    if val == 'True': val = True
+    elif val == 'False': val = False
+    return val
 
-DEBUG = bool_env('DEBUG')
+# Debug
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG = env_var('DEBUG', True)
 TEMPLATE_DEBUG = DEBUG
 
 LANGUAGE_CODE = 'en'
 TIME_ZONE = 'America/Chicago'
+SITE_ID = 1
+
+USE_TZ = False
 USE_I18N = True
 USE_L10N = True
-USE_TZ = False
-
-SITE_ID = 1
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-
-SECRET_KEY = 'yc)21v(bd3y1qe1kv74khyar962m15+awbv#a3z0!y58cvy5ld'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -36,10 +38,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'profiles.middleware.CompleteRegistration',
 )
-
-ROOT_URLCONF = 'canubring.urls'
-
-WSGI_APPLICATION = 'canubring.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -66,6 +64,27 @@ INSTALLED_APPS = (
     'notifications',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+    # Social auth
+    # 'social_auth.context_processors.social_auth_by_name_backends',
+    # 'social_auth.context_processors.social_auth_backends',
+    # 'social_auth.context_processors.social_auth_by_type_backends',
+    # 'social_auth.context_processors.social_auth_login_redirect',
+)
+
+ROOT_URLCONF = 'prj.urls'
+WSGI_APPLICATION = 'prj.wsgi.application'
+ALLOWED_HOSTS = env_var('ALLOWED_HOSTS', '*').split(',')
+SECRET_KEY = env_var('SECRET_KEY', 'your$%&/defaultsecretkeygoesheremyfriend!')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -90,47 +109,12 @@ LOGGING = {
     }
 }
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-    # Social auth
-    # 'social_auth.context_processors.social_auth_by_name_backends',
-    # 'social_auth.context_processors.social_auth_backends',
-    # 'social_auth.context_processors.social_auth_by_type_backends',
-    # 'social_auth.context_processors.social_auth_login_redirect',
-)
-
 # Database
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+DATABASES = {'default': dj_database_url.config(default=env_var('DATABASE_URL'))}
 
-# Amazon keys
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-
-# Amazon SES
-EMAIL_BACKEND = 'django_ses.SESBackend'
-DEFAULT_FROM_EMAIL = 'info@canubring.com'
-
-# Amazon S3
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = '/media/'
-STATIC_URL = S3_URL
-
-# Imagekit
-IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
-
-# Debug toolbar
-INTERNAL_IPS = ('127.0.0.1',)
+# Django Admin
+ADMIN_URL = env_var('ADMIN_URL', 'admin/')
 
 # Social auth
 AUTHENTICATION_BACKENDS = (
@@ -159,13 +143,42 @@ LINKEDIN_EXTRA_DATA = [('id', 'id'),
                        ('headline', 'headline'),
                        ('industry', 'industry')]
 
+# Amazon keys
+AWS_ACCESS_KEY_ID = env_var('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env_var('AWS_SECRET_ACCESS_KEY')
+
+# Amazon S3
+AWS_STORAGE_BUCKET_NAME = env_var('AWS_STORAGE_BUCKET_NAME')
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = '/media/'
+STATIC_URL = S3_URL
+
+# Amazon SES
+EMAIL_BACKEND = 'django_ses.SESBackend'
+DEFAULT_FROM_EMAIL = env_var('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_HEADER = 'Canubring'
+SEND_EMAIL_NOTIFICATIONS = env_var('SEND_EMAIL_NOTIFICATIONS', False)
+
+# Imagekit backend that DOES NOT TRY to generate img if
+# filepath exists but physical file does not
+IMAGEKIT_DEFAULT_IMAGE_CACHE_BACKEND = 'imagekit.imagecache.NonValidatingImageCacheBackend'
+
+# Sometimes production db copies in local miss image paths
+USE_DEFAULT_IMAGES = env_var('USE_DEFAULT_IMAGES', False)
+
+# Google Analytics
+GOOGLE_ANALYTICS_PROPERTY_ID = env_var('GOOGLE_ANALYTICS_PROPERTY_ID', False)
+GOOGLE_ANALYTICS_DOMAIN = env_var('GOOGLE_ANALYTICS_DOMAIN', False)
+
 # Flags to enable/disable features
-POST_TO_FB_OPEN_GRAPH = bool_env('POST_TO_FB_OPEN_GRAPH')
-SEND_EMAIL_NOTIFICATIONS = bool_env('SEND_EMAIL_NOTIFICATIONS')
-BYPASS_AUTHENTICATION = bool_env('BYPASS_AUTHENTICATION')
+ENABLE_DEBUG_TOOLBAR = env_var('ENABLE_DEBUG_TOOLBAR', False)
+LOCAL_STORAGE = env_var('LOCAL_STORAGE', False)
 
 # Test deployment on Ubuntu uses it. Heroku and Foreman use .env conf file.
 try:
-    from canubring.localsettings import *
+    from prj.localsettings import *
 except:
     pass
+

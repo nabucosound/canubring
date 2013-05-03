@@ -1,6 +1,4 @@
 """
-WSGI config for canubring project.
-
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
 named ``application``. Django's ``runserver`` and ``runfcgi`` commands discover
@@ -15,7 +13,7 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "canubring.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "prj.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

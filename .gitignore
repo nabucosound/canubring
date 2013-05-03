@@ -1,7 +1,7 @@
 *.pyc
 *.swp
 .DS_Store
-canubring/localsettings.py
+prj/localsettings.py
 .env
 dev.db
 legacy_migration/csv

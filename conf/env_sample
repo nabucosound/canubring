@@ -1,0 +1,57 @@
+# Made by Nabuco (http://nabuco.me/).
+# Copy this file as '.env' into the project root folder.
+# The lines commented must be uncommented and edited,
+# following their related instructions.
+
+DEBUG=True
+
+# Generate a new secret key using:
+# python manage.py generate_secret_key
+# SECRET_KEY=''
+
+# Sqlite database (do not uncomment if you are going to use PostgreSQL)
+# Put the path to this project. If you change the default db name
+# 'dev.db' to something else, then 'reset_db.sh' will stop working.
+# DATABASE_URL='sqlite:////path/to/project/dev.db'
+
+# PostgreSQL database (do not uncomment if you are going to use Sqlite)
+# Replace user, password and dbname.
+# DATABASE_URL=postgres://user:password@localhost:5432/dbname
+
+# Amazon AWS
+AWS_STORAGE_BUCKET_NAME=''
+AWS_ACCESS_KEY_ID=''
+AWS_SECRET_ACCESS_KEY=''
+
+# Facebook
+FACEBOOK_APP_ID=''
+FACEBOOK_APP_SECRET=''
+
+# Google Analytics. Even if tracking a subdomain, we must set abs domain.
+GOOGLE_ANALYTICS_PROPERTY_ID=''
+GOOGLE_ANALYTICS_DOMAIN=''
+
+# Sentry
+SENTRY_DSN=''
+
+# Emails
+SEND_EMAIL_NOTIFICATIONS=False
+DEFAULT_FROM_EMAIL=''
+
+# Common dev flags for Nomadblue projects
+CELERY_ALWAYS_EAGER=True
+POST_TO_FB_OPEN_GRAPH=False
+USE_DEFAULT_IMAGES=False
+
+# Settings that enable or disable stuff declared on prj/localsettings.py
+LOCAL_STORAGE=True
+ENABLE_DEBUG_TOOLBAR=False
+
+############# Settings specific to the project #################
+
+# Used by django-social-authentication
+GOOGLE_OAUTH2_CLIENT_ID=''
+GOOGLE_OAUTH2_CLIENT_SECRET=''
+LINKEDIN_CONSUMER_KEY=''
+LINKEDIN_CONSUMER_SECRET=''
+

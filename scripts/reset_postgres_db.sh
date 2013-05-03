@@ -6,9 +6,8 @@
 # It applies all south migrations and, finally, creates a superuser.
 #
 # WARNING: you must have your project virtualenv activated and you must
-# execute this script from the same path as the manage.py file.
-#
-# Usage: ./reset_db.sh
+# execute this script from the same path as the manage.py file:
+# ./scripts/reset_postgres_db.sh
 
 dropdb canubring
 createdb canubring
