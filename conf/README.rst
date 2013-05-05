@@ -24,7 +24,7 @@ edit them (the copied files, not the "_sample" ones!!!!)::
 
 Run the reset script corresponding to your db (sqlite or postgres)::
 
-    ./scripts/reset_slite_db.sh
+    ./scripts/reset_sqlite_db.sh
 
 Start devel webserver and visit ``http://localhost:8000/``::
 
