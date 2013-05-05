@@ -135,6 +135,7 @@ def submit_confirm_cargo_form(request):
 @csrf_exempt
 def submit_reject_cargo_form(request):
     cargo_id = request.POST.get('cargo_id', False)
+    msg = request.POST.get('comment_txt', '')
     if not cargo_id:
         messages.error(request, "Error while trying to reject cargo")
         return redirect('cargos')
@@ -147,7 +148,8 @@ def submit_reject_cargo_form(request):
     comment = obj.cargocomment_set.filter(comment_type=1).latest('creation_dt')
     comment.comment_type = 3
     comment.save()
-    msg = 'I have rejected the cargo through the form you sent'
+    if not msg:
+        msg = 'I have rejected the cargo through the form you sent'
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=3)
     messages.success(request, "You have successfully rejected a cargo form")
     return redirect('cargos')

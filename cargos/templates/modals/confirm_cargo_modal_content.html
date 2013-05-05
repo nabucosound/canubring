@@ -45,8 +45,6 @@
     <h4>EL LUGAR DE DESPACHO ACORDADO ES:</h4>
     <p class="desc">{{ cargo.get_delivery_display }}</p>
   </div>
-  <div class="submit-box clearfix">
-    <p>
       <form action="{% url 'submit_confirm_cargo_form' %}" method="post" accept-charset="utf-8">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
         <input type="submit" value="Aceptar" class="btn btn-canubring-blue pull-left" style="margin-right:10px;">
@@ -54,8 +52,7 @@
       <form action="{% url 'submit_reject_cargo_form' %}" method="post" accept-charset="utf-8">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
         <input type="submit" value="Rechazar" class="btn btn-canubring-orange pull-left">
+        <textarea name="comment_txt" rows="2" cols="40" placeholder="Write down your reason why are you rejecting this cargo"></textarea>
       </form>
-    </p>
-  </div>
 </div>
 
