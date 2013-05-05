@@ -32,6 +32,7 @@
     <label class="checkbox">
       <input name="clothes" type="checkbox">vestuario
     </label>
+    <span id="category-error" style="color:red;display:none">Select at least one category from above or specify one on "others"</span>
     <label class="checkbox others">otros
       <input name="others" type="text" class="input-xlarge others-inp" />
     </label>
@@ -40,6 +41,7 @@
 
 <div class="block clearfix">
   <h4>¿QUÉ PRECIO ACORDASTE CON EL ENCARGADOR?</h4>
+  <span id="price-error" style="color:red;display:none">Specify price</span>
   <div class="control-group">
     <input name="price" type="text" class="input-small" />
     <select class="input-small">
@@ -51,6 +53,7 @@
 
 <div class="block clearfix">
   <h4>Lugar de encuentro:</h4>
+  <span id="meeting-loc-error" style="color:red;display:none">Specify one meeting location</span>
   <div class="control-group">
     <label class="checkbox">
       <input name="pickup" type="radio" value="0">lugar en comun
@@ -69,6 +72,7 @@
 
 <div class="block clearfix">
   <h4>Lugar de despacho:</h4>
+  <span id="delivery-loc-error" style="color:red;display:none">Specify one delivery location</span>
   <div class="control-group">
     <label class="checkbox">
       <input name="delivery" type="radio" value="0">lugar en comun

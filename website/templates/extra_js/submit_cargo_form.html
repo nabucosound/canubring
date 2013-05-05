@@ -3,18 +3,46 @@
     $('#modal-cargo-content').on(
       {
         click: function submitCargoForm (e) {
+          var error = false;
           var form = $(this).parents('form');
-          $.ajax({
-            type: 'post',
-            data: form.serialize(),
-            url: form.attr('action'),
-            success: function(response) {
-              parent.window.location = response;
-            },
-            error: function(response) {
-              var error_msg = $.parseJSON(response.responseText);
-            },
-          });
+          if ($('input[type="checkbox"]:checked').length == 0 && $('input:text[name="others"]').filter(function() { return $(this).val() == ""; }).length == 1) {
+            $('#category-error').show();
+            error = true;
+          } else {
+            $('#category-error').hide();
+          }
+          if ($('input:text[name="price"]').val() == ""){
+            $('#price-error').show();
+            error = true;
+          } else {
+            $('#price-error').hide();
+          }
+          if ($('input:radio:checked[name="pickup"]').length == 0) {
+            $('#meeting-loc-error').show();
+            error = true;
+          } else {
+            $('#meeting-loc-error').hide();
+          }
+          if ($('input:radio:checked[name="delivery"]').length == 0) {
+            $('#delivery-loc-error').show();
+            error = true;
+          } else {
+            $('#delivery-loc-error').hide();
+          }
+          if (error == false) {
+            $.ajax({
+              type: 'post',
+              data: form.serialize(),
+              url: form.attr('action'),
+              success: function(response) {
+                parent.window.location = response;
+              },
+              error: function(response) {
+                var error_msg = $.parseJSON(response.responseText);
+              },
+            });
+            return false;
+          }
           return false;
         }
       },
