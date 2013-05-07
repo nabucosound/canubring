@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4 class="tit-int">Account settings</h4>
+
+<p>{{ user.email }}</p>
+<form action="." method="post" accept-charset="utf-8" class="form-horizontal">
+  {% csrf_token %}
+  <input name="email" class="span3" type="text" size="16" placeholder="Insert your new email" required>
+  <button class="btn btn-canubring-orange" type="submit">Update email</button>
+</form>
+
+{% endblock %}
+

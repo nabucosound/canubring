@@ -14,7 +14,7 @@
 
     <span class="sep-holes"></span>
     <div class="media-body">
-      <h1>{{ profile.user.get_full_name }}{% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-profile">[edit profile]</a></small>{% endif %}</h1>
+      <h1>{{ profile.user.get_full_name }}{% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-profile">[edit profile]</a></small><small><a href="{% url 'settings' %}">[edit settings]</a></small>{% endif %}</h1>
       <p class="country">{{ profile.country.name }}<span class="stars {{ profile.average_traveller_review_css_class_name }}"></span></p>
       <p class="language">languages: {{ profile.languages_profile }}</p>
       <p class="trips">{{ profile.past_trips|length }} trips done</p>

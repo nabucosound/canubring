@@ -128,3 +128,29 @@ def upload_profile_picture(request):
     messages.success(request, "You have modified your avatar picture")
     return redirect('profile')
 
+
+from django.views.generic import FormView
+from profiles.forms import EmailForm
+from django.core.urlresolvers import reverse_lazy
+class EmailSettingsView(FormView):
+    form_class = EmailForm
+    template_name = 'edit_settings/edit_settings.html'
+    success_url = reverse_lazy('settings')
+
+    def get_form_kwargs(self):
+        kwargs = super(EmailSettingsView, self).get_form_kwargs()
+        kwargs.update({'request' : self.request})
+        return kwargs
+
+    def form_invalid(self, form):
+        for error in form.errors.get('email'):
+            messages.error(self.request, error)
+        return super(EmailSettingsView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.request.user.email = form.cleaned_data.get('email')
+        self.request.user.save()
+        messages.success(self.request, "Has actualizado tu email")
+        return super(EmailSettingsView, self).form_valid(form)
+
+

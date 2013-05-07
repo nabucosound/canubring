@@ -34,3 +34,21 @@ class PictureUploadForm(forms.ModelForm):
         model = UserProfile
         fields = ('profile_photo',)
 
+
+class EmailForm(forms.Form):
+    email = forms.EmailField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        request = kwargs.pop('request', None)
+        self.user = request.user
+        return super(EmailForm, self).__init__(*args, **kwargs)
+
+    def clean_email(self, *args, **kwargs):
+        data = self.cleaned_data['email']
+        try:
+            User.objects.exclude(id=self.user.id).get(email=data)
+        except User.DoesNotExist:
+            return data
+        else:
+            raise forms.ValidationError("Email is already been used by another user")
+
