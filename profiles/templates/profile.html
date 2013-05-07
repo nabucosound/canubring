@@ -4,6 +4,8 @@
 
 {% if show_signup_sys_msg %}
 {% include "welcome_system_message.html" %}
+{% elif show_email_verified_sys_msg %}
+{% include "email_verified_system_message.html" %}
 {% endif %}
 
 {% include "profile_ticket.html" %}

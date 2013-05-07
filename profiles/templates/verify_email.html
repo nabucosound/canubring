@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if email_verified %}
+<h2>Email verified</h2>
+{% else %}
+<h2>Email not verified</h2>
+{% endif %}
+{% endblock %}

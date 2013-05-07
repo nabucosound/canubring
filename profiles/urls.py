@@ -23,5 +23,11 @@ urlpatterns = patterns('profiles.views',
         view='upload_profile_picture',
         name='upload_profile_picture',
     ),
+    url(
+        regex=r'^verify/email/(?P<token>[\w:-]+)/$',
+        view='verify_email',
+        name='verify_email',
+        kwargs = {'template': 'verify_email.html'}
+    ),
 )
 

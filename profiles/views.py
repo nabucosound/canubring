@@ -50,6 +50,28 @@ def update_social(request):
         obj.save()
     return redirect('profile')
 
+def verify_email(request, template, token):
+    from django.core import signing
+    # from django.http import Http404
+    ctxt = dict()
+    token_expires = 3600 * 48  # Two days
+    salt = 'password_recovery'
+    try:
+        pk = signing.loads(token, max_age=token_expires,
+                           salt=salt)
+    except signing.BadSignature:
+        ctxt['email_verified'] = False
+        from django.http import Http404
+        raise Http404
+    else:
+        ctxt['email_verified'] = True
+        user = get_object_or_404(User, pk=pk)
+        profile = user.userprofile
+        profile.email_verified = True
+        profile.save()
+        request.session['show_email_verified_sys_msg'] = True
+        return redirect('profile')
+
 @require_POST
 def login_view(request):
     form = EmailLoginForm(request.POST)
@@ -66,6 +88,9 @@ def login_view(request):
         auth_user.backend = 'django.contrib.auth.backends.ModelBackend'
     else:
         auth_user = authenticate(username=user.username, password=password)
+        if not auth_user.userprofile.email_verified:
+            error_msg = "You must verify your email first"
+            return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
         if auth_user is None or not auth_user.is_active:
             error_msg = "Bad authentication"
             return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")

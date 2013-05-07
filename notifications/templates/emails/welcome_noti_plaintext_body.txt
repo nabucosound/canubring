@@ -1,1 +1,9 @@
-Bienvenido a Canubring!!!
+Welcome to Canubring!!!
+
+Before you can start using Canubring, we need you to verify this email address by visiting the following link:
+
+http://{{ domain }}/profiles/verify/email/{{ token }}/
+
+Thanks!
+
+The Canubring team.

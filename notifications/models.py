@@ -26,6 +26,17 @@ class WelcomeNotification(Notification, NotificationMixin):
     def get_recipients_list(self):
         return [self.user.email]
 
+    def get_context(self):
+        from django.core import signing
+        from django.contrib.sites.models import Site
+        domain = Site.objects.all()[0].domain
+        salt = 'password_recovery'
+        # url_salt = 'password_recovery_url'
+        return {
+            'token': signing.dumps(self.user.pk, salt=salt),
+            'domain': domain,
+        }
+
 
 class CargoCommentNotification(Notification, NotificationMixin):
     obj = models.ForeignKey(CargoComment)

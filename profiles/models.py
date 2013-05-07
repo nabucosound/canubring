@@ -57,10 +57,11 @@ class UserProfile(models.Model):
         (4, 'fr'),
     )
     user = models.OneToOneField(User)
-    profile_photo = models.ImageField(upload_to='profiles')
+    profile_photo = models.ImageField(upload_to='profiles', blank=True)
     country = models.ForeignKey(ProfileCountry, blank=True, null=True)
     language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
     second_language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
+    email_verified = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
     # Legacy
     uid = models.CharField(max_length=36, blank=True)

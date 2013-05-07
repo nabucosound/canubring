@@ -29,7 +29,6 @@ urlpatterns = patterns('',
     url(r'auth/', include('social_auth.urls')),
     url(regex=r'^search/$', view='search.views.search', name='search', kwargs = {'template': 'search.html',}),
     url(r'cargos/', include('cargos.urls')),
-
     url(r'^password/', include('password_reset.urls')),
 
     # Static pages

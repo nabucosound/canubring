@@ -15,6 +15,8 @@ def profile(request, template):
     ctxt['profile'] = request.user.userprofile
     if request.session.pop('show_signup_sys_msg', False):
         ctxt['show_signup_sys_msg'] = True
+    if request.session.pop('show_email_verified_sys_msg', False):
+        ctxt['show_email_verified_sys_msg'] = True
     ctxt['profile_countries'] = ProfileCountry.objects.all()
     return render(request, template, ctxt)
 
