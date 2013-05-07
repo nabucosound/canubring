@@ -48,9 +48,12 @@
               </ul>
               {% endif %}
 
-              {% include "modals/signup_modal.html" %}
-              {% include "modals/login_modal.html" %}
-              {% include "modals/profile_modal.html" %}
+              {% if not user.is_authenticated %}
+                {% include "modals/signup_modal.html" %}
+                {% include "modals/login_modal.html" %}
+              {% else %}
+                {% include "modals/profile_modal.html" %}
+              {% endif %}
 
             </div><!-- .user-nav -->
           </div>

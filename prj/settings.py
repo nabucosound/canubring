@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'legacy_migration',
     'notifier',
     'notifications',
+    'password_reset',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
