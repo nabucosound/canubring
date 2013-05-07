@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class City(models.Model):
     name = models.CharField(max_length=255)
 
@@ -41,10 +42,10 @@ class Trip(models.Model):
         return u"From %s to %s" % (self.departure_city, self.destination_city)
 
     def save(self, *args, **kwargs):
-        self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city)
-        self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country)
-        self.dest_city, created = City.objects.get_or_create(name=self.get_destination_city)
-        self.dest_country, created = Country.objects.get_or_create(name=self.get_destination_country)
+        self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city.lower())
+        self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country.lower())
+        self.dest_city, created = City.objects.get_or_create(name=self.get_destination_city.lower())
+        self.dest_country, created = Country.objects.get_or_create(name=self.get_destination_country.lower())
         super(Trip, self).save(*args, **kwargs)
 
     @property
@@ -53,7 +54,14 @@ class Trip(models.Model):
 
     @property
     def get_departure_country(self):
-        return self.departure_city.split(',')[-1].strip()
+        from profiles.models import USState
+        country = self.departure_city.split(',')[-1].strip()
+        try:
+            USState.objects.get(code=country)
+        except USState.DoesNotExist:
+            return country
+        else:
+            return 'united states'
 
     @property
     def get_destination_city(self):
@@ -61,7 +69,14 @@ class Trip(models.Model):
 
     @property
     def get_destination_country(self):
-        return self.destination_city.split(',')[-1].strip()
+        from profiles.models import USState
+        country = self.destination_city.split(',')[-1].strip()
+        try:
+            USState.objects.get(code=country)
+        except USState.DoesNotExist:
+            return country
+        else:
+            return 'United States'
 
     @property
     def total_comments_count(self):

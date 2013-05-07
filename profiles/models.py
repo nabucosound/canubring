@@ -38,6 +38,17 @@ class SocialLink(models.Model):
             return split_domain[0].lower()
 
 
+class USState(models.Model):
+    code = models.CharField(max_length=2)
+    name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name_plural = 'US States'
+
+    def __unicode__(self):
+        return self.name
+
+
 class ProfileCountry(models.Model):
     code = models.CharField(max_length=2)
     name = models.CharField(max_length=64)
