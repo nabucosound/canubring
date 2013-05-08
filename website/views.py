@@ -49,3 +49,11 @@ def evaluations(request, template, profile_attr='get_reviews_about_me'):
     ctxt['reviews_by_me'] = profile_attr == 'get_reviews_by_me'
     return render(request, template, ctxt)
 
+@login_required
+def delete_account(request):
+    user = request.user
+    user.is_active = False
+    user.save()
+    django_logout(request)
+    return redirect('/')
+

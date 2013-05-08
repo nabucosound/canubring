@@ -52,5 +52,10 @@ urlpatterns = patterns('website.views',
         name='evaluations_by_me',
         kwargs = {'template': 'evaluations.html', 'profile_attr': 'get_reviews_by_me'}
     ),
+    url(
+        regex=r'^delete/account/$',
+        view='delete_account',
+        name='delete_account',
+    ),
 )
 

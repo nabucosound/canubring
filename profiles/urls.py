@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
-from profiles.views import EmailSettingsView
+from profiles.views import EmailSettingsView, PasswordSettingsView
 
 
 urlpatterns = patterns('profiles.views',
@@ -32,5 +32,7 @@ urlpatterns = patterns('profiles.views',
         kwargs = {'template': 'verify_email.html'}
     ),
     url(r'^settings/$', login_required(EmailSettingsView.as_view()), name='settings'),
+    url(r'^settings/email/$', login_required(EmailSettingsView.as_view()), name='settings_email'),
+    url(r'^settings/password/$', login_required(PasswordSettingsView.as_view()), name='password_settings'),
 )
 
