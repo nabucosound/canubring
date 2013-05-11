@@ -62,6 +62,16 @@
       });
     </script>
 
+    <!-- div clickable -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.clickable').click(function() {
+        var href = $(this).data('href');
+        window.location.href = href;
+        });
+    });
+    </script>
+
 
     {% if not user.is_authenticated %}
       {% include "extra_js/signup_form.html" %}

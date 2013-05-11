@@ -16,6 +16,8 @@
 
 .tit-int {color: #ec663d;text-transform: uppercase;font-weight: normal;font-size: 18px;font-family: din-strong;}
 
+.clickable {cursor: pointer;}
+
 /* Fonts
 ------------------------------------------------------------*/
 @font-face {font-family: din-light;src: url('fonts/DIN-Light.otf');}

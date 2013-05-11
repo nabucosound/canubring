@@ -1,12 +1,12 @@
 <li class="item">
-  <div class="row">
+  <div class="row clickable toggle-trip-activity {% if my_cargos %}update-unread-status{% endif %}" data-href="#" cargo-id="{{ cargo.id }}" href="#" id="{{ trip.id }}">
     <div class="span1">
       <div class="open-plane">
         <a class="toggle-trip-activity {% if my_cargos %}update-unread-status{% endif %}" cargo-id="{{ cargo.id }}" href="#" id="{{ trip.id }}">
         {% if trip.cargo_set.count > 0 %}
           <img src="{{ STATIC_URL }}img/ico_open.png">
         {% endif %}
-      </a>
+        </a>
         {% if trip.travelling_by == 1 %}
         <span class="ico-plane"></span>
         {% elif trip.travelling_by == 2 %}
