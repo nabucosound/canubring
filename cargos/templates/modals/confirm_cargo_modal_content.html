@@ -45,14 +45,16 @@
     <h4>EL LUGAR DE DESPACHO ACORDADO ES:</h4>
     <p class="desc">{{ cargo.get_delivery_display }}</p>
   </div>
-      <form action="{% url 'submit_confirm_cargo_form' %}" method="post" accept-charset="utf-8">
+      <form action="{% url 'submit_confirm_cargo_form' %}" method="post" accept-charset="utf-8" style="margin:0;padding:0;width:auto;display:inline;">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-        <input type="submit" value="Aceptar" class="btn btn-canubring-blue pull-left" style="margin-right:10px;">
+        <input type="submit" value="Aceptar" class="btn btn-canubring-blue">
       </form>
-      <form action="{% url 'submit_reject_cargo_form' %}" method="post" accept-charset="utf-8">
+      <form action="{% url 'submit_reject_cargo_form' %}" method="post" accept-charset="utf-8" style="margin:0;padding:0;width:auto;display:inline;">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-        <input type="submit" value="Rechazar" class="btn btn-canubring-orange pull-left">
-        <textarea name="comment_txt" rows="2" cols="40" placeholder="Write down your reason why are you rejecting this cargo"></textarea>
+        <input type="submit" value="Rechazar" class="btn btn-canubring-orange">
+        <p style="margin:20px 0;">
+          <textarea name="comment_txt" rows="5" placeholder="Write down your reason why are you rejecting this cargo" class="input-block-level"></textarea>
+        </p>
       </form>
 </div>
 
