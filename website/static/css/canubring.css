@@ -27,6 +27,8 @@
 @font-face {font-family: bitter-regular;src: url('fonts/Bitter-Regular.ttf');}
 @font-face {font-family: bitter-strong;src: url('fonts/Bitter-Bold.ttf');}
 
+@font-face {font-family: futura;src: url('fonts/Futura.ttf');}
+
 
 /*Buttons canubring
 ------------------------------------------------------------*/
@@ -289,7 +291,7 @@ footer {
 
 /*Ticket
 ------------------------------------------------------------*/
-.ticket {margin-bottom: 20px;}
+.ticket {margin-bottom: 30px;font-family: din-regular;}
 
   .ticket .hd {
     background-color: #00A5E7;
@@ -328,6 +330,12 @@ footer {
     border-left: 1px solid #e6e6e6;
   }
 
+  .ticket .resizer {
+    width: 138px;
+  }
+
+  .ticket .resizer b {font-weight: normal;}
+
     .ticket .bd .tit-from {
       font-size: 9px;
       text-transform: uppercase;
@@ -337,13 +345,11 @@ footer {
     }
 
     .ticket .bd .from {
-      font-size: 19px;
       text-transform: uppercase;
-      text-align: center;
       padding:0 5px;
       line-height: 1.2em;
       margin:0 0 10px 0;
-      font-family: din-strong;
+      font-family: futura;
     }
 
     .ticket .bd .country {
@@ -354,6 +360,7 @@ footer {
       padding-left: 5px;
       text-transform: uppercase;
       line-height: 1em;
+      font-family: din-strong;
     }
 
     .ticket .bd .date {

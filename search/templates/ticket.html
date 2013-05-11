@@ -6,16 +6,16 @@
       <span class="plane"></span>
       <p class="lang">{{ profile.languages_ticket }}</p>
     </div>
-    <div class="bd">
+    <div class="bd resizer">
       <p class="tit-from">origen</p>
-      <p class="from">{{ trip.get_departure_city }}</p>
+      <p class="from"><b>{{ trip.get_departure_city }}</b></p>
       <div class="clearfix">
         <p class="country pull-left">{{ trip.get_departure_country }}</p>
         <p class="date pull-right">Date: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
       </div>
       <div class="sep-arrow"></div>
       <p class="tit-from">destino</p>
-      <p class="from">{{ trip.get_destination_city }}</p>
+      <p class="from"><b>{{ trip.get_destination_city }}</b></p>
       <div class="aux clearfix">
         <p class="country pull-left">{{ trip.get_destination_country }}</p>
         <p class="date pull-right">Date: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>

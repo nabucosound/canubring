@@ -73,6 +73,21 @@
     </script>
 
 
+    <!-- font resizer tickets -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+      var originalFontSize = 12;
+      var sectionWidth = $('.resizer').width();
+
+      $('.resizer b').each(function(){
+        var spanWidth = $(this).width();
+        var newFontSize = (sectionWidth/spanWidth) * originalFontSize;
+        $(this).css({"font-size" : newFontSize, "line-height" : newFontSize/1.2 + "px"});
+      });
+    });
+    </script>
+
+
     {% if not user.is_authenticated %}
       {% include "extra_js/signup_form.html" %}
       {% include "extra_js/login_form.html" %}
