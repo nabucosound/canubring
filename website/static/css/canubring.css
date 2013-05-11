@@ -608,7 +608,7 @@ footer {
 
 /*Table travels (ask cargo, mytrips...)
 ------------------------------------------------------------*/
-.tb-travels {}
+.tb-travels {font-family: 'DIN-Regular';}
 .tb-travels.mytrips .th {margin:0;color: #F15A24;font-size: 13px;text-transform: uppercase;}
 
   .tb-travels .item {border-top: 1px solid #fff;border-bottom: 1px solid #e6e6e6;padding:10px 0;}
@@ -715,6 +715,9 @@ footer {
 
       .tb-travels.mytrips .item .comments .item-hd .num {color: #fff;float: right;}
 
+      .tb-travels.mytrips .item .hand {background:transparent url(../img/sprites/sprite_general.png) -165px 0 no-repeat;display: block;width: 27px;height: 22px;text-indent: -999em;}
+      .tb-travels.mytrips .item .balloon {background:transparent url(../img/sprites/sprite_general.png) -193px -22px no-repeat;display: block;width: 23px;height: 22px;text-indent: -999em;}
+      .tb-travels.mytrips .item .cargo {background:transparent url(../img/sprites/sprite_general.png) -193px -48px no-repeat;display: block;width: 27px;height: 22px;text-indent: -999em;}
 
         /*hd accordion item mytrip active */
         .tb-travels.mytrips .item .comments .item-hd.active {background-color: #fbb03b;}
