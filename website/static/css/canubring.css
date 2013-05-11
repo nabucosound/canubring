@@ -141,7 +141,8 @@ input.input-canubring, textarea.input-canubring {
 
       header .logo-header a span {display: none;}
 
-  header .user-nav {font-size: 12px;text-transform: uppercase;height:39px;}
+  header .user-nav {font-size: 12px;text-transform: uppercase;height:39px;font-family: din-regular;}
+
   header .user-nav .nav-pills.language {}
   header .user-nav .nav-pills.login {}
 
@@ -188,6 +189,7 @@ footer {
   padding-top: 10px;
   padding-bottom: 90px;
   font-size: 12px;
+  font-family: din-regular;
 }
 
   footer a {color: #96cce3;}

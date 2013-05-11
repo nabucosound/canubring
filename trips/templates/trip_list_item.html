@@ -23,8 +23,19 @@
       <p class="desc">{{ trip.destination_dt|date:"d.m.Y" }}</p>
     </div>
     <div class="span3">
-      <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
-      <p class="desc"><span>To</span> {{ trip.destination_city }}</p>
+      <div class="media desc">
+          <span class="pull-left">From</span>
+          <div class="media-body">
+            {{ trip.departure_city }}   
+          </div>
+        </div>
+
+        <div class="media desc">
+          <span class="pull-left">To</span>
+          <div class="media-body">
+            {{ trip.destination_city }}
+          </div>
+        </div>   
     </div>
     <div class="span1">
       <p class="desc">{{ trip.user.get_full_name }}</p>
@@ -51,8 +62,19 @@
       <p class="desc">{{ trip.destination_dt|date:"d.m.Y" }}</p>
     </div>
     <div class="span3">
-      <p class="desc"><span>From</span> {{ trip.departure_city }}</p>
-      <p class="desc"><span>To</span> {{ trip.destination_city }}</p>
+        <div class="media desc">
+          <span class="pull-left">From</span>
+          <div class="media-body">
+            {{ trip.departure_city }}   
+          </div>
+        </div>
+
+        <div class="media desc">
+          <span class="pull-left">To</span>
+          <div class="media-body">
+            {{ trip.destination_city }}
+          </div>
+        </div>      
     </div>
     <div class="span1"><span class="pull-right">x</span></div>
     <div class="span1">
