@@ -40,7 +40,7 @@
     <div class="span1">
       <p class="desc">{{ trip.user.get_full_name }}</p>
     </div>
-    <div class="span1"><span class="pull-right hand">xxxxx</span></div>
+    <div class="span1"><span class="pull-right {% if cargo.state == 2 %}hand{% elif cargo.state == 4 %}cargo{%else %}balloon{% endif %}">y</span></div>
     <div class="span1">
       <div class="status">
         {% if my_cargos %}
@@ -76,7 +76,7 @@
           </div>
         </div>      
     </div>
-    <div class="span1"><span class="pull-right">x</span></div>
+    <div class="span1"><span class="pull-right {% if cargo.traveller_user_review_stars %}stars{% endif %}"></span></div>
     <div class="span1">
       <div class="status">
         {% if my_cargos %}

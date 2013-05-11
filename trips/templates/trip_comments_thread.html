@@ -24,6 +24,8 @@
         {% elif cargo.requesting_user == user %}
           {% if cargo.state == 2 %}
           <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">Confirm Delivery</a>
+          {% elif cargo.state == 4 and not cargo.traveller_user_review_stars %}
+          <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">Review Traveller</a>
           {% endif %}
         {% endif %}
         <a href="#" class="reply-cargo-btn btn btn-canubring-orange pull-right">Reply</a>
