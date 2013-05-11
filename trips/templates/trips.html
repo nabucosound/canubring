@@ -8,7 +8,7 @@
 
 <div class="upload-trip">
   <br />
-  <a href="{% url 'new_trip' %}" class="btn" style="float:right">Upload new trip</a>
+  <a href="{% url 'new_trip' %}" class="btn btn-canubring-orange" style="float:right">UPLOAD NEW TRIP</a>
   <ul class="nav nav-tabs">
     <li {% if not past_trips %}class="active"{% endif %}>
       <a href="{% url 'trips' %}">Current travels {% if user.userprofile.get_unread_current_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_trip_comments }}</span>{% endif %}</a>
