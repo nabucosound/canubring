@@ -604,7 +604,6 @@ footer {
   .tb-travels .item .open-plane {position: relative;padding-left: 5px;}
   .tb-travels .item .open-plane .ico-plane,
   .tb-travels .item .open-plane .ico-bus,
-  .tb-travels .item .open-plane .ico-auto,
   .tb-travels .item .open-plane .ico-train  {
       display: block;
       position: absolute;top:0;right:0;
@@ -612,6 +611,14 @@ footer {
       width: 25px;
       height: 26px;
   }
+  
+  .tb-travels .item .open-plane .ico-auto {display: block;
+      position: absolute;top:0;right:0;
+      background: transparent url(../img/sprites/sprite_general.png) -140px -23px no-repeat;
+      width: 25px;
+      height: 22px;
+  }
+
     .tb-travels.mytrips .item .open-plane .ico-plane {background-position: -140px -48px;}
     .tb-travels.mytrips .item .open-plane .ico-bus {background-position: -140px -74px;}
     .tb-travels.mytrips .item .open-plane .ico-auto {background-position: -140px -99px;}
