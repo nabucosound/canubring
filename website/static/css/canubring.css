@@ -161,18 +161,23 @@ input.input-canubring, textarea.input-canubring {
 
   header .social {margin-top: 20px;}
 
+  header .social li {margin:0;padding:0;}
+
     header .social .ico {
       background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;
       display: inline-block;
-      width:27px;height:27px;
+      width:31px;height:31px;
       text-indent: -999em;
       opacity: .6;
     }
       header .social .ico:hover {opacity: 1;}
 
       header .social .ico.twitter {background-position: -256px 0;}
-      header .social .ico.facebook {background-position: -256px -27px;}
-      header .social .ico.pinterest {background-position: -256px -54px;}
+      header .social .ico.facebook {background-position: -256px -31px;}
+      header .social .ico.plus {background-position: -256px -62px;}
+      header .social .ico.pinterest {background-position: -256px -93px;}
+      header .social .ico.instagram {background-position: -256px -124px;}
+      header .social .ico.flickr {background-position: -256px -155px;}
 
 
 /*Pagination (ORB)
@@ -193,6 +198,24 @@ footer {
   font-size: 12px;
   font-family: din-regular;
 }
+  footer .social {margin-top: 10px;}
+  footer .social li {margin-left: 0;padding-left: 0;}
+
+    footer .social .ico {
+      background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;
+      display: inline-block;
+      width:31px;height:31px;
+      text-indent: -999em;
+      opacity: .6;
+    }
+      footer .social .ico:hover {opacity: 1;}
+
+      footer .social .ico.twitter {background-position: -287px 0;}
+      footer .social .ico.facebook {background-position: -287px -31px;}
+      footer .social .ico.plus {background-position: -287px -62px;}
+      footer .social .ico.pinterest {background-position: -287px -93px;}
+      footer .social .ico.instagram {background-position: -287px -124px;}
+      footer .social .ico.flickr {background-position: -287px -155px;}
 
   footer a {color: #96cce3;}
   footer p {margin:0;}
