@@ -9,37 +9,46 @@
     float: left;
     padding: auto 10px;
   }
+  .search-label {
+    min-width: 80px;
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="main-search clearfix">
     <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
-      <select name="departure_country">
-          <option value="" selected="selected">---------</option>
-          {% for obj in active_dep_countries %}
-          <option value="{{ obj.id }}" {% if obj.id == departure_country %}selected="selected"{% endif %}>{{ obj.name }}</option>
-          {% endfor %}
-      </select>
-      <select name="destination_country">
-          <option value="" selected="selected">---------</option>
+      <div style="margin-bottom:5px">
+        <label class="search-label" for="dep-country-select">Departure</label>
+        <select id="dep-country-select" name="departure_country">
+            <option value="" selected="selected">Select Country...</option>
+            {% for obj in active_dep_countries %}
+            <option value="{{ obj.id }}" {% if obj.id == departure_country %}selected="selected"{% endif %}>{{ obj.name }}</option>
+            {% endfor %}
+        </select>
+        <select id="dep-city-select" name="departure_city" {% if not departure_country %}disabled{% endif %}>
+            <option value="" selected="selected">Select City...</option>
+            {% for obj in active_dep_cities %}
+            <option value="{{ obj.id }}" {% if obj.id == departure_city %}selected="selected"{% endif %}>{{ obj.name }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <label class="search-label" for="dest-country-select">Destination</label>
+      <select id="dest-country-select" name="destination_country">
+          <option value="" selected="selected">Select Country...</option>
           {% for obj in active_dest_countries %}
           <option value="{{ obj.id }}" {% if obj.id == destination_country %}selected="selected"{% endif %}>{{ obj.name }}</option>
           {% endfor %}
       </select>
-      <select name="departure_city">
-          <option value="" selected="selected">---------</option>
-          {% for obj in active_dep_cities %}
-          <option value="{{ obj.id }}" {% if obj.id == departure_city %}selected="selected"{% endif %}>{{ obj.name }}</option>
-          {% endfor %}
-      </select>
-      <select name="destination_city">
-          <option value="" selected="selected">---------</option>
+      <select id="dest-city-select" name="destination_city" {% if not destination_country %}disabled{% endif %}>
+          <option value="" selected="selected">Select City...</option>
           {% for obj in active_dest_cities %}
           <option value="{{ obj.id }}" {% if obj.id == destination_city %}selected="selected"{% endif %}>{{ obj.name }}</option>
           {% endfor %}
       </select>
+      {% comment %}
       <input type="submit">
+      {% endcomment %}
     </form>
 </div>
 
@@ -66,5 +75,26 @@
       columnWidth : 150
     });
   });
+    $("#dep-country-select").change(function() {
+        var value = $(this).val();
+        console.log(value);
+        if (value == "") {
+          $("#dep-city-select").attr('disabled', 'disabled');
+        } else {
+          $("#dep-city-select").removeAttr('disabled');
+        }
+    });
+    $("#dest-country-select").change(function() {
+        var value = $(this).val();
+        console.log(value);
+        if (value == "") {
+          $("#dest-city-select").attr('disabled', 'disabled');
+        } else {
+          $("#dest-city-select").removeAttr('disabled');
+        }
+    });
+    $("select").change(function() {
+        $(this).closest('form').submit();
+    });
   </script>
 {% endblock %}
