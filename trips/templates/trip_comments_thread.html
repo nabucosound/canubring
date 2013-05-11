@@ -11,7 +11,7 @@
         <input type="hidden" name="from_my_cargos" value="1">
         {% endif %}
         <input type="hidden" name="object_id" value="{{ cargo.id }}">
-        <textarea name="content" class="input-canubring" placeholder="Reply to this traveller. When you reach a deal, confirm cargo" required></textarea>
+        <textarea name="content" class="input-canubring" placeholder="Reply to this cargo conversation." required></textarea>
         {% if cargo.traveller_user == user %}
           {% if cargo.state == 0 or cargo.state == 3 %}
             {% if not cargo.expired %}

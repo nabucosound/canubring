@@ -41,7 +41,7 @@
       return false;
     })
     $('.reply-cargo-btn').click(function() {
-      var comment_obj = $(this).prev("[name='content']");
+      var comment_obj = $(this).siblings("[name='content']");
       var form = $(this).closest("form");
       var container = $(this).closest(".comment-item");
       $.ajax({
