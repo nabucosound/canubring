@@ -194,6 +194,37 @@ class UserProfile(models.Model):
     def get_unread_past_cargo_comments(self):
         return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
 
+    @property
+    def get_social_link1(self):
+        return self.sociallink_set.get(pos=1)
+
+    @property
+    def get_social_link2(self):
+        return self.sociallink_set.get(pos=2)
+
+    @property
+    def get_social_link3(self):
+        return self.sociallink_set.get(pos=3)
+
+    @property
+    def get_social_link4(self):
+        return self.sociallink_set.get(pos=4)
+
+    @property
+    def get_social_link5(self):
+        return self.sociallink_set.get(pos=5)
+
+    @property
+    def get_social_link6(self):
+        return self.sociallink_set.get(pos=6)
+
+    @property
+    def get_social_link7(self):
+        return self.sociallink_set.get(pos=7)
+
+    @property
+    def get_social_link8(self):
+        return self.sociallink_set.get(pos=8)
 
 #Make sure we create a Profile when creating a User
 def create_profile(sender, instance, created, **kwargs):

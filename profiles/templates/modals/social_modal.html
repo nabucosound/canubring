@@ -1,26 +1,26 @@
+<style type="text/css" media="screen">
+  .h3-canubring-orange {color: #f15a24;font-size: 16px;margin:0;text-transform: uppercase;font-family: bitter-regular;}
+</style>
+
 <div id="modal-social" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
-    <h3>Links to social network profiles you own</h3>
+    <h3 class="h3-canubring-orange">Add your other accounts url:</h3>
     <div class="aux-form">
 
       <form id="profile-form" action="{% url 'update_social' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
-          {% for social in profile.sociallink_set.all %}
-          <input name="social{{ social.pos }}" class="input-xlarge input-canubring" type="text" value="{{ social.url }}" placeholder="Social network url #{{ social.pos }}">
-          {% endfor %}
-          {% comment %}
-          <input name="social2" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #2">
-          <input name="social3" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #3">
-          <input name="social4" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #4">
-          <input name="social5" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #5">
-          <input name="social6" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #6">
-          <input name="social7" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #7">
-          <input name="social8" class="input-xlarge input-canubring" type="text" value="" placeholder="Social network url #8">
-          {% endcomment %}
+          <input name="social1" class="input-large input-canubring" type="text" value="{{ profile.get_social_link1 }}" placeholder="http://www.twitter.com/...">
+          <input name="social2" class="input-large input-canubring" type="text" value="{{ profile.get_social_link2 }}" placeholder="http://www.facebook.com/...">
+          <input name="social3" class="input-large input-canubring" type="text" value="{{ profile.get_social_link3 }}" placeholder="http://plus.google.com/...">
+          <input name="social4" class="input-large input-canubring" type="text" value="{{ profile.get_social_link4 }}" placeholder="http://www.pinterest.com/...">
+          <input name="social5" class="input-large input-canubring" type="text" value="{{ profile.get_social_link5 }}" placeholder="http://www.linkedin.com/...">
+          <input name="social6" class="input-large input-canubring" type="text" value="{{ profile.get_social_link6 }}" placeholder="http://www.instagram.com/...">
+          <input name="social7" class="input-large input-canubring" type="text" value="{{ profile.get_social_link7 }}" placeholder="http://www.flickr.com/...">
+          <input name="social8" class="input-large input-canubring" type="text" value="{{ profile.get_social_link8 }}" placeholder="http://www.youtube.com/...">
         </div>
         <div class="clearfix">
           <p><input type="submit" class="btn btn-canubring-orange pull-right" value="DONE" /></p>
