@@ -1,7 +1,7 @@
 <form action="{% url 'submit_review_traveller_form' %}" method="post" accept-charset="utf-8">
   <h3>¿CÓMO FUE TU EXPERIENCIA CON EL VIAJERO {{ cargo.traveller_user.get_full_name }}?</h3>
 
-  <div class="block clearfix">
+    <span id="review-error" style="color:red;display:none;margin-left:40px">Select one rating value</span>
     <div class="control-group">
       <label class="radio">
         <p class="stars-big five"></p>
@@ -53,8 +53,21 @@
 
   <div class="submit-box clearfix pull-right">
       <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-      <p><input type="submit" value="Send Review" class="btn btn-canubring-orange"></p>
+      <p><input id="send-traveller-review-btn" type="submit" value="Send Review" class="btn btn-canubring-orange"></p>
     <p><a href="{% url 'confirm_delivery' cargo.id %}">[Responder más tarde]</a></p>
   </div>
 </form>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+      $('#send-traveller-review-btn').click(function() {
+        if ($('input[name="traveller_user_review_stars"]:checked').length == 0) {
+          $('#review-error').show();
+          return false;
+        } else {
+          $('#review-error').hide();
+        }
+      });
+  });
+</script>
 

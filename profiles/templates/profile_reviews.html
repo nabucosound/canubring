@@ -10,7 +10,7 @@
       <img class="media-object img-polaroid pull-left" src="{{ cargo.requesting_user.userprofile.get_review_img_url }}">
       <div class="media-body">
         <div class="comment-box">
-          <h5><a href="#">{{ cargo.requesting_user.get_full_name }}</a></h5>
+          <h5><a href="{{ cargo.requesting_user.userprofile.get_absolute_url }}">{{ cargo.requesting_user.get_full_name }}</a></h5>
           <p>{{ cargo.traveller_user_review_comment }}</p>
         </div>
         <span class="arrow"></span>
