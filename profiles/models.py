@@ -145,14 +145,17 @@ class UserProfile(models.Model):
     @property
     def get_reviews_about_me(self):
         from django.db.models import Q
-        # return Cargo.objects.filter(trip__user=self.user).exclude(traveller_user_review_stars__isnull=True)
         return Cargo.objects.filter(Q(requesting_user=self.user, requesting_user_review_stars__isnull=False) | Q(traveller_user=self.user, traveller_user_review_stars__isnull=False))
 
     @property
     def get_reviews_by_me(self):
         from django.db.models import Q
-        # return self.user.my_cargos.filter(traveller_user_review_stars__isnull=False)
         return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False))
+
+    @property
+    def get_all_reviews_by_me(self):
+        from django.db.models import Q
+        return Cargo.objects.filter(Q(traveller_user=self.user) | Q(requesting_user=self.user), state=4)
 
     @property
     def get_average_reviews_about_me_score(self):
@@ -193,6 +196,11 @@ class UserProfile(models.Model):
     @property
     def get_unread_past_cargo_comments(self):
         return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
+
+    @property
+    def unreviewed_by_me(self):
+        from django.db.models import Q
+        return Cargo.objects.filter(state=4).filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=True) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=True)).distinct().count()
 
     @property
     def get_social_link1(self):

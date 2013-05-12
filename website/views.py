@@ -46,7 +46,7 @@ def cargos(request, template, profile_attr='current_cargos'):
 def evaluations(request, template, profile_attr='get_reviews_about_me'):
     ctxt = dict()
     ctxt['reviews'] = listing(request, getattr(request.user.userprofile, profile_attr))
-    ctxt['reviews_by_me'] = profile_attr == 'get_reviews_by_me'
+    ctxt['reviews_by_me'] = profile_attr == 'get_all_reviews_by_me'
     return render(request, template, ctxt)
 
 @login_required

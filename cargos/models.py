@@ -106,6 +106,14 @@ class Cargo(models.Model):
     def total_unread_comments_count_for_traveller_user(self):
         return self.cargocomment_set.exclude(user=self.traveller_user).filter(unread=True)
 
+    @property
+    def traveller_reviewed(self):
+        return True if self.traveller_user_review_stars is not None else False
+
+    @property
+    def requesting_user_reviewed(self):
+        return True if self.requesting_user_review_stars is not None else False
+
 
 class CargoComment(models.Model):
     TYPE_CHOICES = (

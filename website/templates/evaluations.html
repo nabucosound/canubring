@@ -14,7 +14,7 @@
       <a href="{% url 'evaluations' %}">Reviews about you</a>
     </li>
     <li {% if reviews_by_me %}class="active"{% endif %}>
-      <a href="{% url 'evaluations_by_me' %}">Reviews by you</a>
+      <a href="{% url 'evaluations_by_me' %}">Reviews by you {% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring">{{ user.userprofile.unreviewed_by_me }}</span>{% endif %}</a>
     </li>
   </ul>
 
@@ -58,7 +58,13 @@
 
 </div><!-- my evaluations -->
 
+{% include "modals/review_requesting_user_modal.html" %}
+{% include "modals/review_traveller_modal.html" %}
 
 {% endblock %}
 
+{% block extra_js %}
+  {% include "extra_js/review_requesting_user_form.html" %}
+  {% include "extra_js/review_traveller_form.html" %}
+{% endblock %}
 

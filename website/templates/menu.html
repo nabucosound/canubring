@@ -18,7 +18,7 @@
       <a href="{{ cargos_url }}">My Cargos</a>{% if user.userprofile.unread_cargo_comments %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unread_cargo_comments }}</a></span>{% endif %}
     </li>
     <li class="evaluations {% active_nav_menu_item request evaluations_url %}">
-      <a href="{{ evaluations_url }}">Reviews</a>
+      <a href="{{ evaluations_url }}">Reviews</a>{% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unreviewed_by_me }}</a></span>{% endif %}
     </li>
   </ul>
   {% endif %}

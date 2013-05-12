@@ -4,10 +4,15 @@
               <p><a href="{{ reviewed_user.userprofile.get_absolute_url }}">{{ reviewed_user.get_full_name }}</a></p>	
             </div>
             <div class="content">
-              {% comment %}
-              <a class="btn btn-canubring-orange pull-right" href="#">Review</a>
-              {% endcomment %}
+              {% if reviewed_user == cargo.requesting_user and not cargo.requesting_user_reviewed %}
+              <input type="hidden" name="object_id" value="{{ cargo.id }}">
+              <a href="#modal-review-cargo" data-toggle="modal" class="review-requesting-user-form-btn cargo-form-btn btn btn-canubring-orange pull-right">Review</a>
+              {% elif reviewed_user == cargo.traveller_user and not cargo.traveller_reviewed %}
+              <input type="hidden" name="object_id" value="{{ cargo.id }}">
+              <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">Review</a>
+              {% else %}
               <span class="stars-big {{ css_class_name }} pull-right"></span>
+              {% endif %}
               <p class="city"><span>FROM:</span>{{ cargo.trip.departure_city|upper }}</p>
               <p class="city"><span>TO:</span>{{ cargo.trip.destination_city|upper }}</p>	
               <p class="desc">{{ review_comment }}</p>
