@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
 
 {% if show_new_trip_sys_msg %}
@@ -8,13 +10,13 @@
 
 <div class="upload-trip">
   <br />
-  <a href="{% url 'new_trip' %}" class="btn btn-canubring-orange" style="float:right">UPLOAD NEW TRIP</a>
+  <a href="{% url 'new_trip' %}" class="btn btn-canubring-orange" style="float:right">{% trans "upload new trip" %}</a>
   <ul class="nav nav-tabs">
     <li {% if not past_trips %}class="active"{% endif %}>
-      <a href="{% url 'trips' %}">Current travels {% if user.userprofile.get_unread_current_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_trip_comments }}</span>{% endif %}</a>
+      <a href="{% url 'trips' %}">{% trans "Current travels" %}{% if user.userprofile.get_unread_current_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_trip_comments }}</span>{% endif %}</a>
     </li>
     <li {% if past_trips %}class="active"{% endif %}>
-      <a href="{% url 'past_trips' %}">Past travels {% if user.userprofile.get_unread_past_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_past_trip_comments }}</span>{% endif %}</a>
+      <a href="{% url 'past_trips' %}">{% trans "Past travels" %}{% if user.userprofile.get_unread_past_trip_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_past_trip_comments }}</span>{% endif %}</a>
     </li>
   </ul>
 </div>
@@ -24,11 +26,8 @@
 
     <div class="row">
       <div class="span1"></div>
-      <div class="span2"><h5 class="th">Date</h5></div>
-      <div class="span3"><h5 class="th">Travel</h5></div>
-      {% comment %}
-      <div class="span1"><h5 class="th">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h5></div>
-      {% endcomment %}
+      <div class="span2"><h5 class="th">{% trans "Date" %}</h5></div>
+      <div class="span3"><h5 class="th">{% trans "Travel" %}</h5></div>
     </div>
 
     <ul class="unstyled">
@@ -36,7 +35,7 @@
         {% include "trip_list_item.html" %}
       {% empty %}
         <div class="alert">
-          You do not have trips to display here.
+          {% trans "No trips to display" %}
         </div>
       {% endfor %}
     </ul>

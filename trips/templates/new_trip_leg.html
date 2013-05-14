@@ -1,19 +1,21 @@
+{% load i18n %}
+
 <div class="item-leg clearfix">
-  <h4>Fill your data leg</h4>
+  <h4>{% trans "Fill your trip leg" %}</h4>
 
   <form id="new-trip-form" class="new-trip-form form-inline" action="/api/v1/trip/" method="post" accept-charset="utf-8">
 
-    <span class="error-msg" style="display:none;color:red">All fields except comments are required</span>
+    <span class="error-msg" style="display:none;color:red">{% trans "All fields except comments are required" %}</span>
 
     <div class="control-group">
-      <input type="text" name="departure_city" class="city-input input-large input-canubring" placeholder="departure city" required />
+      <input type="text" name="departure_city" class="city-input input-large input-canubring" placeholder="{% trans "departure city" %}" required>
       {% comment %}
-      <input type="text" name="departure_dt" class="datepicker input-medium input-canubring" placeholder="departure date" required />
+      <input type="text" name="departure_dt" class="datepicker input-medium input-canubring" placeholder="departure date" required>
       {% endcomment %}
     </div>
     <div class="control-group">
-      <input type="text" name="destination_city" class="city-input input-large input-canubring" placeholder="destination city" required />
-      <input type="text" name="destination_dt" class="datepicker input-medium input-canubring" placeholder="arrival date" required />
+      <input type="text" name="destination_city" class="city-input input-large input-canubring" placeholder="{% trans "destination city" %}" required>
+      <input type="text" name="destination_dt" class="datepicker input-medium input-canubring" placeholder="{% trans "arrival date" %}" required>
     </div>
 
     <input type="hidden" name="user" value="/api/v1/user/{{ user.id }}/">
@@ -21,7 +23,7 @@
     <div class="control-group">
 
       <div class="travelling-by pull-left">
-        <h5>Travelling by:</h5>
+        <h5>{% trans "Travelling by" %}:</h5>
         <label class="checkbox">
           <input type="radio" name="travelling_by" value="1" checked="checked" class="checkbox">&nbsp;&nbsp;<img src="{{ STATIC_URL }}img/ico_plane.png">
         </label>
@@ -36,9 +38,9 @@
         </label>
       </div>
 
-      <textarea name="comments" class="input-canubring" placeholder="Comments about what you are up to carry"></textarea>
+      <textarea name="comments" class="input-canubring" placeholder="{% trans "Comments about what you are up to carry" %}"></textarea>
     </div>
 
   </form>
-</div><!-- .item-leg -->
+</div>
 

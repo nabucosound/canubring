@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load website_tags %}
 
 {% url 'profile' as profile_url %}
@@ -9,16 +10,16 @@
   {% if user.is_authenticated %}
   <ul class="unstyled inline clearfix">
     <li class="profile {% active_nav_menu_item request profile_url %}">
-      <a href="{{ profile_url }}">My profile</a>
+      <a href="{{ profile_url }}">{% trans "My profile" %}</a>
     </li>
     <li class="trips {% active_nav_menu_item request trips_url %}">
-      <a href="{{ trips_url }}">My Trips</a>{% if user.userprofile.unread_trip_comments %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unread_trip_comments }}</a></span>{% endif %}
+      <a href="{{ trips_url }}">{% trans "My Trips" %}</a>{% if user.userprofile.unread_trip_comments %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unread_trip_comments }}</a></span>{% endif %}
     </li>
     <li class="cargos {% active_nav_menu_item request cargos_url %}">
-      <a href="{{ cargos_url }}">My Cargos</a>{% if user.userprofile.unread_cargo_comments %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unread_cargo_comments }}</a></span>{% endif %}
+      <a href="{{ cargos_url }}">{% trans "My Cargos" %}</a>{% if user.userprofile.unread_cargo_comments %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unread_cargo_comments }}</a></span>{% endif %}
     </li>
     <li class="evaluations {% active_nav_menu_item request evaluations_url %}">
-      <a href="{{ evaluations_url }}">Reviews</a>{% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unreviewed_by_me }}</a></span>{% endif %}
+      <a href="{{ evaluations_url }}">{% trans "Reviews" %}</a>{% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring"><a href="#">{{ user.userprofile.unreviewed_by_me }}</a></span>{% endif %}
     </li>
   </ul>
   {% endif %}

@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% with profile=trip.user.userprofile %}
   <div class="ticket">
     <div class="inner-ticket">
@@ -7,18 +9,18 @@
       <p class="lang">{{ profile.languages_ticket }}</p>
     </div>
     <div class="bd resizer">
-      <p class="tit-from">origen</p>
+      <p class="tit-from">{% trans "departure" %}</p>
       <p class="from"><b>{{ trip.get_departure_city }}</b></p>
       <div class="clearfix">
         <p class="country pull-left">{{ trip.get_departure_country }}</p>
-        <p class="date pull-right">Date: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
+        <p class="date pull-right">{% trans "Date" %}: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
       </div>
       <div class="sep-arrow"></div>
-      <p class="tit-from">destino</p>
+      <p class="tit-from">{% trans "destination" %}</p>
       <p class="from"><b>{{ trip.get_destination_city }}</b></p>
       <div class="aux clearfix">
         <p class="country pull-left">{{ trip.get_destination_country }}</p>
-        <p class="date pull-right">Date: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
+        <p class="date pull-right">{% trans "Date" %}: <span>{{ trip.destination_dt|date:"d/m/Y" }}</span></p>
       </div>
       <div class="sep-holes"></div>
       <div class="profile-comment media">
@@ -28,7 +30,7 @@
         <div class="media-body">
           <h6><a class="pull-left" href="{{ profile.get_absolute_url }}">{{ trip.user.get_full_name }}</a></h6>
           <p class="country">{{ profile.country }}</p>
-          <p class="stats">{{ profile.past_trips|length }} Trips - 0 Cargas</p>
+          <p class="stats">{{ profile.past_trips|length }} {% trans "Trips" %} - {{ profile.get_completed_cargos_count }} {% trans "Cargos" %}</p>
           <div class="stars {{ profile.average_traveller_review_css_class_name }}"></div>
           {% if trip.comments %}
           <p class="comment">"{{ trip.comments|truncatechars:'100' }}"</p>

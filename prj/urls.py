@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(regex=r'^search/$', view='search.views.search', name='search', kwargs = {'template': 'search.html',}),
     url(r'cargos/', include('cargos.urls')),
     url(r'^password/', include('password_reset.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 
     # Static pages
     url(r'^how-it-works/', TemplateView.as_view(template_name="how_works.html"), name='how_works'),

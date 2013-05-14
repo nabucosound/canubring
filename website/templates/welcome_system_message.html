@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div class="system-msg welcome-box">
   <div class="inner">
-    <h3>Welcome {{ profile.user.get_full_name }}</h3>
-    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" class="pull-left media-object"><h4 class="media-body">Please check your inbox ({{ profile.user.email }}) and verify your email address.</h4></div>
-    <span class="close-box"><a class="close-system-msg" href="#">close</a></span>
+    <h3>{% trans "Welcome " %} {{ profile.user.get_full_name }}</h3>
+    <div class="media"><img src="{{ STATIC_URL }}img/ico_mail.png" class="pull-left media-object"><h4 class="media-body">{% trans "Please check your inbox" %} ({{ profile.user.email }}) {% trans "and verify your email address" %}.</h4></div>
+    <span class="close-box"><a class="close-system-msg" href="#">{% trans "close" %}</a></span>
     <span class="fold"></span>
   </div>
 </div>

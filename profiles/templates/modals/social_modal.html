@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <style type="text/css" media="screen">
   .h3-canubring-orange {color: #f15a24;font-size: 16px;margin:0;text-transform: uppercase;font-family: bitter-regular;}
 </style>
@@ -7,7 +9,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
-    <h3 class="h3-canubring-orange">Add your other accounts url:</h3>
+    <h3 class="h3-canubring-orange">{% trans "Add your other account urls" %}:</h3>
     <div class="aux-form">
 
       <form id="profile-form" action="{% url 'update_social' %}" method="post" class="form-horizontal">
@@ -23,7 +25,7 @@
           <input name="social8" class="input-large input-canubring" type="text" value="{{ profile.get_social_link8 }}" placeholder="http://www.youtube.com/...">
         </div>
         <div class="clearfix">
-          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="DONE" /></p>
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="{% trans "Done" %}"></p>
         </div>
       </form>
 

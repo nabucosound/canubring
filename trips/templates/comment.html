@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load cargos_tags %}
 
 <div class="comment-item media" {% if comment|is_unread:user %}style="background-color:#EAF7FC"{% endif %}>
@@ -8,7 +9,7 @@
     <p class="date">{{ comment.creation_dt|date:"d/m/Y" }}</p>
     {% if comment.comment_type == 1 and not comment.user == user and cargo.state == 1 %}
       <input type="hidden" name="object_id" value="{{ comment.cargo.id }}">
-      <a href="#confirm-modal-cargo" data-toggle="modal" class="confirm-cargo-form-btn cargo-form-btn btn btn-canubring-orange pull-right">Review Cargo</a>
+      <a href="#confirm-modal-cargo" data-toggle="modal" class="confirm-cargo-form-btn cargo-form-btn btn btn-canubring-orange pull-right">{% trans "Review cargo" %}</a>
     {% endif %}
   </div>
 </div>

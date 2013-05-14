@@ -3,6 +3,8 @@ from urllib2 import urlopen, HTTPError
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
+from django.db.models import Avg
 from django.template.defaultfilters import slugify
 from django.core.files.base import ContentFile
 from django.db.models.signals import post_save
@@ -144,22 +146,22 @@ class UserProfile(models.Model):
 
     @property
     def get_reviews_about_me(self):
-        from django.db.models import Q
         return Cargo.objects.filter(Q(requesting_user=self.user, requesting_user_review_stars__isnull=False) | Q(traveller_user=self.user, traveller_user_review_stars__isnull=False))
 
     @property
     def get_reviews_by_me(self):
-        from django.db.models import Q
         return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False))
 
     @property
     def get_all_reviews_by_me(self):
-        from django.db.models import Q
         return Cargo.objects.filter(Q(traveller_user=self.user) | Q(requesting_user=self.user), state=4)
 
     @property
+    def get_completed_cargos_count(self):
+        return Cargo.objects.filter(traveller_user=self.user, state=4).count()
+
+    @property
     def get_average_reviews_about_me_score(self):
-        from django.db.models import Avg
         return self.get_reviews_about_me.aggregate(Avg('traveller_user_review_stars'))
 
     @property

@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
 <div class="my-evaluations">
 
 	<div class="hd">
 		<div class="inner">
-      <h4>Your reviews average:<span class="stars-big {{ user.userprofile.average_traveller_review_css_class_name }}"></span></h4>
+      <h4>{% trans "Your reviews average" %}:<span class="stars-big {{ user.userprofile.average_traveller_review_css_class_name }}"></span></h4>
 		</div>
 	</div>
 
   <ul class="nav nav-tabs">
     <li {% if not reviews_by_me %}class="active"{% endif %}>
-      <a href="{% url 'evaluations' %}">Reviews about you</a>
+      <a href="{% url 'evaluations' %}">{% trans "Reviews about you" %}</a>
     </li>
     <li {% if reviews_by_me %}class="active"{% endif %}>
-      <a href="{% url 'evaluations_by_me' %}">Reviews by you {% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring">{{ user.userprofile.unreviewed_by_me }}</span>{% endif %}</a>
+      <a href="{% url 'evaluations_by_me' %}">{% trans "Reviews by you " %}{% if user.userprofile.unreviewed_by_me %}<span class="badge badge-canubring">{{ user.userprofile.unreviewed_by_me }}</span>{% endif %}</a>
     </li>
   </ul>
 
@@ -30,7 +32,7 @@
         {% empty %}
         <li>
           <div class="alert">
-            You do not have reviews yet.
+            {% trans "You do not have reviews yet" %}
           </div>
         </li>
         {% endfor %}
@@ -44,7 +46,7 @@
         {% empty %}
         <li>
           <div class="alert">
-            You do not have reviews yet.
+            {% trans "You do not have reviews yet" %}
           </div>
         </li>
         {% endfor %}
@@ -55,8 +57,7 @@
 
 	</div>
 	
-
-</div><!-- my evaluations -->
+</div>
 
 {% include "modals/review_requesting_user_modal.html" %}
 {% include "modals/review_traveller_modal.html" %}

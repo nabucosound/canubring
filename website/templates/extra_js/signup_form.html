@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     $("#signup-form").submit(function() {
@@ -18,7 +20,7 @@
         password_input.siblings('.error').hide();
       };
       if (!terms_input.is(':checked')) {
-        $("#signup-form-xhr-error").text('you must agree to the terms of service');
+        $("#signup-form-xhr-error").text('{% trans "you must agree to the terms of service" %}');
         $("#signup-form-xhr-error").show();
         submit_form = false;
       } else {

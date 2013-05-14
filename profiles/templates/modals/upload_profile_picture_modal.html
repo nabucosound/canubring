@@ -1,13 +1,15 @@
+{% load i18n %}
+
 <div id="avatar-modal" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <form class="form-horizontal" action="{% url 'upload_profile_picture' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="modal-header"><a class="close" data-dismiss="modal">×</a></div>  
     <div class="modal-body">
-      <h3>Cambia tu imagen de perfil</h3>  
+      <h3>{% trans "Change your profile picture" %}</h3>  
       <input name="profile_photo" id="lefile" type="file">
     </div>  
     <div class="modal-footer">
-      <input type="submit" class="btn btn-canubring-orange pull-right" value="DONE">
+      <input type="submit" class="btn btn-canubring-orange pull-right" value="{% trans "Done" %}">
     </div>
   </form>
 </div>

@@ -1,52 +1,45 @@
+{% load i18n %}
+
 <div id="modal-profile" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
-    <h3>Tell us a little more about you</h3>
+    <h3>{% trans "Tell us a little more about you" %}</h3>
     <div class="aux-form">
 
       <form id="profile-form" action="{% url 'update_profile' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
-          <input name="first_name" class="input-xlarge input-canubring" type="text" value="{{ user.first_name }}" placeholder="Your first name">
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <input name="first_name" class="input-xlarge input-canubring" type="text" value="{{ user.first_name }}" placeholder="{% trans "Your first name" %}">
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          <input name="last_name" class="input-xlarge input-canubring" type="text" value="{{ user.last_name }}" placeholder="Your last name">
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <input name="last_name" class="input-xlarge input-canubring" type="text" value="{{ user.last_name }}" placeholder="{% trans "Your last name" %}">
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          {% comment %}
-          <input name="country" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.country }}" placeholder="Your country">
-          {% endcomment %}
           <select name="country" id="country">
-            <option value="">Choose Country</option>
+            <option value="">{% trans "Choose Country" %}</option>
             {% for country in profile_countries %}
             <option value="{{ country.code }}" {% if user.userprofile.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
             {% endfor %}
           </select>
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          {% comment %}
-          <input name="language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.language }}" placeholder="Language">
-          {% endcomment %}
           <select name="language" id="language">
-              <option value="0">Choose Language</option>
+              <option value="0">{% trans "Choose Language" %}</option>
               <option value="1" {% if user.userprofile.language == 1 %}selected="selected"{% endif %}>English</option>
               <option value="2" {% if user.userprofile.language == 2 %}selected="selected"{% endif %}>Español</option>
               <option value="3" {% if user.userprofile.language == 3 %}selected="selected"{% endif %}>Português</option>
               <option value="4" {% if user.userprofile.language == 4 %}selected="selected"{% endif %}>Française</option>
           </select>
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          {% comment %}
-          <input name="second_language" class="input-xlarge input-canubring" type="text" value="{{ user.userprofile.second_language }}" placeholder="Second language">
-          {% endcomment %}
           <select name="second_language" id="second_language">
-              <option value="0">Choose Second Language</option>
+              <option value="0">{% trans "Choose Second Language" %}</option>
               <option value="1" {% if user.userprofile.second_language == 1 %}selected="selected"{% endif %}>English</option>
               <option value="2" {% if user.userprofile.second_language == 2 %}selected="selected"{% endif %}>Español</option>
               <option value="3" {% if user.userprofile.second_language == 3 %}selected="selected"{% endif %}>Português</option>
@@ -54,7 +47,7 @@
           </select>
         </div>
         <div class="clearfix">
-          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="DONE" /></p>
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="{% trans "Done" %}"></p>
         </div>
       </form>
 
@@ -62,5 +55,4 @@
 
   </div>
 </div>
-
 

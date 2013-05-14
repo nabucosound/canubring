@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div class="profile-reviews">
   {% if profile.user == request.user %}
-  <h4 class="tit-int">Reviews about you</h4>
+  <h4 class="tit-int">{% trans "Reviews about you" %}</h4>
   {% else %}
-  <h4 class="tit-int">Reviews about this user</h4>
+  <h4 class="tit-int">{% trans "Reviews by you" %}</h4>
   {% endif %}
   {% for cargo in profile.get_reviews_about_me %}
   <div class="item">
@@ -19,9 +21,8 @@
   </div>
   {% empty %}
   <div class="alert">
-    No reviews.
+    {% trans "No reviews to show" %}
   </div>
   {% endfor %}
 </div>
-
 

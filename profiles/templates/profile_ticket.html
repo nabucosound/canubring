@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="profile-ticket">
   <div class="media">
     <div class="change-pic-wrap">
@@ -8,23 +10,23 @@
     {% else %}
     <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
     {% endif %}
-    <span class="change-pic"><a href="#">Cambiar foto</a></span>
+    <span class="change-pic"><a href="#">{% trans "Change picture" %}</a></span>
   </div>
 
 
     <span class="sep-holes"></span>
     <div class="media-body">
-      <h1>{{ profile.user.get_full_name }}{% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-profile">[edit profile]</a></small><small><a href="{% url 'settings' %}">[edit settings]</a></small>{% endif %}</h1>
+      <h1>{{ profile.user.get_full_name }}{% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-profile">[{% trans "edit profile" %}]</a></small><small><a href="{% url 'settings' %}">[{% trans "edit settings" %}]</a></small>{% endif %}</h1>
       <p class="country">{{ profile.country.name }}<span class="stars {{ profile.average_traveller_review_css_class_name }}"></span></p>
-      <p class="language">languages: {{ profile.languages_profile }}</p>
-      <p class="trips">{{ profile.past_trips|length }} trips done</p>
+      <p class="language">{% trans "languages" %}: {{ profile.languages_profile }}</p>
+      <p class="trips">{{ profile.past_trips|length }} {% trans "trips done" %}</p>
       <p class="social">
       {% for link in profile.sociallink_set.all %}
-      {% if link.url %}
-      <a href="{{ link.url }}" class="profile-social {{ link.get_domain_name }}" target="_blank">{{ link.get_domain_name }}</a>
-      {% endif %}
+        {% if link.url %}
+          <a href="{{ link.url }}" class="profile-social {{ link.get_domain_name }}" target="_blank">{{ link.get_domain_name }}</a>
+        {% endif %}
       {% endfor %}
-      {% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-social">[edit social links]</a></small>{% endif %}
+      {% if profile.user == request.user %}<small><a data-toggle="modal" href="#modal-social">[{% trans "edit social links" %}]</a></small>{% endif %}
         {% comment %}
         <a href="#" title="" class="profile-social facebook">Facebook</a>
         <a href="#" title="" class="profile-social pinterest">Pinterest</a>

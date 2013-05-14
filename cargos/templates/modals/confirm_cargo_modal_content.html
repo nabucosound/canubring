@@ -1,59 +1,61 @@
+{% load i18n %}
+
 <div class="modal-body clearfix">
-  <h3>FORMULARIO DE ENCARGO</h3>
+  <h3>{% trans "review cargo" %}</h3>
   <div class="block clearfix">
-    <h4>TU ENCARGO PERTENECE A LAS SIGUIENTES CATEGORÍAS:</h4>
+    <h4>{% trans "your cargo belongs to the following categories" %}:</h4>
     {% if cargo.food %}
-    <p class="desc">food</p>
+    <p class="desc">{% trans "food" %}</p>
     {% endif %}
     {% if cargo.medicaments %}
-    <p class="desc">medicaments</p>
+    <p class="desc">{% trans "medicines" %}</p>
     {% endif %}
     {% if cargo.duty_free %}
-    <p class="desc">duty_free</p>
+    <p class="desc">{% trans "duty free" %}</p>
     {% endif %}
     {% if cargo.electronics %}
-    <p class="desc">electronics</p>
+    <p class="desc">{% trans "electronics" %}</p>
     {% endif %}
     {% if cargo.baggage %}
-    <p class="desc">baggage</p>
+    <p class="desc">{% trans "baggage" %}</p>
     {% endif %}
     {% if cargo.books %}
-    <p class="desc">books</p>
+    <p class="desc">{% trans "books" %}</p>
     {% endif %}
     {% if cargo.documents %}
-    <p class="desc">documents</p>
+    <p class="desc">{% trans "documents" %}</p>
     {% endif %}
     {% if cargo.personal_belongings %}
-    <p class="desc">personal_belongings</p>
+    <p class="desc">{% trans "personal belongings" %}</p>
     {% endif %}
     {% if cargo.clothes %}
-    <p class="desc">clothes</p>
+    <p class="desc">{% trans "apparel" %}</p>
     {% endif %}
     {% if cargo.others %}
-    <p class="desc">others</p>
+    <p class="desc">{% trans "others" %}</p>
     {% endif %}
   </div>
   <div class="block clearfix">
-    <h4>el precio acordado es:</h4>
-    <p class="desc">{{ cargo.price }}€</p>
+    <h4>{% trans "The agreed price is" %}:</h4>
+    <p class="desc">{{ cargo.price }}&nbsp;$</p>
   </div>
   <div class="block clearfix">
-    <h4>EL LUGAR DE ENCUENTRO DEL VIAJERO CON TU ENCARGO ES:</h4>
+    <h4>{% trans "traveller meeting point with your cargo is" %}:</h4>
     <p class="desc">{{ cargo.get_pickup_display }}</p>
   </div>
   <div class="block clearfix">
-    <h4>EL LUGAR DE DESPACHO ACORDADO ES:</h4>
+    <h4>{% trans "agreed delivery point for your cargo is" %}:</h4>
     <p class="desc">{{ cargo.get_delivery_display }}</p>
   </div>
       <form action="{% url 'submit_confirm_cargo_form' %}" method="post" accept-charset="utf-8" style="margin:0;padding:0;width:auto;display:inline;">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-        <input type="submit" value="Aceptar" class="btn btn-canubring-blue">
+        <input type="submit" value="{% trans "Accept" %}" class="btn btn-canubring-blue">
       </form>
       <form action="{% url 'submit_reject_cargo_form' %}" method="post" accept-charset="utf-8" style="margin:0;padding:0;width:auto;display:inline;">
         <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-        <input type="submit" value="Rechazar" class="btn btn-canubring-orange">
+        <input type="submit" value="{% trans "Reject" %}" class="btn btn-canubring-orange">
         <p style="margin:20px 0;">
-          <textarea name="comment_txt" rows="5" placeholder="Write down your reason why are you rejecting this cargo" class="input-block-level"></textarea>
+          <textarea name="comment_txt" rows="5" placeholder="{% trans "If you are rejecting the cargo, Write down your reasons on why" %}" class="input-block-level"></textarea>
         </p>
       </form>
 </div>

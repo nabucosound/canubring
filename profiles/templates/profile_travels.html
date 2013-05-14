@@ -1,5 +1,7 @@
+{% load i18n %}
+
 <div class="profile-travels">
-  <h4 class="tit-int">{{ profile.user.get_full_name }}'s travels:</h4>
+  <h4 class="tit-int">{{ profile.user.get_full_name }} {% trans "travels" %}:</h4>
   
   {% if profile.current_trips %}
   <div class="tb-travels">
@@ -11,10 +13,9 @@
   </div>
   {% else %}
   <div class="alert">
-    No trips.
+    {% trans "No trips to show" %}
   </div>
   {% endif %}
 
 </div>
-
 

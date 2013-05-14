@@ -1,92 +1,94 @@
-<h3>FORMULARIO DE ENCARGO</h3>
-<p class="desc">LLENA EL FORMULARIO CON LO ACORDADO CON EL ENCARGADOR, ENVÍASELO Y ESPERA QUE LO ACEPTE.</p>
+{% load i18n %}
+
+<h3>{% trans "cargo form" %}</h3>
+<p class="desc">{% trans "fill up the form with the details you agreed with the requesting user, send it and wait for him/her to accept." %}</p>
 
 <input type="hidden" name="cargo_id" value="{{ cargo_id }}">
 <div class="block clearfix">
-  <h4>MARCA LA CATEGORÍA DEL ENCARGO QUE VAS A LLEVAR:</h4>
+  <h4>{% trans "select the category of the cargo you are delivering" %}:</h4>
   <div class="control-group">
     <label class="checkbox">
-      <input name="food" type="checkbox">alimentos
+      <input name="food" type="checkbox">{% trans "food" %}
     </label>
     <label class="checkbox">
-      <input name="medicaments" type="checkbox">medicamentos
+      <input name="medicaments" type="checkbox">{% trans "medicines" %}
     </label>
     <label class="checkbox">
-      <input name="duty_free" type="checkbox">duty free
+      <input name="duty_free" type="checkbox">{% trans "duty free" %}
     </label>
     <label class="checkbox">
-      <input name="electronics" type="checkbox">electrónica
+      <input name="electronics" type="checkbox">{% trans "electronics" %}
     </label>
     <label class="checkbox">
-      <input name="baggage" type="checkbox">maletas
+      <input name="baggage" type="checkbox">{% trans "luggage" %}
     </label>
     <label class="checkbox">
-      <input name="books" type="checkbox">libros
+      <input name="books" type="checkbox">{% trans "books" %}
     </label>
     <label class="checkbox">
-      <input name="documents" type="checkbox">documentos
+      <input name="documents" type="checkbox">{% trans "documents" %}
     </label>
     <label class="checkbox">
-      <input name="personal_belongings" type="checkbox">bienes personales
+      <input name="personal_belongings" type="checkbox">{% trans "personal belongings" %}
     </label>
     <label class="checkbox">
-      <input name="clothes" type="checkbox">vestuario
+      <input name="clothes" type="checkbox">{% trans "apparel" %}
     </label>
-    <span id="category-error" style="color:red;display:none">Select at least one category from above or specify one on "others"</span>
-    <label class="checkbox others">otros
+    <span id="category-error" style="color:red;display:none">{% trans 'Select at least one category from above or specify one on "others" '%}</span>
+    <label class="checkbox others">{% trans "others" %}
       <input name="others" type="text" class="input-xlarge others-inp" />
     </label>
   </div>
 </div>
 
 <div class="block clearfix">
-  <h4>¿QUÉ PRECIO ACORDASTE CON EL ENCARGADOR?</h4>
-  <span id="price-error" style="color:red;display:none">Specify price</span>
+  <h4>{% trans "which is the price you agreed with the requesting user?" %}</h4>
+  <span id="price-error" style="color:red;display:none">{% trans "Specify price" %}</span>
   <div class="control-group">
     <input name="price" type="text" class="input-small" />
     <select class="input-small">
-      <option>usd dollars $</option>
-      <option>eur euros €</option>
+      <option>{% trans "usd dollars $" %}</option>
+      <option>{% trans "eur euros €" %}</option>
     </select>
   </div>
 </div>
 
 <div class="block clearfix">
-  <h4>Lugar de encuentro:</h4>
-  <span id="meeting-loc-error" style="color:red;display:none">Specify one meeting location</span>
+  <h4>{% trans "Meeting point" %}:</h4>
+  <span id="meeting-loc-error" style="color:red;display:none">{% trans "Specify one meeting location" %}</span>
   <div class="control-group">
     <label class="radio checkbox">
-      <input name="pickup" type="radio" value="0">lugar en comun
+      <input name="pickup" type="radio" value="0">{% trans "common place" %}
     </label>
     <label class="radio checkbox">
-      <input name="pickup" type="radio" value="1">yo lo comprare
+      <input name="pickup" type="radio" value="1">{% trans "I'll buy it" %}
     </label>
     <label class="radio checkbox">
-      <input name="pickup" type="radio" value="2">su direccion
+      <input name="pickup" type="radio" value="2">{% trans "his/her address" %}
     </label>
     <label class="radio checkbox">
-      <input name="pickup" type="radio" value="3">mi direccion
+      <input name="pickup" type="radio" value="3">{% trans "my address" %}
     </label>
   </div>
 </div>
 
 <div class="block clearfix">
-  <h4>Lugar de despacho:</h4>
-  <span id="delivery-loc-error" style="color:red;display:none">Specify one delivery location</span>
+  <h4>{% trans "Delivery point" %}</h4>
+  <span id="delivery-loc-error" style="color:red;display:none">{% trans "Specify one delivery location" %}</span>
   <div class="control-group">
     <label class="radio checkbox">
-      <input name="delivery" type="radio" value="0">lugar en comun
+      <input name="delivery" type="radio" value="0">{% trans "common place" %}
     </label>
     <label class="radio checkbox">
-      <input name="delivery" type="radio" value="1">su direccion
+      <input name="delivery" type="radio" value="1">{% trans "his/her address" %}
     </label>
     <label class="radio checkbox">
-      <input name="delivery" type="radio" value="2">mi direccion
+      <input name="delivery" type="radio" value="2">{% trans "my address" %}
     </label>
   </div>
 </div>
 
 <div class="submit-box clearfix">
-  <p><input type="submit" value="Enviar Formulario" class="cargo-form-submit-btn btn btn-canubring-orange pull-right"></p>
+  <p><input type="submit" value="{% trans "Send form" %}" class="cargo-form-submit-btn btn btn-canubring-orange pull-right"></p>
 </div>
 

@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div class="system-msg welcome-box">
   <div class="inner">
-    <h3>Email verified</h3>
-    <div class="media"><h4 class="media-body">Congratulations! Your email has been successfully verified</h4></div>
-    <span class="close-box"><a class="close-system-msg" href="#">close</a></span>
+    <h3>{% trans "Email verified" %}</h3>
+    <div class="media"><h4 class="media-body">{% trans "Congratulations! Your email has been successfully verified" %}</h4></div>
+    <span class="close-box"><a class="close-system-msg" href="#">{% trans "close" %}</a></span>
     <span class="fold"></span>
   </div>
 </div>

@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
 
   <ul class="nav nav-tabs">
     <li {% if not past_cargos %}class="active"{% endif %}>
-      <a href="{% url 'cargos' %}">Current cargos {% if user.userprofile.get_unread_current_cargo_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_cargo_comments }}</span>{% endif %}</a>
+      <a href="{% url 'cargos' %}">{% trans "Current cargos" %}{% if user.userprofile.get_unread_current_cargo_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_current_cargo_comments }}</span>{% endif %}</a>
     </li>
     <li {% if past_cargos %}class="active"{% endif %}>
-      <a href="{% url 'past_cargos' %}">Past cargos {% if user.userprofile.get_unread_past_cargo_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_past_cargo_comments }}</span>{% endif %}</a>
+      <a href="{% url 'past_cargos' %}">{% trans "Past cargos" %}{% if user.userprofile.get_unread_past_cargo_comments %}<span class="badge badge-canubring">{{ user.userprofile.get_unread_past_cargo_comments }}</span>{% endif %}</a>
     </li>
   </ul>
 
@@ -16,10 +18,10 @@
 
     <div class="row">
       <div class="span1"></div>
-      <div class="span1"><h5 class="th">Arrival</h5></div>
-      <div class="span3"><h5 class="th">Travel</h5></div>
-      <div class="span1"><h5 class="th">Traveller</h5></div>
-      <div class="span1"><h5 class="th">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h5></div>
+      <div class="span1"><h5 class="th">{% trans "Arrival" %}</h5></div>
+      <div class="span3"><h5 class="th">{% trans "Travel" %}</h5></div>
+      <div class="span1"><h5 class="th">{% trans "Traveller" %}</h5></div>
+      <div class="span1"><h5 class="th">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans "Status" %}</h5></div>
     </div>
     
     <ul class="unstyled">
@@ -27,7 +29,7 @@
         {% include "trip_list_item.html" with trip=cargo.trip %}
       {% empty %}
         <div class="alert">
-          You do not have cargos to display here.
+          {% trans "No cargos to display" %}
         </div>
       {% endfor %}
     </ul>

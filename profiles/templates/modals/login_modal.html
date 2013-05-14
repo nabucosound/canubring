@@ -1,43 +1,45 @@
+{% load i18n %}
+
 <div id="modal-login" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
-    <span class="error-msg" style="display:none;color:red">You must log into the system</span>
-    <h3>Login to canubring</h3>
+    <span class="error-msg" style="display:none;color:red">{% trans "You must log in to the system" %}</span>
+    <h3>{% trans "Log in to Canubring" %}</h3>
     <div class="aux-form">
 
       <form id="login-form" action="{% url 'login_email' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
-          <input name="email" class="input-xlarge input-canubring" type="text" placeholder="Your email address">
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <input name="email" class="input-xlarge input-canubring" type="text" placeholder="{% trans "Your email address" %}">
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          <input name="password" class="input-xlarge input-canubring" type="password" placeholder="Choose a password">
-          <div class="error" style="display:none"><p>*Required field</p></div>
+          <input name="password" class="input-xlarge input-canubring" type="password" placeholder="{% trans "Your password" %}">
+          <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
         </div>
         <div class="control-group">
-          <span class="pull-right"><a href="{% url 'password_reset_recover' %}" href="#modal-forgot" data-toggle="modal">[Forgot your password]</a></span>
+          <span class="pull-right"><a href="{% url 'password_reset_recover' %}" href="#modal-forgot" data-toggle="modal">[{% trans "I forgot my password" %}]</a></span>
           <label class="checkbox">
-            <input type="checkbox">Keep me signed in
+            <input type="checkbox">{% trans "Keep me signed in" %}
           </label>
 
-          <div id="login-form-xhr-error" style="color:red;display:none"><p>Incorrect email or password</p></div>
+          <div id="login-form-xhr-error" style="color:red;display:none"><p>{% trans "Incorrect email or password" %}</p></div>
         </div>
         <div class="clearfix">
-          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Login" /></p>
+          <p><input type="submit" class="btn btn-canubring-orange pull-right" value="Login"></p>
         </div>
       </form>
 
-      <p>DON'T HAVE AN ACCOUNT? <a href="{% url 'search' %}?signup=1">Sign Up!</a></p>
+      <p>{% trans "don't have an account?" %}<a href="{% url 'search' %}?signup=1">&nbsp;{% trans "Sign up" %}!</a></p>
     </div>
 
     <div class="aux-buttons">
-      <a href="{% url 'socialauth_begin' 'facebook' %}" title=""><img src="{{ STATIC_URL }}img/button_facebook.png" alt="" title="" /></a>
-      <a href="{% url 'socialauth_begin' 'google-oauth2' %}" title=""><img src="{{ STATIC_URL }}img/button_google.png" alt="" title="" /></a>
-      <a href="{% url 'socialauth_begin' 'linkedin' %}" title=""><img src="{{ STATIC_URL }}img/button_linkedin.png" alt="" title="" /></a>
+      <a href="{% url 'socialauth_begin' 'facebook' %}" title=""><img src="{{ STATIC_URL }}img/button_facebook.png"></a>
+      <a href="{% url 'socialauth_begin' 'google-oauth2' %}" title=""><img src="{{ STATIC_URL }}img/button_google.png"></a>
+      <a href="{% url 'socialauth_begin' 'linkedin' %}" title=""><img src="{{ STATIC_URL }}img/button_linkedin.png"></a>
     </div>
 
   </div>
-</div><!-- .modal signup -->
+</div>

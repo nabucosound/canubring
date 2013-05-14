@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block content %}
 
-<h4 class="tit-int">Account settings</h4>
+<h4 class="tit-int">{% trans "Account settings" %}</h4>
 
-<p>Current email: {{ user.email }}</p>
+<p>{% trans "Current email" %}: {{ user.email }}</p>
 <form action="{% url 'settings_email' %}" method="post" accept-charset="utf-8" class="form-horizontal">
   {% csrf_token %}
-  <input name="email" class="span3" type="text" size="16" placeholder="Insert your new email" required>
-  <button class="btn btn-canubring-orange" type="submit">Update email</button>
+  <input name="email" class="span3" type="text" size="16" placeholder="{% trans "Insert your new email" %}" required>
+  <button class="btn btn-canubring-orange" type="submit">{% trans "Update email" %}</button>
 </form>
 
-<p>Change password</p>
+<p>{% trans "Change password" %}</p>
 <form action="{% url 'password_settings' %}" method="post" accept-charset="utf-8" class="form-horizontal">
   {% csrf_token %}
-  <input name="password1" class="span3" type="password" size="16" placeholder="Insert your new password" required>
-  <input name="password2" class="span3" type="password" size="16" placeholder="Insert your new password (again)" required>
-  <button class="btn btn-canubring-orange" type="submit">Update password</button>
+  <input name="password1" class="span3" type="password" size="16" placeholder="{% trans "Insert your new password" %}" required>
+  <input name="password2" class="span3" type="password" size="16" placeholder="{% trans "Insert your new password (again)" %}" required>
+  <button class="btn btn-canubring-orange" type="submit">{% trans "Update password" %}</button>
 </form>
 
 <hr>
@@ -25,8 +27,8 @@
 <br>
 <br>
 <br>
-<p>Delete account</p>
-<a href="{% url 'delete_account' %}" class="btn btn-canubring-orange" type="submit">Delete account permanently</a>
+<p>{% trans "Delete account" %}</p>
+<a href="{% url 'delete_account' %}" class="btn btn-canubring-orange" type="submit">{% trans "Delete account permanently" %}</a>
 
 {% endblock %}
 

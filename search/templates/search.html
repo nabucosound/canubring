@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load staticfiles %}
 
 {% block extra_css %}
@@ -19,29 +20,29 @@
 <div class="main-search clearfix">
     <form action="{% url 'search' %}" method="get" class="form-inline" accept-charset="utf-8">
       <div style="margin-bottom:5px">
-        <label class="search-label" for="dep-country-select">Departure</label>
+        <label class="search-label" for="dep-country-select">{% trans "Departure" %}</label>
         <select id="dep-country-select" name="departure_country">
-            <option value="" selected="selected">Select Country...</option>
+            <option value="" selected="selected">{% trans "Select country" %}...</option>
             {% for obj in active_dep_countries %}
             <option value="{{ obj.id }}" {% if obj.id == departure_country %}selected="selected"{% endif %}>{{ obj.name }}</option>
             {% endfor %}
         </select>
         <select id="dep-city-select" name="departure_city" {% if not departure_country %}disabled{% endif %}>
-            <option value="" selected="selected">Select City...</option>
+            <option value="" selected="selected">{% trans "Select city" %}...</option>
             {% for obj in active_dep_cities %}
             <option value="{{ obj.id }}" {% if obj.id == departure_city %}selected="selected"{% endif %}>{{ obj.name }}</option>
             {% endfor %}
         </select>
       </div>
-      <label class="search-label" for="dest-country-select">Destination</label>
+      <label class="search-label" for="dest-country-select">{% trans "Destination" %}</label>
       <select id="dest-country-select" name="destination_country">
-          <option value="" selected="selected">Select Country...</option>
+          <option value="" selected="selected">{% trans "Select country" %}...</option>
           {% for obj in active_dest_countries %}
           <option value="{{ obj.id }}" {% if obj.id == destination_country %}selected="selected"{% endif %}>{{ obj.name }}</option>
           {% endfor %}
       </select>
       <select id="dest-city-select" name="destination_city" {% if not destination_country %}disabled{% endif %}>
-          <option value="" selected="selected">Select City...</option>
+          <option value="" selected="selected">{% trans "Select city" %}...</option>
           {% for obj in active_dest_cities %}
           <option value="{{ obj.id }}" {% if obj.id == destination_city %}selected="selected"{% endif %}>{{ obj.name }}</option>
           {% endfor %}

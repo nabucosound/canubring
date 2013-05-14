@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <li class="item">
   <div class="row clickable toggle-trip-activity {% if my_cargos %}update-unread-status{% endif %}" data-href="#" cargo-id="{{ cargo.id }}" href="#" id="{{ trip.id }}">
     <div class="span1">
@@ -24,14 +26,14 @@
     </div>
     <div class="span3">
       <div class="media desc">
-          <span class="pull-left">From</span>
+          <span class="pull-left">{% trans "From" %}</span>
           <div class="media-body">
             {{ trip.departure_city }}   
           </div>
         </div>
 
         <div class="media desc">
-          <span class="pull-left">To</span>
+          <span class="pull-left">{% trans "To" %}</span>
           <div class="media-body">
             {{ trip.destination_city }}
           </div>
@@ -63,14 +65,14 @@
     </div>
     <div class="span3">
         <div class="media desc">
-          <span class="pull-left">From</span>
+          <span class="pull-left">{% trans "From" %}</span>
           <div class="media-body">
             {{ trip.departure_city }}   
           </div>
         </div>
 
         <div class="media desc">
-          <span class="pull-left">To</span>
+          <span class="pull-left">{% trans "To" %}</span>
           <div class="media-body">
             {{ trip.destination_city }}
           </div>
@@ -97,5 +99,5 @@
   {% else %}
     {% include "trip_ask_cargo.html" %}
   {% endif %}
-</li><!-- .item -->
+</li>
 

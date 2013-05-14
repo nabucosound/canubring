@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="row trip-activity" style="display:none">
   <div class="span8">
     <div class="comments">
@@ -8,14 +10,14 @@
               <form action="{% url 'ask_for_cargo' %}" method="post" accept-charset="utf-8">
                 {% csrf_token %}
                 <input type="hidden" name="object_id" value="{{ trip.id }}">
-                <textarea name="content" class="input-canubring" placeholder="Contact this traveller to ask him/her for your cargo." required></textarea>
-                <input type="submit" href="#" class="btn btn-canubring-orange pull-right" />
+                <textarea name="content" class="input-canubring" placeholder="{% trans "Contact this traveller to ask him/her for your cargo" %}" required></textarea>
+                <input type="submit" href="#" class="btn btn-canubring-orange pull-right">
               </form>
             </div>
-          </div><!-- comment-item reply-->
+          </div>
         </li>
       </ul>
-    </div><!-- .comments -->
+    </div>
   </div>
 </div>
 

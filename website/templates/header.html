@@ -1,17 +1,31 @@
+{% load i18n %}
+
 <header>
   <div class="container">
     <div class="row">
       <div class="span4">
         <div class="logo-header pull-left">
           <h1>
-            <a href="{% url 'home' %}" title="Canubring - Save sending, earn carrying!"><span>Canubring - Save sending, earn carrying!</span></a>
+            <a href="{% url 'home' %}" title="Canubring - {% trans "Save sending, earn carrying!" %}"><span>Canubring - {% trans "Save sending, earn carrying!" %}</span></a>
           </h1>
-        </div><!-- .logo-header -->
+        </div>
       </div>
       <div class="span8">
         <div class="row">
           <div class="span8">
             <div class="user-nav pull-right">
+
+<form action="{% url 'set_language' %}" method="post">
+{% csrf_token %}
+<input name="next" type="hidden" value="{{ redirect_to }}" />
+<select name="language">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+<option value="{{ language.code }}">{{ language.name_local }} ({{ language.code }})</option>
+{% endfor %}
+</select>
+<input type="submit" value="Go" />
+</form>
 
               <!-- nav language -->
               <ul class="nav nav-pills language pull-right">
@@ -34,16 +48,16 @@
                   <a href="{% url 'profile' %}">{{ user.get_full_name }}</a>
                 </li>
                 <li>
-                  <a href="{% url 'logout' %}">Logout</a>
+                  <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
                 </li>
               </ul>
               {% else %}
               <ul class="nav nav-pills login pull-right">
                 <li>
-                  <a href="#modal-signup" data-toggle="modal">Sign up</a>
+                  <a href="#modal-signup" data-toggle="modal">{% trans "Sign up" %}</a>
                 </li>
                 <li>
-                  <a href="#modal-login" data-toggle="modal">Login</a>
+                  <a href="#modal-login" data-toggle="modal">{% trans "Login" %}</a>
                 </li>
               </ul>
               {% endif %}
@@ -61,7 +75,7 @@
         <div class="row" style="height:65px;">
           <div class="span5">
             <div class="claim">
-              <h2>Save sending, earn carrying!</h2>
+              <h2>{% trans "Save sending, earn carrying!" %}</h2>
             </div><!-- .claim -->
           </div>
           <div class="span3">

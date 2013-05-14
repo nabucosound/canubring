@@ -1,60 +1,62 @@
-<form action="{% url 'submit_review_traveller_form' %}" method="post" accept-charset="utf-8">
-  <h3>¿CÓMO FUE TU EXPERIENCIA CON EL VIAJERO {{ cargo.traveller_user.get_full_name }}?</h3>
+{% load i18n %}
 
-    <span id="review-error" style="color:red;display:none;margin-left:40px">Select one rating value</span>
+<form action="{% url 'submit_review_traveller_form' %}" method="post" accept-charset="utf-8">
+  <h3>{% trans "how was your experience with the traveller" %} {{ cargo.traveller_user.get_full_name }}?</h3>
+
+    <span id="review-error" style="color:red;display:none;margin-left:40px">{% trans "Select one rating value" %}</span>
     <div class="control-group">
       <label class="radio">
         <p class="stars-big five"></p>
-        <input type="radio" name="traveller_user_review_stars" value="5"><span class="rate-text">excelente</span>
+        <input type="radio" name="traveller_user_review_stars" value="5"><span class="rate-text">{% trans "excellent" %}</span>
       </label>
     </div>
 
     <div class="control-group">
       <label class="radio">
         <p class="stars-big two"></p>
-        <input type="radio" name="traveller_user_review_stars" value="2"><span class="rate-text">regular</span>
+        <input type="radio" name="traveller_user_review_stars" value="2"><span class="rate-text">{% trans "not so good" %}</span>
       </label>
     </div>
 
     <div class="control-group">
       <label class="radio">
         <p class="stars-big four"></p>
-        <input type="radio" name="traveller_user_review_stars" value="4"><span class="rate-text">muy buena</span>
+        <input type="radio" name="traveller_user_review_stars" value="4"><span class="rate-text">{% trans "very good" %}</span>
       </label>
     </div>	
 
     <div class="control-group">
       <label class="radio">
         <p class="stars-big one"></p>
-        <input type="radio" name="traveller_user_review_stars" value="1"><span class="rate-text">mala</span>
+        <input type="radio" name="traveller_user_review_stars" value="1"><span class="rate-text">{% trans "bad" %}</span>
       </label>
     </div>	
 
     <div class="control-group">
       <label class="radio">
         <p class="stars-big three"></p>
-        <input type="radio" name="traveller_user_review_stars" value="3"><span class="rate-text">buena</span>
+        <input type="radio" name="traveller_user_review_stars" value="3"><span class="rate-text">{% trans "good" %}</span>
       </label>
     </div>	
 
     <div class="control-group">
       <label class="radio">
         <p class="stars-big"></p>
-        <input type="radio" name="traveller_user_review_stars" value="0"><span class="rate-text">pésima</span>
+        <input type="radio" name="traveller_user_review_stars" value="0"><span class="rate-text">{% trans "very bad" %}</span>
       </label>
     </div>	
 
   </div>
 
-  <h4>¿QUIERES HACER ALGUN COMENTARIO ACERCA DE ESTE VIAJERO?</h4>
+  <h4>{% trans "do you want to make any comment about this travaller?" %}</h4>
   <div class="control-group-nofloat clearfix">
-    <textarea name="traveller_user_review_comment" class="input-canubring" placeholder="Este comentario aparecerá en el perfil del viajero."></textarea>		
+    <textarea name="traveller_user_review_comment" class="input-canubring" placeholder="{% trans "This comment will appear on the user's profile" %}"></textarea>		
   </div>
 
   <div class="submit-box clearfix pull-right">
       <input type="hidden" name="cargo_id" value="{{ cargo.id }}">
-      <p><input id="send-traveller-review-btn" type="submit" value="Send Review" class="btn btn-canubring-orange"></p>
-    <p><a href="{% url 'confirm_delivery' cargo.id %}">[Responder más tarde]</a></p>
+      <p><input id="send-traveller-review-btn" type="submit" value="{% trans "Send review" %}" class="btn btn-canubring-orange"></p>
+    <p><a href="{% url 'confirm_delivery' cargo.id %}">[{% trans "Answer later" %}]</a></p>
   </div>
 </form>
 
