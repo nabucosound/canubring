@@ -12,7 +12,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 DEBUG = env_var('DEBUG', True)
 TEMPLATE_DEBUG = DEBUG
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Chicago'
 SITE_ID = 1
 
@@ -26,6 +26,11 @@ LANGUAGES = (
     ('es', ugettext('Spanish')),
     ('pt', ugettext('Portuguese')),
 )
+SETTINGS_FILE_ROOT = os.path.dirname(os.path.realpath(__file__))
+LOCALE_PATHS = (
+        os.path.join(SETTINGS_FILE_ROOT, '..', 'locale'),
+)
+
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
