@@ -57,5 +57,6 @@ urlpatterns = patterns('website.views',
         view='delete_account',
         name='delete_account',
     ),
+    url(r'^lang/(?P<lang>[\w]+)/', view='set_language_from_get_request', name='set_language_as_get_request'),
 )
 

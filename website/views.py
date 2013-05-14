@@ -1,9 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.core.urlresolvers import reverse_lazy
+from django.utils import translation
+from django.conf import settings
 
 from website.utils import listing
 from profiles.models import ProfileCountry
+
+def set_language_from_get_request(request, lang):
+    # lang = kwargs['lang']
+    for language in settings.LANGUAGES:
+        if language[0] == lang:
+            request.session['django_language'] = lang
+            translation.activate(lang)
+            request.LANGUAGE_CODE = translation.get_language()
+    return redirect('home')
 
 def logout(request):
     django_logout(request)
