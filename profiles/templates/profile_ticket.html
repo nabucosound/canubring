@@ -10,7 +10,7 @@
     {% else %}
     <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
     {% endif %}
-    <span class="change-pic"><a href="#">{% trans "Change picture" %}</a></span>
+    <span class="change-pic"><a data-toggle="modal" href="#avatar-modal">{% trans "Change picture" %}</a></span>
   </div>
 
 
