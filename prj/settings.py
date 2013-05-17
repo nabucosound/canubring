@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'imagekit',
     'django_ses',
     'storages',
+    'cities_light',
     'website',
     'search',
     'profiles',
