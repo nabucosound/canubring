@@ -15,8 +15,8 @@
       <form id="profile-form" action="{% url 'update_social' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <div class="control-group">
-          <input name="social1" class="input-large input-canubring" type="text" value="{{ profile.get_social_link1 }}" placeholder="http://www.twitter.com/...">
-          <input name="social2" class="input-large input-canubring" type="text" value="{{ profile.get_social_link2 }}" placeholder="http://www.facebook.com/...">
+          <input name="social1" class="input-large input-canubring" type="text" value="{{ profile.get_social_link1 }}" placeholder="http://www.facebook.com/...">
+          <input name="social2" class="input-large input-canubring" type="text" value="{{ profile.get_social_link2 }}" placeholder="http://www.twitter.com/...">
           <input name="social3" class="input-large input-canubring" type="text" value="{{ profile.get_social_link3 }}" placeholder="http://plus.google.com/...">
           <input name="social4" class="input-large input-canubring" type="text" value="{{ profile.get_social_link4 }}" placeholder="http://www.pinterest.com/...">
           <input name="social5" class="input-large input-canubring" type="text" value="{{ profile.get_social_link5 }}" placeholder="http://www.linkedin.com/...">
