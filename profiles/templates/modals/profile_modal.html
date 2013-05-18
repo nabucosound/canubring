@@ -22,7 +22,7 @@
           <select name="country" id="country">
             <option value="">{% trans "Choose Country" %}</option>
             {% for country in profile_countries %}
-            <option value="{{ country.code }}" {% if user.userprofile.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+            <option value="{{ country.id }}" {% if user.userprofile.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
             {% endfor %}
           </select>
           <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>

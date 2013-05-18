@@ -10,7 +10,8 @@ from django.contrib import messages
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
 
-# from profiles.models import ProfileCountry
+from cities_light.models import Country
+
 from profiles.forms import EmailSignupForm, EmailLoginForm, PictureUploadForm, EmailForm, PasswordResetForm
 from profiles.utils import create_nb_user
 
@@ -31,7 +32,7 @@ def update_profile(request):
     user.last_name = request.POST.get('last_name')
     user.save()
     profile = user.userprofile
-    country = ProfileCountry.objects.get(code=request.POST.get('country'))
+    country = Country.objects.get(id=request.POST.get('country'))
     profile.country = country
     profile.language = request.POST.get('language')
     profile.second_language = request.POST.get('second_language')

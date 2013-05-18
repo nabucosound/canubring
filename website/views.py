@@ -6,7 +6,7 @@ from django.conf import settings
 
 from website.utils import listing
 from cities_light.models import Country
-# from profiles.models import ProfileCountry
+
 
 def set_language_from_get_request(request, lang):
     for language in settings.LANGUAGES:
@@ -28,7 +28,7 @@ def profile(request, template):
         ctxt['show_signup_sys_msg'] = True
     if request.session.pop('show_email_verified_sys_msg', False):
         ctxt['show_email_verified_sys_msg'] = True
-    # ctxt['profile_countries'] = ProfileCountry.objects.all()
+    ctxt['profile_countries'] = Country.objects.all()
     return render(request, template, ctxt)
 
 @login_required
