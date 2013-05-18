@@ -8,15 +8,19 @@
     <div class="content">
       {% if reviewed_user == cargo.requesting_user and not cargo.requesting_user_reviewed %}
       <input type="hidden" name="object_id" value="{{ cargo.id }}">
+      {% if reviews_by_me %}
       <a href="#modal-review-cargo" data-toggle="modal" class="review-requesting-user-form-btn cargo-form-btn btn btn-canubring-orange pull-right">{% trans "Review" %}</a>
+      {% endif %}
       {% elif reviewed_user == cargo.traveller_user and not cargo.traveller_reviewed %}
       <input type="hidden" name="object_id" value="{{ cargo.id }}">
+      {% if reviews_by_me %}
       <a href="#modal-cargo" data-toggle="modal" class="review-traveller-form-btn btn btn-canubring-orange pull-right">{% trans "Review" %}</a>
+      {% endif %}
       {% else %}
       <span class="stars-big {{ css_class_name }} pull-right"></span>
       {% endif %}
-      <p class="city"><span>{% trans "From" %}:</span>{{ cargo.trip.departure_city|upper }}</p>
-      <p class="city"><span>{% trans "To" %}:</span>{{ cargo.trip.destination_city|upper }}</p>	
+      <p class="city"><span>{% trans "From" %}:</span>{{ cargo.trip.get_departure_country|upper }} - {{ cargo.trip.get_departure_city|upper }}</p>
+      <p class="city"><span>{% trans "To" %}:</span>{{ cargo.trip.get_destination_country|upper }} - {{ cargo.trip.get_destination_city|upper }}</p>
       <p class="desc">{{ review_comment }}</p>
     </div>
   </div>

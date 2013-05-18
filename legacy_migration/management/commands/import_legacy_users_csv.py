@@ -72,6 +72,7 @@ class Command(BaseCommand):
                     'language': get_language(row[4]),
                     'second_language': get_language(row[5]),
                     'completed': True,
+                    'email_verified': True,
             }
             UserProfile.objects.create(**fields)
 

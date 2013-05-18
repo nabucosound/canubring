@@ -91,11 +91,11 @@ def login_view(request):
         auth_user.backend = 'django.contrib.auth.backends.ModelBackend'
     else:
         auth_user = authenticate(username=user.username, password=password)
+        if auth_user is None or not auth_user.is_active:
+            error_msg = "Password is not correct"
+            return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
         if not auth_user.userprofile.email_verified:
             error_msg = "You must verify your email first"
-            return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
-        if auth_user is None or not auth_user.is_active:
-            error_msg = "Bad authentication"
             return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
 
     login(request, auth_user)
