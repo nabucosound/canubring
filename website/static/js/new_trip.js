@@ -85,6 +85,22 @@ $(document).ready(function(){
     },
     '.remove-leg'
   );
+});
 
-})
+$(document).on("change", ".departure-country,.destination-country", function(){
+  var id = $(this).find(":selected").val();
+  var city_select = $(this).next()
+  $.ajax({
+    type: 'get',
+    url: '/my/'+id+'/get-cities/',
+    data: '',
+    success: function (response) {
+      city_select.html(response['html']);
+      city_select.removeAttr('disabled');
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      console.log('Error!!!!');
+    }
+  });
+});
 

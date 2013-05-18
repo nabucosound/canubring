@@ -3,19 +3,20 @@ from django.contrib.auth.models import User
 
 
 
-class City(models.Model):
-    name = models.CharField(max_length=255)
+# class City(models.Model):
+#     name = models.CharField(max_length=255)
 
-    def __unicode__(self):
-        return self.name
+#     def __unicode__(self):
+#         return self.name
 
-class Country(models.Model):
-    name = models.CharField(max_length=255)
+# class Country(models.Model):
+#     name = models.CharField(max_length=255)
 
-    def __unicode__(self):
-        return self.name
+#     def __unicode__(self):
+#         return self.name
 
 
+from cities_light.models import Country, City
 class Trip(models.Model):
     TRAVELLING_BY_CHOICES = (
         (1, 'Plane'),
@@ -24,59 +25,67 @@ class Trip(models.Model):
         (4, 'Train'),
     )
     user = models.ForeignKey(User)
-    departure_city = models.CharField(max_length=255)
-    departure_dt = models.DateTimeField(blank=True, null=True)
-    destination_city = models.CharField(max_length=255)
-    destination_dt = models.DateTimeField()
+    # departure_city = models.CharField(max_length=255)
+    # departure_dt = models.DateTimeField(blank=True, null=True)
+    # destination_city = models.CharField(max_length=255)
     travelling_by = models.IntegerField(choices=TRAVELLING_BY_CHOICES)
     comments = models.TextField(blank=True)
     creation_dt = models.DateTimeField(auto_now_add=True)
-    dep_city = models.ForeignKey(City, blank=True, null=True, related_name='dep_city_trips')
-    dep_country = models.ForeignKey(Country, blank=True, null=True, related_name='dep_country_trips')
-    dest_city = models.ForeignKey(City, blank=True, null=True, related_name='dest_city_trips')
-    dest_country = models.ForeignKey(Country, blank=True, null=True, related_name='dest_country_trips')
+    dep_city = models.ForeignKey(City, related_name='dep_city_trips')
+    dep_country = models.ForeignKey(Country, related_name='dep_country_trips')
+    dest_city = models.ForeignKey(City, related_name='dest_city_trips')
+    dest_country = models.ForeignKey(Country, related_name='dest_country_trips')
+    destination_dt = models.DateTimeField()
+    # dep_city = models.ForeignKey(City, blank=True, null=True, related_name='dep_city_trips')
+    # dep_country = models.ForeignKey(Country, blank=True, null=True, related_name='dep_country_trips')
+    # dest_city = models.ForeignKey(City, blank=True, null=True, related_name='dest_city_trips')
+    # dest_country = models.ForeignKey(Country, blank=True, null=True, related_name='dest_country_trips')
     # Legacy
     uid = models.CharField(max_length=36, blank=True)
 
-    def __unicode__(self):
-        return u"From %s to %s" % (self.departure_city, self.destination_city)
+    # def __unicode__(self):
+    #     return u"From %s to %s" % (self.departure_city, self.destination_city)
 
     def save(self, *args, **kwargs):
-        self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city.lower())
-        self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country.lower())
-        self.dest_city, created = City.objects.get_or_create(name=self.get_destination_city.lower())
-        self.dest_country, created = Country.objects.get_or_create(name=self.get_destination_country.lower())
+        # self.dep_city, created = City.objects.get_or_create(name=self.get_departure_city.lower())
+        # self.dep_country, created = Country.objects.get_or_create(name=self.get_departure_country.lower())
+        # self.dest_city, created = City.objects.get_or_create(name=self.get_destination_city.lower())
+        # self.dest_country, created = Country.objects.get_or_create(name=self.get_destination_country.lower())
         super(Trip, self).save(*args, **kwargs)
 
     @property
     def get_departure_city(self):
-        return self.departure_city.split(',')[0].strip()
+        return self.dep_city.name
+        # return self.departure_city.split(',')[0].strip()
 
     @property
     def get_departure_country(self):
-        from profiles.models import USState
-        country = self.departure_city.split(',')[-1].strip()
-        try:
-            USState.objects.get(code=country)
-        except USState.DoesNotExist:
-            return country
-        else:
-            return 'united states'
+        return self.dep_country.name
+        # from profiles.models import USState
+        # country = self.departure_city.split(',')[-1].strip()
+        # try:
+        #     USState.objects.get(code=country)
+        # except USState.DoesNotExist:
+        #     return country
+        # else:
+        #     return 'united states'
 
     @property
     def get_destination_city(self):
-        return self.destination_city.split(',')[0].strip()
+        return self.dest_city.name
+        # return self.destination_city.split(',')[0].strip()
 
     @property
     def get_destination_country(self):
-        from profiles.models import USState
-        country = self.destination_city.split(',')[-1].strip()
-        try:
-            USState.objects.get(code=country)
-        except USState.DoesNotExist:
-            return country
-        else:
-            return 'United States'
+        return self.dest_country.name
+        # from profiles.models import USState
+        # country = self.destination_city.split(',')[-1].strip()
+        # try:
+        #     USState.objects.get(code=country)
+        # except USState.DoesNotExist:
+        #     return country
+        # else:
+        #     return 'United States'
 
     @property
     def total_comments_count(self):

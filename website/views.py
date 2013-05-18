@@ -1,16 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
-from django.core.urlresolvers import reverse_lazy
 from django.utils import translation
 from django.conf import settings
 
 from website.utils import listing
-from profiles.models import ProfileCountry
+from cities_light.models import Country
+# from profiles.models import ProfileCountry
 
 def set_language_from_get_request(request, lang):
-    # lang = kwargs['lang']
     for language in settings.LANGUAGES:
         if language[0] == lang:
             request.session['django_language'] = lang
@@ -30,7 +28,7 @@ def profile(request, template):
         ctxt['show_signup_sys_msg'] = True
     if request.session.pop('show_email_verified_sys_msg', False):
         ctxt['show_email_verified_sys_msg'] = True
-    ctxt['profile_countries'] = ProfileCountry.objects.all()
+    # ctxt['profile_countries'] = ProfileCountry.objects.all()
     return render(request, template, ctxt)
 
 @login_required
@@ -45,6 +43,7 @@ def trips(request, template, profile_attr='current_trips'):
 @login_required
 def new_trip(request, template):
     ctxt = dict()
+    ctxt['countries'] = Country.objects.order_by('name')
     return render(request, template, ctxt)
 
 @login_required
@@ -69,4 +68,25 @@ def delete_account(request):
     user.save()
     django_logout(request)
     return redirect('/')
+
+def get_cities(request, country_id):
+    from django.shortcuts import get_object_or_404
+    from cities_light.models import Country
+    country = get_object_or_404(Country, id=country_id)
+
+    # JSON Response
+    from django.template.loader import render_to_string
+    from django.http import HttpResponse
+    from django.utils import simplejson as json
+    html = render_to_string('city_select_options.html', {'cities': country.city_set.order_by('name')})
+    response = {'html': html}
+    return HttpResponse(json.dumps(response), mimetype="application/json")
+
+from django.views.generic import TemplateView
+# from django.core.urlresolvers import reverse_lazy
+class TripLegFormView(TemplateView):
+    def get_context_data(self, **kwargs):
+        ctxt = super(TripLegFormView, self).get_context_data(**kwargs)
+        ctxt['countries'] = Country.objects.order_by('name')
+        return ctxt
 

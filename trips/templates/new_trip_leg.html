@@ -8,13 +8,39 @@
     <span class="error-msg" style="display:none;color:red">{% trans "All fields except comments are required" %}</span>
 
     <div class="control-group">
+      <select name="dep_country" class="departure-country">
+        <option value="">Departure country</option>
+        {% for country in countries %}
+        <option value="{{ country.id }}">{{ country.name }}</option>
+        {% endfor %}
+      </select>
+      <select name="dep_city" class="departure-city" disabled="disabled">
+        <option value="">Select a country first...</option>
+      </select>
+
+      {% comment %}
       <input type="text" name="departure_city" class="city-input input-large input-canubring" placeholder="{% trans "departure city" %}" required>
+      {% endcomment %}
+
       {% comment %}
       <input type="text" name="departure_dt" class="datepicker input-medium input-canubring" placeholder="departure date" required>
       {% endcomment %}
+
     </div>
     <div class="control-group">
+      <select name="dest_country" class="destination-country">
+        <option value="">Destination country</option>
+        {% for country in countries %}
+        <option value="{{ country.id }}">{{ country.name }}</option>
+        {% endfor %}
+      </select>
+      <select name="dest_city" class="destination-city" disabled="disabled">
+        <option value="">Select a country first...</option>
+      </select>
+
+      {% comment %}
       <input type="text" name="destination_city" class="city-input input-large input-canubring" placeholder="{% trans "destination city" %}" required>
+      {% endcomment %}
       <input type="text" name="destination_dt" class="datepicker input-medium input-canubring" placeholder="{% trans "arrival date" %}" required>
     </div>
 

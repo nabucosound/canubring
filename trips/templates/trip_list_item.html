@@ -28,14 +28,14 @@
       <div class="media desc">
           <span class="pull-left">{% trans "From" %}</span>
           <div class="media-body">
-            {{ trip.departure_city }}   
+            {{ trip.dep_country.name }} - {{ trip.dep_city.name }}
           </div>
         </div>
 
         <div class="media desc">
           <span class="pull-left">{% trans "To" %}</span>
           <div class="media-body">
-            {{ trip.destination_city }}
+            {{ trip.dest_country.name }} - {{ trip.dest_city.name }}
           </div>
         </div>   
     </div>
@@ -67,14 +67,14 @@
         <div class="media desc">
           <span class="pull-left">{% trans "From" %}</span>
           <div class="media-body">
-            {{ trip.departure_city }}   
+            {{ trip.dep_country.name }} - {{ trip.dep_city.name }}
           </div>
         </div>
 
         <div class="media desc">
           <span class="pull-left">{% trans "To" %}</span>
           <div class="media-body">
-            {{ trip.destination_city }}
+            {{ trip.dest_country.name }} - {{ trip.dest_city.name }}
           </div>
         </div>      
     </div>

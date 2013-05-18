@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
+from website.views import TripLegFormView
 
 
 urlpatterns = patterns('website.views',
@@ -27,7 +28,7 @@ urlpatterns = patterns('website.views',
         name='new_trip',
         kwargs = {'template': 'new_trip.html'}
     ),
-    url(r'^triplegform/', TemplateView.as_view(template_name="new_trip_leg.html"), name='trip_leg_form'),
+    url(r'^triplegform/', TripLegFormView.as_view(template_name="new_trip_leg.html"), name='trip_leg_form'),
     url(
         regex=r'^cargos/$',
         view='cargos',
@@ -58,5 +59,10 @@ urlpatterns = patterns('website.views',
         name='delete_account',
     ),
     url(r'^lang/(?P<lang>[\w]+)/', view='set_language_from_get_request', name='set_language_as_get_request'),
+    url(
+        regex=r'^(?P<country_id>\d+)/get-cities/$',
+        view='get_cities',
+        name='get_cities',
+    ),
 )
 

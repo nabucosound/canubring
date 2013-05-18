@@ -51,15 +51,15 @@ class USState(models.Model):
         return self.name
 
 
-class ProfileCountry(models.Model):
-    code = models.CharField(max_length=2)
-    name = models.CharField(max_length=64)
+# class ProfileCountry(models.Model):
+#     code = models.CharField(max_length=2)
+#     name = models.CharField(max_length=64)
 
-    class Meta:
-        verbose_name_plural = 'Profile Countries'
+#     class Meta:
+#         verbose_name_plural = 'Profile Countries'
 
-    def __unicode__(self):
-        return self.name
+#     def __unicode__(self):
+#         return self.name
 
 
 class UserProfile(models.Model):
@@ -71,7 +71,7 @@ class UserProfile(models.Model):
     )
     user = models.OneToOneField(User)
     profile_photo = models.ImageField(upload_to='profiles', blank=True)
-    country = models.ForeignKey(ProfileCountry, blank=True, null=True)
+    # country = models.ForeignKey(ProfileCountry, blank=True, null=True)
     language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
     second_language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
     email_verified = models.BooleanField(default=False)

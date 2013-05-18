@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
 
-from profiles.models import ProfileCountry
+# from profiles.models import ProfileCountry
 from profiles.forms import EmailSignupForm, EmailLoginForm, PictureUploadForm, EmailForm, PasswordResetForm
 from profiles.utils import create_nb_user
 

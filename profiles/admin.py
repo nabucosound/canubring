@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
-from profiles.models import UserProfile, SocialLink, ProfileCountry
+# from profiles.models import UserProfile, SocialLink, ProfileCountry
+from profiles.models import UserProfile, SocialLink
 
 
 class SocialLinkInline(admin.TabularInline):
@@ -43,14 +44,14 @@ class UserProfileAdmin(admin.ModelAdmin):
         return obj.user.date_joined
 
 
-class ProfileCountryAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name',)
-    search_fields = ('code', 'name',)
+# class ProfileCountryAdmin(admin.ModelAdmin):
+#     list_display = ('code', 'name',)
+#     search_fields = ('code', 'name',)
 
 
 admin.site.unregister(User)
 admin.site.register(User, NewUserAdmin)
 
 admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.register(ProfileCountry, ProfileCountryAdmin)
+# admin.site.register(ProfileCountry, ProfileCountryAdmin)
 
