@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ValidationError
 
+from cities_light.models import Country, City
+
 from profiles.models import UserProfile
 from legacy_migration.utils import get_value, get_transportation
 from trips.models import Trip
@@ -46,16 +48,33 @@ class Command(BaseCommand):
             user = profile.user
 
             # get or create Trip
+            try:
+                dep_string = get_value(row[9]).split(',')
+                dep_city_name = dep_string[0].strip()
+                dep_country_name = dep_string[-1].strip()
+                dest_string = get_value(row[10]).split(',')
+                dest_city_name = dest_string[0].strip()
+                dest_country_name = dest_string[-1].strip()
+                dep_country = Country.objects.get(name_ascii__iexact=dep_country_name)
+                dep_city = City.objects.get(name_ascii__iexact=dep_city_name, country=dep_country)
+                dest_country = Country.objects.get(name_ascii__iexact=dest_country_name)
+                dest_city = City.objects.get(name_ascii__iexact=dest_city_name, country=dest_country)
+            except:
+                with open("legacy_migration/csv/err_trips.txt", "a") as myfile:
+                    myfile.write("%s\n" % repr(row))  # TODO
+                continue
             fields = {
                     'uid': get_value(row[0]),
                     'user': user,
                     'comments': get_value(row[4]),
                     'creation_dt': get_value(row[5]),
                     'travelling_by': get_transportation(row[6]),
-                    'departure_dt': get_value(row[7]) or get_value(row[8]),
+                    # 'departure_dt': get_value(row[7]) or get_value(row[8]),
                     'destination_dt': get_value(row[8]),
-                    'departure_city': get_value(row[9]),
-                    'destination_city': get_value(row[10]),
+                    'dep_country': dep_country,
+                    'dep_city': dep_city,
+                    'dest_country': dest_country,
+                    'dest_city': dest_city,
             }
             try:
                 Trip.objects.get(uid=get_value(row[0]))

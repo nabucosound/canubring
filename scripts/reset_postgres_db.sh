@@ -13,6 +13,6 @@ dropdb canubring
 createdb canubring
 python manage.py syncdb --noinput
 python manage.py migrate --all
-psql canubring < profiles/sql/country.postgresql.sql
+python manage.py cities_light --force-all
 python manage.py createsuperuser
 

@@ -64,7 +64,7 @@ class Cargo(models.Model):
     uid = models.CharField(max_length=36, blank=True)
 
     def __unicode__(self):
-        return u"Cargo from %s to %s" % (self.trip.departure_city, self.trip.destination_city)
+        return u"Cargo from %s to %s" % (self.trip.dep_city.name, self.trip.dest_city.name)
 
     def has_unread_comments_for_traveller_user(self):
         return True if self.cargocomment_set.exclude(user=self.traveller_user).filter(unread=True) else False

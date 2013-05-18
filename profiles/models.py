@@ -15,6 +15,7 @@ from imagekit.processors import ResizeToFill, Adjust
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.google import GoogleOAuth2Backend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
+from cities_light.models import Country
 
 from photos.utils import get_img_url
 from cargos.models import Cargo, CargoComment
@@ -51,17 +52,6 @@ class USState(models.Model):
         return self.name
 
 
-# class ProfileCountry(models.Model):
-#     code = models.CharField(max_length=2)
-#     name = models.CharField(max_length=64)
-
-#     class Meta:
-#         verbose_name_plural = 'Profile Countries'
-
-#     def __unicode__(self):
-#         return self.name
-
-
 class UserProfile(models.Model):
     PROFILE_LANG_CHOICES = (
         (1, 'en'),
@@ -71,7 +61,7 @@ class UserProfile(models.Model):
     )
     user = models.OneToOneField(User)
     profile_photo = models.ImageField(upload_to='profiles', blank=True)
-    # country = models.ForeignKey(ProfileCountry, blank=True, null=True)
+    country = models.ForeignKey(Country, blank=True, null=True)
     language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
     second_language = models.IntegerField(choices=PROFILE_LANG_CHOICES, blank=True, null=True)
     email_verified = models.BooleanField(default=False)

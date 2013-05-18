@@ -16,6 +16,6 @@ fi
 
 python manage.py syncdb --noinput
 python manage.py migrate --all
-cat profiles/sql/country.postgresql.sql | sqlite3 dev.db
+python manage.py cities_light --force-all
 python manage.py createsuperuser --traceback
 

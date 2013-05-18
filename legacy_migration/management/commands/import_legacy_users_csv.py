@@ -7,9 +7,10 @@ from django.contrib.auth.models import User
 from django.db import transaction
 
 from social_auth.models import UserSocialAuth
+from cities_light.models import Country
 
 from legacy_migration.utils import get_value, get_language
-from profiles.models import ProfileCountry, UserProfile, SocialLink
+from profiles.models import UserProfile, SocialLink
 
 class Command(BaseCommand):
     help = "Inport users from legacy system to new db schema."
@@ -29,8 +30,8 @@ class Command(BaseCommand):
         reader = csv.reader(ifile)
         reader.next()  # Jump header row
         count = 0
-        default_profile_country = ProfileCountry.objects.latest('id')
-        countries_dict = dict([(obj.name.lower(), obj) for obj in ProfileCountry.objects.all()])
+        default_profile_country = Country.objects.latest('id')
+        countries_dict = dict([(obj.name.lower(), obj) for obj in Country.objects.all()])
 
         for row in reader:
             count = count + 1
