@@ -18,6 +18,8 @@
 
 .clickable {cursor: pointer;}
 
+.nav-tabs {font-family: din-regular;}
+
 /* Fonts
 ------------------------------------------------------------*/
 @font-face {font-family: din-light;src: url('fonts/DIN-Light.otf');}
@@ -264,9 +266,9 @@ footer {
       .sidebar-nav li.save      {background-position: -164px -347px;}
         .sidebar-nav li.save.active, .sidebar-nav li.save:hover      {background-position: -439px -347px;}
 
-      .sidebar-nav li h5 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #006A99;font-family: din-regular;}
+      .sidebar-nav li h5 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #006A99;font-family: bitter-strong;}
         .sidebar-nav li.active h5, .sidebar-nav li:hover h5 {color: #EC663D;}
-      .sidebar-nav li h6 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #00A6E8;font-size: 11px;line-height: 1.2em;}
+      .sidebar-nav li h6 {text-transform: uppercase;font-weight: normal;margin:0;padding-left: 50px;color: #00A6E8;font-size: 13px;line-height: 1.2em;font-family: din-regular;}
         .sidebar-nav li.active h6, .sidebar-nav li:hover h6 {color: #F7931E;}
 
 /*Topbar Nav
@@ -527,11 +529,11 @@ footer {
       position: absolute;
     }
 
-  .profile-ticket .country {text-transform: uppercase;margin-bottom: 0;font-weight: bold;}
+  .profile-ticket .country {text-transform: uppercase;margin-bottom: 0;font-weight: bold;font-family: din-regular;}
     .profile-ticket .country .stars {margin-left: 10px;margin-bottom: 0px;}
-  .profile-ticket .language {text-transform: uppercase;margin-bottom: 0;color: #666;font-weight: bold;font-size: 12px;}
-  .profile-ticket .trips {text-transform: uppercase;margin-bottom: 0;color: #666;font-weight: bold;font-size: 12px;}
-  .profile-ticket .social {margin: 10px 0 0;}
+  .profile-ticket .language {text-transform: uppercase;margin-bottom: 0;color: #666;font-weight: bold;font-size: 12px;font-family: din-regular;}
+  .profile-ticket .trips {text-transform: uppercase;margin-bottom: 0;color: #666;font-weight: bold;font-size: 12px;font-family: din-regular;}
+  .profile-ticket .social {margin: 10px 0 0;font-family: din-regular;}
 
   /*profile social*/
   .profile-social {background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;display: inline-block;width:30px;height:30px;text-indent: -999em;}
