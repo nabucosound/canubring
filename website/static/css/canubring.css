@@ -218,6 +218,7 @@ footer {
       footer .social .ico.flickr {background-position: -287px -155px;}
 
   footer a {color: #96cce3;}
+  footer a:hover {color: #fff;text-decoration: none;}
   footer p {margin:0;}
   footer .unstyled {color: #002f48;} /*list links*/
 
