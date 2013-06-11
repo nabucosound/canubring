@@ -15,12 +15,15 @@
  }
 
 .tit-int {color: #ec663d;text-transform: uppercase;font-weight: normal;font-size: 18px;font-family: din-strong;}
-
 .clickable {cursor: pointer;}
-
 .nav-tabs {font-family: din-regular;}
-
 a:hover {text-decoration: none;color: #EC663D;}
+
+/*orb dropdonw*/
+.dropdown-menu {background-color: #003F5D;}
+.dropdown-menu li > a {color: #fff;}
+.dropdown-menu li > a:hover {background-color: #001F2D !important;background-image: none !important;}
+
 
 /* Fonts
 ------------------------------------------------------------*/
