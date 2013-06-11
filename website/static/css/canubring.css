@@ -20,6 +20,8 @@
 
 .nav-tabs {font-family: din-regular;}
 
+a:hover {text-decoration: none;color: #EC663D;}
+
 /* Fonts
 ------------------------------------------------------------*/
 @font-face {font-family: din-light;src: url('fonts/DIN-Light.otf');}
