@@ -47,11 +47,16 @@
 
 /*Input canubring
 ------------------------------------------------------------*/
-input.input-canubring, textarea.input-canubring {
+input.input-canubring {
     border-radius: 0 !important;
     color: #333;
     font-size: 11px;
     text-transform: uppercase;
+  }
+textarea.input-canubring {
+    border-radius: 0 !important;
+    color: #333;
+    font-size: 12px;
   }
 
 /*Modal ORB
