@@ -32,10 +32,10 @@
 
 /*Buttons canubring
 ------------------------------------------------------------*/
-.btn-canubring-orange {background:#ec663d;border-radius: 0;color: #fff;text-shadow:none;font-family: din-regular;}
+.btn-canubring-orange {background:#ec663d;border-radius: 0;color: #fff;text-shadow:none;font-family: din-regular;text-transform: uppercase;}
 .btn-canubring-orange:hover {background-color: #c4482c;color: #fff;}
 
-.btn-canubring-blue {background:#00a6e8;border-radius: 0;color: #fff;text-shadow:none;font-family: din-regular;}
+.btn-canubring-blue {background:#00a6e8;border-radius: 0;color: #fff;text-shadow:none;font-family: din-regular;text-transform: uppercase;}
 .btn-canubring-blue:hover {background-color: #0483aa;color: #fff;}
 
 
