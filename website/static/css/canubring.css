@@ -610,7 +610,7 @@ footer {
         font-size: 11px;
         margin-top: -5px;  
         display: block;
-        background: transparent url(../img/ico_remove.png) top left no-repeat;
+        background: transparent url(../img/ico_add.png) top left no-repeat;
         padding-left: 20px;
         line-height: 18px;
       }
