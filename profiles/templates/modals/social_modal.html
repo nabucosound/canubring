@@ -4,25 +4,57 @@
   .h3-canubring-orange {color: #f15a24;font-size: 16px;margin:0;text-transform: uppercase;font-family: bitter-regular;}
 </style>
 
-<div id="modal-social" class="modal sz1 hide fade modal-cnb-signup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div id="modal-social" class="modal sz1 hide fade modal-cnb-social" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   </div>
   <div class="modal-body clearfix">
     <h3 class="h3-canubring-orange">{% trans "Add your other account urls" %}:</h3>
-    <div class="aux-form">
+    <div class="">
 
       <form id="profile-form" action="{% url 'update_social' %}" method="post" class="form-horizontal">
         {% csrf_token %}
-        <div class="control-group">
-          <input name="social1" class="input-large input-canubring" type="text" value="{{ profile.get_social_link1 }}" placeholder="http://www.facebook.com/...">
-          <input name="social2" class="input-large input-canubring" type="text" value="{{ profile.get_social_link2 }}" placeholder="http://www.twitter.com/...">
-          <input name="social3" class="input-large input-canubring" type="text" value="{{ profile.get_social_link3 }}" placeholder="http://plus.google.com/...">
-          <input name="social4" class="input-large input-canubring" type="text" value="{{ profile.get_social_link4 }}" placeholder="http://www.pinterest.com/...">
-          <input name="social5" class="input-large input-canubring" type="text" value="{{ profile.get_social_link5 }}" placeholder="http://www.linkedin.com/...">
-          <input name="social6" class="input-large input-canubring" type="text" value="{{ profile.get_social_link6 }}" placeholder="http://www.instagram.com/...">
-          <input name="social7" class="input-large input-canubring" type="text" value="{{ profile.get_social_link7 }}" placeholder="http://www.flickr.com/...">
-          <input name="social8" class="input-large input-canubring" type="text" value="{{ profile.get_social_link8 }}" placeholder="http://www.youtube.com/...">
+        <div class="control-group fm-social clearfix">
+          <div class="pull-left" style="width:45%;">
+            <p>
+              <span class="ico facebook">Facebook</span>
+              <input name="social1" class="input-large input-canubring" type="text" value="{{ profile.get_social_link1 }}" placeholder="http://www.facebook.com/...">
+            </p>
+            <p>
+              <span class="ico twitter">twitter</span>
+              <input name="social2" class="input-large input-canubring" type="text" value="{{ profile.get_social_link2 }}" placeholder="http://www.twitter.com/...">
+            </p>
+            
+            <p>
+              <span class="ico plus">google plis</span>
+              <input name="social3" class="input-large input-canubring" type="text" value="{{ profile.get_social_link3 }}" placeholder="http://plus.google.com/...">
+            </p>
+            
+            <p>
+              <span class="ico pinterest">Pinterest</span>
+              <input name="social4" class="input-large input-canubring" type="text" value="{{ profile.get_social_link4 }}" placeholder="http://www.pinterest.com/...">
+            </p>
+          </div>
+          <div class="pull-left" style="width:45%;">
+            <p>
+              <span class="ico linkedin">linkedin</span>
+              <input name="social5" class="input-large input-canubring" type="text" value="{{ profile.get_social_link5 }}" placeholder="http://www.linkedin.com/...">
+            </p>
+            <p>
+              <span class="ico instagram">instagram</span>
+              <input name="social6" class="input-large input-canubring" type="text" value="{{ profile.get_social_link6 }}" placeholder="http://www.instagram.com/...">
+            </p>
+            <p>
+              <span class="ico flickr">flickr</span>
+              <input name="social7" class="input-large input-canubring" type="text" value="{{ profile.get_social_link7 }}" placeholder="http://www.flickr.com/...">
+            </p>
+            <p>
+              <span class="ico youtube">youtube</span>
+              <input name="social8" class="input-large input-canubring" type="text" value="{{ profile.get_social_link8 }}" placeholder="http://www.youtube.com/...">
+            </p>
+          </div>
+          
+         
         </div>
         <div class="clearfix">
           <p><input type="submit" class="btn btn-canubring-orange pull-right" value="{% trans "Done" %}"></p>

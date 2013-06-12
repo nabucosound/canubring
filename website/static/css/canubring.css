@@ -129,6 +129,20 @@ textarea.input-canubring {
   .modal-cnb-rate .submit-box {margin-right: 48px;margin-top: 10px;}
     .modal-cnb-rate .submit-box p {margin-bottom:5px;font-size: 11px;text-transform: uppercase;}
       
+/*Modal Rate
+------------------------------------------------------------*/
+.modal-cnb-social {}
+
+  .modal-cnb-social .ico {background: transparent url(../img/sprites/sprite_general.png) 0 0 no-repeat;display: inline-block;width:30px;height:30px;text-indent: -999em;}
+    .modal-cnb-social .ico.twitter {background-position: 0 -174px;}
+    .modal-cnb-social .ico.facebook {background-position: 0 -203px;}
+    .modal-cnb-social .ico.pinterest {background-position: 0 -232px;}
+    .modal-cnb-social .ico.plus {background-position: 0 -261px;}
+    .modal-cnb-social .ico.linkedin {background-position: 0 -290px;}
+    .modal-cnb-social .ico.instagram {background-position: 0 -319px;}
+    .modal-cnb-social .ico.flickr {background-position: 0 -348px;}
+    .modal-cnb-social .ico.youtube {background-position: 0 -377px;}
+
 
 
 
@@ -551,6 +565,7 @@ footer {
     .profile-social.instagram {background-position: 0 -319px;}
     .profile-social.flickr {background-position: 0 -348px;}
     .profile-social.youtube {background-position: 0 -377px;}
+    .profile-social.website {background-position: -29px -174px;} /*general*/
 
 /*Profile reviews
 ------------------------------------------------------------*/
