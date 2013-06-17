@@ -7,7 +7,7 @@
   <div class="tb-travels">
     <ul class="unstyled">
       {% for trip in profile.current_trips %}
-        {% include "trip_list_item.html" %}
+        {% include "trip_list_item.html" with profile_trip_list=1 %}
       {% endfor %}
     </ul>
   </div>

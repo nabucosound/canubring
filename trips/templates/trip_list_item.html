@@ -5,7 +5,7 @@
     <div class="span1">
       <div class="open-plane">
         <a class="toggle-trip-activity {% if my_cargos %}update-unread-status{% endif %}" cargo-id="{{ cargo.id }}" href="#" id="{{ trip.id }}">
-        {% if trip.cargo_set.count > 0 %}
+        {% if trip.cargo_set.count > 0 or profile_trip_list %}
           <img src="{{ STATIC_URL }}img/ico_open.png">
         {% endif %}
         </a>
