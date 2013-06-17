@@ -128,19 +128,21 @@ class UserProfile(models.Model):
 
     @property
     def current_cargos(self):
-        return self.user.my_cargos.filter(trip__destination_dt__gt=datetime.datetime.now())
+        # return self.user.my_cargos.filter(trip__destination_dt__gt=datetime.datetime.now())
+        return self.user.my_cargos.exclude(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False)).distinct()
 
     @property
     def past_cargos(self):
-        return self.user.my_cargos.filter(trip__destination_dt__lte=datetime.datetime.now())
+        # return self.user.my_cargos.filter(trip__destination_dt__lte=datetime.datetime.now())
+        return self.user.my_cargos.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False)).distinct()
 
     @property
     def get_reviews_about_me(self):
-        return Cargo.objects.filter(Q(requesting_user=self.user, requesting_user_review_stars__isnull=False) | Q(traveller_user=self.user, traveller_user_review_stars__isnull=False))
+        return Cargo.objects.filter(Q(requesting_user=self.user, requesting_user_review_stars__isnull=False) | Q(traveller_user=self.user, traveller_user_review_stars__isnull=False)).distinct()
 
     @property
     def get_reviews_by_me(self):
-        return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False))
+        return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False)).distinct()
 
     @property
     def get_all_reviews_by_me(self):
@@ -183,11 +185,13 @@ class UserProfile(models.Model):
 
     @property
     def get_unread_current_cargo_comments(self):
-        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__gt=datetime.datetime.now).count()
+        # return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__gt=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__requesting_user').exclude(cargo__in=self.get_reviews_about_me()).distinct().count()
 
     @property
     def get_unread_past_cargo_comments(self):
-        return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
+        # return self.get_unread_comments('cargo__requesting_user').filter(cargo__trip__destination_dt__lte=datetime.datetime.now).count()
+        return self.get_unread_comments('cargo__requesting_user').filter(cargo__in=self.get_reviews_about_me()).distinct().count()
 
     @property
     def unreviewed_by_me(self):
