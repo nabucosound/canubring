@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n website_tags %}
 
 <h3>{% trans "cargo form" %}</h3>
 <p class="desc">{% trans "fill up the form with the details you agreed with the requesting user, send it and wait for him/her to accept." %}</p>
@@ -46,9 +46,11 @@
   <span id="price-error" style="color:red;display:none">{% trans "Specify price" %}</span>
   <div class="control-group">
     <input name="price" type="text" class="input-small" />
-    <select class="input-small">
-      <option>{% trans "usd dollars $" %}</option>
-      <option>{% trans "eur euros €" %}</option>
+    <select name="currency" class="input-medium">
+      {% get_currencies as currencies %}
+      {% for currency in currencies %}
+      <option value="{{ currency.id }}">{{ currency.name }}</option>
+      {% endfor %}
     </select>
   </div>
 </div>

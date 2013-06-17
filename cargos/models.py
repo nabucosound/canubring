@@ -7,6 +7,16 @@ from django.db.models.signals import post_save
 from trips.models import Trip
 
 
+class Currency(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Currencies"
+
+
 class Cargo(models.Model):
     CARGO_STATE_CHOICES = (
         (0, 'Open'),
@@ -51,6 +61,7 @@ class Cargo(models.Model):
     others = models.CharField(max_length=255, blank=True)
     # Price deal
     price = models.CharField(max_length=255, blank=True)
+    currency = models.ForeignKey(Currency, blank=True, null=True)
     # Places
     pickup = models.IntegerField(choices=PICKUP_CHOICES, blank=True, null=True)
     delivery = models.IntegerField(choices=DELIVERY_CHOICES, blank=True, null=True)
