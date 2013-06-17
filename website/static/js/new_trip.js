@@ -85,6 +85,15 @@ $(document).ready(function(){
     },
     '.remove-leg'
   );
+  $('#trips-main-container').on(
+    {
+      click: function removeTripLeg (e) {
+        $(this).closest('.item-leg').remove();
+        return false;
+      }
+    },
+    '.remove-leg'
+  );
 });
 
 $(document).on("change", ".departure-country,.destination-country", function(){

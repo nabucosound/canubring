@@ -608,7 +608,7 @@ footer {
 
     .upload-trip .item-leg .travelling-by {/*width:164px;*/width: 223px;}
       .upload-trip .item-leg .travelling-by h5 {font-size: 11px;text-transform: uppercase;color: #ec663d;margin-top: 0;}
-      .upload-trip .item-leg .travelling-by a.remove-leg {
+      .remove-leg {
         text-transform: uppercase;
         color: #ec663d;
         font-size: 11px;
@@ -619,7 +619,7 @@ footer {
         line-height: 18px;
       }
 
-      .upload-trip .item-leg .travelling-by a.add-leg {
+      .add-leg {
         text-transform: uppercase;
         color: #ec663d;
         font-size: 11px;
