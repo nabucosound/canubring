@@ -149,7 +149,9 @@ def submit_reject_cargo_form(request):
     comment.comment_type = 3
     comment.save()
     if not msg:
-        msg = 'I have rejected the cargo through the form you sent'
+        msg = 'I have rejected the cargo'
+    else:
+        msg = 'I have rejected your cargo because: %s' % msg
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=3)
     messages.success(request, "You have successfully rejected a cargo form")
     return redirect('cargos')
