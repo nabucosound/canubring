@@ -1,11 +1,15 @@
-{% load i18n %}
+{% load i18n staticfiles %}
 
 <div class="profile-ticket">
   <div class="media">
     <div class="change-pic-wrap">
     {% if profile == user.userprofile %}
     <a data-toggle="modal" href="#avatar-modal">
+      {% if profile.image %}
       <img class="media-object img-polaroid pull-left" src="{{ profile.get_square_img_url }}">
+      {% else %}
+      <img class="media-object img-polaroid pull-left" src="{% static 'img/upload_your_photo.png' %}">
+      {% endif %}
     </a>
     <span class="change-pic"><a data-toggle="modal" href="#avatar-modal">{% trans "Change picture" %}</a></span>
     {% else %}
