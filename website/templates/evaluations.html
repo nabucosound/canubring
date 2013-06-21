@@ -7,7 +7,7 @@
 
 	<div class="hd">
 		<div class="inner">
-      <h4>{% trans "Your reviews average" %}:<span class="stars-big {{ user.userprofile.average_traveller_review_css_class_name }}"></span></h4>
+      <h4>{% trans "Your reviews average" %}:<span class="stars-big {{ user.userprofile.average_reviews_about_me_css_class_name }}"></span></h4>
 		</div>
 	</div>
 
@@ -25,9 +25,9 @@
       {% if reviews_by_me %}
         {% for cargo in reviews %}
           {% if user == cargo.requesting_user %}
-            {% include "review_list_item.html" with reviewed_user=cargo.traveller_user css_class_name=cargo.traveller_review_css_class_name review_comment=cargo.traveller_user_review_comment %}
+            {% include "review_list_item.html" with author=cargo.traveller_user reviewed_user=cargo.traveller_user css_class_name=cargo.traveller_review_css_class_name review_comment=cargo.traveller_user_review_comment %}
           {% else %}
-            {% include "review_list_item.html" with reviewed_user=cargo.requesting_user css_class_name=cargo.requesting_user_review_css_class_name review_comment=cargo.requesting_user_review_comment %}
+            {% include "review_list_item.html" with author=cargo.requesting_user reviewed_user=cargo.requesting_user css_class_name=cargo.requesting_user_review_css_class_name review_comment=cargo.requesting_user_review_comment %}
           {% endif %}
         {% empty %}
         <li>
@@ -39,9 +39,11 @@
       {% else %}
         {% for cargo in reviews %}
           {% if user == cargo.requesting_user %}
-            {% include "review_list_item.html" with reviewed_user=cargo.traveller_user css_class_name=cargo.requesting_user_review_css_class_name review_comment=cargo.requesting_user_review_comment %}
+            {# done #}
+            {% include "review_list_item.html" with author=cargo.traveller_user reviewed_user=cargo.traveller_user css_class_name=cargo.requesting_user_review_css_class_name review_comment=cargo.requesting_user_review_comment %}
           {% else %}
-            {% include "review_list_item.html" with reviewed_user=cargo.requesting_user css_class_name=cargo.traveller_review_css_class_name review_comment=cargo.traveller_user_review_comment %}
+            {# done #}
+            {% include "review_list_item.html" with author=cargo.requesting_user reviewed_user=cargo.traveller_user css_class_name=cargo.traveller_review_css_class_name review_comment=cargo.traveller_user_review_comment %}
           {% endif %}
         {% empty %}
         <li>

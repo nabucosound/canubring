@@ -153,12 +153,28 @@ class UserProfile(models.Model):
         return Cargo.objects.filter(traveller_user=self.user, state=4).count()
 
     @property
-    def get_average_reviews_about_me_score(self):
-        return self.get_reviews_about_me.aggregate(Avg('traveller_user_review_stars'))
+    def get_average_reviews_about_me_as_traveller_score(self):
+        cargos = Cargo.objects.filter(traveller_user=self.user, traveller_user_review_stars__isnull=False).distinct()
+        return cargos.aggregate(Avg('traveller_user_review_stars'))
+
+    @property
+    def get_average_reviews_about_me_as_requesting_user_score(self):
+        cargos = Cargo.objects.filter(requesting_user=self.user, requesting_user_review_stars__isnull=False).distinct()
+        return cargos.aggregate(Avg('requesting_user_review_stars'))
+
+    @property
+    def average_reviews_about_me_css_class_name(self):
+        from django.db.models import Sum
+        cargos1 = Cargo.objects.filter(traveller_user=self.user, traveller_user_review_stars__isnull=False).distinct().aggregate(num=Sum('traveller_user_review_stars'))
+        val1 = cargos1['num']
+        cargos2 = Cargo.objects.filter(requesting_user=self.user, requesting_user_review_stars__isnull=False).distinct().aggregate(num=Sum('requesting_user_review_stars'))
+        val2 = cargos2['num']
+        val3 = (val1 or 0 + val2 or 0) / self.get_reviews_about_me.count()
+        return Cargo.css_class_name(val3)
 
     @property
     def average_traveller_review_css_class_name(self):
-        return Cargo.css_class_name(self.get_average_reviews_about_me_score['traveller_user_review_stars__avg'])
+        return Cargo.css_class_name(self.get_average_reviews_about_me_as_traveller_score['traveller_user_review_stars__avg'])
 
     def get_unread_comments(self, filter_name):
         filters = {
