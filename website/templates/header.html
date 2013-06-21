@@ -33,7 +33,7 @@
               <!-- nav login | signup -->
               {% if user.is_authenticated %}
               <ul class="nav nav-pills login pull-right">
-                <li style="margin-right:-5px;"><img src="http://placehold.it/30x30" class="img-circle" style="margin-top:4px;"></li>
+                <li style="margin-right:-5px;"><img src="{{ user.userprofile.get_ticket_img_url }}" class="img-circle" style="margin-top:4px;"></li>
                 <li>
                   <a href="{% url 'profile' %}">{{ user.get_full_name }}</a>
                 </li>
