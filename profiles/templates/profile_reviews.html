@@ -2,27 +2,44 @@
 
 <div class="profile-reviews">
   {% if profile.user == request.user %}
-  <h4 class="tit-int">{% trans "Reviews about you" %}</h4>
+    <h4 class="tit-int">{% trans "Reviews about you" %}</h4>
   {% else %}
-  <h4 class="tit-int">{% trans "Reviews by you" %}</h4>
+    <h4 class="tit-int">{% trans "Reviews about this user" %}</h4>
   {% endif %}
-  {% for cargo in profile.get_reviews_about_me %}
-  <div class="item">
-    <div class="media">
-      <img class="media-object img-polaroid pull-left" src="{{ cargo.requesting_user.userprofile.get_review_img_url }}">
-      <div class="media-body">
-        <div class="comment-box">
-          <h5><a href="{{ cargo.requesting_user.userprofile.get_absolute_url }}">{{ cargo.requesting_user.get_full_name }}</a></h5>
-          <p>{{ cargo.traveller_user_review_comment }}</p>
-        </div>
-        <span class="arrow"></span>
+
+    {% for cargo in profile.get_reviews_about_me_with_comments %}
+    <div class="item">
+      <div class="media">
+        {% if profile.user == cargo.requesting_user %}
+          {% with author=cargo.traveller_user %}
+            <img class="media-object img-polaroid pull-left" src="{{ author.userprofile.get_review_img_url }}">
+            <div class="media-body">
+              <div class="comment-box">
+                <h5><a href="{{ author.userprofile.get_absolute_url }}">{{ author.get_full_name }}</a></h5>
+                <p>{{ cargo.requesting_user_review_comment }}</p>
+              </div>
+              <span class="arrow"></span>
+            </div>
+          {% endwith %}
+        {% else %}
+          {% with author=cargo.requesting_user %}
+            <img class="media-object img-polaroid pull-left" src="{{ author.userprofile.get_review_img_url }}">
+            <div class="media-body">
+              <div class="comment-box">
+                <h5><a href="{{ author.userprofile.get_absolute_url }}">{{ author.get_full_name }}</a></h5>
+                <p>{{ cargo.traveller_user_review_comment }}</p>
+              </div>
+              <span class="arrow"></span>
+            </div>
+          {% endwith %}
+        {% endif %}
       </div>
     </div>
-  </div>
-  {% empty %}
-  <div class="alert">
-    {% trans "No reviews to show" %}
-  </div>
-  {% endfor %}
+    {% empty %}
+    <div class="alert">
+      {% trans "No reviews to show" %}
+    </div>
+    {% endfor %}
+
 </div>
 

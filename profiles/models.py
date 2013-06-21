@@ -145,6 +145,10 @@ class UserProfile(models.Model):
         return Cargo.objects.filter(Q(traveller_user=self.user, requesting_user_review_stars__isnull=False) | Q(requesting_user=self.user, traveller_user_review_stars__isnull=False)).distinct()
 
     @property
+    def get_reviews_about_me_with_comments(self):
+        return Cargo.objects.filter(requesting_user=self.user, requesting_user_review_stars__isnull=False).exclude(requesting_user_review_comment='').distinct() | Cargo.objects.filter(traveller_user=self.user, traveller_user_review_stars__isnull=False).exclude(traveller_user_review_comment='').distinct()
+
+    @property
     def get_all_reviews_by_me(self):
         return Cargo.objects.filter(Q(traveller_user=self.user) | Q(requesting_user=self.user), state=4)
 
