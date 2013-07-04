@@ -1,1 +1,1 @@
-Bienvenido a Canubring
+{% load i18n %}{% trans "Welcome to Canubring" %}

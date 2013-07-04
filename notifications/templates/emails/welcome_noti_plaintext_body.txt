@@ -1,9 +1,10 @@
-Welcome to Canubring!!!
+{% load i18n %}
+{% trans "Welcome to Canubring!!!" %}
 
-Before you can start using Canubring, we need you to verify this email address by visiting the following link:
+{% trans "Before you can start using Canubring, we need you to verify this email address by visiting the following link" %}:
 
 http://{{ domain }}/profiles/verify/email/{{ token }}/
 
-Thanks!
+{% trans "Thanks!" %}
 
-The Canubring team.
+{% trans "The Canubring team." %}

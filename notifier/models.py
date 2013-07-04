@@ -25,9 +25,11 @@ class NotificationMixin(object):
     from_email = settings.DEFAULT_FROM_EMAIL
 
     def _render_tmpl(self, template):
+        from django.utils import translation
         ctxt = self.get_context()
         site = Site.objects.get(id=settings.SITE_ID)
         ctxt['site'] = "http://%s" % site.domain
+        ctxt['LANGUAGE_CODE'] = translation.get_language()
         return render_to_string(template, ctxt)
 
     def get_context(self):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Canubring\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 11:16-0500\n"
+"POT-Creation-Date: 2013-07-04 14:46-0500\n"
 "PO-Revision-Date: 2013-05-13 22:23-0400\n"
 "Last-Translator: Hector Garcia <hector@nomadblue.com>\n"
 "Language-Team: Canubring <info@canubring.com>\n"
@@ -293,6 +293,53 @@ msgstr ""
 msgid "Answer later"
 msgstr ""
 
+#: notifications/templates/emails/cargo_comment_noti_html_body.html:1
+#, python-format
+msgid ""
+"<strong>%(sender)s</strong> left a <strong>new comment</strong> in one of "
+"your trips.</p>"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_html_body.html:2
+msgid "<p>Welcome to <strong>Canubring</strong>!!!<p>"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_html_body.html:3
+msgid ""
+"<p>Before you can start using Canubring, we need you to verify this email "
+"address by visiting the following link:</p>"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_html_body.html:5
+msgid "<p>Thanks!</p>"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_html_body.html:6
+msgid "<p>The Canubring team.</p>"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:2
+msgid "Welcome to Canubring!!!"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:4
+msgid ""
+"Before you can start using Canubring, we need you to verify this email "
+"address by visiting the following link"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:8
+msgid "Thanks!"
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:10
+msgid "The Canubring team."
+msgstr ""
+
+#: notifications/templates/emails/welcome_noti_subject.txt:1
+msgid "Welcome to Canubring"
+msgstr ""
+
 #: prj/settings.py:25
 msgid "English"
 msgstr ""
@@ -303,6 +350,18 @@ msgstr ""
 
 #: prj/settings.py:27
 msgid "Portuguese"
+msgstr ""
+
+#: profiles/forms.py:14
+msgid "Email is already taken"
+msgstr ""
+
+#: profiles/forms.py:29
+msgid "Email doesn't exist on our system"
+msgstr ""
+
+#: profiles/forms.py:54
+msgid "Email is already been used by another user"
 msgstr ""
 
 #: profiles/forms.py:58
@@ -573,7 +632,7 @@ msgstr ""
 msgid "Select city"
 msgstr ""
 
-#: search/templates/search.html:37
+#: search/templates/search.html:37 website/templates/reference_prices.html:29
 msgid "Destination"
 msgstr ""
 
@@ -726,7 +785,7 @@ msgstr ""
 msgid "Reference saving is: %(saving)s %%"
 msgstr ""
 
-#: website/templates/base.html:6
+#: website/templates/base.html:7
 msgid "Canubring - Save sending, earn carrying!"
 msgstr ""
 
@@ -850,8 +909,32 @@ msgstr ""
 msgid "Reference prices"
 msgstr ""
 
+#: website/templates/reference_prices.html:23
+msgid "Step 1: Get the distance between two cities"
+msgstr ""
+
+#: website/templates/reference_prices.html:24
+msgid "Origin"
+msgstr ""
+
+#: website/templates/reference_prices.html:34
+msgid "Distance"
+msgstr ""
+
+#: website/templates/reference_prices.html:45
+msgid "Step 2: Set the weight, size and price of your item"
+msgstr ""
+
+#: website/templates/reference_prices.html:46
+msgid "Weight"
+msgstr ""
+
 #: website/templates/reference_prices.html:49
 msgid "Choose weight range"
+msgstr ""
+
+#: website/templates/reference_prices.html:61
+msgid "Size"
 msgstr ""
 
 #: website/templates/reference_prices.html:64
@@ -870,8 +953,17 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
+#: website/templates/reference_prices.html:72
+msgid "Value"
+msgstr ""
+
 #: website/templates/reference_prices.html:75
 msgid "Choose value range"
+msgstr ""
+
+#: website/templates/reference_prices.html:116
+#: website/templates/reference_prices.html:138
+msgid "Origin and destination fields are required"
 msgstr ""
 
 #: website/templates/review_list_item.html:13

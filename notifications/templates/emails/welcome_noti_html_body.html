@@ -1,5 +1,6 @@
-<p>Welcome to <strong>Canubring</strong>!!!<p>
-<p>Before you can start using Canubring, we need you to verify this email address by visiting the following link:</p>
+{% load i18n %}
+{% blocktrans %}<p>Welcome to <strong>Canubring</strong>!!!<p>{% endblocktrans %}
+{% blocktrans %}<p>Before you can start using Canubring, we need you to verify this email address by visiting the following link:</p>{% endblocktrans %}
 <p><a href="http://{{ domain }}/profiles/verify/email/{{ token }}/">http://{{ domain }}/profiles/verify/{{ token }}/</a></p>
-<p>Thanks!</p>
-<p>The Canubring team.</p>
+{% blocktrans %}<p>Thanks!</p>{% endblocktrans %}
+{% blocktrans %}<p>The Canubring team.</p>{% endblocktrans %}
