@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.utils.translation import ugettext as _
 
 from website.utils import listing
 from cities_light.models import Country
@@ -99,12 +100,12 @@ def reference_price(request):
         price = request.POST.get('price')
         from django.contrib import messages
         if not distance or not weight or not size or not price:
-            messages.error(request, "All fields are required")
+            messages.error(request, _("All fields are required"))
             return render(request, template, ctxt)
         from website.utils import reference_price, reference_saving
         ref_price = reference_price(distance, float(weight), float(size), float(price))
         ref_saving = reference_saving(distance, float(weight), float(size), float(price))
-        messages.success(request, "Reference price is: %s $USD" % int(ref_price))
-        messages.success(request, "Reference saving is: %s %%" % int(ref_saving))
+        messages.success(request, _("Reference price is: %(price)s $USD") % {'price': int(ref_price)})
+        messages.success(request, _("Reference saving is: %(saving)s %%") % {'saving': int(ref_saving)})
     return render(request, template, ctxt)
 

@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.translation import ugettext as _
 
 from trips.models import Trip
 from cargos.models import Cargo, CargoComment
@@ -94,10 +95,10 @@ def submit_cargo_form(request):
     # Send notification to requesting user
     obj.cargoformnotification_set.create(user=obj.requesting_user)
     obj.save()
-    msg = 'I am attaching form for you to review. By accepting it you will be confirming your cargo.'
+    msg = _('I am attaching form for you to review. By accepting it you will be confirming your cargo.')
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=1)
     response = '/my/trips/'
-    messages.success(request, "You have successfully posted a cargo form to the requesting user")
+    messages.success(request, _("You have successfully posted a cargo form to the requesting user"))
     return HttpResponse(json.dumps(response), mimetype="application/json")
 
 @login_required
@@ -114,7 +115,7 @@ def confirm_cargo_form(request, cargo_id):
 def submit_confirm_cargo_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     if not cargo_id:
-        messages.error(request, "Error while trying to confirm cargo")
+        messages.error(request, _("Error while trying to confirm cargo"))
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
     obj.state = 2 # Cargo form confirmed (handshake)
@@ -125,9 +126,9 @@ def submit_confirm_cargo_form(request):
     comment = obj.cargocomment_set.filter(comment_type=1).latest('creation_dt')
     comment.comment_type = 2
     comment.save()
-    msg = 'I have confirmed the cargo through the form you sent'
+    msg = _('I have confirmed the cargo through the form you sent')
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=2)
-    messages.success(request, "You have successfully confirmed a cargo form")
+    messages.success(request, _("You have successfully confirmed a cargo form"))
     return redirect('cargos')
 
 @login_required
@@ -137,7 +138,7 @@ def submit_reject_cargo_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     msg = request.POST.get('comment_txt', '')
     if not cargo_id:
-        messages.error(request, "Error while trying to reject cargo")
+        messages.error(request, _("Error while trying to reject cargo"))
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
     obj.state = 3 # Cargo form rejected
@@ -149,11 +150,11 @@ def submit_reject_cargo_form(request):
     comment.comment_type = 3
     comment.save()
     if not msg:
-        msg = 'I have rejected the cargo'
+        msg = _('I have rejected the cargo')
     else:
-        msg = 'I have rejected your cargo because: %s' % msg
+        msg = _('I have rejected your cargo because: %(msg)s') % {'msg': msg}
     obj.cargocomment_set.create(user=request.user, content=msg, comment_type=3)
-    messages.success(request, "You have successfully rejected a cargo form")
+    messages.success(request, _("You have successfully rejected a cargo form"))
     return redirect('cargos')
 
 @login_required
@@ -170,12 +171,12 @@ def review_traveller_form(request, cargo_id):
 def submit_review_traveller_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     if not cargo_id:
-        messages.error(request, "Error while trying to review traveller")
+        messages.error(request, _("Error while trying to review traveller"))
         return redirect('cargos')
     obj = get_object_or_404(Cargo, id=cargo_id)
     form = ReviewTravellerForm(request.POST, instance=obj)
     if not form.is_valid():
-        messages.error(request, "Error while trying to review traveller")
+        messages.error(request, _("Error while trying to review traveller"))
         return redirect('cargos')
     obj = form.save()
     if obj.state != 4:
@@ -185,7 +186,7 @@ def submit_review_traveller_form(request):
         obj.cargodeliverynotification_set.create(user=obj.traveller_user)
     # Send notification to traveller
     obj.cargoreviewtravellernotification_set.create(user=obj.traveller_user)
-    messages.success(request, "You have successfully reviewed a traveller")
+    messages.success(request, _("You have successfully reviewed a traveller"))
     return redirect('cargos')
 
 @login_required
@@ -202,15 +203,15 @@ def review_requesting_user_form(request, cargo_id):
 def submit_review_requesting_user_form(request):
     cargo_id = request.POST.get('cargo_id', False)
     if not cargo_id:
-        messages.error(request, "Error while trying to review user")
+        messages.error(request, _("Error while trying to review user"))
         return redirect('trips')
     obj = get_object_or_404(Cargo, id=cargo_id)
     form = ReviewRequestingUserForm(request.POST, instance=obj)
     if not form.is_valid():
-        messages.error(request, "Error while trying to review user")
+        messages.error(request, _("Error while trying to review user"))
         return redirect('trips')
     obj = form.save()
-    messages.success(request, "You have successfully reviewed a user")
+    messages.success(request, _("You have successfully reviewed a user"))
     # Send notification to requesting user
     obj.cargoreviewrequsernotification_set.create(user=obj.requesting_user)
     return redirect('trips')
@@ -222,6 +223,6 @@ def confirm_delivery(request, cargo_id):
         obj.save()
         # Send notification to traveller
         obj.cargodeliverynotification_set.create(user=obj.traveller_user)
-        messages.success(request, "You have successfully confirmed the delivery of this cargo")
+        messages.success(request, _("You have successfully confirmed the delivery of this cargo"))
     return redirect('cargos')
 

@@ -20,18 +20,18 @@
     {% csrf_token %}
     <div class="control-group">
 
-      <h3>Step 1: Get the distance between two cities</h3>
-      <label class="control-label" for="origin">Origin:</label>
+      <h3>{% trans "Step 1: Get the distance between two cities" %}</h3>
+      <label class="control-label" for="origin">{% trans "Origin" %}:</label>
       <div class="controls">
         <input id="origin" type="text" name="origin" value="" class="city-input">
       </div>
 
-      <label class="control-label" for="destination">Destination:</label>
+      <label class="control-label" for="destination">{% trans "Destination" %}:</label>
       <div class="controls">
         <input id="destination" type="text" name="destination" value="" class="city-input">
       </div>
 
-      <label class="control-label" for="distance">Distance:</label>
+      <label class="control-label" for="distance">{% trans "Distance" %}:</label>
       <div class="controls">
         <input id="distance" type="text" name="distance-fake" value="" disabled="disabled">
       </div>
@@ -42,8 +42,8 @@
       <br>
       <br>
 
-      <h3>Step 2: Set the weight, size and price of your item</h3>
-      <label class="control-label" for="weight">Weight:</label>
+      <h3>{% trans "Step 2: Set the weight, size and price of your item" %}</h3>
+      <label class="control-label" for="weight">{% trans "Weight" %}:</label>
       <div class="controls">
         <select name="weight">
           <option value="">{% trans "Choose weight range" %}</option>
@@ -58,7 +58,7 @@
       </div>
       <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
 
-      <label class="control-label" for="size">Size:</label>
+      <label class="control-label" for="size">{% trans "Size" %}:</label>
       <div class="controls">
         <select name="size">
           <option value="">{% trans "Choose size range" %}</option>
@@ -69,7 +69,7 @@
       </div>
       <div class="error" style="display:none"><p>*{% trans "Required field" %}</p></div>
 
-      <label class="control-label" for="price">Value ($USD):</label>
+      <label class="control-label" for="price">{% trans "Value" %}($USD):</label>
       <div class="controls">
         <select name="price">
           <option value="">{% trans "Choose value range" %}</option>
@@ -113,7 +113,7 @@ var D, city1, city2, p1, p2;
         });
       }
       else {
-        alert('Origin and destination fields are required');
+        alert('{% trans "Origin and destination fields are required" %}');
       }
     });
   }
@@ -135,7 +135,7 @@ $(document).ready(function(){
     city1 = $('#origin').val();
     city2 = $('#destination').val();
     if (city1 == "" || city2 == "") {
-        alert('Origin and destination fields are required');
+        alert('{% trans "Origin and destination fields are required" %}');
     } else {
       get_distance(city1, city2, function() { $('#distance').val(window.D);$('#distance-hidden').val(window.D); });
     }

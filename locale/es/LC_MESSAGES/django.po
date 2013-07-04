@@ -7,137 +7,188 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Canubring\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-13 18:13-0500\n"
+"POT-Creation-Date: 2013-07-04 11:16-0500\n"
 "PO-Revision-Date: 2013-05-13 22:05-0400\n"
 "Last-Translator: Hector Garcia <hector@nomadblue.com>\n"
 "Language-Team: Canubring <info@canubring.com>\n"
+"Language: spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Language: spanish\n"
 
-#: cargos/templates/modals/cargo_modal_content.html:3
+#: cargos/views.py:98
+msgid ""
+"I am attaching form for you to review. By accepting it you will be "
+"confirming your cargo."
+msgstr ""
+
+#: cargos/views.py:101
+msgid "You have successfully posted a cargo form to the requesting user"
+msgstr ""
+
+#: cargos/views.py:118
+msgid "Error while trying to confirm cargo"
+msgstr ""
+
+#: cargos/views.py:129
+msgid "I have confirmed the cargo through the form you sent"
+msgstr ""
+
+#: cargos/views.py:131
+msgid "You have successfully confirmed a cargo form"
+msgstr ""
+
+#: cargos/views.py:141
+msgid "Error while trying to reject cargo"
+msgstr ""
+
+#: cargos/views.py:153
+msgid "I have rejected the cargo"
+msgstr ""
+
+#: cargos/views.py:155
+#, python-format
+msgid "I have rejected your cargo because: %(msg)s"
+msgstr ""
+
+#: cargos/views.py:157
+msgid "You have successfully rejected a cargo form"
+msgstr ""
+
+#: cargos/views.py:174 cargos/views.py:179
+msgid "Error while trying to review traveller"
+msgstr ""
+
+#: cargos/views.py:189
+msgid "You have successfully reviewed a traveller"
+msgstr ""
+
+#: cargos/views.py:206 cargos/views.py:211
+msgid "Error while trying to review user"
+msgstr ""
+
+#: cargos/views.py:214
+msgid "You have successfully reviewed a user"
+msgstr ""
+
+#: cargos/views.py:226
+msgid "You have successfully confirmed the delivery of this cargo"
+msgstr ""
+
+#: cargos/templates/modals/cargo_modal_content.html:14
 msgid "cargo form"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:4
+#: cargos/templates/modals/cargo_modal_content.html:15
 msgid ""
 "fill up the form with the details you agreed with the requesting user, send "
 "it and wait for him/her to accept."
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:8
+#: cargos/templates/modals/cargo_modal_content.html:19
 msgid "select the category of the cargo you are delivering"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:11
+#: cargos/templates/modals/cargo_modal_content.html:22
 #: cargos/templates/modals/confirm_cargo_modal_content.html:8
 msgid "food"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:14
+#: cargos/templates/modals/cargo_modal_content.html:25
 #: cargos/templates/modals/confirm_cargo_modal_content.html:11
 msgid "medicines"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:17
+#: cargos/templates/modals/cargo_modal_content.html:28
 #: cargos/templates/modals/confirm_cargo_modal_content.html:14
 msgid "duty free"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:20
+#: cargos/templates/modals/cargo_modal_content.html:31
 #: cargos/templates/modals/confirm_cargo_modal_content.html:17
 msgid "electronics"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:23
+#: cargos/templates/modals/cargo_modal_content.html:34
 msgid "luggage"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:26
+#: cargos/templates/modals/cargo_modal_content.html:37
 #: cargos/templates/modals/confirm_cargo_modal_content.html:23
 msgid "books"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:29
+#: cargos/templates/modals/cargo_modal_content.html:40
 #: cargos/templates/modals/confirm_cargo_modal_content.html:26
 msgid "documents"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:32
+#: cargos/templates/modals/cargo_modal_content.html:43
 #: cargos/templates/modals/confirm_cargo_modal_content.html:29
 msgid "personal belongings"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:35
+#: cargos/templates/modals/cargo_modal_content.html:46
 #: cargos/templates/modals/confirm_cargo_modal_content.html:32
 msgid "apparel"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:37
+#: cargos/templates/modals/cargo_modal_content.html:48
 msgid "Select at least one category from above or specify one on \"others\" "
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:38
+#: cargos/templates/modals/cargo_modal_content.html:52
 #: cargos/templates/modals/confirm_cargo_modal_content.html:35
 msgid "others"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:45
+#: cargos/templates/modals/cargo_modal_content.html:59
 msgid "which is the price you agreed with the requesting user?"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:46
+#: cargos/templates/modals/cargo_modal_content.html:60
 msgid "Specify price"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:50
-msgid "usd dollars $"
-msgstr ""
-
-#: cargos/templates/modals/cargo_modal_content.html:51
-msgid "eur euros €"
-msgstr ""
-
-#: cargos/templates/modals/cargo_modal_content.html:57
+#: cargos/templates/modals/cargo_modal_content.html:73
 msgid "Meeting point"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:58
+#: cargos/templates/modals/cargo_modal_content.html:74
 msgid "Specify one meeting location"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:61
-#: cargos/templates/modals/cargo_modal_content.html:80
+#: cargos/templates/modals/cargo_modal_content.html:77
+#: cargos/templates/modals/cargo_modal_content.html:96
 msgid "common place"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:64
+#: cargos/templates/modals/cargo_modal_content.html:80
 msgid "I'll buy it"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:67
 #: cargos/templates/modals/cargo_modal_content.html:83
+#: cargos/templates/modals/cargo_modal_content.html:99
 msgid "his/her address"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:70
 #: cargos/templates/modals/cargo_modal_content.html:86
+#: cargos/templates/modals/cargo_modal_content.html:102
 msgid "my address"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:76
+#: cargos/templates/modals/cargo_modal_content.html:92
 msgid "Delivery point"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:77
+#: cargos/templates/modals/cargo_modal_content.html:93
 msgid "Specify one delivery location"
 msgstr ""
 
-#: cargos/templates/modals/cargo_modal_content.html:92
+#: cargos/templates/modals/cargo_modal_content.html:108
 msgid "Send form"
 msgstr ""
 
@@ -266,40 +317,68 @@ msgstr ""
 msgid "The two passwords didn't match."
 msgstr ""
 
+#: profiles/views.py:96
+msgid "Password is not correct"
+msgstr ""
+
+#: profiles/views.py:99
+msgid "You must verify your email first"
+msgstr ""
+
+#: profiles/views.py:129
+msgid "Error while uploading new avatar picture"
+msgstr ""
+
+#: profiles/views.py:132
+msgid "You have modified your avatar picture"
+msgstr ""
+
+#: profiles/views.py:155
+msgid "You have updated your email"
+msgstr ""
+
+#: profiles/views.py:171
+msgid "Passwords didn't match"
+msgstr ""
+
+#: profiles/views.py:177
+msgid "You have updated your password"
+msgstr ""
+
 #: profiles/templates/profile_reviews.html:5
 #: website/templates/evaluations.html:16
 msgid "Reviews about you"
 msgstr ""
 
 #: profiles/templates/profile_reviews.html:7
-msgid "Reviews by you"
+msgid "Reviews about this user"
 msgstr ""
 
-#: profiles/templates/profile_reviews.html:24
+#: profiles/templates/profile_reviews.html:40
 msgid "No reviews to show"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:13
+#: profiles/templates/profile_ticket.html:14
 msgid "Change picture"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:19
+#: profiles/templates/profile_ticket.html:23
 msgid "edit profile"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:19
+#: profiles/templates/profile_ticket.html:23
 msgid "edit settings"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:21
+#: profiles/templates/profile_ticket.html:25
 msgid "languages"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:22
+#: profiles/templates/profile_ticket.html:26
 msgid "trips done"
 msgstr ""
 
-#: profiles/templates/profile_ticket.html:29
+#: profiles/templates/profile_ticket.html:33
 msgid "edit social links"
 msgstr ""
 
@@ -381,6 +460,9 @@ msgstr ""
 #: profiles/templates/modals/profile_modal.html:38
 #: profiles/templates/modals/signup_modal.html:15
 #: profiles/templates/modals/signup_modal.html:19
+#: website/templates/reference_prices.html:59
+#: website/templates/reference_prices.html:70
+#: website/templates/reference_prices.html:84
 msgid "Required field"
 msgstr ""
 
@@ -405,7 +487,7 @@ msgid "don't have an account?"
 msgstr ""
 
 #: profiles/templates/modals/login_modal.html:35
-#: website/templates/header.html:45
+#: website/templates/header.html:47
 msgid "Sign up"
 msgstr ""
 
@@ -434,7 +516,7 @@ msgid "Choose Second Language"
 msgstr ""
 
 #: profiles/templates/modals/profile_modal.html:50
-#: profiles/templates/modals/social_modal.html:28
+#: profiles/templates/modals/social_modal.html:60
 #: profiles/templates/modals/upload_profile_picture_modal.html:12
 msgid "Done"
 msgstr ""
@@ -520,60 +602,52 @@ msgstr ""
 msgid "Review cargo"
 msgstr ""
 
-#: trips/templates/new_trip.html:9 website/templates/sidebar.html:29
+#: trips/templates/new_trip.html:10 website/templates/sidebar.html:29
 msgid "Upload your trip"
 msgstr ""
 
-#: trips/templates/new_trip.html:19
-msgid "remove leg"
-msgstr ""
-
-#: trips/templates/new_trip.html:20
+#: trips/templates/new_trip.html:24
 msgid "add another leg"
 msgstr ""
 
-#: trips/templates/new_trip.html:25
+#: trips/templates/new_trip.html:29
 msgid "one way"
 msgstr ""
 
-#: trips/templates/new_trip.html:28
+#: trips/templates/new_trip.html:32
 msgid "round trip"
 msgstr ""
 
-#: trips/templates/new_trip.html:31
+#: trips/templates/new_trip.html:35
 msgid "multi-city"
 msgstr ""
 
-#: trips/templates/new_trip.html:34
+#: trips/templates/new_trip.html:38
 msgid "Upload"
 msgstr ""
 
 #: trips/templates/new_trip_leg.html:4
-msgid "Fill your trip leg"
+msgid "Fill your trip data"
 msgstr ""
 
 #: trips/templates/new_trip_leg.html:8
 msgid "All fields except comments are required"
 msgstr ""
 
-#: trips/templates/new_trip_leg.html:11
-msgid "departure city"
-msgstr ""
-
-#: trips/templates/new_trip_leg.html:18
-msgid "destination city"
-msgstr ""
-
-#: trips/templates/new_trip_leg.html:19
+#: trips/templates/new_trip_leg.html:47
 msgid "arrival date"
 msgstr ""
 
-#: trips/templates/new_trip_leg.html:27
+#: trips/templates/new_trip_leg.html:55
 msgid "Travelling by"
 msgstr ""
 
-#: trips/templates/new_trip_leg.html:42
+#: trips/templates/new_trip_leg.html:70
 msgid "Comments about what you are up to carry"
+msgstr ""
+
+#: trips/templates/new_trip_leg.html:74
+msgid "remove leg"
 msgstr ""
 
 #: trips/templates/trip_ask_cargo.html:13
@@ -581,11 +655,13 @@ msgid "Contact this traveller to ask him/her for your cargo"
 msgstr ""
 
 #: trips/templates/trip_comments_thread.html:16
-msgid "Reply to this cargo conversation"
+msgid ""
+"Reply to this cargo conversation and when you achieve an agreement, confirm "
+"the cargo"
 msgstr ""
 
 #: trips/templates/trip_comments_thread.html:20
-msgid "Propose Cargo"
+msgid "Confirm Cargo"
 msgstr ""
 
 #: trips/templates/trip_comments_thread.html:24
@@ -606,13 +682,13 @@ msgstr ""
 
 #: trips/templates/trip_list_item.html:29
 #: trips/templates/trip_list_item.html:69
-#: website/templates/review_list_item.html:18
+#: website/templates/review_list_item.html:24
 msgid "From"
 msgstr ""
 
 #: trips/templates/trip_list_item.html:36
 #: trips/templates/trip_list_item.html:76
-#: website/templates/review_list_item.html:19
+#: website/templates/review_list_item.html:25
 msgid "To"
 msgstr ""
 
@@ -636,13 +712,27 @@ msgstr ""
 msgid "No trips to display"
 msgstr ""
 
+#: website/views.py:103
+msgid "All fields are required"
+msgstr ""
+
+#: website/views.py:108
+#, python-format
+msgid "Reference price is: %(price)s $USD"
+msgstr ""
+
+#: website/views.py:109
+#, python-format
+msgid "Reference saving is: %(saving)s %%"
+msgstr ""
+
 #: website/templates/base.html:6
 msgid "Canubring - Save sending, earn carrying!"
 msgstr "Canubring - Ahorra enviando, gana trayendo!"
 
-#: website/templates/base.html:38
+#: website/templates/base.html:40
 #: website/templates/email_verified_system_message.html:7
-#: website/templates/new_trip_system_message.html:8
+#: website/templates/new_trip_system_message.html:6
 #: website/templates/welcome_system_message.html:7
 msgid "close"
 msgstr ""
@@ -687,7 +777,7 @@ msgstr ""
 msgid "Reviews by you "
 msgstr ""
 
-#: website/templates/evaluations.html:35 website/templates/evaluations.html:49
+#: website/templates/evaluations.html:35 website/templates/evaluations.html:51
 msgid "You do not have reviews yet"
 msgstr ""
 
@@ -707,15 +797,15 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-#: website/templates/header.html:9 website/templates/header.html.py:66
+#: website/templates/header.html:9 website/templates/header.html.py:68
 msgid "Save sending, earn carrying!"
 msgstr "Ahorra enviando, gana trayendo!"
 
-#: website/templates/header.html:39
+#: website/templates/header.html:41
 msgid "Logout"
 msgstr ""
 
-#: website/templates/header.html:48
+#: website/templates/header.html:50
 msgid "Login"
 msgstr ""
 
@@ -739,7 +829,7 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
-#: website/templates/new_trip_system_message.html:3
+#: website/templates/new_trip_system_message.html:5
 msgid "Your trip was stored properly"
 msgstr ""
 
@@ -755,12 +845,37 @@ msgstr ""
 msgid "Recommend"
 msgstr ""
 
-#: website/templates/reference_prices.html:7 website/templates/sidebar.html:46
+#: website/templates/reference_prices.html:18
+#: website/templates/sidebar.html:46
 msgid "Reference prices"
 msgstr ""
 
-#: website/templates/review_list_item.html:11
-#: website/templates/review_list_item.html:14
+#: website/templates/reference_prices.html:49
+msgid "Choose weight range"
+msgstr ""
+
+#: website/templates/reference_prices.html:64
+msgid "Choose size range"
+msgstr ""
+
+#: website/templates/reference_prices.html:65
+msgid "Small"
+msgstr ""
+
+#: website/templates/reference_prices.html:66
+msgid "Medium"
+msgstr ""
+
+#: website/templates/reference_prices.html:67
+msgid "Large"
+msgstr ""
+
+#: website/templates/reference_prices.html:75
+msgid "Choose value range"
+msgstr ""
+
+#: website/templates/review_list_item.html:13
+#: website/templates/review_list_item.html:18
 msgid "Review"
 msgstr ""
 

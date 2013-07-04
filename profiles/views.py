@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
+from django.utils.translation import ugettext as _
 
 from cities_light.models import Country
 
@@ -92,10 +93,10 @@ def login_view(request):
     else:
         auth_user = authenticate(username=user.username, password=password)
         if auth_user is None or not auth_user.is_active:
-            error_msg = "Password is not correct"
+            error_msg = _("Password is not correct")
             return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
         if not auth_user.userprofile.email_verified:
-            error_msg = "You must verify your email first"
+            error_msg = _("You must verify your email first")
             return HttpResponseBadRequest(json.dumps(error_msg), mimetype="application/json")
 
     login(request, auth_user)
@@ -125,10 +126,10 @@ def upload_profile_picture(request):
     profile = request.user.userprofile
     form = PictureUploadForm(request.POST, request.FILES, instance=profile)
     if not form.is_valid():
-        messages.error(request, "Error while uploading new avatar picture")
+        messages.error(request, _("Error while uploading new avatar picture"))
         return redirect('profile')
     form.save()
-    messages.success(request, "You have modified your avatar picture")
+    messages.success(request, _("You have modified your avatar picture"))
     return redirect('profile')
 
 
@@ -151,7 +152,7 @@ class EmailSettingsView(FormView):
     def form_valid(self, form):
         self.request.user.email = form.cleaned_data.get('email')
         self.request.user.save()
-        messages.success(self.request, "You have updated your email")
+        messages.success(self.request, _("You have updated your email"))
         return redirect('settings')
         return super(EmailSettingsView, self).form_valid(form)
 
@@ -167,13 +168,12 @@ class PasswordSettingsView(FormView):
         return kwargs
 
     def form_invalid(self, form):
-        messages.error(self.request, "Passwords didn't match")
+        messages.error(self.request, _("Passwords didn't match"))
         return super(PasswordSettingsView, self).form_invalid(form)
 
     def form_valid(self, form):
         self.request.user.set_password(form.cleaned_data['password1'])
         self.request.user.save()
-        messages.success(self.request, "You have updated your password")
+        messages.success(self.request, _("You have updated your password"))
         return super(PasswordSettingsView, self).form_valid(form)
-
 
