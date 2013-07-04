@@ -3,6 +3,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.conf import settings
+from django.views.generic import TemplateView
 
 from website.utils import listing
 from cities_light.models import Country
@@ -82,11 +83,28 @@ def get_cities(request, country_id):
     response = {'html': html}
     return HttpResponse(json.dumps(response), mimetype="application/json")
 
-from django.views.generic import TemplateView
-# from django.core.urlresolvers import reverse_lazy
 class TripLegFormView(TemplateView):
     def get_context_data(self, **kwargs):
         ctxt = super(TripLegFormView, self).get_context_data(**kwargs)
         ctxt['countries'] = Country.objects.order_by('name')
         return ctxt
+
+def reference_price(request):
+    ctxt = dict()
+    template = "reference_prices.html"
+    if request.method == 'POST':
+        distance = request.POST.get('distance')
+        weight = request.POST.get('weight')
+        size = request.POST.get('size')
+        price = request.POST.get('price')
+        from django.contrib import messages
+        if not distance or not weight or not size or not price:
+            messages.error(request, "All fields are required")
+            return render(request, template, ctxt)
+        from website.utils import reference_price, reference_saving
+        ref_price = reference_price(distance, float(weight), float(size), float(price))
+        ref_saving = reference_saving(distance, float(weight), float(size), float(price))
+        messages.success(request, "Reference price is: %s $USD" % int(ref_price))
+        messages.success(request, "Reference saving is: %s %%" % int(ref_saving))
+    return render(request, template, ctxt)
 
