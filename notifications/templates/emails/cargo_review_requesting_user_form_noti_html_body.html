@@ -1,2 +1,6 @@
-<p><strong>{{ sender }}</strong> ha valorado tu <strong>perfil</strong></p>
-
+{% load i18n %}
+{% blocktrans %}<p><strong>{{ sender }}</strong> has rated your profile as <strong>requesting user</strong>.</p>{% endblocktrans %}
+{% blocktrans %}<p>Login to Canubring and visit your reviews page to see it:</p>{% endblocktrans %}
+<p><a href="http://{{ domain }}/my/evaluations/">http://{{ domain }}/my/trips/</a></p>
+{% blocktrans %}<p>Thanks!</p>{% endblocktrans %}
+{% blocktrans %}<p>The Canubring team.</p>{% endblocktrans %}

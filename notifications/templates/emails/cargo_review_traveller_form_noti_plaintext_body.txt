@@ -1,1 +1,11 @@
-{{ sender }} ha valorado tu perfil
+{% load i18n %}
+
+{% blocktrans %}{{ sender }} has reviewed your profile.{% endblocktrans %}
+
+{% trans "Login to Canubring and visit your reviews page to see it:" %}:
+
+http://{{ domain }}/my/evaluations/
+
+{% trans "Thanks!" %}
+
+{% trans "The Canubring team." %}

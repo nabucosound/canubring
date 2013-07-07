@@ -1,1 +1,11 @@
-{{ sender }} ha confirmado tu formulario de cargo
+{% load i18n %}
+
+{% blocktrans %}{{ sender }} has confirmed your cargo form.{% endblocktrans %}
+
+{% trans "Login to Canubring and visit your trips page to see it:" %}:
+
+http://{{ domain }}/my/trips/
+
+{% trans "Thanks!" %}
+
+{% trans "The Canubring team." %}

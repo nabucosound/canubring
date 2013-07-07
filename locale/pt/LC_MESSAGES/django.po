@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Canubring\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 14:46-0500\n"
+"POT-Creation-Date: 2013-07-07 17:31-0500\n"
 "PO-Revision-Date: 2013-05-13 22:23-0400\n"
 "Last-Translator: Hector Garcia <hector@nomadblue.com>\n"
 "Language-Team: Canubring <info@canubring.com>\n"
@@ -293,11 +293,188 @@ msgstr ""
 msgid "Answer later"
 msgstr ""
 
-#: notifications/templates/emails/cargo_comment_noti_html_body.html:1
+#: notifications/templates/emails/cargo_comment_noti_html_body.html:2
 #, python-format
 msgid ""
-"<strong>%(sender)s</strong> left a <strong>new comment</strong> in one of "
+"<p><strong>%(sender)s</strong> left a <strong>new comment</strong> in one of "
 "your trips.</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_html_body.html:3
+#: notifications/templates/emails/cargo_confirm_form_noti_html_body.html:3
+#: notifications/templates/emails/cargo_delivery_form_noti_html_body.html:3
+#: notifications/templates/emails/cargo_reject_form_noti_html_body.html:3
+msgid "<p>Login to Canubring and visit your trips page to see it:</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_html_body.html:5
+#: notifications/templates/emails/cargo_confirm_form_noti_html_body.html:5
+#: notifications/templates/emails/cargo_delivery_form_noti_html_body.html:5
+#: notifications/templates/emails/cargo_form_noti_html_body.html:5
+#: notifications/templates/emails/cargo_reject_form_noti_html_body.html:5
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_html_body.html:5
+#: notifications/templates/emails/cargo_review_traveller_form_noti_html_body.html:5
+#: notifications/templates/emails/welcome_noti_html_body.html:5
+msgid "<p>Thanks!</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_html_body.html:6
+#: notifications/templates/emails/cargo_confirm_form_noti_html_body.html:6
+#: notifications/templates/emails/cargo_delivery_form_noti_html_body.html:6
+#: notifications/templates/emails/cargo_form_noti_html_body.html:6
+#: notifications/templates/emails/cargo_reject_form_noti_html_body.html:6
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_html_body.html:6
+#: notifications/templates/emails/cargo_review_traveller_form_noti_html_body.html:6
+#: notifications/templates/emails/welcome_noti_html_body.html:6
+msgid "<p>The Canubring team.</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has sent you a comment in one of your trips."
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_plaintext_body.txt:5
+#: notifications/templates/emails/cargo_confirm_form_noti_plaintext_body.txt:5
+#: notifications/templates/emails/cargo_delivery_form_noti_plaintext_body.txt:5
+msgid "Login to Canubring and visit your trips page to see it:"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_confirm_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_delivery_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_reject_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/cargo_review_traveller_form_noti_plaintext_body.txt:9
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:8
+msgid "Thanks!"
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_confirm_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_delivery_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_reject_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/cargo_review_traveller_form_noti_plaintext_body.txt:11
+#: notifications/templates/emails/welcome_noti_plaintext_body.txt:10
+msgid "The Canubring team."
+msgstr ""
+
+#: notifications/templates/emails/cargo_comment_noti_subject.txt:1
+msgid "New comment in cargo"
+msgstr ""
+
+#: notifications/templates/emails/cargo_confirm_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has confirmed your<strong>cargo form</strong>."
+"</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_confirm_form_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has confirmed your cargo form."
+msgstr ""
+
+#: notifications/templates/emails/cargo_confirm_form_noti_subject.txt:1
+msgid "Cargo form accepted"
+msgstr ""
+
+#: notifications/templates/emails/cargo_delivery_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has confirmed your <strong>cargo form</"
+"strong>.</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_delivery_form_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has confirmed the reception of your cargo form."
+msgstr ""
+
+#: notifications/templates/emails/cargo_delivery_form_noti_subject.txt:1
+msgid "Cargo form delivery confirmation"
+msgstr ""
+
+#: notifications/templates/emails/cargo_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has sent you a <strong>cargo form</strong>.</"
+"p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_form_noti_html_body.html:3
+msgid "<p>Login to Canubring and visit your cargos page to see it:</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_form_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has sent you a cargo form."
+msgstr ""
+
+#: notifications/templates/emails/cargo_form_noti_plaintext_body.txt:5
+#: notifications/templates/emails/cargo_reject_form_noti_plaintext_body.txt:5
+msgid "Login to Canubring and visit your cargos page to see it:"
+msgstr ""
+
+#: notifications/templates/emails/cargo_form_noti_subject.txt:1
+msgid "New cargo form"
+msgstr ""
+
+#: notifications/templates/emails/cargo_reject_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has rejected your <strong>cargo form</strong>."
+"</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_reject_form_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has rejected your cargo form."
+msgstr ""
+
+#: notifications/templates/emails/cargo_reject_form_noti_subject.txt:1
+msgid "Cargo form rejected"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has rated your profile as <strong>requesting "
+"user</strong>.</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_html_body.html:3
+#: notifications/templates/emails/cargo_review_traveller_form_noti_html_body.html:3
+msgid "<p>Login to Canubring and visit your reviews page to see it:</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_plaintext_body.txt:3
+#: notifications/templates/emails/cargo_review_traveller_form_noti_plaintext_body.txt:3
+#, python-format
+msgid "%(sender)s has reviewed your profile."
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_plaintext_body.txt:5
+#: notifications/templates/emails/cargo_review_traveller_form_noti_plaintext_body.txt:5
+msgid "Login to Canubring and visit your reviews page to see it:"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_requesting_user_form_noti_subject.txt:1
+msgid "New profile review by requesting user"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_traveller_form_noti_html_body.html:2
+#, python-format
+msgid ""
+"<p><strong>%(sender)s</strong> has rated your profile as <strong>traveller</"
+"strong>.</p>"
+msgstr ""
+
+#: notifications/templates/emails/cargo_review_traveller_form_noti_subject.txt:1
+msgid "New profile review by traveller user"
 msgstr ""
 
 #: notifications/templates/emails/welcome_noti_html_body.html:2
@@ -310,14 +487,6 @@ msgid ""
 "address by visiting the following link:</p>"
 msgstr ""
 
-#: notifications/templates/emails/welcome_noti_html_body.html:5
-msgid "<p>Thanks!</p>"
-msgstr ""
-
-#: notifications/templates/emails/welcome_noti_html_body.html:6
-msgid "<p>The Canubring team.</p>"
-msgstr ""
-
 #: notifications/templates/emails/welcome_noti_plaintext_body.txt:2
 msgid "Welcome to Canubring!!!"
 msgstr ""
@@ -326,14 +495,6 @@ msgstr ""
 msgid ""
 "Before you can start using Canubring, we need you to verify this email "
 "address by visiting the following link"
-msgstr ""
-
-#: notifications/templates/emails/welcome_noti_plaintext_body.txt:8
-msgid "Thanks!"
-msgstr ""
-
-#: notifications/templates/emails/welcome_noti_plaintext_body.txt:10
-msgid "The Canubring team."
 msgstr ""
 
 #: notifications/templates/emails/welcome_noti_subject.txt:1

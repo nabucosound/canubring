@@ -1,1 +1,1 @@
-Confirmación de formulario de cargo
+{% load i18n %}{% trans "Cargo form accepted" %}

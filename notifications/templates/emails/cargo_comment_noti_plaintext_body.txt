@@ -1,1 +1,11 @@
-{{ sender }} ha dejado un nuevo comentario en uno de tus viajes.
+{% load i18n %}
+
+{% blocktrans %}{{ sender }} has sent you a comment in one of your trips.{% endblocktrans %}
+
+{% trans "Login to Canubring and visit your trips page to see it:" %}:
+
+http://{{ domain }}/my/trips/
+
+{% trans "Thanks!" %}
+
+{% trans "The Canubring team." %}

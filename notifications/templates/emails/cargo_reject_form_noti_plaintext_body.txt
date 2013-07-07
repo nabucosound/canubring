@@ -1,1 +1,11 @@
-{{ sender }} ha rechazado tu formulario de cargo
+{% load i18n %}
+
+{% blocktrans %}{{ sender }} has rejected your cargo form.{% endblocktrans %}
+
+{% trans "Login to Canubring and visit your cargos page to see it:" %}:
+
+http://{{ domain }}/my/cargos/
+
+{% trans "Thanks!" %}
+
+{% trans "The Canubring team." %}

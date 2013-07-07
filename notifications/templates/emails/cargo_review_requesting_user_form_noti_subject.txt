@@ -1,1 +1,1 @@
-Nueva valoración de tu perfil por parte del usuario receptor
+{% load i18n %}{% trans "New profile review by requesting user" %}

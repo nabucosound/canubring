@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 
 from notifier.models import Notification, NotificationMixin
 from cargos.models import CargoComment, Cargo
@@ -28,7 +29,6 @@ class WelcomeNotification(Notification, NotificationMixin):
 
     def get_context(self):
         from django.core import signing
-        from django.contrib.sites.models import Site
         domain = Site.objects.all()[0].domain
         salt = 'password_recovery'
         # url_salt = 'password_recovery_url'
@@ -58,7 +58,11 @@ class CargoCommentNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoFormNotification(Notification, NotificationMixin):
@@ -81,7 +85,11 @@ class CargoFormNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.traveller_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.traveller_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoConfirmFormNotification(Notification, NotificationMixin):
@@ -104,7 +112,11 @@ class CargoConfirmFormNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.requesting_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.requesting_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoRejectFormNotification(Notification, NotificationMixin):
@@ -127,7 +139,11 @@ class CargoRejectFormNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.requesting_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.requesting_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoDeliveryNotification(Notification, NotificationMixin):
@@ -150,7 +166,11 @@ class CargoDeliveryNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.requesting_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.requesting_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoReviewTravellerNotification(Notification, NotificationMixin):
@@ -173,7 +193,11 @@ class CargoReviewTravellerNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.requesting_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.requesting_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 class CargoReviewReqUserNotification(Notification, NotificationMixin):
@@ -196,7 +220,11 @@ class CargoReviewReqUserNotification(Notification, NotificationMixin):
         return [self.user.email]
 
     def get_context(self):
-        return {'sender': self.obj.traveller_user.get_full_name()}
+        domain = Site.objects.all()[0].domain
+        return {
+            'sender': self.obj.traveller_user.get_full_name(),
+            'domain': domain,
+        }
 
 
 def send_email_notification(sender, instance, created, **kwargs):
