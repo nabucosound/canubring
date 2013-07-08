@@ -13,5 +13,5 @@ def active_nav_menu_item(request, pattern):
 
 @register.assignment_tag
 def get_currencies():
-    return Currency.objects.all()
+    return Currency.objects.order_by('id')
 
