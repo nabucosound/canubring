@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
+from profiles.actions import export_to_csv
 
 # from profiles.models import UserProfile, SocialLink, ProfileCountry
 from profiles.models import UserProfile, SocialLink
@@ -15,6 +16,7 @@ class NewUserAdmin(UserAdmin):
     search_fields = ('username', 'email', 'first_name', 'last_name',)
     ordering = ('-date_joined',)
     list_filter = []
+    actions = [export_to_csv]
 
     def country(self, obj):
         return obj.userprofile.country
