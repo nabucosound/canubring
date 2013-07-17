@@ -7,6 +7,7 @@
 
  body {
   background-color: #f6f6f6;
+  font-family: 'din-regular',Arial;
  } 
 
  .container.main {
@@ -309,6 +310,7 @@ footer {
     text-transform: uppercase;
     line-height: 30px;
     color: #006A99;
+    font-family: 'din-regular',Arial;
   }
 
   .topbar-nav li.active {background-color: #f6f6f6;color: #EC663D;}
